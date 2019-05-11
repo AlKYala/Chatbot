@@ -1,0 +1,10 @@
+topic: ~kaufabsicht keep (~kaufen)
+
+u: (~kaufen) Du willst also was Kaufen, sehe ich das richtig?
+	#! Ich suche / will kaufen / shop
+	a: AFFIRMATIVE (~yes) In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. gambit(~keyEx)
+	#! Irgendwas mit nein 
+	a: NEGATIVE (~no) Dann halt nicht, Ali
+	a: (<< [ich das] nicht>>) ^reuse(NEGATIVE)
+
+	

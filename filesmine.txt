@@ -1,0 +1,8 @@
+RAWDATA/FIRSTTRY/simplecontrol.top # default bot control
+RAWDATA/FIRSTTRY/tutorial.top
+RAWDATA/FIRSTTRY/kaufabsicht.top
+RAWDATA/FIRSTTRY/konzepte.top
+RAWDATA/FIRSTTRY/keyEx.top
+
+
+

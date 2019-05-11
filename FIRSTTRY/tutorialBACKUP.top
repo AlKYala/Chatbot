@@ -1,0 +1,11 @@
+topic: ~introductions keep repeat()
+
+t: [Hallo] [Hi] [Guten Tag], [ich bin Pret, das I steht für Intelligent] [ich bin ein freundlicher Bot].
+
+u: (~emohello)[Bevor ich dir helfe] [Um persönlicher sein zu können] würde ich gerne deinen Namen wissen.
+	#! Ich bin/Ich heiße/ Meine Name ist.
+	a: VORSTELLUNG ([heiße bin ist] _*1 >) $Kunde = '_0 Hallo, _0. Bist du auf der Suche nach einem Produkt aus unserem Shop?
+	#! Namen einfach so gesagt.
+	a: ( < _*l >) $Kunde = '_0 ^reuse(VORSTELLUNG)
+	#! Irgendwas mit nein.
+	a: KEINE_VORSTELLUNG (<<Nein nein nicht>>) Das kann ich nachvollziehen - ist auch nicht weiter schlimm!

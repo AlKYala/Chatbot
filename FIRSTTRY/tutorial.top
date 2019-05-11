@@ -1,0 +1,15 @@
+topic: ~introductions keep repeat()
+
+t: [Hallo] [Hi] [Guten Tag], [ich bin Pret, das I steht für Intelligent] [ich bin ein freundlicher Bot].
+
+u: (~emohello)[Bevor ich dir helfe] [Um persönlicher sein zu können] würde ich gerne deinen Namen wissen.
+	#! Ich bin/Ich heiße/ Meine Name ist.
+	a: VORSTELLUNG ([heiße bin ist] _*1 >) $kunde = '_0 Hallo, _0. [Wie kann ich helfen] [Wobei brauchst du hilfe]?
+	#! Namen einfach so gesagt.
+	a: ( < _*1 > ) $kunde = '_0 ^reuse(VORSTELLUNG)
+	#! Das will ich nicht sagen.
+	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) Das kann ich nachvollziehen - ist auch nicht weiter schlimm! Wie kann ich helfen?
+	#! Das will ich nicht
+	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)
+	#! Alles was nein ist 
+	a: (~no) ^reuse(KEINE_VORSTELLUNG)
