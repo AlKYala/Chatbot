@@ -1,16 +1,9 @@
 topic: ~konzepte []
 
-concept: ~kaufen [kaufen kaufen suche shop uni-shop]
+concept: ~kaufen [kaufen kaufen suche shop uni-shop bestellen]
 concept: ~kdienst [kundendienst]
-
-# pseudo dient nur der Wohlgeformtheit einiger topic dateien. Diese eingabe wird so in keiner weise stattfinden
-concept: ~pseudo [DasHierWirdNieAufgerufenNurZurWFF]
-
-# Für das was in "name" steht
-concept: ~things ["Geschichte der Universität Trier" "Kugelschreiber mit Soft-Touch" "Metallkugelschreiber in Box" Herrenshirt Kaffeetasse Einkaufschip "Trier fuer Anfänger" Damenshirt "Geschenktasche fuer Uni-Wein" "Kapuzenjacke Unisex" Schultertasche "Memory Trier" Schluesselband Mordsstimmung "2017er Universitäts-Wein" "Magnet mit Kunstsiebdruck" "Uni-Bär" "USB-Stick" Schreibset Notizbuch Baumwolltasche Doktorhut "Monopoly Trier" "Kapuzensweatshirt Unisex" Wein-Set]
+concept: ~things [kaputze kaputzensweatshirt sweatshirt tshirt "usb stick" usb stick "Geschichte der Universität Trier" "Kugelschreiber mit Soft-Touch" "Metallkugelschreiber in Box" Herrenshirt Kaffeetasse Einkaufschip "Trier fuer Anfänger" Damenshirt "Geschenktasche fuer Uni-Wein" "Kapuzenjacke Unisex" Schultertasche "Memory Trier" Schluesselband Mordsstimmung "2017er Universitäts-Wein" "Magnet mit Kunstsiebdruck" "Uni-Bär" "USB-Stick" Schreibset Notizbuch Baumwolltasche Doktorhut "Monopoly Trier" "Kapuzensweatshirt Unisex" Wein-Set]
 concept: ~art [Spiel Kleidung Buch Uni Alltag Deko]
 concept: ~ausfuehrung [blau Franzoesisch schwarz Deutch Englisch Chinesisch Deutsch silber gruen grau]
-
-# Idee fuer Geschenk und Anwendung: Wenn eines der Geschenkideen bzw. Anwendungsfaelle im User-input vorkommt wissen wir, dass es sich z.B. um ein Geschenk handelt!
 concept: ~geschenkidee [Geschenk Mitbringsel Erinnerungsstueck Gastgeschenk]
 concept: ~anwendungszweck [Unterhaltung Schreibwaren Essen Trinken Alltag Accessoire]

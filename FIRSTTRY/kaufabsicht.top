@@ -1,10 +1,89 @@
+outputmacro: ^dbFirst($_arg1 $_arg2 $_arg3 $_arg4)
+	    Ich kann dir folgende Kategorien anbieten: $_arg1 ,  $_arg2 ,  $_arg3 und arg4 . \n
+
 topic: ~kaufabsicht keep (~kaufen)
 
-u: (~kaufen) Du willst also was Kaufen, sehe ich das richtig?
-	#! Ich suche / will kaufen / shop
-	a: AFFIRMATIVE (~yes) In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. gambit(~keyEx)
-	#! Irgendwas mit nein 
-	a: NEGATIVE (~no) Dann halt nicht, Ali
-	a: (<< [ich das] nicht>>) ^reuse(NEGATIVE)
 
+
+u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
+
+	#! Ich suche / will kaufen / shop
+	a: ( ~yes ) if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde.}
+                  else {dbinit failed - $$db_error}
+	#! Nein.
+	a: ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
+	    #! Ja.
+	    b: ( ~yes ) Schön zu hören. ^reuse( INTRO )
+	    #! Nein.
+	    b: ( ~no ) Das ist schade.
+		#! Hiernach muss sollte man einen Schluss implementieren.
+
+u: FIRSTQ () Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
+    a: (_~geschenkidee) $geschenkidee = _0 $anwendungszweck = null Du suchst nach einem Geschenk. ^gambit( ~keyexgeschenk )
+           # if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) { completed.}
+            #		   else {dbexecute failed list from table- $$db_error}
+	 # ^reuse( FIRSTQ )
+	 # HIER BITTE NOCH KEINE QUERY!
+
+	 #! besonderer Zweck
+	 a: (_~anwendungszweck) $anwendungszweck = _0 $geschenkidee = null Du hast also einen bestimmten Zweck im Sinn. ^gambit ( ~keyexanwendung )
+	 
+topic: ~keyexgeschenk keep []
+
+t: Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck 
+
+u: ASKNAME () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  
+	a: (~no) $things = null Kein Thema, dafür bin ja da. 
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! 
+
+u: ART (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter!
+	a: () Okay. Versuchen wir es weiter!
 	
+u: AUSF () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung
+	a: () Okay. 
+	
+u: PRICE () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
+	a: () Wir konnten keinen Preis feststellen
+	
+u: SUMMARY () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
+	a: (~yes) Alles klar! Ich such mal im Shop # ab hier Datenbanksuche
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+	a: () Alles klar! Ich such mal im Shop # ab hier Datenbanksuche
+	
+topic: ~keyexanwendung keep []
+
+t: Debug: Reminder, Anwedungszweck nach $anwendungszweck . Anwendungszweck war $anwendungszweck 
+
+u: ASKNAME () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  
+	a: (~no) $things = null Kein Thema, dafür bin ja da. 
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! 
+
+u: ART (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter!
+	a: () Okay. Versuchen wir es weiter!
+	
+u: AUSF () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung
+	a: () Okay. 
+	
+u: PRICE () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
+	a: () Wir konnten keinen Preis feststellen
+	
+u: SUMMARY () Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
+	a: (~yes) Alles klar! Ich such mal im Shop # ab hier Datenbanksuche
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+	a: () Alles klar! Ich such mal im Shop # ab hier Datenbanksuche
+	
+	
+# hiernach muss die DB folgen. Oberes als erster ansatz zum NLI - da ich noch nicht weiß, wie ich das ganze in einem Satz bearbeite. 
+# Was ich aber machen würde ist alles, wozu es keine angabe gibt einfach mit $null abspeichern
+# Aber mit den Daten sollte sich arbeiten lassen 
+# Variablen sind: $things $art $ausfuehrung $preis für Tabelle Artikel 
+# $geschenkidee für Geschnk 
+# $anwendungszweck für Anwendung 
