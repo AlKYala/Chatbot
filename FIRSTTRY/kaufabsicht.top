@@ -1,5 +1,6 @@
-outputmacro: ^dbFirst($_arg1 $_arg2 $_arg3 $_arg4)
-	    Ich kann dir folgende Kategorien anbieten: $_arg1 ,  $_arg2 ,  $_arg3 und arg4 . \n
+outputmacro: ^dbFirst($_arg1)
+	    Ich kann dir folgendes anbieten: $_arg1
+		
 
 topic: ~kaufabsicht keep (~kaufen)
 
@@ -52,10 +53,13 @@ u: PRICE () Wie viel soll es denn maximal kosten?
 	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
 	a: () Wir konnten keinen Preis feststellen
 	
+#! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+#! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+	
 u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
-	a: () Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 
 #! Ausführung nur wenn anwendungszweck nicht null!	
 topic: ~keyexanwendung keep (~anwendungszweck) []
@@ -80,10 +84,12 @@ u: PRICE () Wie viel soll es denn maximal kosten?
 	a: () Wir konnten keinen Preis feststellen
 
 #! Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
+#! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+#! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
-	a: () Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 	
 	
 # hiernach muss die DB folgen. Oberes als erster ansatz zum NLI - da ich noch nicht weiß, wie ich das ganze in einem Satz bearbeite. 
@@ -94,6 +100,26 @@ u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es ha
 # $anwendungszweck für Anwendung 
 
 
-topic: ~dbsearch []
+topic: ~dbsearch [] ($gosearch)
 
-t: Willkommen bei der Datenbanksuche
+#! IDEE für jetzt: Benutzen einer View
+#! IDEE für Später: Um richtig nutzen von der Spalte queried zu machen, EINE VIEW PRO USER.
+t: Debug:Willkommen bei der Datenbanksuche
+	# Erstellen der View
+	if (^dbexecute(^"drop view tab; create view tab as (select * from artikel  natural join anwendung natural join geschenk)" NULL )) 
+		{}
+	else 
+		{dbexecute failed - $$db_error}
+		
+	# Herausfinden: Wie formuliere ich eine Queue, wenn ich praktisch nicht weiß, welche Variablen null sind un welche nicht?
+	# Einzige Idee: mehrere t: anlegen je nach dem, welche daten vorhanden sind (Anfangen mit dem Fall, dass alle/die meisten daten da sind)
+	# Hier zunächst: Eine Beispielqueue, um zu ermitteln, wie man queues in postgres ausführt
+	
+	#! Wie kann ich die Ergebnisse ausgeben? Hier: Das resultat aus Beschreibung
+	#! Die Queue scheint zu funktionieren - über PGSQL gibt es kein Problem. 
+	#! Sobald das vorige geklärt ist: Gefundenes Nehmen und dessen queried-Wert auf true setzen. 
+	
+	if (^dbexecute(^"select beschreibung from tab where geschenkidee like '%$geschenkidee%';" '^dbFirst )) 
+		{}
+	else 
+		{dbexecute failed - $$db_error}
