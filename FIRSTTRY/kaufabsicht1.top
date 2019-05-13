@@ -1,0 +1,29 @@
+outputmacro: ^dbFirst($_arg1 $_arg2 $_arg3 $_arg4)
+	    Ich kann dir folgende Kategorien anbieten: $_arg1 ,  $_arg2 ,  $_arg3 und arg4 . \n
+
+topic: ~kaufabsicht1 keep (~kaufen)
+
+
+
+u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
+
+	#! Ich suche / will kaufen / shop
+	a: ( ~yes ) if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde.}
+                  else {dbinit failed - $$db_error}
+
+	#! Nein.
+	a: ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
+	    #! Ja.
+	    b: ( ~yes ) Schön zu hören. ^reuse( BUILD )
+	    #! Nein.
+	    b: ( ~no ) Das ist schade.
+
+u: FIRSTQ () Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
+    #! Geschenk.
+    a: (geschenk) Du suchst nach einem Geschenk.
+           # if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) { completed.}
+            #		   else {dbexecute failed list from table- $$db_error}
+	 # ^reuse( FIRSTQ )
+
+	 #! besonderer Zweck
+	 a: (besonderer Zweck) Du hast also einen bestimmten Zweck im Sinn.
