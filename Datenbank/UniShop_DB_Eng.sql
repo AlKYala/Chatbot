@@ -5,7 +5,7 @@
 -- Tabelle fuer die Artikel
 create table Artikel(
 	Artnr varchar(35),Name varchar(35), Art varchar(40), Preis float,
-	Beschreibung varchar(500), Ausführung varchar(30),Groesse varchar(15),
+	Beschreibung varchar(500), Ausführung varchar(30),Groesse varchar(15), queried bool,
 	primary key(Artnr)
 );
 
@@ -242,7 +242,8 @@ create table Geschenk(
   --insert into Geschenk values ('', '');
 
 
-
+update artikel 
+set queried = false;
 
 
  
