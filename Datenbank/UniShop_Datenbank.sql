@@ -4,8 +4,8 @@
 
 -- Tabelle fuer die Artikel
 create table Artikel(
-	Artnr varchar(30),Name varchar(35), Art varchar(40), Preis float,
-	Beschreibung varchar(500), Ausführung varchar(30),Groesse varchar(15), queried bool,
+	Artnr varchar(8),Name varchar(35), Art varchar(40), Preis numeric (4, 2),
+	Beschreibung varchar(500), Ausführung varchar(30),Groesse varchar(15), queried int,
 	primary key(Artnr)
 );
 
@@ -241,11 +241,6 @@ create table Geschenk(
   insert into Geschenk values ('063S0000', 'Gastgeschenk');
   --insert into Geschenk values ('', '');
   
-update artikel 
-set queried = false;
-
-
-show data_directory;
 
  
  
