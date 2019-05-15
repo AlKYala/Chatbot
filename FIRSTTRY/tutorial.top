@@ -13,3 +13,5 @@ u: (~emohello)[Bevor ich dir helfe] [Um persönlicher sein zu können] würde ic
 	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)
 	#! Alles was nein ist 
 	a: (~no) ^reuse(KEINE_VORSTELLUNG)
+	# Das hier noch überarbeiten!
+	a: () Das habe ich leider nicht erkennen können. ^reuse( VORSTELLUNG )

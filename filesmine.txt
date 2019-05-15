@@ -4,4 +4,3 @@ RAWDATA/FIRSTTRY/kaufabsicht.top
 RAWDATA/FIRSTTRY/konzepte.top
 RAWDATA/FIRSTTRY/dbsearch.top
 
-

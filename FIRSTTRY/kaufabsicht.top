@@ -4,28 +4,30 @@ outputmacro: ^dbFirst($_arg1)
 
 topic: ~kaufabsicht1 keep (~kaufen)
 
+# Bis jetzt unvollständigkeiten. Das wird noch überarbeitet. 
 
+u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
-u: INTRO ([ ~kaufen  buy ]) Du möchtest also etwas kaufen, sehe ich das richtig?
-
-	#! Ich suche / will kaufen / shop
+	# Ich suche / will kaufen / shop
 	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
 
-	#! Nein.
+	# Nein.
 	a: ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
 	    #! Ja.
 	    b: ( ~yes ) Schön zu hören. ^reuse( INTRO )
 	    #! Nein.
 	    b: ( ~no ) Das ist schade.
 		# Hiernach muss sollte man einen Schluss implementieren.
+		
+	a: () Könntest du das bitte wiederholen? ^gambit( INTRO )
 
 
-u: FIRSTQ ([$introyes aussuchen]) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
+u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
 
-    #! Geschenk.
+    # Geschenk.
     a: (_~geschenkidee) $geschenkidee = _0 $anwendungszweck = null Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
        else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
@@ -34,15 +36,18 @@ u: FIRSTQ ([$introyes aussuchen]) Wir können nach einem Geschenk suchen oder ei
 
 
 
-	 #! besonderer Zweck
-	 a: ( ~anwendung ) $geschenkidee=null Du hast also einen bestimmten Zweck im Sinn. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) { ^gambit( ~keyexanwendung ) }
+	 # besonderer Zweck
+	 a: ( _~anwendungszweck ) $geschenkidee=null Du hast also einen bestimmten Zweck im Sinn. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) { ^gambit( ~keyexanwendung ) }
                                 else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
-        #! EssenTrinken
+        # EssenTrinken
         b: ( _~anwendungszweck ) $anwendungszweck = _0 ^gambit( ~keyexanwendung )
+		
+	 # Nicht erkannt
+	 a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
 
 
-#! Ausführung nur wenn Geschenk nicht null!		 
+# Ausführung nur wenn Geschenk nicht null!		 
 topic: ~keyexgeschenk keep (~geschenkidee)
 
 t: (~geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck 
@@ -64,15 +69,15 @@ u: PRICE1 () Wie viel soll es denn maximal kosten?
 	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten  ^reuse( SUMMARY1 )
 	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY1 )
 	
-#! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
-#! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 	
 u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d1 ^gambit( ~dbsearch )
 	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
-	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d2  ^gambit( ~dbsearch )
 
-#! Ausführung nur wenn anwendungszweck nicht null!	
+# Ausführung nur wenn anwendungszweck nicht null!	
 topic: ~keyexanwendung keep (~anwendungszweck) []
 
 t: (~anwendungszweck) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee 
@@ -94,13 +99,13 @@ u: PRICE2 () Wie viel soll es denn maximal kosten?
 	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^reuse( SUMMARY2 )
 	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
 
-#! Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
-#! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
-#! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+# Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
+# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d3 ^gambit( ~dbsearch )
 	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME2 ) # I need this to back to ASKNAME and run procedures again
-	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d4 ^gambit( ~dbsearch )
 	
 	
 # hiernach muss die DB folgen. Oberes als erster ansatz zum NLI - da ich noch nicht weiß, wie ich das ganze in einem Satz bearbeite. 
@@ -109,3 +114,7 @@ u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es ha
 # Variablen sind: $things $art $ausfuehrung $preis für Tabelle Artikel 
 # $geschenkidee für Geschnk 
 # $anwendungszweck für Anwendung 
+
+# Anmerkung Irgendwas ist seit dem Gespräch kaputt gegangen und jetzt jumpt manchmal hin und her. 
+# Zumindest kriegt er schonmal den normalen Ablauf hin. Im Folgenden wird es darum gehen
+# Fehlerfälle abzudecken.

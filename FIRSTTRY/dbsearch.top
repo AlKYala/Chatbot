@@ -1,8 +1,32 @@
-topic: ~dbsearch [] ($gosearch)
+topic: ~dbsearch  [] ($gosearch)
 
 # IDEE für jetzt: Benutzen einer View
 # IDEE für Später: Um richtig nutzen von der Spalte queried zu machen, EINE VIEW PRO USER.
-# Dein Ansatz hatte zum Absturz geführt Julia. Tut mir leid. 
+# Ich werde noch herausfinden, wie man eine View updated, da Probleme auftraten
+# Auskommentiert, die Queue die ich herausbekommen habe, die NULL Variablen ignoriert.
+# Dein Ansatz hatte zum Absturz geführt Julia. Tut mir leid. Du kannst gerne ...
+# Ein Backup haben - aber soweit gab es da einige fehler und meine Eingabeaufforderung hat sich einfach geschlossen
+
 
 	# In Relation Artikel 'queried' auf 1 setzen
-t: Debug:Willkommen bei der Datenbanksuche 
+t:  Debug:Willkommen bei der Datenbanksuche 
+
+
+
+# 	select distinct beschreibung
+# from artikel
+# natural join geschenk
+# natural join anwendung
+# where queried = 0
+# and case when $things is not null then name else 'NULLVALUE' end 
+# 	= coalesce($things, 'NULLVALUE') --Spalte name
+# and case when $art is not null then art else 'NULLVALUE' end 
+#     = coalesce($art,'NULLVALUE')	--art
+# and case when $preis is not null then preis else -1 end 
+#     <= coalesce($preis,-1) --preis
+# and case when $ausfuehrung is not null then ausfuehrung else 'NULLVALUE' end 
+#     = coalesce($ausfuehrung,'NULLVALUE') --ausfuehrung
+# and case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
+# 	= coalesce('Gastgeschenk', 'NULLVALUE')
+# and case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
+# 	= coalesce('Unterhaltung', 'NULLVALUE')
