@@ -1,0 +1,8 @@
+topic: ~dbsearch [] ($gosearch)
+
+# IDEE für jetzt: Benutzen einer View
+# IDEE für Später: Um richtig nutzen von der Spalte queried zu machen, EINE VIEW PRO USER.
+# Dein Ansatz hatte zum Absturz geführt Julia. Tut mir leid. 
+
+	# In Relation Artikel 'queried' auf 1 setzen
+t: Debug:Willkommen bei der Datenbanksuche 

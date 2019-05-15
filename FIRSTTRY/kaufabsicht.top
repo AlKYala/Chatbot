@@ -9,7 +9,7 @@ topic: ~kaufabsicht1 keep (~kaufen)
 u: INTRO ([ ~kaufen  buy ]) Du möchtest also etwas kaufen, sehe ich das richtig?
 
 	#! Ich suche / will kaufen / shop
-	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. ^reuse( FIRSTQ )}
+	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
@@ -26,7 +26,7 @@ u: INTRO ([ ~kaufen  buy ]) Du möchtest also etwas kaufen, sehe ich das richtig
 u: FIRSTQ ([$introyes aussuchen]) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
 
     #! Geschenk.
-    a: ( ~geschenkidee ) $anwendungszweck = null Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+    a: (_~geschenkidee) $geschenkidee = _0 $anwendungszweck = null Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
        else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
         #! Mitbringsel
@@ -47,29 +47,29 @@ topic: ~keyexgeschenk keep (~geschenkidee)
 
 t: (~geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck 
 
-u: ASKNAME () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  
-	a: (~no) $things = null Kein Thema, dafür bin ja da. 
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! 
+u: ASKNAME1 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^reuse( AUSF1 )
+	a: (~no) $things = null Kein Thema, dafür bin ja da. ^reuse( ART1 )
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF1 )
 
-u: ART (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter!
-	a: () Okay. Versuchen wir es weiter!
+u: ART1 (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF1 )
+	a: () Okay. Versuchen wir es weiter! ^reuse( AUSF1 )
 	
-u: AUSF () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung
-	a: () Okay. 
+u: AUSF1 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE1 )
+	a: () Okay. ^reuse( PRICE1 )
 	
-u: PRICE () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
-	a: () Wir konnten keinen Preis feststellen
+u: PRICE1 () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten  ^reuse( SUMMARY1 )
+	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY1 )
 	
 #! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
 #! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 	
 u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
 	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
-	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
 	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 
 #! Ausführung nur wenn anwendungszweck nicht null!	
@@ -77,29 +77,29 @@ topic: ~keyexanwendung keep (~anwendungszweck) []
 
 t: (~anwendungszweck) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee 
 
-u: ASKNAME () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  
-	a: (~no) $things = null Kein Thema, dafür bin ja da. 
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! 
+u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^reuse( AUSF2 )
+	a: (~no) $things = null Kein Thema, dafür bin ja da. ^reuse( ART1 )
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF2 )
 
-u: ART (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter!
-	a: () Okay. Versuchen wir es weiter!
+u: ART2 (!$things) Weißt du zumindest, was für eine Art von Ding du willst?  # Wenn für $things nix da ist, dann ART. 
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF2 )
+	a: () Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
 	
-u: AUSF () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung
-	a: () Okay. 
+u: AUSF2 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE2 )
+	a: () Okay. ^reuse( PRICE2 )
 	
-u: PRICE () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
-	a: () Wir konnten keinen Preis feststellen
+u: PRICE2 () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^reuse( SUMMARY2 )
+	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
 
 #! Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
 #! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
 #! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
 	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
-	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME2 ) # I need this to back to ASKNAME and run procedures again
 	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 	
 	
@@ -109,53 +109,3 @@ u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es ha
 # Variablen sind: $things $art $ausfuehrung $preis für Tabelle Artikel 
 # $geschenkidee für Geschnk 
 # $anwendungszweck für Anwendung 
-
-
-topic: ~dbsearch [] ($gosearch)
-
-# IDEE für jetzt: Benutzen einer View
-# IDEE für Später: Um richtig nutzen von der Spalte queried zu machen, EINE VIEW PRO USER.
-
-	# In Relation Artikel 'queried' auf 1 setzen
-t: ( db ) Debug:Willkommen bei der Datenbanksuche if (^dbexecute(^"UPDATE artikel SET queried=1 WHERE artnr LIKE '0%';
-                                                                    UPDATE artikel set queried=1 WHERE name=(SELECT name FROM Artikel NATURAL JOIN geschenk WHERE geschenkidee ='Mitbringsel' ORDER BY artnr LIMIT 1);"))
-		{Ich kann dir Folgendes anbieten: if (^dbexecute (^"SELECT name FROM artikel NATURAL JOIN geschenk WHERE queried=1 ORDER BY artnr LIMIT 1;" '^dbFirst )) {Möchtest du mehr Information? Wenn es dir nicht gefällt, kann ich weiter suchen.}
-	             else {dbexecute failed - $$db_error}
-	    } else {dbexecute failed - $$db_error}
-
-    #! Mehr Information.
-    a: ( {mehr} [Infos Information] ) ^reuse (INFORMATION)
-
-    #! Weiter suchen
-    a: ( [weitersuche "weiter suchen" suchen "such weiter"] ) ^reuse ( SEARCHAGAIN )
-
-
-
-t: INFORMATION ( {mehr} [Infos Information] )  [Die Beschreibung lautet:] [Also, hier steht:]
-        if (^dbexecute(^"SELECT beschreibung FROM artikel WHERE queried=1 LIMIT 1;" '^dbFirst )) {Gefällt es dir? Wenn du nein sagst, suche ich weiter.}
-         else {dbexecute failed - $$db_error}
-
-   #! Nein.
-   a: ( ~no ) ^reuse ( SEARCHAGAIN )
-
-
-t: SEARCHAGAIN () [Vielleicht gefällt dir dieses besser:] [Das habe ich noch gefunden:] [Was ist hiermit?]
-        if (^dbexecute(^"UPDATE artikel SET queried=2 WHERE queried=1;
-                         UPDATE artikel set queried=1 WHERE name=(SELECT name FROM Artikel NATURAL JOIN geschenk WHERE geschenkidee='$geschenk' ORDER BY artnr LIMIT 1); )) {
-             if(^dbexecute(^" SELECT name FROM artikel NATURAL JOIN geschenk WHERE queried=1 ORDER BY artnr LIMIT 1;" '^dbFirst )) {Soll ich dir die Beschreibung anzeigen?}
-            else {dbexecute failed - $$db_error} }
-        else {dbexecute failed - $$db_error}
-
-    #! Ja.
-    a: ( [~yes bitte] ) ^reuse ( INFORMATION )
-
-
-
-
-	# Herausfinden: Wie formuliere ich eine Queue, wenn ich praktisch nicht weiß, welche Variablen null sind un welche nicht?
-	# Einzige Idee: mehrere t: anlegen je nach dem, welche daten vorhanden sind (Anfangen mit dem Fall, dass alle/die meisten daten da sind)
-	# Hier zunächst: Eine Beispielqueue, um zu ermitteln, wie man queues in postgres ausführt
-
-	# Wie kann ich die Ergebnisse ausgeben? Hier: Das resultat aus Beschreibung
-	# Die Queue scheint zu funktionieren - über PGSQL gibt es kein Problem.
-	# Sobald das vorige geklärt ist: Gefundenes Nehmen und dessen queried-Wert auf true setzen.
