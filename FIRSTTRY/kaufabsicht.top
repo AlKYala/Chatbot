@@ -53,28 +53,28 @@ topic: ~keyexgeschenk keep (~geschenkidee)
 t: (~geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck 
 
 u: ASKNAME1 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^reuse( AUSF1 )
-	a: (~no) $things = null Kein Thema, dafür bin ja da. ^reuse( ART1 )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF1 )
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^gambit( AUSF1 )
+	a: (~no) $things = null Kein Thema, dafür bin ja da. ^gambit( ART1 )
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^gambit( AUSF1 )
 
 u: ART1 (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF1 )
-	a: () Okay. Versuchen wir es weiter! ^reuse( AUSF1 )
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^gambit( AUSF1 )
+	a: () Okay. Versuchen wir es weiter! ^gambit( AUSF1 )
 	
 u: AUSF1 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE1 )
-	a: () Okay. ^reuse( PRICE1 )
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^gambit( PRICE1 )
+	a: () Okay. ^gambit( PRICE1 )
 	
 u: PRICE1 () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten  ^reuse( SUMMARY1 )
-	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY1 )
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten  ^gambit( SUMMARY1 )
+	a: () Wir konnten keinen Preis feststellen ^gambit( SUMMARY1 )
 	
 # gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
 # gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 	
-u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
+u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausfuehrung als ausführung und maximal kosten tut es $preis. Stimmt das?
 	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d1 ^gambit( ~dbsearch )
-	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
+	a: (~no) Okay. Fangen wir von vorn an ^gambit( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
 	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d2  ^gambit( ~dbsearch )
 
 # Ausführung nur wenn anwendungszweck nicht null!	
@@ -83,28 +83,28 @@ topic: ~keyexanwendung keep (~anwendungszweck) []
 t: (~anwendungszweck) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee 
 
 u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^reuse( AUSF2 )
-	a: (~no) $things = null Kein Thema, dafür bin ja da. ^reuse( ART1 )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF2 )
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^gambit( AUSF2 )
+	a: (~no) $things = null Kein Thema, dafür bin ja da. ^gambit( ART2 )
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^gambit( AUSF2 )
 
 u: ART2 (!$things) Weißt du zumindest, was für eine Art von Ding du willst?  # Wenn für $things nix da ist, dann ART. 
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF2 )
-	a: () Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^gambit( AUSF2 )
+	a: () Okay. Versuchen wir es weiter! ^gambit( AUSF2 )
 	
 u: AUSF2 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE2 )
-	a: () Okay. ^reuse( PRICE2 )
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^gambit( PRICE2 )
+	a: () Okay. ^gambit( PRICE2 )
 	
 u: PRICE2 () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^reuse( SUMMARY2 )
-	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^gambit( SUMMARY2 )
+	a: () Wir konnten keinen Preis feststellen ^gambit( SUMMARY2 )
 
 # Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
 # gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
 # gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
 	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d3 ^gambit( ~dbsearch )
-	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME2 ) # I need this to back to ASKNAME and run procedures again
+	a: (~no) Okay. Fangen wir von vorn an ^gambit( ASKNAME2 ) # I need this to back to ASKNAME and run procedures again
 	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d4 ^gambit( ~dbsearch )
 	
 	
