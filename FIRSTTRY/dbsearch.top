@@ -13,20 +13,18 @@ t:  Debug:Willkommen bei der Datenbanksuche
 
 
 
-# 	select distinct beschreibung
-# from artikel
-# natural join geschenk
-# natural join anwendung
-# where queried = 0
-# and case when $things is not null then name else 'NULLVALUE' end 
-# 	= coalesce($things, 'NULLVALUE') --Spalte name
+#	select distinct beschreibung
+# from psuedotabellepro
+# where queried = 0 and
+# case when $things is not null then name else 'NULLVALUE' end 
+#	= coalesce($things, 'NULLVALUE') --Spalte name
 # and case when $art is not null then art else 'NULLVALUE' end 
-#     = coalesce($art,'NULLVALUE')	--art
+#    = coalesce($art,'NULLVALUE')	--art
 # and case when $preis is not null then preis else -1 end 
-#     <= coalesce($preis,-1) --preis
+#    <= coalesce($preis,-1) --preis
 # and case when $ausfuehrung is not null then ausfuehrung else 'NULLVALUE' end 
-#     = coalesce($ausfuehrung,'NULLVALUE') --ausfuehrung
+#    = coalesce($ausfuehrung,'NULLVALUE') --ausfuehrung
 # and case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
-# 	= coalesce('Gastgeschenk', 'NULLVALUE')
+#	= coalesce('Gastgeschenk', 'NULLVALUE')
 # and case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
-# 	= coalesce('Unterhaltung', 'NULLVALUE')
+#	= coalesce('Unterhaltung', 'NULLVALUE')
