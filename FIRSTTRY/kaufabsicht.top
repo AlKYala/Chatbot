@@ -42,33 +42,73 @@ u: FIRSTQ ([$introyes aussuchen]) Wir können nach einem Geschenk suchen oder ei
         b: ( _~anwendungszweck ) $anwendungszweck = _0 ^gambit( ~keyexanwendung )
 
 
-# Ausführung nur wenn Geschenk nicht null!
+#! Ausführung nur wenn Geschenk nicht null!		 
 topic: ~keyexgeschenk keep (~geschenkidee)
 
-t: (~geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck ^reuse ( ASKNAME )
+t: (~geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck 
 
 u: ASKNAME () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things. ^reuse ( AUSF )
-	a: ( ~no ) $things = null Kein Thema, dafür bin ja da. ^reuse ( ART )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wir's mal weiter! # Was kommt hierhin? ART oder ASKNAME?
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  
+	a: (~no) $things = null Kein Thema, dafür bin ja da. 
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! 
 
-u: ART (!$things) Weißt du zumindest, was für eine Art Artikel du willst? # Wenn für $things nix da ist, dann ART.
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse ( AUSF )
+u: ART (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter!
 	a: () Okay. Versuchen wir es weiter!
-
-u: AUSF () Kannst du was zum Produkt selbst sagen? Welche Sprache oder Farbe soll es haben?
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung. ^reuse ( PRICE )
-	a: () Okay.
-
+	
+u: AUSF () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung
+	a: () Okay. 
+	
 u: PRICE () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten. ^gambit( ~dbsearch )
-	a: () Wir konnten keinen Preis feststellen.
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
+	a: () Wir konnten keinen Preis feststellen
+	
+#! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+#! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+	
+u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
 
-# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt.
-# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
-# Variablen sind: $things $art $ausfuehrung $preis für Tabelle Artikel
-# $geschenkidee für Geschnk
-# $anwendungszweck für Anwendung
+#! Ausführung nur wenn anwendungszweck nicht null!	
+topic: ~keyexanwendung keep (~anwendungszweck) []
+
+t: (~anwendungszweck) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee 
+
+u: ASKNAME () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
+	a:  ( _~things ) $things = _0 Alles klar, ein $things.  
+	a: (~no) $things = null Kein Thema, dafür bin ja da. 
+	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! 
+
+u: ART (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
+	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter!
+	a: () Okay. Versuchen wir es weiter!
+	
+u: AUSF () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung
+	a: () Okay. 
+	
+u: PRICE () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten 
+	a: () Wir konnten keinen Preis feststellen
+
+#! Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
+#! gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+#! gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop # ab hier Datenbanksuche ^gambit( ~dbsearch )
+	
+	
+# hiernach muss die DB folgen. Oberes als erster ansatz zum NLI - da ich noch nicht weiß, wie ich das ganze in einem Satz bearbeite. 
+# Was ich aber machen würde ist alles, wozu es keine angabe gibt einfach mit $null abspeichern
+# Aber mit den Daten sollte sich arbeiten lassen 
+# Variablen sind: $things $art $ausfuehrung $preis für Tabelle Artikel 
+# $geschenkidee für Geschnk 
+# $anwendungszweck für Anwendung 
 
 
 topic: ~dbsearch [] ($gosearch)
