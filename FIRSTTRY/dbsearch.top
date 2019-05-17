@@ -6,15 +6,33 @@ topic: ~dbsearch  [] ($gosearch)
 # Auskommentiert, die Queue die ich herausbekommen habe, die NULL Variablen ignoriert.
 # Dein Ansatz hatte zum Absturz geführt Julia. Tut mir leid. Du kannst gerne ...
 # Ein Backup haben - aber soweit gab es da einige fehler und meine Eingabeaufforderung hat sich einfach geschlossen
+# Später: In Relation Artikel 'queried' auf 1 setzen
 
+# Nur wenn artikel gosearch auch exisitert
+t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche 
 
-	# In Relation Artikel 'queried' auf 1 setzen
-t:  Debug:Willkommen bei der Datenbanksuche 
+# das hier schlägt noch fehl!
+t: ($searchenable) Wie hört sich das an?: if (^dbexecute( 	select distinct beschreibung
+ from pseudotabellepro
+ where queried = 0 and
+ case when $things is not null then name else 'NULLVALUE' end 
+	= coalesce($things, 'NULLVALUE') --Spalte name
+ and case when $art is not null then art else 'NULLVALUE' end 
+    = coalesce($art,'NULLVALUE')	--art
+ and case when $preis is not null then preis else -1 end 
+    <= coalesce($preis,-1) --preis
+ and case when $ausfuehrung is not null then ausfuehrung else 'NULLVALUE' end 
+    = coalesce($ausfuehrung,'NULLVALUE') --ausfuehrung
+ and case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
+	= coalesce('Gastgeschenk', 'NULLVALUE')
+ and case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
+	= coalesce('Unterhaltung', 'NULLVALUE') '^dbFirst )) {}
+       else {dbexecute failed list from table- $$db_error }
 
 
 
 #	select distinct beschreibung
-# from psuedotabellepro
+# from pseudotabellepro
 # where queried = 0 and
 # case when $things is not null then name else 'NULLVALUE' end 
 #	= coalesce($things, 'NULLVALUE') --Spalte name
@@ -28,3 +46,10 @@ t:  Debug:Willkommen bei der Datenbanksuche
 #	= coalesce('Gastgeschenk', 'NULLVALUE')
 # and case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
 #	= coalesce('Unterhaltung', 'NULLVALUE')
+
+
+# IDEE für was danach kommt: Wir erstellen eine weitere Tabelle (z.B. Tabelle B), die die Artikel enthält
+# die dem Kunden bereits vorgeschlagen worden sind 
+# Diese wird mit der dem Kunden dedizierten Tabelle angeglichen
+# und alle ArtNr die identisch sind, werden 1 gesetzt. 
+# Dann wird die "weitere" Tabelle gelöscht. 

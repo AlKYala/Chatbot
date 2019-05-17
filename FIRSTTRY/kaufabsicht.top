@@ -2,9 +2,11 @@ outputmacro: ^dbFirst($_arg1)
 	    $_arg1.
 	    ^flushoutput()
 
-topic: ~kaufabsicht1 keep (~kaufen)
-
+topic: ~kaufabsicht keep (~kaufen)
 # Bis jetzt unvollständigkeiten. Das wird noch überarbeitet. 
+
+u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
+u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
 
 u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
@@ -13,108 +15,42 @@ u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
                   else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
+	# a: und b: sind quasi gesprächsverläufe - zunächst kommt a: und falls reuse, dann b usw. 
 
 	# Nein.
-	a: ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
-	    #! Ja.
+	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
 	    b: ( ~yes ) Schön zu hören. ^reuse( INTRO )
-	    #! Nein.
 	    b: ( ~no ) Das ist schade.
 		# Hiernach muss sollte man einen Schluss implementieren.
 		
-	a: () Könntest du das bitte wiederholen? ^gambit( INTRO )
+	a: () Könntest du das bitte wiederholen? ^reuse( INTRO )
 
 
 u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
 
-    # Geschenk.
-    a: (_~geschenkidee) $geschenkidee = _0 $anwendungszweck = null Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+
+	# In den nächsten Zwei antworten wird quasi gesagt, dass man was mit Geschenk oder Anwendungszweck haben will. 
+	# Aber nicht mehr, sodass erneut gefragt wird (mit reuse)
+    a: (~willGeschenk) $anwendungszweck = null Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+       else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+	   
+	# Irgendwas mit Zweck 
+	a: (~willZweck) $geschenkidee = null Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
        else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
-        #! Mitbringsel
-        b: ( _~geschenkidee ) $geschenkidee = _0 ^gambit( ~keyexgeschenk )
 
+    # Konkrete Angabe - gehe direkt weiter!
+    a: ( _~geschenkidee ) $geschenkidee = _0 ^gambit( ~keyexgeschenk )
 
-
-	 # besonderer Zweck
-	 a: ( _~anwendungszweck ) $geschenkidee=null Du hast also einen bestimmten Zweck im Sinn. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) { ^gambit( ~keyexanwendung ) }
-                                else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
-
-        # EssenTrinken
-        b: ( _~anwendungszweck ) $anwendungszweck = _0 ^gambit( ~keyexanwendung )
-		
-	 # Nicht erkannt
-	 a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
-
-
-# Ausführung nur wenn Geschenk nicht null!		 
-topic: ~keyexgeschenk keep (~geschenkidee)
-
-t: (~geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck 
-
-u: ASKNAME1 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^gambit( AUSF1 )
-	a: (~no) $things = null Kein Thema, dafür bin ja da. ^gambit( ART1 )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^gambit( AUSF1 )
-
-u: ART1 (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^gambit( AUSF1 )
-	a: () Okay. Versuchen wir es weiter! ^gambit( AUSF1 )
+	# Konkrete Angabe
+	a: ( _~anwendungszweck ) $anwendungszweck = _0 ^gambit( ~keyexanwendung )
 	
-u: AUSF1 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^gambit( PRICE1 )
-	a: () Okay. ^gambit( PRICE1 )
-	
-u: PRICE1 () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten  ^gambit( SUMMARY1 )
-	a: () Wir konnten keinen Preis feststellen ^gambit( SUMMARY1 )
-	
-# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
-# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
-	
-u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk. Es handelt sich hier um ein $things bzw. ein $art mit $ausfuehrung als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d1 ^gambit( ~dbsearch )
-	a: (~no) Okay. Fangen wir von vorn an ^gambit( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
-	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d2  ^gambit( ~dbsearch )
+	# Nicht erkannt
+	a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
+	b: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
 
-# Ausführung nur wenn anwendungszweck nicht null!	
-topic: ~keyexanwendung keep (~anwendungszweck) []
-
-t: (~anwendungszweck) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee 
-
-u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^gambit( AUSF2 )
-	a: (~no) $things = null Kein Thema, dafür bin ja da. ^gambit( ART2 )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^gambit( AUSF2 )
-
-u: ART2 (!$things) Weißt du zumindest, was für eine Art von Ding du willst?  # Wenn für $things nix da ist, dann ART. 
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^gambit( AUSF2 )
-	a: () Okay. Versuchen wir es weiter! ^gambit( AUSF2 )
-	
-u: AUSF2 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^gambit( PRICE2 )
-	a: () Okay. ^gambit( PRICE2 )
-	
-u: PRICE2 () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^gambit( SUMMARY2 )
-	a: () Wir konnten keinen Preis feststellen ^gambit( SUMMARY2 )
-
-# Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
-# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
-# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
-u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d3 ^gambit( ~dbsearch )
-	a: (~no) Okay. Fangen wir von vorn an ^gambit( ASKNAME2 ) # I need this to back to ASKNAME and run procedures again
-	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d4 ^gambit( ~dbsearch )
-	
-	
-# hiernach muss die DB folgen. Oberes als erster ansatz zum NLI - da ich noch nicht weiß, wie ich das ganze in einem Satz bearbeite. 
-# Was ich aber machen würde ist alles, wozu es keine angabe gibt einfach mit $null abspeichern
-# Aber mit den Daten sollte sich arbeiten lassen 
-# Variablen sind: $things $art $ausfuehrung $preis für Tabelle Artikel 
-# $geschenkidee für Geschnk 
-# $anwendungszweck für Anwendung 
-
-# Anmerkung Irgendwas ist seit dem Gespräch kaputt gegangen und jetzt jumpt manchmal hin und her. 
-# Zumindest kriegt er schonmal den normalen Ablauf hin. Im Folgenden wird es darum gehen
-# Fehlerfälle abzudecken.
+# Hiernach muss keyexanwendung oder keyexgeschenk finden. 
+# Diese sind nun Ausgelagert, backup vorhanden.
+# https://www.chatbots.org/ai_zone/viewthread/3659/
+# https://www.chatbots.org/ai_zone/viewthread/3665/
+# Überprüfen ob Variable vorhanden ist immer mit ( $varname )

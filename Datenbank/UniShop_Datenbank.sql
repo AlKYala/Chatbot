@@ -254,9 +254,9 @@ create table Geschenk(
 
 create table PseudotabellePro as( 
 select *
-from artikel
-natural join geschenk
-natural join anwendung
+from artikel a 
+natural full outer join geschenk
+natural full outer join anwendung
 );
 
 alter table pseudotabellepro
