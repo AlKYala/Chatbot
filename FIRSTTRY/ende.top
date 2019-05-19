@@ -1,0 +1,20 @@
+topic: ~ende keep repeat []
+
+# Warum er noch nicht in kaufabsicht geht guck ich mir später an!
+
+t: ($enterEnd2) ^reuse( ASKIFHAPPY )
+
+# Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
+# Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
+u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
+	a: (~no) Alles klar, dann wars das, $name. Ciao!
+	# Der Nutzer will noch was 
+	# Der Nutzer sagt JA und/oder dass er was kaufen will
+	a:  ([~yes ~kaufen]) $introyes = 1 Dann wollen wir dir doch dabei helfen, $name. ^gambit( ~kaufabsicht )
+	a: (~yes) $stillhelp = _0 ^reuse(STILLHELP)
+	
+	
+u: STILLHELP ([$stillhelp]) Was kann ich noch für dich tun, $name?
+	# Nutzer will nochwas kaufen
+	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) Dann will ich dir dabei helfen, $name . ^gambit( ~kaufabsicht )
+	

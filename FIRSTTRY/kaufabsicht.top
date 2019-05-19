@@ -5,8 +5,8 @@ outputmacro: ^dbFirst($_arg1)
 topic: ~kaufabsicht keep (~kaufen)
 # Bis jetzt unvollständigkeiten. Das wird noch überarbeitet. 
 
-u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
-u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
+ u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
+ u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
 
 u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
@@ -20,8 +20,9 @@ u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 	# Nein.
 	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
 	    b: ( ~yes ) Schön zu hören. ^reuse( INTRO )
-	    b: ( ~no ) Das ist schade.
-		# Hiernach muss sollte man einen Schluss implementieren.
+	    b: ( ~no ) $enterEnd2 = 1 Das ist schade.
+		b: ( ~nicht ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
+		
 		
 	a: () Könntest du das bitte wiederholen? ^reuse( INTRO )
 
