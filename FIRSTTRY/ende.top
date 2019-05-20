@@ -7,7 +7,7 @@ t: ($enterEnd2) ^reuse( ASKIFHAPPY )
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
 u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
-	a: (~no) Alles klar, dann wars das, $name. Ciao!
+	a: (~no) Alles klar, dann wars das, $name. Ciao! ^eval(:quit)
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
 	a:  ([~yes ~kaufen]) $introyes = 1 Dann wollen wir dir doch dabei helfen, $name. ^gambit( ~kaufabsicht )
