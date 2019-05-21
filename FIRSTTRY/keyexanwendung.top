@@ -9,15 +9,15 @@ u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Arti
 
 u: ART2 (!$things) Weißt du zumindest, was für eine Art von Ding du willst?  # Wenn für $things nix da ist, dann ART. 
 	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF2 )
-	a: () Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
+	a: () $art = null Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
 	
 u: AUSF2 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
 	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE2 )
-	a: () Okay. ^reuse( PRICE2 )
+	a: () $aufuehrung = null Okay. ^reuse( PRICE2 )
 	
 u: PRICE2 () Wie viel soll es denn maximal kosten?
 	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^reuse( SUMMARY2 )
-	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
+	a: () $preis = null Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
 
 # Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
 # gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 

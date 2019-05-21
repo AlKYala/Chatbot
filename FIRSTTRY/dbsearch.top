@@ -12,21 +12,21 @@ topic: ~dbsearch  [] ($gosearch)
 t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche 
 
 # das hier schlägt noch fehl!
-t: ($searchenable) Wie hört sich das an?: if (^dbexecute( 	select distinct beschreibung
- from pseudotabellepro
- where queried = 0 and
- case when $things is not null then name else 'NULLVALUE' end 
+t: ($searchenable) Wie hört sich das an?: if (^dbexecute( 	^"select distinct beschreibung
+from pseudotabellepro
+where queried = 0 and
+case when $things is not null then name else 'NULLVALUE' end 
 	= coalesce($things, 'NULLVALUE') --Spalte name
- and case when $art is not null then art else 'NULLVALUE' end 
+and case when $art is not null then art else 'NULLVALUE' end 
     = coalesce($art,'NULLVALUE')	--art
- and case when $preis is not null then preis else -1 end 
+and case when $preis is not null then preis else -1 end 
     <= coalesce($preis,-1) --preis
- and case when $ausfuehrung is not null then ausfuehrung else 'NULLVALUE' end 
+and case when $ausfuehrung is not null then ausfuehrung else 'NULLVALUE' end 
     = coalesce($ausfuehrung,'NULLVALUE') --ausfuehrung
- and case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
-	= coalesce('Gastgeschenk', 'NULLVALUE')
- and case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
-	= coalesce('Unterhaltung', 'NULLVALUE') '^dbFirst )) {}
+and case when $geschenkidee is not null then geschenkidee else 'NULLVALUE' end 
+	= coalesce($geschenkidee, 'NULLVALUE')
+and case when $anwendungszweck is not null then anwendungsgebiet else 'NULLVALUE' end 
+	= coalesce($anwendungszweck, 'NULLVALUE')"; '^dbFirst )) {}
        else {dbexecute failed list from table- $$db_error }
 
 

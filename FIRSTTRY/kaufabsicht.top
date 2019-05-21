@@ -41,10 +41,10 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
 
 
     # Konkrete Angabe - gehe direkt weiter!
-    a: ( _~geschenkidee ) $geschenkidee = _0 ^gambit( ~keyexgeschenk )
+    a: ( _~geschenkidee ) $anwendungszweck = null $geschenkidee = _0 ^gambit( ~keyexgeschenk )
 
 	# Konkrete Angabe
-	a: ( _~anwendungszweck ) $anwendungszweck = _0 ^gambit( ~keyexanwendung )
+	a: ( _~anwendungszweck ) $anwendungszweck = _0 $geschenkidee = null ^gambit( ~keyexanwendung )
 	
 	# Nicht erkannt
 	a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
