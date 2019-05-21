@@ -284,18 +284,72 @@ $anwendungsgebiet = Unterhaltung
 select distinct *
 from pseudotabellepro
 where queried = 0 and
-case when null is not null then name else 'NULLVALUE' end 
-	= coalesce(null, 'NULLVALUE') --name
-and case when 'Spiel' is not null then art else 'NULLVALUE' end 
-    = coalesce('Spiel','NULLVALUE')	--art
-and case when 15 is not null then preis else -1 end 
+ 	case when null is not null then name else 'NULLVALUE' end 
+	= coalesce(null, 'NULLVALUE') --Spalte name
+and 
+	case when 'Buch' is not null then art else 'NULLVALUE' end 
+    = coalesce('Buch','NULLVALUE')	--art
+and 
+	case when 15 is not null then preis else -1 end 
     <= coalesce(15,-1) --preis
-and case when null is not null then ausfuehrung else 'NULLVALUE' end 
+and 
+	case when null is not null then ausfuehrung else 'NULLVALUE' end 
     = coalesce(null,'NULLVALUE') --ausfuehrung
-and case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
+and 
+	case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
 	= coalesce('Gastgeschenk', 'NULLVALUE')
-and case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
+and 
+	case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
 	= coalesce('Unterhaltung', 'NULLVALUE')
+	
+update pseudotabellepro
+set queried = 0
+
+select distinct *
+from pseudotabellepro
+where queried = 0 and
+ 	case when null is not null then name else 'NULLVALUE' end 
+	= coalesce(null, 'NULLVALUE') --Spalte name
+and 
+	case when 'Buch' is not null then art else 'NULLVALUE' end 
+    = coalesce('Buch','NULLVALUE')	--art
+and 
+	case when 15 is not null then preis else -1 end 
+    <= coalesce(15,-1) --preis
+and 
+	case when null is not null then ausfuehrung else 'NULLVALUE' end 
+    = coalesce(null,'NULLVALUE') --ausfuehrung
+and 
+	case when 'Gastgeschenk' is not null then geschenkidee else 'NULLVALUE' end 
+	= coalesce('Gastgeschenk', 'NULLVALUE')
+and 
+	case when 'Unterhaltung' is not null then anwendungsgebiet else 'NULLVALUE' end 
+	= coalesce('Unterhaltung', 'NULLVALUE')
+	
+	
+select * 
+from pseudotabellepro
+
+select distinct *
+from pseudotabellepro
+where queried = 0 and
+ 	case when 'Damenshirt' is not null then name else 'NULLVALUE' end 
+	= coalesce('Damenshirt', 'NULLVALUE') --Spalte name
+and 
+	case when null is not null then art else 'NULLVALUE' end 
+    = coalesce(null,'NULLVALUE')	--art
+and 
+	case when 15 is not null then preis else -1 end 
+    <= coalesce(15,-1) --preis
+and 
+	case when null is not null then ausfuehrung else 'NULLVALUE' end 
+    = coalesce(null,'NULLVALUE') --ausfuehrung
+and 
+	case when 'Erinnerungsstueck' is not null then geschenkidee else 'NULLVALUE' end 
+	= coalesce('Erinnerungsstueck', 'NULLVALUE')
+and 
+	case when null is not null then anwendungsgebiet else 'NULLVALUE' end 
+	= coalesce(null, 'NULLVALUE')
 	
 	
 /*FÜR CHATSCRIPT: HIER QUEUE NOCH MIT PSEUDOTABELLEPRO!!!
