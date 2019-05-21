@@ -1,3 +1,12 @@
+outputmacro: ^dbSec($_arg1 $_arg2 $_arg3 $_arg4 $_arg5 $_arg6 $_arg7 $_arg8 $_arg9 $_arg10 $_arg11 $_arg12 $_arg13 $_arg14 $_arg15 $_arg16
+                    $_arg17 $_arg18 $_arg19 $_arg20 $_arg21 $_arg22 $_arg23 $_arg24 $_arg25 $_arg26 $_arg27 $_arg28 $_arg29 $_arg30)
+                    $ergebnis = positiv
+                    if ( ^length ($_arg1) > 0 ) { [Das habe ich gefunden: ] [Wie hört sich das an? ]
+                  	        $_arg1 $_arg2 $_arg3 $_arg4 $_arg5 $_arg6 $_arg7 $_arg8  $_arg9 $_arg10 $_arg11 $_arg12 $_arg13 $_arg14 $_arg15 $_arg16
+                  	        $_arg17 $_arg18 $_arg19 $_arg20 $_arg21 $_arg22 $_arg23 $_arg24 $_arg25 $_arg26 $_arg27 $_arg28 $_arg29 $_arg30 ^flushoutput()}
+                  	else if ($_arg1 == null OR $_arg1 == 0) { [Tut mir Leid.] [Entschuldigung.] Dazu [habe ich leider keine Informationen {gefunden}. ] [kann ich nichts sagen.] ^flushoutput()  }
+                    else {Tut mir Leid. Nichts gefunden. ^flushoutput()}
+
 topic: ~dbsearch  [] ($gosearch)
 
 # IDEE für jetzt: Benutzen einer View
@@ -12,21 +21,23 @@ topic: ~dbsearch  [] ($gosearch)
 t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche 
 
 # das hier schlägt noch fehl!
-t: ($searchenable) Wie hört sich das an?: if (^dbexecute( 	^"select distinct beschreibung
+t: ($searchenable) $ergebnis = null if (^dbexecute( ^"select distinct beschreibung
 from pseudotabellepro
 where queried = 0 and
 case when '$things' is not null then name else 'NULLVALUE' end 
 	= coalesce('$things', 'NULLVALUE') --Spalte name
 and case when '$art' is not null then art else 'NULLVALUE' end 
     = coalesce('$art','NULLVALUE')	--art
-and case when $preis is not null then preis else -1 end 
-    <= coalesce($preis,-1) --preis
+and case when '$preis' is not null then preis else -1 end
+    <= coalesce('$preis',-1) --preis
 and case when '$ausfuehrung' is not null then ausfuehrung else 'NULLVALUE' end 
-    = coalesce($ausfuehrung','NULLVALUE') --ausfuehrung
+    = coalesce('$ausfuehrung','NULLVALUE') --ausfuehrung
 and case when '$geschenkidee' is not null then geschenkidee else 'NULLVALUE' end 
 	= coalesce('$geschenkidee', 'NULLVALUE')
 and case when '$anwendungszweck' is not null then anwendungsgebiet else 'NULLVALUE' end 
-	= coalesce('$anwendungszweck', 'NULLVALUE');" '^dbFirst )) {}
+	= coalesce('$anwendungszweck', 'NULLVALUE');" '^dbSec ))
+	 { if ($ergebnis == null) {Wir haben im Shop leider nichts, was auf deine Kriterien passt.
+	                    Vielleicht probierst du es noch einmal mit anderen Kriterien.} }
        else {dbexecute failed list from table- $$db_error }
 
 
