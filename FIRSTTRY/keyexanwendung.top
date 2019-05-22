@@ -3,21 +3,21 @@ topic: ~keyexanwendung keep (~anwendungszweck) []
 t: ($anwendungszweck) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee ^reuse ( ASKNAME2 )
 
 u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^reuse( AUSF2 )
-	a: (~no) $things = null Kein Thema, dafür bin ja da. ^reuse( ART2 )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF2 )
+	a:  ( _~things ) $things = ^"''_0'"' Alles klar, ein $things.  ^reuse( AUSF2 )
+	a: (~no) $things = "null" Kein Thema, dafür bin ja da. ^reuse( ART2 )
+	a: () $things = "null" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF2 )
 
 u: ART2 (!$things) Weißt du zumindest, was für eine Art von Ding du willst?  # Wenn für $things nix da ist, dann ART. 
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF2 )
-	a: () $art = null Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
+	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter! ^reuse( AUSF2 )
+	a: () $art = "null" Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
 	
 u: AUSF2 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE2 )
-	a: () $aufuehrung = null Okay. ^reuse( PRICE2 )
+	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist $ausfuehrung ^reuse( PRICE2 )
+	a: () $ausfuehrung = "null" Okay. ^reuse( PRICE2 )
 	
 u: PRICE2 () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten ^reuse( SUMMARY2 )
-	a: () $preis = null Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
+	a: (_~positiveinteger) $preis = ^"''_0'" Es soll maximal $preis Euro kosten. ^reuse( SUMMARY2 )
+	a: () $preis = "null" Wir konnten keinen Preis feststellen ^reuse( SUMMARY2 )
 
 # Nur wenn es auch einen Anwedungszweck gibt - so habe den Bug behoben, der nach SUMMARY1 zu SUMMARY2 springt	
 # gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 

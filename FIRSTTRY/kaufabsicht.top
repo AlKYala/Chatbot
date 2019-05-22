@@ -30,21 +30,21 @@ u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
 
 
-	# In den nächsten Zwei antworten wird quasi gesagt, dass man was mit Geschenk oder Anwendungszweck haben will. 
+	# In den nächsten zwei Antworten wird quasi gesagt, dass man was mit Geschenk oder Anwendungszweck haben will.
 	# Aber nicht mehr, sodass erneut gefragt wird (mit reuse)
-    a: (~willGeschenk) $anwendungszweck = null Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+    a: (~willGeschenk) $anwendungszweck = "null" Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
        else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 	   
 	# Irgendwas mit Zweck 
-	a: (~willZweck) $geschenkidee = null Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
+	a: (~willZweck) $geschenkidee = "null" Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
        else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
 
     # Konkrete Angabe - gehe direkt weiter!
-    a: ( _~geschenkidee ) $anwendungszweck = null $geschenkidee = _0 ^gambit( ~keyexgeschenk )
+    a: ( _~geschenkidee ) $anwendungszweck = "null" $geschenkidee = ^"''_0'" ^gambit( ~keyexgeschenk )
 
 	# Konkrete Angabe
-	a: ( _~anwendungszweck ) $anwendungszweck = _0 $geschenkidee = null ^gambit( ~keyexanwendung )
+	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = "null" ^gambit( ~keyexanwendung )
 	
 	# Nicht erkannt
 	a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )

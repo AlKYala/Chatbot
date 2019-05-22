@@ -21,25 +21,51 @@ topic: ~dbsearch  [] ($gosearch)
 t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche 
 
 # das hier schlägt noch fehl!
-t: ($searchenable) $ergebnis = null if (^dbexecute( ^"select distinct beschreibung
+t: ($searchenable) $ergebnis = null if (^dbexecute( ^"SELECT DISTINCT beschreibun
+                                         FROM pseudotabellepro
+                                         WHERE queried = 0 AND
+                                             CASE WHEN $things IS NOT NULL THEN name ELSE 'NULLVALUE' END
+                                             = COALESCE($things, 'NULLVALUE')
+                                         AND CASE WHEN $art IS NOT NULL THEN art ELSE 'NULLVALUE' END
+                                             = COALESCE($art, 'NULLVALUE')
+                                         AND CASE WHEN $preis IS NOT NULL THEN preis ELSE -1 END
+                                             <= COALESCE($preis,-1)
+                                         AND CASE WHEN $ausfuehrung IS NOT NULL THEN ausfuehrung ELSE 'NULLVALUE' END
+                                             = COALESCE($ausfuehrung, 'NULLVALUE')
+                                         AND CASE WHEN $geschenkidee IS NOT NULL THEN geschenkidee ELSE 'NULLVALUE' END
+                                             = COALESCE($geschenkidee, 'NULLVALUE')
+                                         AND CASE WHEN $anwendungszweck IS NOT NULL THEN anwendungsgebiet ELSE 'NULLVALUE' END
+                                             = COALESCE($anwendungszweck, 'NULLVALUE')
+                                         LIMIT 1;" '^dbSec ))
+                                         { if ($ergebnis == null) {Wir haben im Shop leider nichts, was auf deine Kriterien passt.
+                                                               Vielleicht probierst du es noch einmal mit anderen Kriterien.} }
+                                     else {dbexecute failed list from table- $$db_error }
+
+
+
+
+##<<
+
+select distinct beschreibung
 from pseudotabellepro
 where queried = 0 and
-case when '$things' is not null then name else 'NULLVALUE' end 
-	= coalesce('$things', 'NULLVALUE') --Spalte name
-and case when '$art' is not null then art else 'NULLVALUE' end 
-    = coalesce('$art','NULLVALUE')	--art
-and case when '$preis' is not null then preis else -1 end
-    <= coalesce('$preis',-1) --preis
-and case when '$ausfuehrung' is not null then ausfuehrung else 'NULLVALUE' end 
-    = coalesce('$ausfuehrung','NULLVALUE') --ausfuehrung
-and case when '$geschenkidee' is not null then geschenkidee else 'NULLVALUE' end 
-	= coalesce('$geschenkidee', 'NULLVALUE')
-and case when '$anwendungszweck' is not null then anwendungsgebiet else 'NULLVALUE' end 
-	= coalesce('$anwendungszweck', 'NULLVALUE');" '^dbSec ))
-	 { if ($ergebnis == null) {Wir haben im Shop leider nichts, was auf deine Kriterien passt.
-	                    Vielleicht probierst du es noch einmal mit anderen Kriterien.} }
-       else {dbexecute failed list from table- $$db_error }
+    case when $things is not null then name else 'NULLVALUE' end
+  	= coalesce($things, 'NULLVALUE')
+and case when $art is not null then art else 'NULLVALUE' end
+    = coalesce($art,'NULLVALUE')	--art
+and case when $preis is not null then preis else -1 end
+    <= coalesce($preis,-1) --preis
+and case when $ausfuehrung is not null then ausfuehrung else 'NULLVALUE' end
+    = coalesce($ausfuehrung,'NULLVALUE') --ausfuehrung
+and case when $geschenkidee is not null then geschenkidee else 'NULLVALUE' end
+   	= coalesce($geschenkidee, 'NULLVALUE')
+and case when $anwendungszweck is not null then anwendungsgebiet else 'NULLVALUE' end
+   	= coalesce($anwendungszweck, 'NULLVALUE');" '^dbSec ))
+{ if ($ergebnis == null) {Wir haben im Shop leider nichts, was auf deine Kriterien passt.
+                        Vielleicht probierst du es noch einmal mit anderen Kriterien.} }
+else {dbexecute failed list from table- $$db_error }
 
+##>>
 
 
 #	select distinct beschreibung

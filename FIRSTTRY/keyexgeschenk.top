@@ -4,21 +4,21 @@ topic: ~keyexgeschenk keep (~geschenkidee)
 t: ($geschenkidee) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck ^reuse( ASKNAME1 )
 
 u: ASKNAME1 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
-	a:  ( _~things ) $things = _0 Alles klar, ein $things.  ^reuse( AUSF1 )
-	a: (~no) $things = null Kein Thema, dafür bin ja da. ^reuse( ART1 )
-	a: () $things = null Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF1 )
+	a:  ( _~things ) $things = ^"''_0'" Alles klar, ein $things.  ^reuse( AUSF1 )
+	a: (~no) $things = "null" Kein Thema, dafür bin ja da. ^reuse( ART1 )
+	a: () $things = "null" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF1 )
 
 u: ART1 (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
-	a: (_~art) $art = _0 Also ein $art. Gut, machen wir weiter! ^reuse( AUSF1 )
-	a: () Okay. Versuchen wir es weiter! ^reuse( AUSF1 )
+	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter! ^reuse( AUSF1 )
+	a: () $art = "null" Okay. Versuchen wir es weiter! ^reuse( AUSF1 )
 	
 u: AUSF1 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = _0 Alles klar, es ist $ausfuehrung ^reuse( PRICE1 )
-	a: () Okay. ^reuse( PRICE1 )
+	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist $ausfuehrung ^reuse( PRICE1 )
+	a: () $ausfuehrung = "null" Okay. ^reuse( PRICE1 )
 	
 u: PRICE1 () Wie viel soll es denn maximal kosten?
-	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis kosten  ^reuse( SUMMARY1 )
-	a: () Wir konnten keinen Preis feststellen ^reuse( SUMMARY1 )
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis Euro kosten.  ^reuse( SUMMARY1 )
+	a: () $preis = "null" Wir konnten keinen Preis feststellen ^reuse( SUMMARY1 )
 	
 # gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
 # gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
