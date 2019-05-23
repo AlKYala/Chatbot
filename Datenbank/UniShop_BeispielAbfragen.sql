@@ -12,6 +12,64 @@
 	$anwendungsgebiet = Unterhaltung
 */
 
+
+
+/*NEW
+select *
+	from pseudotabellepro
+	where 
+	name = (case when $things like '%nichts%' then name else $things end)
+	and 
+		art = (case when $art like '%nichts%' then art else $art end)
+	and 
+		preis <= (case when $preis < 0 then preis else $preis end)
+	and 
+		ausfuehrung = (case when $ausfuehrung like '%nichts%' then ausfuehrung else $ausfuehrung end)
+	and 
+		geschenkidee = (case when $geschenkidee like '%nichts%' then geschenkidee else $geschenkidee end)
+	and 
+		anwendungsgebiet = (case when $anwendungszweck like '%nichts%' then anwendungsgebiet else $anwendungszweck end)
+	limit 1 ;
+
+*/
+
+/* TEST */
+
+
+/*Szenario:
+ * Name: Damenshirt
+ * Art: nichts
+ * preis: nichts 
+ * ausfuehrung: schwarz
+ * geschenkidee: Erinnerungsstueck
+ * anwendungsgebiet: nichts
+ */
+
+select *
+	from pseudotabellepro
+	where 
+	name = (case when 'Damenshirt' like '%nichts%' then name else 'Damenshirt' end)
+	and 
+		art = (case when 'nichts' like '%nichts%' then art else 'nichts' end)
+	and 
+		preis <= (case when -1 < 0 then preis else -1 end)
+	and 
+		ausfuehrung = (case when 'schwarz' like '%nichts%' then ausfuehrung else 'schwarz' end)
+	and 
+		geschenkidee = (case when 'Erinnerungsstueck' like '%nichts%' then geschenkidee else 'Erinnerungsstueck' end)
+	and 
+		anwendungsgebiet = (case when 'nichts' like '%nichts%' then anwendungsgebiet else 'nichts' end)
+	limit 1 ;
+
+
+
+
+
+
+
+
+
+/* EVERYTHING BELOW: OLD! */
 select distinct *
 from pseudotabellepro
 where queried = 0 and
