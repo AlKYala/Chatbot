@@ -24,7 +24,9 @@ t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche
 t: ($searchenable) $ergebnis = null if (^dbexecute( ^"select *
 	from pseudotabellepro
 	where 
-	name = (case when $things like '%nichts%' then name else $things end)
+		queried = 0
+	and
+		name = (case when $things like '%nichts%' then name else $things end)
 	and 
 		art = (case when $art like '%nichts%' then art else $art end)
 	and 
