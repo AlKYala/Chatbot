@@ -28,7 +28,7 @@ t: ($searchenable) $ergebnis = null if (^dbexecute( ^"select *
 	and 
 		art = (case when $art like '%nichts%' then art else $art end)
 	and 
-		preis <= (case when $preis < 0 then -1 else $preis end)
+		preis <= (case when $preis < 0 then preis else $preis end)
 	and 
 		ausfuehrung = (case when $ausfuehrung like '%nichts%' then ausfuehrung else $ausfuehrung end)
 	and 
