@@ -21,30 +21,28 @@ topic: ~dbsearch  [] ($gosearch)
 t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche 
 
 # das hier schlägt noch fehl!
-t: ($searchenable) $ergebnis = null if (^dbexecute( ^"SELECT DISTINCT beschreibun
-                                         FROM pseudotabellepro
-                                         WHERE queried = 0 AND
-                                             CASE WHEN $things IS NOT NULL THEN name ELSE 'NULLVALUE' END
-                                             = COALESCE($things, 'NULLVALUE')
-                                         AND CASE WHEN $art IS NOT NULL THEN art ELSE 'NULLVALUE' END
-                                             = COALESCE($art, 'NULLVALUE')
-                                         AND CASE WHEN $preis IS NOT NULL THEN preis ELSE -1 END
-                                             <= COALESCE($preis,-1)
-                                         AND CASE WHEN $ausfuehrung IS NOT NULL THEN ausfuehrung ELSE 'NULLVALUE' END
-                                             = COALESCE($ausfuehrung, 'NULLVALUE')
-                                         AND CASE WHEN $geschenkidee IS NOT NULL THEN geschenkidee ELSE 'NULLVALUE' END
-                                             = COALESCE($geschenkidee, 'NULLVALUE')
-                                         AND CASE WHEN $anwendungszweck IS NOT NULL THEN anwendungsgebiet ELSE 'NULLVALUE' END
-                                             = COALESCE($anwendungszweck, 'NULLVALUE')
-                                         LIMIT 1;" '^dbSec ))
-                                         { if ($ergebnis == null) {Wir haben im Shop leider nichts, was auf deine Kriterien passt.
+t: ($searchenable) $ergebnis = null if (^dbexecute( ^"select *
+	from pseudotabellepro
+	where 
+	name = (case when $things like '%nichts%' then name else $things end)
+	and 
+		art = (case when $art like '%nichts%' then art else $art end)
+	and 
+		preis <= (case when $preis < 0 then -1 else $preis end)
+	and 
+		ausfuehrung = (case when $ausfuehrung like '%nichts%' then ausfuehrung else $ausfuehrung end)
+	and 
+		geschenkidee = (case when $geschenkidee like '%nichts%' then geschenkidee else $geschenkidee end)
+	and 
+		anwendungsgebiet = (case when $anwendungszweck like '%nichts%' then anwendungsgebiet else $anwendungszweck end)
+	limit 1 ;" '^dbSec )) { if ($ergebnis == null) {Wir haben im Shop leider nichts, was auf deine Kriterien passt.
                                                                Vielleicht probierst du es noch einmal mit anderen Kriterien.} }
                                      else {dbexecute failed list from table- $$db_error }
 
 
 
 
-##<<
+##<< OLD ONE:
 
 select distinct beschreibung
 from pseudotabellepro

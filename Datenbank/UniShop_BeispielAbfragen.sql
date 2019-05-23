@@ -14,9 +14,9 @@
 
 select distinct *
 from pseudotabellepro
-where queried = 0 
-    case when null is not null then name else 'NULLVALUE' end 
-    = coalesce(null, 'NULLVALUE') --Spalte name
+where queried = 0 and
+    case when 'nichts' not like '%nichts%' then name else 'NULLVALUE' end 
+    = coalesce('nichts', 'NULLVALUE') --Spalte name
 and 
 	case when 'Buch' is not null then art else 'NULLVALUE' end 
     = coalesce('Buch','NULLVALUE')	--art

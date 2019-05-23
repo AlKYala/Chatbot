@@ -256,8 +256,56 @@ natural full outer join geschenk
 natural full outer join anwendung
 );
 
+select * 
+from pseudotabellepro
+
+
+/* WICHTIG! FUER DEN WORKAROUND FÜR NULLWERTE! */
+
+update pseudotabellepro
+set name = 'nichts'
+where name is null
+
+update pseudotabellepro
+set art = 'nichts'
+where art is null
+
+update pseudotabellepro
+set ausfuehrung = 'nichts'
+where ausfuehrung is null
+
+update pseudotabellepro
+set ausfuehrung = 'nichts'
+where ausfuehrung is null
+
+update pseudotabellepro
+set groesse = 'nichts'
+where groesse is null
+
+update pseudotabellepro
+set geschenkidee = 'nichts'
+where geschenkidee is null
+
+update pseudotabellepro
+set preis = -1
+where preis is null
+
+update pseudotabellepro
+set anwendungsgebiet = 'nichts'
+where anwendungsgebiet is null
+
+
+
+
+
 select * from Artikel;
 select * from pseudotabellepro;
 select * from Artikel natural join Geschenk where art = 'Buch' and ausfuehrung = 'Englisch' and geschenkidee = 'Gastgeschenk' and preis <= 30;
+
+
+/* ERSTELLEN VARIABLEN 
+ * DIESE SOLLEN IN DER QUERY DANN AUSGEFÜLLT WERDEN!
+ * */
+
 
 
