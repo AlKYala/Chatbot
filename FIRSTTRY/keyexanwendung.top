@@ -4,16 +4,16 @@ t: (!$anwendungszweck="'nichts'") Debug: Reminder, Anwedungszweck nach $anwendun
 
 u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
 	a:  ( _~things ) $art = ^"'nichts'" $things = ^"''_0'"' Alles klar, ein $things.  ^reuse( AUSF2 )
-	a: (~no) $things = "null" Kein Thema, dafür bin ja da. ^reuse( ART2 )
-	a: () $things = "null" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF2 )
+	a: (~no) $things = ^"'nichts'" Kein Thema, dafür bin ja da. ^reuse( ART2 )
+	a: () $things = ^"'nichts'" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF2 )
 
 u: ART2 (!$things) Weißt du zumindest, was für eine Art von Ding du willst?  # Wenn für $things nix da ist, dann ART. 
-	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter! ^reuse( AUSF1 )
-	a: () $art = ^"'nichts'" Okay. Versuchen wir es weiter! ^reuse( AUSF1 )
+	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter! ^reuse( AUSF2 )
+	a: () $art = ^"'nichts'" Okay. Versuchen wir es weiter! ^reuse( AUSF2 )
 	
 u: AUSF2 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
-	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist $ausfuehrung ^reuse( PRICE1 )
-	a: () $ausfuehrung = ^"'nichts'" Okay. ^reuse( PRICE1 )
+	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist $ausfuehrung ^reuse( PRICE2 )
+	a: () $ausfuehrung = ^"'nichts'" Okay. ^reuse( PRICE2 )
 	
 u: PRICE2 () Wie viel soll es denn maximal kosten?
 	a: (_~positiveinteger) $preis = ^"''_0'" Es soll maximal $preis Euro kosten. ^reuse( SUMMARY2 )
