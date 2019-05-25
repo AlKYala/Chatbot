@@ -19,19 +19,28 @@ topic: ~dbsearch  [] ($gosearch)
 # Später: In Relation Artikel 'queried' auf 1 setzen
 
 # Nur wenn artikel gosearch auch exisitert
-t: ($gosearch) $searchenable = 1 Debug:Willkommen bei der Datenbanksuche
+#tablename ist nun der Name für die Eigene 
+t: ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
    # if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $kunde as (SELECT * FROM pseudotabellepro);" )) {
    #        if (^dbexecute(^"UPDATE $kunde SET queried = 0;" )) {^reuse( SEARCHPRODUCT )}
    # } else {dbexecute failed table - $$db_error} # to see tables: SELECT * FROM pg_catalog.pg_table
-^reuse( SEARCHPRODUCT )
+^reuse( SEARCHCREATE )
+
+
+
+#$tablename = ^join("mystring" $cs_randindex)
+
+t: SEARCHCREATE ($searchcreate) $searchenable = 1 $tablename = ^join("mystring" $cs_randindex)
+	if (^dbexecute(^"create table $tablename as (select * from pseudotabellepro);" )) {Datenbank erstellt}
+	else {^dbexecute(^"drop table $tablename;")dbexecute failed list from table- $$db_error Gibt nix, machst nix }
 
 # das hier schlägt noch fehl!
 t: SEARCHPRODUCT ($searchenable) $ergebnis = null
-    if (^dbexecute( ^"UPDATE pseudotabellepro
+    if (^dbexecute( ^"UPDATE $tablename
         SET queried = 1
         WHERE name =
         (SELECT name
-        FROM pseudotabellepro
+        FROM $tablename
         WHERE
             QUERIED = 0
         AND
@@ -51,7 +60,7 @@ t: SEARCHPRODUCT ($searchenable) $ergebnis = null
 
 
 t: PRODUCTNAME ($produktname) $ergebnis = null  [Ich habe dies gefunden: ] [Was hältst du davon? ] [Was ist hiermit? ]
-   if (^dbexecute( ^"SELECT name FROM pseudotabellepro WHERE queried = 1 LIMIT 1;" '^dbSec)) {
+   if (^dbexecute( ^"SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
          if ($ergebnis == null)      { Wir haben im Shop leider nichts, was auf deine Eingaben passt.
                                       Vielleicht probierst du es noch einmal mit anderen Kriterien. ^reuse(~kaufabsicht.INTRO)}
          else {. $produktbeschreibung = 1 ^reuse(PRODUCTDESCR)}
@@ -60,7 +69,7 @@ t: PRODUCTNAME ($produktname) $ergebnis = null  [Ich habe dies gefunden: ] [Was 
 
 t: PRODUCTDESCR ($produktbeschreibung)
    [Dazu kann ich dir Folgendes sagen: ] [Ich habe noch mehr Informationen: ] [Also: ] [ ]
-   if (^dbexecute( ^"SELECT beschreibung FROM pseudotabellepro WHERE queried = 1 LIMIT 1;" '^dbSec)) {
+   if (^dbexecute( ^"SELECT beschreibung FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
             [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
    } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~kaufabsicht.INTRO)}
 
@@ -79,13 +88,13 @@ t: PRODUCTDESCR ($produktbeschreibung)
 
 
 t: SEARCHAGAIN ($weitersuchen)
-   if (^dbexecute( ^"UPDATE pseudotabellepro SET queried = 2 WHERE queried = 1;" )) {Debug: neue Suche / SEARCHAGAIN erfolgreich $weitersuchen = 0 ^reuse (SEARCHPRODUCT) }
+   if (^dbexecute( ^"UPDATE $tablename SET queried = 2 WHERE queried = 1;" )) {Debug: neue Suche / SEARCHAGAIN erfolgreich $weitersuchen = 0 ^reuse (SEARCHPRODUCT) }
    else  {dbexecute failed list from table- $$db_error }
 
 ##<<
 t: SEARCHPRODUCT ($searchenable) $ergebnis = null
     if (^dbexecute( ^"SELECT *
-        FROM pseudotabellepro
+        FROM $tablename
         WHERE
             QUERIED = 0
         AND
@@ -108,7 +117,7 @@ t: SEARCHPRODUCT ($searchenable) $ergebnis = null
 
 
 t: ($searchenable) $ergebnis = null if (^dbexecute( ^"select *
-	from pseudotabellepro
+	from $tablename
 	where 
 		queried = 0
 	and

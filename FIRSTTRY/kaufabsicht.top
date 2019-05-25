@@ -11,15 +11,15 @@ topic: ~kaufabsicht keep (~kaufen)
 u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
 	# Ich suche / will kaufen / shop
-	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. ^reuse( FIRSTQ )}
+	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde. ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
 	# a: und b: sind quasi gesprächsverläufe - zunächst kommt a: und falls reuse, dann b usw. 
 
 	#! Nein.
-	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
-	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Schön zu hören. ^reuse( FIRSTQ )}
+	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
+	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error}
 	    b: ( ~no ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
 		b: ( ~nicht ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
@@ -27,17 +27,17 @@ u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 	a: () Könntest du das bitte wiederholen?
 
 	     # Ich suche / will kaufen / shop
-           	b: ( _~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. ^reuse( FIRSTQ )}
+           	b: ( _~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde. ^reuse( FIRSTQ )}
                 else {dbinit failed - $$db_error}
 
          # Antwort immer noch unverständlich
             b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
-                  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Egal, fangen wir mal an. ^reuse( FIRSTQ )}
+                  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Egal, fangen wir mal an. ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error}
 
          #! Nein.
-         	b: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem Uni-Shop suchst?
-         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Schön zu hören. ^reuse( FIRSTQ )}
+         	b: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
+         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
                              else {dbinit failed - $$db_error}
          	    c: ( [ ~no ~nicht ] ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
 
