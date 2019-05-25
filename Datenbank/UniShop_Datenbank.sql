@@ -294,6 +294,31 @@ update pseudotabellepro
 set anwendungsgebiet = 'nichts'
 where anwendungsgebiet is null
 
+/* wegen der Farben*/
+
+update pseudotabellepro
+set ausfuehrung = 'Blau'
+where ausfuehrung = 'blau'
+
+update pseudotabellepro
+set ausfuehrung = 'Grün'
+where ausfuehrung = 'grün'
+
+/*
+ update pseudotabellepro
+set ausfuehrung = 'Grün'
+where ausfuehrung = 'grÃ¼n'
+  
+ */
+
+update pseudotabellepro
+set ausfuehrung = 'Grau'
+where ausfuehrung = 'grau'
+
+update pseudotabellepro
+set ausfuehrung = 'Schwarz'
+where ausfuehrung = 'schwarz'
+
 
 
 
