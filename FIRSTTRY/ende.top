@@ -17,5 +17,6 @@ u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
 	
 u: STILLHELP ([$stillhelp]) Was kann ich noch für dich tun, $name?
 	# Nutzer will nochwas kaufen
-	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) Dann will ich dir dabei helfen, $name . ^gambit( ~kaufabsicht )
+	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
+	Dann will ich dir dabei helfen, $name . ^reuse( ~kaufabsicht.INTRO )
 	

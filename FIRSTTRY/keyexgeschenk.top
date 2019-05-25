@@ -24,8 +24,8 @@ u: PRICE1 () Wie viel soll es denn maximal kosten?
 # gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 	
 u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk, genauer gesagt ein $geschenkidee . Es handelt sich hier um ein $things bzw. ein $art mit $ausfuehrung als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d1 ^gambit( ~dbsearch )
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d1 ^reuse( ~dbsearch.WELCOME )
 	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
-	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d2  ^gambit( ~dbsearch )
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d2  ^reuse( ~dbsearch.WELCOME )
 
 # Ausführung nur wenn anwendungszweck nicht null!	

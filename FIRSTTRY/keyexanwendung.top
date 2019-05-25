@@ -23,6 +23,6 @@ u: PRICE2 () Wie viel soll es denn maximal kosten?
 # gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
 # gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
 u: SUMMARY2 ($anwendungszweck) Ich fasse zusammen: Du suchtest nach Zweck für $anwendungszweck. Es handelt sich hier um ein $things bzw. ein $art mit $ausf als ausführung und maximal kosten tut es $preis. Stimmt das?
-	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d3 ^gambit( ~dbsearch )
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d3 ^reuse( ~dbsearch.WELCOME )
 	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME2 ) # I need this to back to ASKNAME and run procedures again
-	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d4 ^gambit( ~dbsearch )
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d4 ^reuse( ~dbsearch.WELCOME )

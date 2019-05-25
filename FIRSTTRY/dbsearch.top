@@ -20,7 +20,7 @@ topic: ~dbsearch  [] ($gosearch)
 
 # Nur wenn artikel gosearch auch exisitert
 #tablename ist nun der Name für die Eigene 
-t: ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
+t: WELCOME ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
    # if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $kunde as (SELECT * FROM pseudotabellepro);" )) {
    #        if (^dbexecute(^"UPDATE $kunde SET queried = 0;" )) {^reuse( SEARCHPRODUCT )}
    # } else {dbexecute failed table - $$db_error} # to see tables: SELECT * FROM pg_catalog.pg_table
@@ -31,8 +31,8 @@ t: ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
 #$tablename = ^join("mystring" $cs_randindex)
 
 t: SEARCHCREATE ($searchcreate) $searchenable = 1 $tablename = ^join("mystring" $cs_randindex)
-	if (^dbexecute(^"create table $tablename as (select * from pseudotabellepro);" )) {Datenbank erstellt}
-	else {^dbexecute(^"drop table $tablename;")dbexecute failed list from table- $$db_error Gibt nix, machst nix }
+	if (^dbexecute(^"create table IF NOT EXISTS $tablename as (select * from pseudotabellepro);" )) {Datenbank erstellt ^reuse( SEARCHPRODUCT)} 
+	else {^dbexecute(^"drop table $tablename;") searchcreate problem }
 
 # das hier schlägt noch fehl!
 t: SEARCHPRODUCT ($searchenable) $ergebnis = null
