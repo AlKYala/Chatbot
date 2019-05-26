@@ -5,10 +5,12 @@ outputmacro: test()
 ^addtopic(~introductions)
 $cs_control_main = ~control
 $cs_language = german
-$cs_externaltag = ~xPOSTAGSENTENCE 
-$userprompt = ^"%user: >"
+$cs_externaltag = ~xPOSTAGSENTENCE
+$userprompt = ^"DU: >"
+# $userprompt = ^"%user: >"
 $botprompt = ^"TEST: "
-$cs_token = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  
+$cs_token = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE
+$stdtoken = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE
 
 topic: ~xrejoinder system repeat ()
 
@@ -22,7 +24,7 @@ test
 
 topic: ~control system ()
 # on startup, do introduction
-u: ( %input<%userfirstline) 
+u: ( %input<%userfirstline )
 	gambit(~introductions)
 
 # get a master copy of input then do our normal copies
