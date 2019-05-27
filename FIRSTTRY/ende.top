@@ -4,19 +4,38 @@ topic: ~ende keep repeat []
 
 t: ($enterEnd2) ^reuse( ASKIFHAPPY )
 
+
+# Erklärung queried 3: Die Menge der Artikel des Nutzers, die er gewollt hat, habe ich als 3 gesetzt. 
+# Also im Überblick
+# 0: Nie gesucht 
+# 1: Gefunden (temporär)
+# 2: Abgelehnt 
+# 3: Angenommen
+
+
+
+# Weitere Idee für 3: Wir lassen den Nutzer quasi seinen "Einkaufswagen einsehen. 
+# Die query ist simpel: "select * from $tablename where queried = 3;"
+
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
 u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
 	a: (~no) # if (!^dbexecute(^"DROP TABLE $kunde ;" NULL )) {
-	        Alles klar, dann war's das, $name. Ciao! ^eval(:quit) # }
+	        Alles klar, dann war's das, $kunde. Ciao! ^eval(:quit) # }
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
-	a:  ([~yes ~kaufen]) $introyes = 1 Dann wollen wir dir doch dabei helfen, $name. ^gambit( ~kaufabsicht )
+	a:  ([~yes ~kaufen]) $introyes = 1 Dann wollen wir dir doch dabei helfen, $kunde. ^gambit( ~kaufabsicht )
 	a: (~yes) $stillhelp = _0 ^reuse(STILLHELP)
 	
+	# Nutzer will nochwas kaufen	
+u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
+	Was kann ich noch für dich tun, $kunde? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1" )) {debug: queries auf 2 gesetzt} 
+	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) 
+	Dann will ich dir dabei helfen, $kunde. ^reuse( ~kaufabsicht.INTRO )
 	
-u: STILLHELP ([$stillhelp]) Was kann ich noch für dich tun, $name?
-	# Nutzer will nochwas kaufen
-	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
-	Dann will ich dir dabei helfen, $name . ^reuse( ~kaufabsicht.INTRO )
+	a: (~yes) Dann will ich dir dabei helfen, $kunde. ^reuse( ~kaufabsicht.INTRO )
+	
+	a: ([~nicht ~no]) Ok, dann halt nix mehr, $kunde. Tschüss ^eval(:quit)
+	
+	
 	

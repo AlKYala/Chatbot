@@ -73,9 +73,11 @@ t: PRODUCTDESCR ($produktbeschreibung)
             [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
    } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~kaufabsicht.INTRO)}
 
+
+	# Auch im folgenden queried 1 auf queried 3 setzen. 
     #! Ja.
       a: ( ~yes ) Schön, dass ich dir helfen konnte. Ich kann noch etwas anderes für dich suchen, wenn du möchtest, oder du beendest mich.
-                  Möchtest du ein weiteres Produkt suchen?
+                  Möchtest du ein weiteres Produkt suchen? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1;" )) {debug: queries auf 3 gesetzt}
 
                   #! Ja.
                   b:  (~yes )   Fangen wir von Neuem an. ^reuse(~kaufabsicht.INTRO)
