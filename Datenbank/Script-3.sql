@@ -88,7 +88,7 @@ select *
 from mystring1285
 where queried  = 5;
 
-select count (distinct name) 
-from mystring1285
-where queried = 3;
+select count (distinct artnr) 
+from $tablename
+where queried = 4;
 
