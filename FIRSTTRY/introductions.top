@@ -5,10 +5,11 @@ topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
 # Taucht jedes Mal auf.
 t:  ( %input<%userfirstline )
     ^keep()
-    [Hallo] [Hi] [Guten Tag], [ich bin Pret, das I steht für Intelligent] [ich bin ein freundlicher Bot]. ^reuse( GREET )
+    [Hallo] [Hi] [Guten Tag], [ich bin Pret, das I steht für Intelligent] [ich bin ein freundlicher Bot]. ^reuse( GREET ) 
 
 # Wird nur beim ersten Mal verwendet - noch in Arbeit.
-t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] würde ich gerne deinen Namen wissen.
+# Drop table nur um mit build mine zu arbeiten.
+t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] würde ich gerne deinen Namen wissen. 
 
 	#! Ich bin /Ich heiße / Meine Name ist
 	a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)

@@ -31,10 +31,10 @@ t: WELCOME ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
 #$tablename = ^join("mystring" $cs_randindex)
 
 t: SEARCHCREATE ($searchcreate) $searchenable = 1 $tablename = ^join("mystring" $cs_randindex)
-	if (^dbexecute(^"create table IF NOT EXISTS $tablename as (select * from pseudotabellepro);" )) {Datenbank erstellt ^reuse( SEARCHPRODUCT)} 
+	if (^dbexecute(^"create table IF NOT EXISTS $tablename as (select row_number() over (order by artnr), * from pseudotabellepro);" )) {Datenbank erstellt ^reuse( SEARCHPRODUCT)} 
 	else {^dbexecute(^"drop table $tablename;") searchcreate problem }
 
-# das hier schlägt noch fehl!
+
 t: SEARCHPRODUCT ($searchenable) $ergebnis = null
     if (^dbexecute( ^"UPDATE $tablename
         SET queried = 1
@@ -75,15 +75,30 @@ t: PRODUCTDESCR ($produktbeschreibung)
 
 
 	# Auch im folgenden queried 1 auf queried 3 setzen. 
+	# Bessere Erklärung in ende.top beschrieben
+	
     #! Ja.
-      a: ( ~yes ) Schön, dass ich dir helfen konnte. Ich kann noch etwas anderes für dich suchen, wenn du möchtest, oder du beendest mich.
-                  Möchtest du ein weiteres Produkt suchen? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1;" )) {debug: queries auf 3 gesetzt}
-
-                  #! Ja.
-                  b:  (~yes )   Fangen wir von Neuem an. ^reuse(~kaufabsicht.INTRO)
+      a: ( ~yes ) Schön, dass ich dir helfen konnte.
+                  Möchtest du ein weiteres Produkt suchen? Möchtest du vielleicht gucken was du soweit ausgewählt hast? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1; update $tablename
+set queried = 4
+where row_number =
+(select row_number 
+from mystring1285
+where queried  = 3
+limit 1); update $tablename
+set queried = 5
+where queried = 3;" )) {debug: queries auf 3,4,5 gesetzt}
+		
+                  # weiteres Produkt suchen
+                  b:  ([~noch ~kaufen])   Fangen wir von Neuem an. ^reuse(~kaufabsicht.INTRO)
 
                   #! Nein.
                   b: ( [~no ~nicht] ) $enterEnd2 = 1 In Ordnung. ^gambit( ~ende )
+				  
+				  # Zeigen, was bisher gekauft und wieviel
+				  # Für das iterieren der Gefundenen: ggf. auf queried = 5 setzen um nicht immer dasselbe zu kriegen 
+				  # Dann nach ausgabe alles was 4 ist auf 3 setzen 
+				  b: (~warenkorb) Du hast bisher (Hier angeben wie viele Artikel) artikel, gekauft, undzwar: (Iteration, alles was queried = 4)
 
     #! Nein.
     a: ( [~no ~nicht] ) Alles klar. Lass mich weitersuchen. $weitersuchen = 1 ^reuse(SEARCHAGAIN)

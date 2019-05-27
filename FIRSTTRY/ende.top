@@ -11,6 +11,9 @@ t: ($enterEnd2) ^reuse( ASKIFHAPPY )
 # 1: Gefunden (temporär)
 # 2: Abgelehnt 
 # 3: Angenommen
+# 4: Da nach setzen auf 3 mehrere Einträge des gleichen Artikels auf 3 gestzt werden, wird nochmal 4 gesetzt um 
+# ein einmaliges beispiel für name und Artikelnummer zu haben 
+# 5: Die, die aus 3 nicht 4 geworden sind, werden 5. 
 
 
 
@@ -20,7 +23,7 @@ t: ($enterEnd2) ^reuse( ASKIFHAPPY )
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
 u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
-	a: (~no) # if (!^dbexecute(^"DROP TABLE $kunde ;" NULL )) {
+	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
 	        Alles klar, dann war's das, $kunde. Ciao! ^eval(:quit) # }
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
