@@ -30,14 +30,19 @@ u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
 	a:  ([~yes ~kaufen]) $introyes = 1 Dann wollen wir dir doch dabei helfen, $kunde. ^gambit( ~kaufabsicht )
 	a: (~yes) $stillhelp = _0 ^reuse(STILLHELP)
 	
-	# Nutzer will nochwas kaufen	
+# Nutzer will nochwas kaufen
 u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
-	Was kann ich noch für dich tun, $kunde? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1" )) {debug: queries auf 2 gesetzt} 
+	Was kann ich noch für dich tun, $kunde?
+	if (^dbexecute(^"UPDATE $tablename SET queried = 3 WHERE queried = 1" )) {debug: queries auf 2 gesetzt}
+
+	#! Ich möchte noch etwas kaufen
 	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) 
 	Dann will ich dir dabei helfen, $kunde. ^reuse( ~kaufabsicht.INTRO )
-	
+
+	#! Ja
 	a: (~yes) Dann will ich dir dabei helfen, $kunde. ^reuse( ~kaufabsicht.INTRO )
-	
+
+	#! Nichts mehr
 	a: ([~nicht ~no]) Ok, dann halt nix mehr, $kunde. Tschüss ^eval(:quit)
 	
 	

@@ -25,7 +25,7 @@ t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] 
         $cs_token = $stdtoken
         $userprompt = ^"$kunde: >"
 
-	#! Namen einfach so gesagt.
+	#! nur Name
 	a: ( < _*1 > )
 	   if ($cs_token == $stdtoken)
        {

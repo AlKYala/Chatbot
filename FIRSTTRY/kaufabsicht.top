@@ -3,7 +3,7 @@ outputmacro: ^dbFirst($_arg1)
 	    ^flushoutput()
 
 topic: ~kaufabsicht keep (~kaufen)
-# Bis jetzt unvollständigkeiten. Das wird noch überarbeitet. 
+# Bis jetzt Unvollständigkeiten. Das wird noch überarbeitet.
 
  u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
  u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
@@ -12,7 +12,7 @@ topic: ~kaufabsicht keep (~kaufen)
 u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
 	# Ich suche / will kaufen / shop
-	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde. ^reuse( FIRSTQ )}
+	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde.  ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
@@ -20,7 +20,7 @@ u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
 	#! Nein.
 	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
-	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
+	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	    b: ( ~no ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
 		b: ( ~nicht ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
@@ -38,7 +38,7 @@ u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
 
          #! Nein.
          	b: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
-         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
+         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Schön zu hören. ^reuse( FIRSTQ )}
                              else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
          	    c: ( [ ~no ~nicht ] ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
 
@@ -50,16 +50,18 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
 
 	# In den nächsten zwei Antworten wird quasi gesagt, dass man was mit Geschenk oder Anwendungszweck haben will.
 	# Aber nicht mehr, sodass erneut gefragt wird (mit reuse)
-    a: (~willGeschenk) $anwendungszweck = ^"'nichts'" Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
-       else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+    a: (~willGeschenk) $anwendungszweck = ^"'nichts'" Du suchst nach einem Geschenk. Ich kann dir folgende Kategorien anbieten:
+         if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+         else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
        # Mitbringsel
          b: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'" ^gambit( ~keyexgeschenk )
 
 	   
 	# Irgendwas mit Zweck 
-	a: (~willZweck) $geschenkidee = ^"'nichts'" Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten: if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
-       else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+	a: (~willZweck) $geschenkidee = ^"'nichts'" Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten:
+	     if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
+         else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
        # Konkrete Angabe
        	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'" ^gambit( ~keyexanwendung )
