@@ -56,13 +56,13 @@ t: SEARCHPRODUCT ($searchenable) $ergebnis = null
         AND
             anwendungsgebiet = (CASE WHEN $anwendungszweck LIKE '%nichts%' THEN anwendungsgebiet ELSE $anwendungszweck END)
         LIMIT 1);" )) { $produktname = 1  Debug: SEARCHPRODUCT erfolgreich ^reuse( PRODUCTNAME )}
-    else {dbexecute failed list from table- $$db_error Ups, da habe ich mich ein wenig verrechnet. Tut mir Leid. Können wir nochmal von vorne anfangen? ^reuse(~kaufabsicht.INTRO) }
+    else {dbexecute failed list from table- $$db_error Ups, da habe ich mich ein wenig verrechnet. Tut mir Leid. Können wir nochmal von vorne anfangen? ^reuse(~ende.SETNULLANDREP) }
 
 
 t: PRODUCTNAME ($produktname) $ergebnis = null  [Ich habe dies gefunden: ] [Was hältst du davon? ] [Was ist hiermit? ]
    if (^dbexecute( ^"SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
          if ($ergebnis == null)      { Wir haben im Shop leider nichts, was auf deine Eingaben passt.
-                                      Vielleicht probierst du es noch einmal mit anderen Kriterien. ^reuse(~kaufabsicht.INTRO)}
+                                      Vielleicht probierst du es noch einmal mit anderen Kriterien. ^reuse(~ende.SETNULLANDREP)}
          else {. $produktbeschreibung = 1 ^reuse(PRODUCTDESCR)}
        } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid.}
 
@@ -71,7 +71,7 @@ t: PRODUCTDESCR ($produktbeschreibung)
    [Dazu kann ich dir Folgendes sagen: ] [Ich habe noch mehr Informationen: ] [Also: ] [ ]
    if (^dbexecute( ^"SELECT beschreibung FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
             [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
-   } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~kaufabsicht.INTRO)}
+   } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~kaufabsicht.FIRSTQ)}
 
 
 	# Auch im Folgenden queried 1 auf queried 3 setzen.
