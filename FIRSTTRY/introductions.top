@@ -21,7 +21,7 @@ t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] 
            retry(SENTENCE)
            }
         $kunde =  pos(noun '_0 proper)
-        ^"Hallo, $kunde." [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun]?
+        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
         $cs_token = $stdtoken
         $userprompt = ^"$kunde: >"
 
@@ -53,4 +53,4 @@ t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] 
 
 
 
-# Bitte bei gambit nie ~ vergessen ^gambit( ~topicname )
+# Bitte bei reuse nie ~ vergessen ^reuse( ~topicname.untertopic )

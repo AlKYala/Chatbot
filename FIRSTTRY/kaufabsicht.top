@@ -5,8 +5,13 @@ outputmacro: ^dbFirst($_arg1)
 topic: ~kaufabsicht keep (~kaufen)
 # Bis jetzt Unvollständigkeiten. Das wird noch überarbeitet.
 
- u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
- u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
+
+
+
+t: STARTKAUF ($enter999) [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun]?
+
+u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
+u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
 
 
 u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?

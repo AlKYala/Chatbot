@@ -23,40 +23,25 @@ t: ($enterEnd2) ^reuse( ASKIFHAPPY )
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
 u: ASKIFHAPPY ($enterEnd2) Kann ich noch was für dich tun?
-	a: ([~nicht ~no]) if (^dbexecute(^"DROP TABLE $tablename;")) {
-	        Alles klar, dann war's das, $kunde. Ciao! ^eval(:quit)  }
-			else {(^dbexecute(^"DROP TABLE $tablename;")) Alles klar, dann war's das, $kunde. Ciao! ^eval(:quit)}
+	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Alles klar, dann war's das, $kunde. Ciao! ^eval(:quit) # }
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
 	a:  ([~yes ~kaufen]) $introyes = 1 Dann wollen wir dir doch dabei helfen, $kunde. ^gambit( ~kaufabsicht )
 	a: (~yes) $stillhelp = _0 ^reuse(STILLHELP)
 	
-# Nutzer will nochwas kaufen
+	# Nutzer will nochwas kaufen	
 u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
-	Was kann ich noch für dich tun, $kunde?
-	if (^dbexecute(^"UPDATE $tablename SET queried = 3 WHERE queried = 1" )) {debug: queries auf 2 gesetzt}
-
-	#! Ich möchte noch etwas kaufen
+	Was kann ich noch für dich tun, $kunde? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1" )) {debug: queries auf 2 gesetzt} 
 	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>) 
 	Dann will ich dir dabei helfen, $kunde. ^reuse( ~kaufabsicht.INTRO )
-
-	#! Ja
+	
 	a: (~yes) Dann will ich dir dabei helfen, $kunde. ^reuse( ~kaufabsicht.INTRO )
-
-	#! Nichts mehr
-a: ([~nicht ~no]) Ok, dann halt nix mehr, $kunde. Tschüss ^eval(:quit)
-
-
-# EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfahc nur dazu dienen, dass wenn man an bestmmten stellen die variablen 
-# null setzen will, man hierhingeht und dann zurück in die Kaufabsicht.
-
-u: SETNULLANDREP ($enterEnd50) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja Hast du denn noch Lust was zu kaufen?
-
-	a:  ([~noch ~kaufen ~yes])   $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja
-                      Fangen wir von Neuem an. ^reuse(~kaufabsicht.FIRSTQ)
 	
-	a: ([~nicht ~no]) 
-	        Alles klar, dann war's das, $kunde. Ciao! ^eval(:quit)  
+	a: ([~nicht ~no]) Ok, dann halt nix mehr, $kunde. Tschüss ^eval(:quit)
 	
 	
-	
+# EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfahc nur dazu dienen, dass wenn man an bestmmten stellen einige 
+# null setzen will, man hierhingeht und dann weiter geht
+
+t: SETNULLANDREP ($enterEnd50) $geschenkidee = null $anwendungszweck = null $things=null $ausfuehrung=null $preis=null $art=null $gosearch=null $searchenable=null $introyes=ja Resetting values ^reuse(~kaufabsicht.STARTKAUF)	
