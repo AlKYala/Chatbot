@@ -35,12 +35,12 @@ t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] 
        retry(SENTENCE)
        }
        $kunde = pos(noun '_0 proper)
-       ^"Hallo, $kunde." [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun]?
+       ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
        $cs_token = $stdtoken
        $userprompt = ^"$kunde: >"
 
 	#! Das will ich nicht sagen.
-	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) Das kann ich nachvollziehen - ist auch nicht weiter schlimm! Wie kann ich helfen?
+	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) Das kann ich nachvollziehen - ist auch nicht weiter schlimm! ^reuse(~kaufabsicht.STARTKAUF)
 
 	#! Das will ich nicht
 	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)

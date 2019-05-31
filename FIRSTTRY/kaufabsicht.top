@@ -7,14 +7,17 @@ topic: ~kaufabsicht keep (~kaufen)
 
 
 
+# enter999 dient dazu, dass man nie by default in kaufabsicht kommt
+u: STARTKAUF ($enter999) [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun] Debug: Entered Startkauf?
+	a: (_~kaufen) $kaufbereitschaft = 1 ^reuse( INTRO)
+	a: ([~no ~nicht]) ^reuse ( NOBUY )
 
-t: STARTKAUF ($enter999) [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun]?
-
+# ich weiß nicht ob diese beiden hier noch zu was dienen wos jetzt STARTKAUF gibt 
 u: KEINEABSICHT1 (~no ) ^reuse( NOBUY )
 u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
 
 
-u: INTRO (~kaufen) Du möchtest also etwas kaufen, sehe ich das richtig?
+u: INTRO ($kaufbereitschaft) Du möchtest also etwas kaufen, sehe ich das richtig?
 
 	# Ich suche / will kaufen / shop
 	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde.  ^reuse( FIRSTQ )}

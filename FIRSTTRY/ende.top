@@ -44,4 +44,4 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfahc nur dazu dienen, dass wenn man an bestmmten stellen einige 
 # null setzen will, man hierhingeht und dann weiter geht
 
-t: SETNULLANDREP ($enterEnd50) $geschenkidee = null $anwendungszweck = null $things=null $ausfuehrung=null $preis=null $art=null $gosearch=null $searchenable=null $introyes=ja Resetting values ^reuse(~kaufabsicht.STARTKAUF)	
+t: SETNULLANDREP ($enterEnd50) $geschenkidee = null $anwendungszweck = null $things=null $ausfuehrung=null $preis=null $art=null $gosearch=null $searchenable=null $introyes=null Resetting values ^reuse(~kaufabsicht.STARTKAUF)	
