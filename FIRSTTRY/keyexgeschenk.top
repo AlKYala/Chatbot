@@ -1,7 +1,9 @@
 # Ausführung nur wenn Geschenk nicht null!		 
 topic: ~keyexgeschenk keep (~geschenkidee)
 
-t: (!$geschenkidee="'nichts'") Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck ^reuse( ASKNAME1 )
+
+# Wir kommen nur durch umleitung in keyex- topics rein. $ENTER999 darf nie instanziiert werden 
+t: STARTGESCHENK ($ENTER999) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck ^reuse( ASKNAME1 )
 
 u: ASKNAME1 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
 	a:  ( _~things ) $art = ^"'nichts'" $things = ^"''_0'" Alles klar, ein $things.  ^reuse( AUSF1 )

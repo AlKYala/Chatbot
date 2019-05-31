@@ -44,4 +44,8 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfahc nur dazu dienen, dass wenn man an bestmmten stellen einige 
 # null setzen will, man hierhingeht und dann weiter geht
 
-t: SETNULLANDREP ($enterEnd50) $geschenkidee = null $anwendungszweck = null $things=null $ausfuehrung=null $preis=null $art=null $gosearch=null $searchenable=null $introyes=null Resetting values ^reuse(~kaufabsicht.STARTKAUF)	
+t: SETNULLANDREP ($enterEnd50) $kaufbereitschaft = null $geschenkidee = null  $anwendungszweck = null $things = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes = null Resetting values ^reuse(~kaufabsicht.STARTKAUF)	
+
+# Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.
+# So kommt man nur mit reuse rein. Wenn ich kein Erfolg haben sollte, mach ich das halt so
+# SETNULLANDREP ist ein solcher. enterEnd50 wird nie instanziert und ist nur durch dbsearch erreichbar. Stichwort: LINEAR

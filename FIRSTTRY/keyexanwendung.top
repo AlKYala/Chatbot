@@ -1,6 +1,6 @@
 topic: ~keyexanwendung keep (~anwendungszweck) []
 
-t: (!$anwendungszweck="'nichts'") Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee ^reuse ( ASKNAME2 )
+t: STARTANWENDUNG ($ENTER999) Debug: Reminder, Anwedungszweck nach $anwendungszweck . Geschenk war $geschenkidee ^reuse ( ASKNAME2 )
 
 u: ASKNAME2 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
 	a:  ( _~things ) $art = ^"'nichts'" $things = ^"''_0'"' Alles klar, ein $things.  ^reuse( AUSF2 )

@@ -67,7 +67,7 @@ t: PRODUCTNAME ($produktname) $ergebnis = null  [Ich habe dies gefunden: ] [Was 
        } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid.}
 
 
-t: PRODUCTDESCR ($produktbeschreibung)
+u: PRODUCTDESCR ($produktbeschreibung)
    [Dazu kann ich dir Folgendes sagen: ] [Ich habe noch mehr Informationen: ] [Also: ] [ ]
    if (^dbexecute( ^"SELECT beschreibung FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
             [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
