@@ -22,7 +22,7 @@ u: INTRO ($kaufbereitschaft) Du möchtest also etwas kaufen, sehe ich das richti
 	# Ich suche / will kaufen / shop
 	a: ( _~yes ) $introyes = _0
 	# DATENBANK
-	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = ))
+	    if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234))
 	        {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde.  ^reuse( FIRSTQ )}
         else {dbinit failed - $$db_error}
 
@@ -32,31 +32,31 @@ u: INTRO ($kaufbereitschaft) Du möchtest also etwas kaufen, sehe ich das richti
 	#! Nein.
 	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
 	# DATENBANK
-	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {Schön zu hören. ^reuse( FIRSTQ )}
+	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
-	    b: ( ~no ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
-		b: ( ~nicht ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
+	    b: ( ~no ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
+		b: ( ~nicht ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 
 	a: () Könntest du das bitte wiederholen?
 
 	     # Ich suche / will kaufen / shop
            	b: ( _~yes ) $introyes = _0
            	    # DATENBANK
-           	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = ))
+           	    if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234))
            	        {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde. ^reuse( FIRSTQ )}
                 else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
          # Antwort immer noch unverständlich
             b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
-                  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Egal, fangen wir mal an. ^reuse( FIRSTQ )}
+                  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Egal, fangen wir mal an. ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
          #! Nein.
          	b: ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
          	    # DATENBANK
-         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {Schön zu hören. ^reuse( FIRSTQ )}
+         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
                              else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
-         	    c: ( [ ~no ~nicht ] ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
+         	    c: ( [ ~no ~nicht ] ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 
 
 u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?

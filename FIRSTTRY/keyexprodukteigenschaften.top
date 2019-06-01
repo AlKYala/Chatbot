@@ -1,6 +1,6 @@
 topic: ~keyexprodukteigenschaften keep ( ~anwendungszweck ~geschenkidee ) []
 
-t: STARTPRODUKTEIGENSCHAFTEN ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungszweck: Entweder $geschenkidee  oder $anwendungszweck ^reuse ( ASKNAME )
+t: STARTPRODUKTEIGENSCHAFTEN ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungszweck: Entweder $geschenkidee oder $anwendungszweck ^reuse ( ASKNAME )
 
 u: ASKNAME () [Ich will dir bei der Produktsuche helfen] [Ich möchte dir helfen, die Auswahl näher einzugrenzen].
               [Weißt du, wie der Artikel heißt, den du du suchst?] [Wie heißt der Artikel, den du suchst? Weißt du das?]
