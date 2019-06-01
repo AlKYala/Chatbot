@@ -1,0 +1,79 @@
+topic: ~keyexprodukteigenschaften keep ( ~anwendungszweck ~geschenkidee ) []
+
+t: STARTONESENTENCE ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungszweck: Entweder $geschenkidee  oder $anwendungszweck ^reuse ( QUALITY )
+
+
+
+# Erster Entwurf, funktioniert noch nicht
+# Fehlerquellen, u. a.:
+#   Unterscheidung Art und Name
+#   Testen für Preis
+#   Variablen an der richtigen Stelle zuweisen
+
+u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst mir hier Eigenschaften wie den Namen oder eine
+    Oberkategorie, zum Beispiel Buch, Kleidung oder Deko vorgeben. Desweiteren kannst du Farbe, bei Büchern Spraschen und bei Kleidungsstücken
+    die Größe angeben. Zuletzt hast du noch die Möglichekeit, eine preisliche Obergrenze festzulegen. Bitte gib die Kleidergrößen
+    im internationalen Standard (XS bis XXL) an und anworte in nicht mehr als einem Satz. Sonst habe ich Schwierigkeiten, zu verstehen, was du meinst.
+    ANMERKUNG: GRÖSSE NOCH NICHT! MACHEN WIR DAS NOCH?
+    $things = ^"'nichts'"        $art = ^"'nichts'"
+    $ausfuehrung = ^"'nichts'"   $preis = -1
+
+
+    # Name bekannt, Ausführung und Preis optional
+    #! Ich suche ein damenshirt in blau für 13 Euro
+    a: ({Ich} {möchten wollen suchen} {ein eine einen} _~things < * {in} { _~ausfuehrung }  < *  {für Preis kosten Wert} * {_~positiveinteger} * )
+        $things = ^"''_0'"' $ausfuehrung = ^"''_1'"' $preis = ^"''_2'"'
+        zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        if ($ausfuehrung) {$zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung.")}
+        if ($preis) {$zusammenfassung ^" Maximal soll es $preis Euro kosten."
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Eine preisliche Obergrenze hast du nicht angegeben.")}
+        ^reuse( SUMMARY )
+
+    # Art bekannt, Ausführung und Preis optional
+    a: ({Ich} {möchten wollen suchen} {ein eine einen} _~art < * {in} { _~ausfuehrung }  < * {für Preis kosten Wert} * {_~positiveinteger} * )
+       $art = ^"''_0'"' $ausfuehrung = ^"''_1'"' $preis = ^"''_2'"'
+       zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+       if ($ausfuehrung) {$zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung.")}
+       if ($preis) {$zusammenfassung ^" Maximal soll es $preis Euro kosten."
+       } else {$zusammenfassung = ^join($zusammenfassung ^" Eine preisliche Obergrenze hast du nicht angegeben.")}
+       ^reuse( SUMMARY)
+
+    # Ausführung bekannt, Preis optional
+    a: ( * {Produkt Artikel etwas} < * {In in} _~ausfuehrung  < * {für Preis kosten Wert} * {_~positiveinteger} * )
+        $ausfuehrung = ^"''_0'"' $preis = ^"''_1'"'
+        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines geuschten
+      	            Produktes hast du zwar nicht, aber weißt, dass du etwas in $ausfuehrung möchtest.")
+        if ($preis) {$zusammenfassung ^" Maximal soll es $preis Euro kosten."
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Eine preisliche Obergrenze hast du nicht angegeben.")}
+      	^reuse( SUMMARY )
+
+    # nur Preis
+    a: ( * {für Preis kosten Wert} * {_~positiveinteger} * )
+       	$preis = ^"''_1'"'
+       	$zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines geuschten
+              	            Produktes hast du zwar noch nicht, aber du weißt, dass es maximal $preis Euro kosten soll.")
+        ^reuse( SUMMARY )
+
+    a: ( {ich} ["weiß nicht" "weiß es nicht" "habe keine Ahnung" "keine Ahnung"] )
+        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Eigenschaften oder Informationen zum Preis hast du nicht angegeben.")
+        ^reuse (SUMMARY)
+
+
+u: SUMMARY () Debug: Anwedungszweck: $anwendungszweck Geschenkidee: $geschenkidee Name: $things Art: $art
+              Ausführung: $ausfuehrung max. Preis: $preis
+              [Lass mich mal zusammenfassen] [Ich rekapituliere] [Ich wiederhole]:
+              $zusammenfassung
+              [Habe ich das alles richtig verstanden] [Stimmt das so]?
+
+    #! Ja
+	a: (~yes) $gosearch = _0 Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
+
+	#! Nein
+	a: (~no) Okay. [Fangen wir von vorne an.] [Gehen wir das nochmal durch.]
+	    if (!$geschenkidee AND !$anwendungszweck) {$zusammenfassung = null
+        } else if (!$geschenkidee) { $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+        } else {$zusammenfassung = ^"Du suchst ein $geschenkidee."}
+	    ^reuse( QUALITY ) # I need this to back to ASKNAME and run procedures again
+
+	# Unverständliches
+	a: () $gosearch = 1 Alles klar! Ich suche mal im Shop. d4 ^reuse( ~dbsearch.WELCOME )

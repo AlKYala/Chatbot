@@ -83,7 +83,7 @@ u: PRODUCTDESCR ($produktbeschreibung)
                   if (^dbexecute(^"UPDATE $tablename SET queried = 3 WHERE queried = 1;
                                    UPDATE $tablename SET queried = 4 WHERE row_number = (
                                      SELECT row_number FROM $tablename WHERE queried  = 3 LIMIT 1);
-                                   UPDATE $tablename SET queried = 5 WHERE queried = 3;" )) {debug: queries auf 3,4,5 gesetzt}
+                                   UPDATE $tablename SET queried = 5 WHERE queried = 3;" )) {debug: queried auf 3,4,5 gesetzt}
 		
                   # weiteres Produkt suchen
                   b:  ([~noch ~kaufen])   $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja
@@ -94,7 +94,7 @@ u: PRODUCTDESCR ($produktbeschreibung)
 				  
 				  # Zeigen, was bisher gekauft und wieviel
 				  # Für das iterieren der Gefundenen: ggf. auf queried = 5 setzen um nicht immer dasselbe zu bekommen
-				  # Dann nach ausgabe alles, was 4 ist auf 3 setzen
+				  # Dann nach Ausgabe alles, was 4 ist auf 3 setzen
 				  # Danach gehen wir zu ENDE
 				  b: (~warenkorb) [Du hast bisher] if (^dbexecute( ^"SELECT COUNT (DISTINCT artnr) FROM $tablename WHERE queried = 4;" '^dbSec)) {Artikel gefunden, undzwar}:
 				   if (^dbexecute( ^"SELECT name, beschreibung FROM $tablename WHERE queried = 4;" '^dbSec)) {^reuse(~ende.ASKIFHAPPY)}

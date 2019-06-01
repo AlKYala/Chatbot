@@ -8,7 +8,7 @@ topic: ~kaufabsicht keep (~kaufen)
 
 
 # enter999 dient dazu, dass man nie by default in kaufabsicht kommt
-u: STARTKAUF ($enter999) [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun] Debug: Entered Startkauf?
+u: STARTKAUF ($enter999) [Wie kann ich dir helfen] [Wobei brauchst du Hilfe] [Was kann ich für dich tun]? Debug: Entered Startkauf?
 	a: (~kaufen) $kaufbereitschaft = 1 ^reuse( INTRO)
 	a: ([~no ~nicht]) ^reuse ( NOBUY )
 
@@ -20,15 +20,19 @@ u: KEINEABSICHT2 ( ~nicht ) ^reuse( NOBUY )
 u: INTRO ($kaufbereitschaft) Du möchtest also etwas kaufen, sehe ich das richtig?
 
 	# Ich suche / will kaufen / shop
-	a: ( _~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde.  ^reuse( FIRSTQ )}
-                  else {dbinit failed - $$db_error}
+	a: ( _~yes ) $introyes = _0
+	# DATENBANK
+	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = ))
+	        {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde.  ^reuse( FIRSTQ )}
+        else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
 	# a: und b: sind quasi gesprächsverläufe - zunächst kommt a: und falls reuse, dann b usw. 
 
 	#! Nein.
 	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
-	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
+	# DATENBANK
+	    b: ( ~yes )  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	    b: ( ~no ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
 		b: ( ~nicht ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
@@ -36,17 +40,21 @@ u: INTRO ($kaufbereitschaft) Du möchtest also etwas kaufen, sehe ich das richti
 	a: () Könntest du das bitte wiederholen?
 
 	     # Ich suche / will kaufen / shop
-           	b: ( _~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde. ^reuse( FIRSTQ )}
+           	b: ( _~yes ) $introyes = _0
+           	    # DATENBANK
+           	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = ))
+           	        {In diesem Fall kann ich dir dabei helfen, was aus dem postgres zu suchen, $kunde. ^reuse( FIRSTQ )}
                 else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
          # Antwort immer noch unverständlich
             b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
-                  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Egal, fangen wir mal an. ^reuse( FIRSTQ )}
+                  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Egal, fangen wir mal an. ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
          #! Nein.
-         	b: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
-         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234)) {Schön zu hören. ^reuse( FIRSTQ )}
+         	b: ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Sicher, dass du nicht doch etwas aus dem postgres suchst?
+         	    # DATENBANK
+         	    c: ( ~yes ) $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {Schön zu hören. ^reuse( FIRSTQ )}
                              else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
          	    c: ( [ ~no ~nicht ] ) $enterEnd2 = 1 Das ist schade. ^gambit( ~ende )
 
@@ -63,7 +71,9 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
          else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
        # Mitbringsel
-         b: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'" ^reuse( ~keyexgeschenk.STARTGESCHENK )
+         b: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
+             $zusammenfassung = ^"Du suchst ein $geschenkidee."
+              ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
 
 	   
 	# Irgendwas mit Zweck 
@@ -72,18 +82,24 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
          else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
 
        # Konkrete Angabe
-       	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'" ^reuse( ~keyexanwendung.STARTANWENDUNG )
+       	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
+       	    $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+       	    ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
 
 
     # Konkrete Angabe - gehe direkt weiter!
-    a: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'" ^reuse( ~keyexgeschenk.STARTGESCHENK )
+    a: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
+        $zusammenfassung = ^"Du suchst ein $geschenkidee."
+        ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
 
 	# Konkrete Angabe
-	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'" ^reuse( ~keyexanwendung.STARTANWENDUNG )
+	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
+	    $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+	    ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
 	
 	# Nicht erkannt
 	a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
-	b: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
+	    b: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
 
 # Hiernach muss keyexanwendung oder keyexgeschenk finden. 
 # Diese sind nun Ausgelagert, backup vorhanden.

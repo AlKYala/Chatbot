@@ -1,0 +1,61 @@
+topic: ~keyexprodukteigenschaften keep ( ~anwendungszweck ~geschenkidee ) []
+
+t: STARTPRODUKTEIGENSCHAFTEN ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungszweck: Entweder $geschenkidee  oder $anwendungszweck ^reuse ( ASKNAME )
+
+u: ASKNAME () [Ich will dir bei der Produktsuche helfen] [Ich möchte dir helfen, die Auswahl näher einzugrenzen].
+              [Weißt du, wie der Artikel heißt, den du du suchst?] [Wie heißt der Artikel, den du suchst? Weißt du das?]
+	a:  ( _~things ) $art = ^"'nichts'" $things = ^"''_0'"' Alles klar, der Name lautet $things.
+	                $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.") ^reuse( DESIGN )
+	a: (~no) $things = ^"'nichts'" Kein Thema, dafür bin ja da. ^reuse( KIND )
+	a: () $things = ^"'nichts'" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( KIND )
+
+
+# Wenn für $things null ist, wird versucht, über die Art des Produktes zu gehen.
+u: KIND (!$things) Weißt du dann vielleicht, was für eine Art von Produkt du willst?
+        Suchst du zum Beispiel ein Buch, ein Spiel, Kleidung oder Deko?
+	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter!
+	    $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")
+	    ^reuse( DESIGN )
+	a: () $art = ^"'nichts'" Okay. Versuchen wir es weiter! ^reuse( DESIGN )
+
+u: DESIGN () Kannst du etwas zur Ausführung sagen?
+        if ($art == 'Buch' OR $geschenkidee == 'Gastgeschenk' OR $geschenkidee == 'Erinnerungsstück' OR $anwendungszweck == 'Unterhaltung')
+            {Wir haben Bücher in Deutsch, Englisch, Französisch und Chinesisch im Sortiment.
+        } else {Vielleicht eine Farbe?}
+	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist in $ausfuehrung.
+	    if (!$art) {$zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines geuschten
+	        Produktes hast du zwar nicht, aber weißt, dass du etwas in $ausfuehrung möchtest.")
+	    } else {$zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung.")}
+	    ^reuse( PRICE )
+	a: () $ausfuehrung = ^"'nichts'" Okay.
+	    if (!$art) {$zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich deines Produktes hast du noch nicht.")}
+	    ^reuse( PRICE )
+
+u: PRICE () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = ^"''_0'" Es soll maximal $preis Euro kosten.
+	    $zusammenfassung = ^join($zusammenfassung ^" Maximal soll es $preis Euro kosten.")
+	    ^reuse( SUMMARY )
+	a: () $preis = -1 Ich konnte keinen Preis feststellen
+	    $zusammenfassung = ^join($zusammenfassung ^" Eine preisliche Obergrenze hast du nicht angegeben.")
+	    ^reuse( SUMMARY )
+
+# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt.
+# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+u: SUMMARY () Debug: Anwedungszweck: $anwendungszweck Geschenkidee: $geschenkidee Name: $things Art: $art
+              Ausführung: $ausfuehrung max. Preis: $preis
+              [Lass mich mal zusammenfassen] [Ich rekapituliere] [Ich wiederhole]:
+              $zusammenfassung
+              [Habe ich das alles richtig verstanden] [Stimmt das so]?
+
+    #! Ja
+	a: (~yes) $gosearch = _0 Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
+
+	#! Nein
+	a: (~no) Okay. [Fangen wir von vorne an.] [Gehen wir das nochmal durch.]
+	    if (!$geschenkidee AND !$anwendungszweck) {$zusammenfassung = null
+        } else if (!$geschenkidee) { $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+        } else {$zusammenfassung = ^"Du suchst ein $geschenkidee."}
+	    ^reuse( ASKNAME ) # I need this to back to ASKNAME and run procedures again
+
+	# Unverständliches
+	a: () $gosearch = 1 Alles klar! Ich suche mal im Shop. d4 ^reuse( ~dbsearch.WELCOME )
