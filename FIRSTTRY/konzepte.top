@@ -5,7 +5,7 @@ concept: ~kdienst [kundendienst]
 concept: ~things [kaputze kaputzensweatshirt sweatshirt tshirt "usb stick" usb stick "Geschichte der Universität Trier" "Kugelschreiber mit Soft-Touch" "Metallkugelschreiber in Box" Herrenshirt Kaffeetasse Einkaufschip "Trier fuer Anfänger" Damenshirt "Geschenktasche fuer Uni-Wein" "Kapuzenjacke Unisex" Schultertasche "Memory Trier" Schluesselband Mordsstimmung "2017er Universitäts-Wein" "Magnet mit Kunstsiebdruck" "Uni-Bär" "USB-Stick" Schreibset Notizbuch Baumwolltasche Doktorhut "Monopoly Trier" "Kapuzensweatshirt Unisex" Wein-Set]
 concept: ~art [Spiel Kleidung Buch Uni Alltag Deko]
 concept: ~ausfuehrung [Blau Silber Gruen Grau Schwarz Franzoesisch Deutsch Englisch Chinesisch]
-concept: ~geschenkidee [Mitbringsel Erinnerungsstueck Gastgeschenk]
+concept: ~geschenkidee [Mitbringsel Erinnerungsstueck Gastgeschenk "Erinnerungsstück"]
 concept: ~anwendungszweck [Unterhaltung Schreibwaren Essen Trinken Alltag Accessoire]
 # für einen bestimmten Zweck
 concept: ~willZweck [zweck bestimmten besonderen ]

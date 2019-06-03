@@ -73,7 +73,7 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
        # Mitbringsel
          b: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
              $zusammenfassung = ^"Du suchst ein $geschenkidee."
-              ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
+              ^reuse( ~keyexprodukteigenschaften.STARTONESENTENCE )
 
 	   
 	# Irgendwas mit Zweck 
@@ -84,18 +84,18 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
        # Konkrete Angabe
        	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
        	    $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
-       	    ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
+       	    ^reuse( ~keyexprodukteigenschaften.STARTONESENTENCE )
 
 
     # Konkrete Angabe - gehe direkt weiter!
     a: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
         $zusammenfassung = ^"Du suchst ein $geschenkidee."
-        ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
+        ^reuse( ~keyexprodukteigenschaften.STARTONESENTENCE )
 
 	# Konkrete Angabe
 	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
 	    $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
-	    ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
+	    ^reuse( ~keyexprodukteigenschaften.STARTONESENTENCE )
 	
 	# Nicht erkannt
 	a: () Könntest du das bitte wiederholen? ^reuse( FIRSTQ )
