@@ -64,7 +64,7 @@ t: PRODUCTNAME ($produktname) $ergebnis = null  [Ich habe dies gefunden: ] [Was 
          if ($ergebnis == null)      { Wir haben im Shop leider nichts, was auf deine Eingaben passt.
                                       Vielleicht probierst du es noch einmal mit anderen Kriterien. ^reuse(~ende.SETNULLANDREP)}
          else {. $produktbeschreibung = 1 ^reuse(PRODUCTDESCR)}
-       } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid.}
+       } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
 
 
 t: PRODUCTDESCR ($produktbeschreibung)
@@ -89,17 +89,19 @@ u: RESPONSE ($ENTEREND955) DEBUG: You're in RESPONSE!
                                    UPDATE $tablename SET queried = 5 WHERE queried = 3;" )) {debug: queried auf 3,4,5 gesetzt}
 		
                   # weiteres Produkt suchen
-                  b:  ([~noch ~kaufen])   $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja
-                      Fangen wir von Neuem an. ^reuse(~kaufabsicht.FIRSTQ)
+               #   b:  ([~noch ~kaufen])   $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja
+               #       Fangen wir von Neuem an. ^reuse(~kaufabsicht.FIRSTQ)
+                   b: ([~noch ~kaufen]) Fangen wir von Neuem an. ^reuse (~ende.SETNULLANDREF)
 
                   #! Nein.
                   b: ( [~no ~nicht] ) $enterEnd2 = 1 In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
 				  
 				  # Zeigen, was bisher gekauft und wieviel
-				  # Für das iterieren der Gefundenen: ggf. auf queried = 5 setzen um nicht immer dasselbe zu bekommen
+				  # Für das Iterieren der Gefundenen: ggf. auf queried = 5 setzen um nicht immer dasselbe zu bekommen
 				  # Dann nach Ausgabe alles, was 4 ist auf 3 setzen
 				  # Danach gehen wir zu ENDE
-				  b: (~warenkorb) [Du hast bisher] if (^dbexecute( ^"SELECT COUNT (DISTINCT artnr) FROM $tablename WHERE queried = 4;" '^dbSec)) {Artikel gefunden, undzwar}:
+				  b: (~warenkorb) [Du hast bisher]
+				    if (^dbexecute( ^"SELECT COUNT (DISTINCT artnr) FROM $tablename WHERE queried = 4;" '^dbSec)) {Artikel gefunden, und zwar}:
 				   if (^dbexecute( ^"SELECT name, beschreibung FROM $tablename WHERE queried = 4;" '^dbSec)) {^reuse(~ende.ASKIFHAPPY)}
 
 

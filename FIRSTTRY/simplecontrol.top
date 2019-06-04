@@ -8,7 +8,7 @@ $cs_language = german
 $cs_externaltag = ~xPOSTAGSENTENCE
 $userprompt = ^"DU: >"
 # $userprompt = ^"%user: >"
-$botprompt = ^"TEST: "
+$botprompt = ^"AUGUSTA: "
 $cs_token = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE
 $stdtoken = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE
 

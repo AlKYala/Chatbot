@@ -5,11 +5,11 @@ topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
 # Taucht jedes Mal auf.
 t:  ( %input<%userfirstline )
     ^keep()
-    [Hallo] [Hi] [Guten Tag], [ich bin Pret, das I steht für Intelligent] [ich bin ein freundlicher Bot]. ^reuse( GREET ) 
+    [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
 
 # Wird nur beim ersten Mal verwendet - noch in Arbeit.
 # Drop table nur um mit build mine zu arbeiten.
-t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] würde ich gerne deinen Namen wissen. 
+t: GREET (~emohello) Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist ein bisschen persönlicher.]
 
 	#! Ich bin /Ich heiße / Meine Name ist
 	a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
@@ -40,7 +40,7 @@ t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] 
        $userprompt = ^"$kunde: >"
 
 	#! Das will ich nicht sagen.
-	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) Das kann ich nachvollziehen - ist auch nicht weiter schlimm! ^reuse(~kaufabsicht.STARTKAUF)
+	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
 
 	#! Das will ich nicht
 	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)
@@ -49,7 +49,7 @@ t: GREET (~emohello) [Bevor ich dir helfe,] [Um persönlicher sein zu können,] 
 	a: (~no) ^reuse(KEINE_VORSTELLUNG)
 
 	# Das hier noch überarbeiten!
-	a: () Das habe ich leider nicht erkennen können. ^reuse( GREET )
+	a: () Das habe ich leider nicht verstanden. Fangen wir trotzdem an! ^reuse( ~kaufabsicht.STARTKAUF )
 
 
 
