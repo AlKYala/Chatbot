@@ -9,33 +9,35 @@ t: STARTONESENTENCE ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungs
 #   Testen für Preis
 #   Variablen an der richtigen Stelle zuweisen
 u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst mir hier Eigenschaften wie den Namen oder eine
-    Oberkategorie, zum Beispiel Buch, Kleidung oder Deko vorgeben. Desweiteren kannst du Farbe, bei Büchern Spraschen und bei Kleidungsstücken
-    die Größe angeben. Zuletzt hast du noch die Möglichekeit, eine preisliche Obergrenze festzulegen. Bitte gib die Kleidergrößen
-    im internationalen Standard (XS bis XXL) an. Bitte anworte in nicht mehr als einem Satz und verwende keine Kommata. Sonst habe ich Schwierigkeiten, zu verstehen, was du meinst.
-    ANMERKUNG: GRÖSSE NOCH NICHT! MACHEN WIR DAS NOCH?
+    Oberkategorie, zum Beispiel Buch, Kleidung oder Deko vorgeben. Desweiteren kannst du die Farbe und bei Büchern Sprachen.
+    Zuletzt hast du noch die Möglichekeit, festzulegen, was du maximal bezahlen möchtest. Du kannst auch "Ich weiß nicht" sagen,
+    wenn du keine weiteren Kriterien festlegen möchtest.
+    Damit ich dich gut verstehen kann, verwende bitte keine Interpunktion. Die ganzen Punkte, Kommeta und Semikola verwirren mich
+    immer so.
     $things = ^"'nichts'"        $art = ^"'nichts'"
     $ausfuehrung = ^"'nichts'"   $preis = -1
 	
 	
-	# Erklärung: _0 ist das erste keyword, das vorkommt, _1 das zweite, _2 das dritte usw. 
+	# Erklärung:
+	# _0 ist das erste keyword, das vorkommt, _1 das zweite, _2 das dritte usw.
 	# _~concept1 bedeutet, dass wir extrahieren, welches keyword erwähnt wird, welches sich in concept 1 befindet 
 	# !~concept2 bedeutet, dass kein Wort aus concept2 vorkommen darf 
-	# !!~concept2 bedeutet, dass an diesem "index" concept2 nicht vorkommen darf
+	# !!~concept2 bedeutet, dass an diesem "index" ein Wort aus concept2 nicht vorkommen darf
 	# {_~concept3} bedeutet, dass Keywords aus concept3 optional sind. 
 	# a: ( * _~thingsandart * _~positiveinteger * {_~ausfuehrung} * ) denotiert die Art der Eingabe;
 	# zunächst wird ein Keyword aus thingsandart gefunden, dann eins aus positiveinteger und dann aus ausfuehrung 
-	# Das sternchen dazwischen sagt uns, dass wir beliebig viele "andere" wörter dazwischen haben dürfen
+	# Das Sternchen zwischen den Konzeptnamen bedeutet, dass an dieser Stelle beliebig viele Wörter sein dürfen
 	
 	
     # 1. Muster: Name / Art, dann Ausführung und optional Preis
     a: ( !!~positiveinteger * _~thingsandart {in} _~ausfuehrung * {_~positiveinteger} *  )
     # a: ( < {Ich} {möchten wollen suchen} {ein eine einen} _~thingsandart * {in}  _~ausfuehrung *  {für Preis Wert} * {_~positiveinteger} * )
         # Test, ob _0 Name oder Art ist
-        if (pattern _0~things) {$things = ^"''_0'"' zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
-        } else {$art = ^"''_0'"'  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
-        $ausfuehrung = ^"''_1'"'
+        if (pattern _0~things) {$things = ^"''_0'" zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_0'"  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        $ausfuehrung = ^"''_1'"
         # Optionaler Preis
-        if ( _2 AND ^isnumber(_2) ) {$preis = ^"''_2'"' $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
+        if ( _2 AND ^isnumber(_2) ) {$preis = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
         } else {$zusammenfassung = ^join($zusammenfassung ^" Es soll in $ausfuehrung sein und eine preisliche Obergrenze hast du nicht angegeben.")}
         1. MUSTER
         ^reuse( SUMMARY )
@@ -44,11 +46,11 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
     a: ( * _~thingsandart * _~positiveinteger * {_~ausfuehrung} * )
     # a: ( < {Ich} {möchten wollen suchen} {ein eine einen} _~thingsandart * {für Preis Wert} * {_~positiveinteger} * {in} { _~ausfuehrung }  )
         # Test, ob _0 Name oder Art ist
-        if (pattern _0?~things) {$things = ^"''_0'"' $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
-        } else {$art = ^"''_0'"'  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
-        $preis = ^"''_1'"'
+        if (pattern _0?~things) {$things = ^"''_0'" $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_0'"  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        $preis = ^"''_1'"
         # Optionale Ausführung
-        if (_2) {$ausfuehrung = ^"''_2'"' $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
+        if (_2) {$ausfuehrung = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
         } else {$zusammenfassung = ^join($zusammenfassung ^" Maximal soll es $preis Euro kosten.")}
         2. MUSTER
         ^reuse( SUMMARY )
@@ -57,8 +59,8 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
     a: ( !~ausfuehrung !~positiveinteger * _~thingsandart * )
     # a: ( < {Ich} {möchten wollen suchen} {ein eine einen} _~thingsandart * !~ausfuehrung !~postiveinteger)
         # Test, ob _0 Name oder Art ist
-        if (pattern _0?~things) {$things = ^"''_0'"' $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
-        } else {$art = ^"''_0'"'  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        if (pattern _0?~things) {$things = ^"''_0'" $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_0'"  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
         3. MUSTER
         $zusammenfassung = ^join($zusammenfassung ^" Zur Ausführung oder zum Preis hast du keine Angaben gemacht.")
         3. MUSTER
@@ -67,14 +69,14 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
      # 4. Muster: Ausführung, dann Name / Art und optional Preis
      a: ( * {in} _~ausfuehrung {"etwas wie"} {ein eine} _~thingsandart * {_~positiveinteger} * )
      # a: ( * {in}  _~ausfuehrung * _~thingsandart * {für Preis Wert} * {_~positiveinteger} * )
-        $ausfuehrung = ^"''_0'"'
+        $ausfuehrung = ^"''_0'"
         # Test, ob _1 Name oder Art ist
-        if (pattern _1?~things) {$things = ^"''_1'"'
+        if (pattern _1?~things) {$things = ^"''_1'"
                 $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things und du möchtest es in $ausfuehrung.")
-        } else {$art = ^"''_1'"'
+        } else {$art = ^"''_1'"
                 $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art und du möchtest es in $ausfuehrung.")}
         # Optionaler Preis
-        if ( _2 AND ^isnumber(_2) ) {$preis = ^"''_2'"' $zusammenfassung = ^join($zusammenfassung ^" Es soll nicht mehr als $preis Euro kosten.")
+        if ( _2 AND ^isnumber(_2) ) {$preis = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es soll nicht mehr als $preis Euro kosten.")
         } else {$zusammenfassung = ^join($zusammenfassung ^" Eine preisliche Obergrenze hast du nicht angegeben.")}
        4. MUSTER
         ^reuse( SUMMARY )
@@ -82,14 +84,14 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
      # 5. Muster: Ausführung, dann Preis und optional Name / Art
      a: ( * _~ausfuehrung * _~positiveinteger * {_~thingsandart} )
      # a: ( * {Produkt Artikel etwas} * {In in} _~ausfuehrung * {für Preis Wert} * _~positiveinteger * {_~thingsandart} )
-        $ausfuehrung = ^"''_0'"'
-        $preis = ^"''_1'"'
+        $ausfuehrung = ^"''_0'"
+        $preis = ^"''_1'"
         # Optionale Angabe zu Name / Art und Test, ob _2 Name oder Art ist
         if ( _2 ) {
-            if (pattern _2?~things) {$things = ^"''_2'"'
+            if (pattern _2?~things) {$things = ^"''_2'"
                 $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things und du möchtest es in $ausfuehrung. Es soll
                     dabei nicht mehr als $preis Euro kosten.")
-             } else {$art = ^"''_2'"'
+             } else {$art = ^"''_2'"
                 $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art und du möchtest es in $ausfuehrung.
                     Dabei soll es maximal $preis Euro kosten.")}
         } else {$zusammenfassung = ^join($zusammenfassung ^" Das Produkt soll in $ausfuehrung sein und maximal $Preis kosten.")}
@@ -98,7 +100,7 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
 
      # 6. Muster: nur Ausführung
      a: ( !~positiveinteger !~thingsandart * _~ausfuehrung * )
-        $ausfuehrung = ^"''_0'"'
+        $ausfuehrung = ^"''_0'"
         $zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art, des Namens oder des Preises deines gewünschten
             Produktes hast du zwar nicht, aber weißt, dass du etwas in $ausfuehrung möchtest.")
         6. MUSTER
@@ -107,14 +109,14 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
      # 7. Muster: Preis, dann Name / Art  und optional Ausführung
      a: ( * _~positiveinteger {Euro euro EUR €} {ein eine einen} _~thingsandart * {in} { _~ausfuehrung })
     # a: ( * {für Preis Wert} * _~positiveinteger  * {ein eine einen} _~thingsandart * {in} { _~ausfuehrung })
-        $preis = ^"''_0'"'
+        $preis = ^"''_0'"
         # Test, ob _1 Name oder Art ist
-        if (pattern _1?~things) {$things = ^"''_1'"'
+        if (pattern _1?~things) {$things = ^"''_1'"
             $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
-        } else {$art = ^"''_1'"'
+        } else {$art = ^"''_1'"
             $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
         # Optionale Ausführung
-        if (_2) {$ausfuehrung = ^"''_2'"' $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
+        if (_2) {$ausfuehrung = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
         } else {$zusammenfassung = ^join($zusammenfassung ^" Maximal kostet es $preis Euro.")}
         7. MUSTER
         ^reuse( SUMMARY )
@@ -122,14 +124,14 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
      # 8. Muster: Preis, dann Ausführung und optional Name / Art
      a: ( * _~positiveinteger {Euro euro EUR €} {in} _~ausfuehrung  * {ein eine einen} { _~thingsandart} )
     # a: ( * {für Preis Wert} * _~positiveinteger * {in} _~ausfuehrung  * {ein eine einen} { _~thingsandart} ) 8. MUSTER
-        $preis = ^"''_0'"'
-        $ausfuehrung = ^"''_1'"'
+        $preis = ^"''_0'"
+        $ausfuehrung = ^"''_1'"
         # Optionale Angabe zu Name / Art und Test, ob _2 Name oder Art ist
         if ( _2 ) {
-           if (pattern _2?~things) {$things = ^"''_2'"'
+           if (pattern _2?~things) {$things = ^"''_2'"
                $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things und du möchtest es in $ausfuehrung. Es soll
                    dabei nicht mehr als $preis Euro kosten.")
-           } else {$art = ^"''_2'"'
+           } else {$art = ^"''_2'"
                $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art und du möchtest es in $ausfuehrung.
                    Dabei soll es maximal $preis Euro kosten.")}
         } else {$zusammenfassung = ^join($zusammenfassung ^" Das Produkt soll in $ausfuehrung sein und maximal $Preis kosten.")}
@@ -138,7 +140,7 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
 
      # 9. Muster: nur Preis
      a: ( !~thingsandart !~ausfuehrung * _~positiveinteger * )
-        $preis = ^"''_0'"'
+        $preis = ^"''_0'"
         $zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines gewünschten
            Produktes hast du zwar noch nicht, aber du weißt, dass es maximal $preis Euro kosten soll.")
         9. MUSTER
@@ -151,11 +153,18 @@ u: QUALITY () Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst
         ^reuse( SUMMARY )
 		
 
-u: SUMMARY ($ENTEREND888) Debug: Anwedungszweck: $anwendungszweck Geschenkidee: $geschenkidee Name: $things Art: $art
-              Ausführung: $ausfuehrung max. Preis: $preis
-              [Lass mich mal zusammenfassen] [Ich rekapituliere] [Ich wiederhole]:
-              $zusammenfassung
-              [Habe ich das alles richtig verstanden] [Stimmt das so]?
+u: SUMMARY ($ENTEREND888)
+            # Ersetzen von ausgeschriebenen Umlaute in ihre korrekte Form
+             $things =  ^substitute(character $things ae ä)
+             $things =  ^substitute(character $things ue ü)
+             $ausfuehrung = ^substitute(character $ausfuehrung oe ö)
+             $ausfuehrung = ^substitute(character $ausfuehrung ue ü)
+             # Ausgabe der Zusammenfassung
+             Debug: Anwedungszweck: $anwendungszweck Geschenkidee: $geschenkidee Name: $things Art: $art
+             Ausführung: $ausfuehrung max. Preis: $preis
+             [Lass mich mal zusammenfassen] [Ich rekapituliere] [Ich wiederhole]:
+             $zusammenfassung
+             [Habe ich das alles richtig verstanden] [Stimmt das so]?
 
     #! Ja
     a: (~yes) $gosearch = _0 Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
