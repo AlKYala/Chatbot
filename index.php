@@ -6,14 +6,14 @@
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-	#responseHolder{
-	overflow-y: auto;
+  #responseHolder{
+  overflow-y: auto;
 	padding-top: 90px; 
   padding-bottom: 50px;
 }
 
 .chatbot{
-  background: #ddd;
+  background: #fff;
   color: #000;
   float: left;
   margin-left: 20px;
@@ -21,31 +21,31 @@
 }
 
 .header{	
-	position: fixed;
-	width: 100%;
+	position: center;
+	width: auto;
   text-align: center;
-	padding-top: 15px;
+	padding-top: 5px;
   height: 40px;
   color: #fff;
   background-color: #0145F0;
-  font-weight:bold;
-  font-size: 24px;    
+  font-weight: none;
+  font-size: 30px;
 }
 
 .container{	
-  border-right: 1px solid #bbb;
-  border-left: 1px solid #bbb;
-	margin: 0 auto;
-	width: 70%;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+	margin: auto;
+	width: 100%;
   min-height: 100vh;
 }
 
 .msgInputFrom {	
-  width: 70%;
-	position: fixed;
+  width: 50%;
+ position: fixed;
   bottom: 0;
-  padding-bottom: 20px;
-  height: 2em;
+  padding-bottom: 15px;
+  height: 3em;
 }
 
 .user{
@@ -73,9 +73,17 @@
 }
 
 #Button{
-	/*width: 15%;
-	float:right;*/
-	display:none;
+	  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 2px;
+  border-radius: 15px;
+  
 }
 
 ul li{
@@ -103,23 +111,37 @@ a {
 }
 
 body {
-	background-color: #eee;
+	background-color: #;
 	font-family: Helvetica, Arial, sans-serif;
 	margin-top: 0px;
   font-size: 18px;
 }
+
+div.bild {
+   position: absolute;
+   top: -1px;
+   width:200px; /*width of your image*/
+   height:46px; /*height of your image*/
+   background-image:url('utr_logoSM.png');
+   background-color: #000;
+  /* If you want no margin */
+   padding:; /*if your want to padding */
 	</style>
    </head>
   <body >
-  	<div class="header">Kaufberatung Uni-Shop</div> 
+  
+  	<div class="header">Kaufberatung Uni-Shop
+  	</div> 
+    
+            <div class="bild">&nbsp;</div>
 
   	<div class="container"> 
 
 		<ul id="responseHolder"></ul>
 		<form class="msgInputFrom" id="frmChat" action="#">           
 		    <input type="hidden" name="send" />
-			    <input type="text" name="message" autocomplete="off" placeholder="Schreib dem Bot" id="txtMessage"/>
-			    <input id="Button" type="submit" name="send" value="Send Value" />
+			    <input type="text" name="message" autocomplete="off" placeholder="Geben Sie Ihre Nachricht ein" id="txtMessage"/>
+			    <input id="Button" type="submit" name="send" value="Senden" />
     	</form>
 	</div>	
     
