@@ -28,8 +28,8 @@ u: STARTKAUF ($enter999) [Du möchtest also etwas kaufen] [Du suchst etwas aus u
 	# Ja
 	a: ( _~yes ) $introyes = _0
 	# DATENBANK
-	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = ))
-	        {[Lass uns anfangen!] [Super, auf geht's!].  ^reuse( FIRSTQ )
+	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96))
+	        {[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
 	    } else {dbinit failed - $$db_error}
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
@@ -39,7 +39,7 @@ u: STARTKAUF ($enter999) [Du möchtest also etwas kaufen] [Du suchst etwas aus u
 	# Alternative zu der Frage: Willst du nicht doch noch einmal gucken, ob ich etwas für dich heraussuchen kann?
 	a: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
 	# DATENBANK
-	    b: ( ~no )  $introyes = TRUE if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {Schön zu hören. ^reuse( FIRSTQ )}
+	    b: ( ~no )  $introyes = TRUE if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 )) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	    b: ( ~yes ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 
@@ -48,13 +48,13 @@ u: STARTKAUF ($enter999) [Du möchtest also etwas kaufen] [Du suchst etwas aus u
 	     # Ich suche / will kaufen / shop
            	b: ( _~yes ) $introyes = _0
            	    # DATENBANK
-           	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = ))
+           	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
            	        {Ah, jetzt verstehe ich's. [Lass uns anfangen!] [Super, auf geht's!]. ^reuse( FIRSTQ )
                 } else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
          # Antwort immer noch unverständlich
             b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
-                  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96))
+                  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
                     {[Egal, fangen wir mal an.] [Ich fange einfach mak an, ja?] ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
@@ -62,12 +62,12 @@ u: STARTKAUF ($enter999) [Du möchtest also etwas kaufen] [Du suchst etwas aus u
          # Alternative zu der Frage: Willst du nicht doch noch einmal gucken, ob ich etwas für dich heraussuchen kann?
 	        b: NOBUY ( ~no ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
 	        # DATENBANK
-	            c: ( ~no )  $introyes = TRUE if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = )) {Schön zu hören. ^reuse( FIRSTQ )}
+	            c: ( ~no )  $introyes = TRUE if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 )) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	            c: ( ~yes ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 
 
-u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck. Was möchtest du?
+u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel für einen bestimmten Zweck suchen. Was möchtest du?
       $anwendungszweck = ^"'nichts'"
       $geschenkidee = ^"'nichts'"
 
@@ -112,6 +112,11 @@ u: FIRSTQ ($introyes) Wir können nach einem Geschenk suchen oder einen Artikel 
 	# Konkrete Angabe
 	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
 	    $zusammenfassung = ^"Du weißt schon, wofür du dein Produkt möchtest, und zwar: $anwendungszweck."
+	    ^reuse( ~keyexprodukteigenschaften.STARTONESENTENCE )
+
+	# Keins von beidem
+	a: ({ }["ich weiß nicht" "weiß nicht" "keine Ahnung" "nichts" "keins von beiden"] )
+	    In Ordnung. Das verstehe ich, lass uns einfach mal weitermachen.
 	    ^reuse( ~keyexprodukteigenschaften.STARTONESENTENCE )
 	
 	# Nicht erkannt

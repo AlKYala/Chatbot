@@ -10,7 +10,7 @@ t: STARTONESENTENCE ($RNTER999) Debug: Reminder, für Geschenkidee und Anwedungs
 #   Variablen an der richtigen Stelle zuweisen
 u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst mir hier Eigenschaften wie den Namen oder eine
     Oberkategorie, zum Beispiel Buch, Kleidung oder Deko vorgeben. Desweiteren kannst du die Farbe und bei Büchern Sprachen.
-    Zuletzt hast du noch die Möglichekeit, festzulegen, was du maximal bezahlen möchtest. Du kannst auch "Ich weiß nicht" sagen,
+    Zuletzt hast du noch die Möglichkeit, festzulegen, was du maximal bezahlen möchtest. Du kannst auch "Ich weiß nicht" sagen,
     wenn du keine weiteren Kriterien festlegen möchtest.
     Damit ich dich gut verstehen kann, verwende bitte keine Interpunktion. Die ganzen Punkte, Kommeta und Semikola verwirren mich
     immer so.
@@ -154,7 +154,7 @@ u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenze
 
     # 11. MUSTER: keine oder unverständliche Eingabe
       a: () Das habe ich leider nicht verstehen können. Ich mache mal weiter.
-            $zusammenfassung = ^join($zusammenfassung ^"Konkrete Eigenschaften oder Informationen zum Preis sind nicht vorhanden.")
+            $zusammenfassung = ^join($zusammenfassung ^" Konkrete Eigenschaften oder Informationen zum Preis sind nicht vorhanden.")
             11. MUSTER
            ^reuse( SUMMARY )
 		

@@ -1,13 +1,12 @@
 rename: @chatoutput @9
 
 
-outputmacro: test() 
+outputmacro: augusta()
 ^addtopic(~introductions)
 $cs_control_main = ~control
 $cs_language = german
 $cs_externaltag = ~xPOSTAGSENTENCE
-$userprompt = ^"DU: >"
-# $userprompt = ^"%user: >"
+$userprompt = ^"Du: >"
 $botprompt = ^"AUGUSTA: "
 $cs_token = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE
 $stdtoken = #NO_HYPHEN_END | #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE
@@ -20,7 +19,7 @@ u: () nofail(topic rejoinder())
 table: defaultbot (^name)
 ^createfact(^name defaultbot defaultbot)
 DATA:
-test
+augusta
 
 topic: ~control system ()
 # on startup, do introduction
