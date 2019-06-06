@@ -140,11 +140,23 @@ create table Geschenk(
   insert into Geschenk values ('018D00', 'Gastgeschenk');
   insert into Geschenk values ('018D00', 'Geschenk');
   insert into Geschenk values ('020K04', 'Erinnerungsstück'); -- Kapuzensweatshirt blau
+  insert into Geschenk values ('020K04', 'Geschenk');
+  insert into Geschenk values ('020K04', 'Gastgeschenk');
   insert into Geschenk values ('021K06', 'Erinnerungsstück'); -- Kapuzensweatshirt grau
+  insert into Geschenk values ('021K06', 'Geschenk');
+  insert into Geschenk values ('021K06', 'Gastgeschenk');
   insert into Geschenk values ('022K04', 'Erinnerungsstück'); -- Kapuzenjacke blau
+  insert into Geschenk values ('022K04', 'Geschenk')
+  insert into Geschenk values ('022K04', 'Gastgeschenk')
   insert into Geschenk values ('023K06', 'Erinnerungsstück'); -- Kapuzenjacke grau
+  insert into Geschenk values ('022K04', 'Geschenk')
+  insert into Geschenk values ('022K04', 'Gastgeschenk')
   insert into Geschenk values ('024K01', 'Erinnerungsstück'); -- Herrenshirt
+  insert into Geschenk values ('024K01', 'Geschenk');
+  insert into Geschenk values ('024K01', 'Gastgeschenk');
   insert into Geschenk values ('025K01', 'Erinnerungsstück'); -- Damenshirt
+  insert into Geschenk values ('025K01', 'Gastgeschenk');
+  insert into Geschenk values ('025K01', 'Geschenk');
   insert into Geschenk values ('026B0D', 'Geschenk');         -- Geschichte Uni Trier
   insert into Geschenk values ('026B0D', 'Erinnerungsstück');
   insert into Geschenk values ('027B0E', 'Gastgeschenk');
@@ -177,17 +189,17 @@ natural full outer join anwendung
 
 /* WICHTIG! FÜR DEN WORKAROUND FÜR NULLWERTE! */
 
+/*
 update pseudotabellepro
 set name = 'nichts'
 where name is null;
+*/
 
+/*
 update pseudotabellepro
 set art = 'nichts'
 where art is null;
-
-update pseudotabellepro
-set ausfuehrung = 'nichts'
-where ausfuehrung is null;
+*/
 
 update pseudotabellepro
 set ausfuehrung = 'nichts'
@@ -227,4 +239,3 @@ where ausfuehrung = 'schwarz';
 /* ERSTELLEN VARIABLEN 
  * DIESE SOLLEN IN DER QUERY DANN AUSGEFÜLLT WERDEN!
  * */
-

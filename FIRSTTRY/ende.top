@@ -57,8 +57,8 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREF
 
 t: SETNULLANDREP ($enterEnd50) $kaufbereitschaft = null $geschenkidee = null  $anwendungszweck = null $things = null
-    $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes = null
-    Resetting values ^reuse(~kaufabsicht.STARTKAUF)
+    $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes = null $zusammenfassung = null
+    Resetting values ^reuse(~kaufabsicht.FIRSTQ)
 
 # Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.
 # So kommt man nur mit reuse rein. Wenn ich kein Erfolg haben sollte, mach ich das halt so

@@ -2,7 +2,9 @@ topic: ~konzepte []
 
 concept: ~kaufen [kaufen suche shop uni-shop bestellen such bestell kauf kaufe]
 concept: ~kdienst [kundendienst]
-# concept: ~things [kapuze kapuzensweatshirt sweatshirt tshirt "usb stick" usb stick "Geschichte der Universität Trier" "Kugelschreiber mit Soft-Touch" "Metallkugelschreiber in Box" Herrenshirt Kaffeetasse Einkaufschip "Trier fuer Anfänger" Damenshirt "Geschenktasche fuer Uni-Wein" "Kapuzenjacke Unisex" Schultertasche "Memory Trier" Schluesselband Schlüsselband Mordsstimmung "2017er Universitäts-Wein" "Magnet mit Kunstsiebdruck" "Uni-Bär" "USB-Stick" Schreibset Notizbuch Baumwolltasche Doktorhut "Monopoly Trier" "Kapuzensweatshirt Unisex" Wein-Set]
+concept: ~things [kapuze kapuzensweatshirt sweatshirt tshirt "usb stick" usb stick "Geschichte der Universität Trier" "Kugelschreiber mit Soft-Touch" "Metallkugelschreiber in Box" Herrenshirt Kaffeetasse Einkaufschip "Trier fuer Anfänger" Damenshirt "Geschenktasche fuer Uni-Wein" "Kapuzenjacke Unisex" Schultertasche "Memory Trier" Schluesselband Schlüsselband Mordsstimmung "2017er Universitäts-Wein" "Magnet mit Kunstsiebdruck" "Uni-Bär" "USB-Stick" Schreibset Notizbuch Baumwolltasche Doktorhut "Monopoly Trier" "Kapuzensweatshirt Unisex" Wein-Set]
+
+# Für Umlaute
 ##<<
  concept: ~things [Doktorhut Schlüsselband Schluesselband Wein-Set Wein Set Einkaufschip chip Kaffeetasse tasse Schreibser
     USB-Stick usb stick Notizbuch buch Uni-Bär Bär Uni-Baer Baer Baumwolltasche tasche Schultertasche "Metallkugelschreiber in Box" Metallkugelschreiber
@@ -11,15 +13,17 @@ concept: ~kdienst [kundendienst]
     Kapuze "Kapuzenjacke Unisex" Kapuzenjacke jacke Herrenshirt Damenshirt "Geschichte der Universität Trier" Geschichte Trier
     "Trier für Anfänger" Mordsstimmung "Memory Trier" Memory Memo "Monopoly Trier" Monopoly]
 ##>>
+
 concept: ~art [Spiel Kleidung Buch Uni Alltag Deko]
 concept: ~ausfuehrung [Blau Silber  Gruen Grün Grau Schwarz Franzoesisch Französisch Deutsch Englisch Chinesisch]
 concept: ~geschenkidee [Mitbringsel Erinnerungsstueck Gastgeschenk "Erinnerungsstück"]
-concept: ~anwendungszweck [Unterhaltung Schreibwaren Essen Trinken Alltag Accessoire]
+concept: ~anwendungszweck [Unterhaltung Schreibwaren EssenTrinken Alltag Accessoire]
 # für einen bestimmten Zweck
 concept: ~willZweck [zweck bestimmten besonderen ]
-concept: ~willGeschenk [Geschenk]
+concept: ~willGeschenk [Geschenk verschenken]
 concept: ~nicht [garnix garnicht "gar nix" "gar nicht" nix nichts nicht]
-concept: ~warenkorb ["bereits ausgesucht" ausgewählt ausgesucht Warenkorb Auswahl rausgesucht gefunden Überischt Überblick]
+concept: ~warenkorb ["bereits ausgesucht" ausgewählt ausgesucht Warenkorb Auswahl rausgesucht gefunden Überischt Überblick gekauft]
 concept: ~noch ["noch was" "noch etwas" noch nochwas weiteres anderes]
 concept: ~zustimmung [ja "ja wohl" jawoll "ja woll" "richtig" "korrekt" "in der Tat" "in der tat"]
+concept: ~bejahung [ja "ja wohl" jawoll "ja woll" "richtig" "korrekt" "in der Tat" "in der tat" gerne schön sofort ~yes]
 concept: ~thingsandart[ ~things ~art ]

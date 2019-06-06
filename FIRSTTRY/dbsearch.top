@@ -91,7 +91,7 @@ u: RESPONSE ($ENTEREND955) DEBUG: You're in RESPONSE!
                   # weiteres Produkt suchen
                #   b:  ([~noch ~kaufen])   $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja
                #       Fangen wir von Neuem an. ^reuse(~kaufabsicht.FIRSTQ)
-                   b: ([~noch ~kaufen]) Fangen wir von Neuem an. ^reuse (~ende.SETNULLANDREF)
+                   b: ([~noch ~kaufen]) Fangen wir von Neuem an. ^reuse (~ende.SETNULLANDREP)
 
                   #! Nein.
                   b: ( [~no ~nicht] ) $enterEnd2 = 1 In Ordnung. ^reuse( ~ende.ASKIFHAPPY )

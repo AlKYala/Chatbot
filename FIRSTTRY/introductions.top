@@ -9,7 +9,7 @@ t:  ( %input<%userfirstline )
 
 # Wird nur beim ersten Mal verwendet - noch in Arbeit.
 # Drop table nur um mit build mine zu arbeiten.
-t: GREET (~emohello) Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist ein bisschen persönlicher.]
+t: GREET (~emohello) Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist etwas persönlicher.]
 
 	#! Ich bin /Ich heiße / Meine Name ist
 	a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
@@ -21,9 +21,13 @@ t: GREET (~emohello) Möchtest du mir deinen Vornamen verraten? [Dann kann ich d
            retry(SENTENCE)
            }
         $kunde =  pos(noun '_0 proper)
-        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
+        ^"Hallo, $kunde."
         $cs_token = $stdtoken
         $userprompt = ^"$kunde: >"
+        ^reuse(~kaufabsicht.INTRO)
+
+	#! Nein.
+    	a: (~no) ^reuse(KEINE_VORSTELLUNG)
 
 	#! nur Name
 	a: ( < _*1 > )
@@ -35,21 +39,20 @@ t: GREET (~emohello) Möchtest du mir deinen Vornamen verraten? [Dann kann ich d
        retry(SENTENCE)
        }
        $kunde = pos(noun '_0 proper)
-       ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
+       ^"Hallo, $kunde."
        $cs_token = $stdtoken
        $userprompt = ^"$kunde: >"
+       ^reuse(~kaufabsicht.INTRO)
 
 	#! Das will ich nicht sagen.
-	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
+	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.INTRO)
 
 	#! Das will ich nicht
 	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)
 
-	#! Nein.
-	a: (~no) ^reuse(KEINE_VORSTELLUNG)
 
 	# Das hier noch überarbeiten!
-	a: () Das habe ich leider nicht verstanden. Fangen wir trotzdem an! ^reuse( ~kaufabsicht.STARTKAUF )
+	a: () Das habe ich leider nicht verstanden. Fangen wir trotzdem an! ^reuse( ~kaufabsicht.INTRO )
 
 
 
