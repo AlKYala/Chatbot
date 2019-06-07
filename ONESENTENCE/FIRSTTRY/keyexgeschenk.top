@@ -1,0 +1,33 @@
+# Ausführung nur wenn Geschenk nicht null!		 
+topic: ~keyexgeschenk keep (~geschenkidee)
+
+
+# Wir kommen nur durch umleitung in keyex- topics rein. $ENTER999 darf nie instanziiert werden 
+t: STARTGESCHENK ($ENTER999) Debug: Reminder, für Geschenk ein $geschenkidee. Anwendungszweck war $anwendungszweck ^reuse( ASKNAME1 )
+
+u: ASKNAME1 () Ich will dir bei der Produktsuche helfen. Weißt du, wie der Artikel heißt, den du du suchst?
+	a:  ( _~things ) $art = ^"'nichts'" $things = ^"''_0'" Alles klar, ein $things.  ^reuse( AUSF1 )
+	a: (~no) $things = ^"'nichts'" Kein Thema, dafür bin ja da. ^reuse( ART1 )
+	a: () $things = ^"'nichts'" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( AUSF1 )
+
+u: ART1 (!$things) Weißt du zumindest, was für eine Art von Ding du willst? # Wenn für $things nix da ist, dann ART.
+	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter! ^reuse( AUSF1 )
+	a: () $art = ^"'nichts'" Okay. Versuchen wir es weiter! ^reuse( AUSF1 )
+	
+u: AUSF1 () Kannst du was zur Ausführung sagen? Welche sprache oder farbe hat es? 
+	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist $ausfuehrung ^reuse( PRICE1 )
+	a: () $ausfuehrung = ^"'nichts'" Okay. ^reuse( PRICE1 )
+	
+u: PRICE1 () Wie viel soll es denn maximal kosten?
+	a: (_~positiveinteger) $preis = _0 Es soll maximal $preis Euro kosten.  ^reuse( SUMMARY1 )
+	a: () $preis = -1 Wir konnten keinen Preis feststellen ^reuse( SUMMARY1 )
+	
+# gosearch muss einen Wert haben, damit die Datenbanksuche erfolgt. 
+# gosearch soll also verhindern, dass ohne NLI eine Datenbanksuche erfolgt
+	
+u: SUMMARY1 () Ich fasse zusammen: Du wolltest ein Geschenk, genauer gesagt ein $geschenkidee . Es handelt sich hier um ein $things bzw. ein $art mit $ausfuehrung als ausführung und maximal kosten tut es $preis. Stimmt das?
+	a: (~yes) $gosearch = _0 Alles klar! Ich such mal im Shop d1 ^reuse( ~dbsearch.WELCOME )
+	a: (~no) Okay. Fangen wir von vorn an ^reuse( ASKNAME1 ) # I need this to back to ASKNAME and run procedures again
+	a: () $gosearch = 1 Alles klar! Ich such mal im Shop d2  ^reuse( ~dbsearch.WELCOME )
+
+# Ausführung nur wenn anwendungszweck nicht null!	

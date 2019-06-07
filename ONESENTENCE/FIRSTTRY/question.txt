@@ -1,0 +1,59 @@
+Question
+
+Hello! 
+
+I am new to Chatscript. I am trying to make a Chatbot that (optimally) uses an interface with Postgresql
+so I can run a product recommendation. 
+
+I have a few questions: 
+
+1. Is it alright for me to jump from one top file to another by using gambit? For instance, I have the following line:
+
+		a: AFFIRMATIVE (~yes) In diesem Fall kann ich dir dabei helfen, was aus dem Uni-Shop zu suchen, $kunde. gambit(~keyEx)
+
+2. How do I map words that consist of multiple words as one in a concept?
+For example, I have:
+
+concept: ~example[word one wordtwo]
+
+In this case, how would I make it so "word 1" is recognized as one unit - instead of being "word" and "1"?
+Do I do this by having ~example["word one" wordtwo]
+
+		
+3. How do I include an already existing database (PostgresSQL) in ChatScript? So far, we only know how to build it ourselves
+but we want to use an exisiting one.  
+
+4. This is the most complicated one I figure -
+How exactly would a keyword extraction work in ChatScript? If you've read the other points: I want to run a query 
+in a database. My first idea was to find any words that appear in one of my columns (Name, Purpose, Color) and 
+build concepts around it. 
+
+Imagine: Say, I have a database for vehcicles called vehicle, with the following columns: Power, Color, Seats
+
+So if my user input was: I want a red car with 2 seats and at least 250 horse power 
+
+my query in postgresql would look like this:
+
+select *
+from vehicle 
+where power >= 250 and color = 'red' and seats = 2
+
+
+My approach to this would have been like this: Make a concept for every distinct entry in every column
+
+Like so:
+
+concept: ~colors [green red blue]
+concept: ~seats [2 4 6]
+
+The next step to take would be to look for said "keywords" in user input. To be more precise:
+The user says what he wants, like "I want a red car with 2 seats and at least 250 horse power". 
+
+Question 1: How do I make the bot look for matching words from the three concepts at the same time?
+So in "I want a red car with 2 seats and at least 250 horse power" it would have to look for matching 
+words in (~seats) and (~colors). It does not really have to be concepts - I am very new ChatScript and
+if there is a better approach to this than using concepts, please let me know.
+
+Question 2: Assuming I get the bot to  match user input with multiple concepts, what 
+I'd like to do next is to save said matches in words such as $color and $seats. I've done this 
+with $name before but I wonder how that'd be done. 
