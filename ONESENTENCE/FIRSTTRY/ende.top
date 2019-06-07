@@ -56,8 +56,8 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfach nur dazu dienen, dass wenn
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREF
 
-t: SETNULLANDREP ($enterEnd50) $kaufbereitschaft = null $geschenkidee = ^"'nichts'"  $anwendungszweck = ^"'nichts'" $things = ^"'nichts'"
-    $ausfuehrung = ^"'nichts'" $preis = -1 $art = ^"'nichts'" $gosearch = null $searchenable = null $introyes = null
+t: SETNULLANDREP ($enterEnd50) $kaufbereitschaft = null $geschenkidee = null  $anwendungszweck = null $things = null
+    $ausfuehrung = null $preis = -1 $art = null $gosearch = null $searchenable = null $introyes = null
     Resetting values ^reuse(~kaufabsicht.STARTKAUF)
 
 # Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.
