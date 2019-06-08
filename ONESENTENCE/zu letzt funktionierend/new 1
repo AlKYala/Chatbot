@@ -1,0 +1,4 @@
+# EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfahc nur dazu dienen, dass wenn man an bestmmten stellen die variablen 
+# null setzen will, man hierhingeht und dann zurück in die Kaufabsicht.
+
+u: SETNULLANDREP ($enterEnd50) $things=null $geschenkidee=null $anwendungszweck=null $ausfuehrung=null $preis=null $art=null $gosearch=null $searchenable=null $introyes=null Resetting values ^reuse( ~kaufabsicht.INTRO )
