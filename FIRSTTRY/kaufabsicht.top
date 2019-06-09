@@ -24,7 +24,7 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
 	# Ja
 	a: ( ~positiv ) $introyes = 1
 	# DATENBANK
-	    if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234))
+	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96))
 	        {[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
 	    } else {dbinit failed - $$db_error ^reuse( FIRSTQ )}
 
@@ -35,7 +35,7 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
 	# Alternative zu der Frage: Willst du nicht doch noch einmal gucken, ob ich etwas für dich heraussuchen kann?
 	a: NOBUY ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
 	# DATENBANK
-	    b: ( ~negativ )  $introyes = TRUE if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 )) {Schön zu hören. ^reuse( FIRSTQ )}
+	    b: ( ~negativ )  $introyes = TRUE if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 )) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	    b: ( ~positiv ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 
@@ -44,13 +44,14 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
 	     # Ich suche / will kaufen / shop
            	b: ( ~positiv ) $introyes = 1
            	    # DATENBANK
-           	    if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 ))
+           	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
            	        {Ah, jetzt verstehe ich's. [Lass uns anfangen!] [Super, auf geht's!]. ^reuse( FIRSTQ )
                 } else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
          # Antwort immer noch unverständlich
             b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
-                  $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 ))
+                  # DATENBANK
+                  $introyes = _0 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
                     {[Egal, fangen wir mal an.] [Ich fange einfach mak an, ja?] ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 
@@ -58,7 +59,7 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
          # Alternative zu der Frage: Willst du nicht doch noch einmal gucken, ob ich etwas für dich heraussuchen kann?
 	        b: NOBUY ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
 	        # DATENBANK
-	            c: ( ~negativ )  $introyes = TRUE if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 )) {Schön zu hören. ^reuse( FIRSTQ )}
+	            c: ( ~negativ )  $introyes = TRUE if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 )) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	            c: ( ~positiv ) $enterEnd2 = 1 Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 

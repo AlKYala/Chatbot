@@ -2,7 +2,7 @@ topic: ~konzepte []
 
 concept: ~kaufen [kaufen suche shop uni-shop bestellen such bestell kauf kaufe]
 concept: ~kdienst [kundendienst]
-concept: ~things [Doktorhut Schlüsselband Schluesselband Wein-Set Wein Set Einkaufschip chip Kaffeetasse tasse Schreibser
+concept: ~things [Doktorhut Schlüsselband Schluesselband Wein-Set Wein Set Einkaufschip chip Kaffeetasse tasse Schreibset
     USB-Stick usb stick Notizbuch buch Uni-Bär Bär Uni-Baer Baer Baumwolltasche tasche Schultertasche "Metallkugelschreiber in Box" Metallkugelschreiber
     Kugelschreibet "Magnet mit Kunstsiebdruck" Magnet "Kugelschreiber mit Soft-Touch" "2017er Universitäts-Wein" Universitäts-Wein
     Universitaets-Wein "Geschenktasche für Uni-Wein" Geschenktasche "Kapuzensweatshirt Unisex" Kapuzensweatshirt sweatshirt shirt
@@ -21,5 +21,5 @@ concept: ~noch ["noch was" "noch etwas" noch nochwas weiteres anderes]
 concept: ~zustimmung [ja "ja wohl" jawoll "ja woll" "richtig" "korrekt" "in der Tat" "in der tat" Ja]
 concept: ~thingsandart[ ~things ~art ]
 concept: ~negativ [~no ~nicht]
-concept: ~positiv [~yes ~zustimmung]
+concept: ~positiv [~yes ~zustimmung ja Ja]
 concept: ~positivkaufen [~yes ~zustimmung ~kaufen]
