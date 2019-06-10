@@ -115,7 +115,7 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder nach einem Art
 	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
 
 	# Keins von beidem
-	a: ({ }["ich weiß nicht" "weiß nicht" "keine Ahnung" "nichts" "keins von beiden"] )
+	a: (~keinsvonbeiden)
 	    In Ordnung. Das verstehe ich, lass uns einfach mal weitermachen.
 	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
 	
