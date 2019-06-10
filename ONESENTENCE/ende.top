@@ -26,14 +26,15 @@ topic: ~ende keep repeat []
 
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
-u: ASKIFHAPPY ($enterEnd2) Wir sind nur zur Beratung da. Weitere Infos gibts auf: https://www.uni-trier.de/index.php?id=50041
+u: ASKIFHAPPY ($enterEnd2)
 	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
 
-	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	a: (~no) if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
 	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        Weitere Informationen findest du unter https://www.uni-trier.de/index.php?id=50041.
 	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
 	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
-             ^eval(:quit) 
+             ^eval(:quit)  }
 
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
@@ -55,7 +56,7 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 	a: (~positiv) Dann helfe ich dir dabei. ^reuse( SETNULLANDREP )
 	
 	a: ([~nicht ~no]) In Ordnung, du möchtest nichts mehr.
-	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit)
+	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit) }
 	
 	
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfach nur dazu dienen, dass wenn
@@ -63,7 +64,7 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 
 t: SETNULLANDREP ($enterEnd50)
     $geschenkidee = null  $anwendungszweck = null $things = null $art = null
-    $ausfuehrung = null $preis = null
+    $ausfuehrung = null $preis = null $zusammenfassung = null
     $kaufbereitschaft = 1 $introyes = 1 $gosearch = null $searchcreate = null $searchable = null $produktname = null
     $produkbeschreibung = null $weitersuchen = null $enterEnd2 = null $stillhelp = null
     Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
