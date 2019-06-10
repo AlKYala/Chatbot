@@ -94,12 +94,11 @@ u: () # main per-sentence processing
 	}
 	if (%response == $$response) 
 	{
-		 # ^repeat()
+		 		 # ^repeat()
 		 [Ich kann mit deiner Eingabe leider nichts anfangen.]
 		 [Ich verstehe deine Eingabe leider nicht.]  Können wir noch mal ein paar Schritte zurück?
 		 if ($enterEnd2) {  enterEnd ^reuse ( ~ende.ASKIFHAPPY )
 		 } else if ($produkbeschreibung) { produktbeschreibung ^reuse ( ~dbsearch.RESPONSE )
 		 } else { alles andere ^reuse ( ~kaufabsicht.STARTKAUF) }
-
 	}
-#AUS GERMAN KOPIERT!
+# Teile aus German kopiert!

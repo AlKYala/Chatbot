@@ -70,8 +70,15 @@ t: PRODUCTNAME ($produktname) $ergebnis = null  [Ich habe dies gefunden: ] [Was 
 t: PRODUCTDESCR ($produktbeschreibung)
    [Dazu kann ich dir Folgendes sagen: ] [Ich habe noch mehr Informationen: ] [Also: ] [ ]
    if (^dbexecute( ^"SELECT beschreibung FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
+             ^reuse( PRODUCTPRICE )
+   } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~ende.SETNULLANDREP)}
+
+t: PRODUCTPRICE ($Produktpreis)
+	[Der Preis des Produkts beträgt: ] [Dies Produkt kostet: ] [] 
+	if (^dbexecute( ^"SELECT preis FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {Euro. 
             [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?] ^reuse( RESPONSE )
-   } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~kaufabsicht.FIRSTQ)}
+       } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
+
 
 
 	# Auch im Folgenden queried 1 auf queried 3 setzen.

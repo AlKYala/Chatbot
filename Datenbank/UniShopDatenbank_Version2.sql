@@ -35,28 +35,28 @@ create table Geschenk(
   --Inhalte fuer Artikel
   -- Aufbau Artikelnummer: 3 Ziffern fortlaufend, Buchstabe fuer Art, zwei Ziffern fuer Ausfuehrung, zwei Ziffern fuer Groesse
   insert into Artikel values ('001D01', 'Doktorhut', 'Deko', 6.00, 'Schwarzer Doktorhut mit Siegel-Aufdruck der Universität Trier.',  'schwarz');
-  insert into Artikel values ('002A04', 'Schlüsselband', 'Alltag', 2.00, 'Blau mit Logo und Internetadresse.', 'blau');
+  insert into Artikel values ('002A04', 'Schlüsselband', 'Alltag', 2.00, 'Blau mit Logo und Internetadresse.', 'Blau');
   insert into Artikel values ('003A05', 'Schlüsselband', 'Alltag', 2.00, 'Grün mit Logo und Internetadresse.', 'grün');
   insert into Artikel values ('004D00', 'Wein-Set', 'Deko', 9.50, 'Wein-Set mit Schachspiel "Checkmate" bestehend aus Kellnermesser mit Gravur "Universität Trier", Tropfring, Weinthermometer, Flaschenverschluss und Schachfiguren aus Holz, in schwarzer Holzbox mit Spielbrett auf dem Deckel.', null);
-  insert into Artikel values ('005A04', 'Einkaufschip', 'Alltag', 1.00, 'Blauer Einkaufschip mit dem Siegel der Universität auf der einen und dem Logo auf der anderen Seite. Passend für Einkaufswagen, die ein 1-Euro-Stück benötigen.', 'blau');
-  insert into Artikel values ('006A04', 'Kaffeetasse', 'Alltag', 7.00, 'Mit Siegel in Weiß. Dunkelblau, Steinzeug, Matt-Finish Oberfläche, Roubill-Bodenmarke, 300 ml.', 'blau');
+  insert into Artikel values ('005A04', 'Einkaufschip', 'Alltag', 1.00, 'Blauer Einkaufschip mit dem Siegel der Universität auf der einen und dem Logo auf der anderen Seite. Passend für Einkaufswagen, die ein 1-Euro-Stück benötigen.', 'Blau');
+  insert into Artikel values ('006A04', 'Kaffeetasse', 'Alltag', 7.00, 'Mit Siegel in Weiß. DunkelBlau, Steinzeug, Matt-Finish Oberfläche, Roubill-Bodenmarke, 300 ml.', 'Blau');
   insert into Artikel values ('007A05', 'Kaffeetasse', 'Alltag', 7.00, 'Mit Siegel in Weiß. Grün, Steinzeug, Matt-Finish Oberfläche, Roubill-Bodenmarke, 300 ml.', 'grün');
   insert into Artikel values ('008U03', 'Schreibset', 'Uni', 9.00, 'Das Stiftset aus Aluminium besteht aus einem Kugelschreiber mit zusätzlicher Touchpen-Funktion, einem Bleistift und einem Rollerball. Alle Stifte haben eine Gravur der Universität Trier.', 'silber');
-  insert into Artikel values ('009U04', 'USB-Stick', 'Uni', 5.80, 'Stick in blau/silber mit Unilogo, 4 und 8 GB.', 'blau');
-  insert into Artikel values ('010U04', 'Notizbuch', 'Uni', 6.00, 'Blaues DIN A6 Notizbuch, kariert, in Holzoptik. Mit elastischem Verschlussband und Falttasche. Siegelprägung auf der Vorderseite.', 'blau');
+  insert into Artikel values ('009U04', 'USB-Stick', 'Uni', 5.80, 'Stick in Blau/silber mit Unilogo, 4 und 8 GB.', 'Blau');
+  insert into Artikel values ('010U04', 'Notizbuch', 'Uni', 6.00, 'Blaues DIN A6 Notizbuch, kariert, in Holzoptik. Mit elastischem Verschlussband und Falttasche. Siegelprägung auf der Vorderseite.', 'Blau');
   insert into Artikel values ('011U05', 'Notizbuch', 'Uni', 6.00, 'Grünes DIN A6 Notizbuch, kariert, in Holzoptik. Mit elastischem Verschlussband und Falttasche. Siegelprägung auf der Vorderseite.', 'grün');
   insert into Artikel values ('012D00', 'Uni-Bär', 'Deko', 9.00, 'Plüschbär mit Talar, Doktorhut und kleiner Urkunde. Logo der Universität Trier auf dem Talar.', null);
-  insert into Artikel values ('013A04', 'Baumwolltasche', 'Alltag', 2.00, 'Königsblau, Siebdruck, ca. 38x42 cm. 100% Baumwolle, Innennähte verkettelt.', 'blau');
-  insert into Artikel values ('014U04', 'Schultertasche', 'Uni', 15.00, 'Verstellbarer Schultergurt, Netztasche mit Zip innen, Fassungsvermögen: 12 Ltr, 40x30x10, Farbe: blau.', 'blau');
-  insert into Artikel values ('015U04', 'Metallkugelschreiber in Box', 'Uni', 9.50, 'Metallkugelschreiber mit Lederapplikationen blau, Schriftzug Universität Trier eingraviert. Mine schwarz.', 'blau');
+  insert into Artikel values ('013A04', 'Baumwolltasche', 'Alltag', 2.00, 'KönigsBlau, Siebdruck, ca. 38x42 cm. 100% Baumwolle, Innennähte verkettelt.', 'Blau');
+  insert into Artikel values ('014U04', 'Schultertasche', 'Uni', 15.00, 'Verstellbarer Schultergurt, Netztasche mit Zip innen, Fassungsvermögen: 12 Ltr, 40x30x10, Farbe: Blau.', 'Blau');
+  insert into Artikel values ('015U04', 'Metallkugelschreiber in Box', 'Uni', 9.50, 'Metallkugelschreiber mit Lederapplikationen Blau, Schriftzug Universität Trier eingraviert. Mine schwarz.', 'Blau');
   insert into Artikel values ('016A00', 'Magnet mit Kunstsiebdruck', 'Alltag', 3.50, 'Kunstmagnet der Künstlerin Anja Streese, Größe: 120x54 mm, Motiv: Universitätsbibliothek und Porta Nigra.', null);
-  insert into Artikel values ('017U04', 'Kugelschreiber mit Soft-Touch', 'Uni', 1.00, 'Touchpen mit Lasergravour in blau/silber mit blauer Mine.', 'blau');
+  insert into Artikel values ('017U04', 'Kugelschreiber mit Soft-Touch', 'Uni', 1.00, 'Touchpen mit Lasergravour in Blau/silber mit Blauer Mine.', 'Blau');
   insert into Artikel values ('018D00', '2017er Universitäts-Wein', 'Deko', 6.50, 'Eine Flasche 2017er Gut Avelsbacher Hammerstein. Riesling Qualitätswein, tocken.', null);
-  insert into Artikel values ('019D04', 'Geschenktasche für Uni-Wein', 'Deko', 1.50, 'Tragetasche aus Papier für eine Flasche Wein mit Seitenfalz und Sichtfenster in blau.', 'blau');
-  insert into Artikel values ('020K04', 'Kapuzensweatshirt Unisex', 'Kleidung', 25.00, 'Logo gestickt, großer Siegel-Aufdruck auf dem Rücken, XS bis XXL.', 'blau');
-  insert into Artikel values ('021K06', 'Kapuzensweatshirt Unisex', 'Kleidung', 25.00, 'Logo gestickt, großer Siegel-Aufdruck in blau auf dem Rücken, XS bis XXL.', 'grau');
-  insert into Artikel values ('022K04', 'Kapuzenjacke Unisex', 'Kleidung', 28.00, 'Logo gestickt, großer Siegel-Aufdruck in weiß auf dem Rücken. Reißverschluss vorne, XS bis XXL.', 'blau');
-  insert into Artikel values ('023K06', 'Kapuzenjacke Unisex', 'Kleidung', 28.00, 'Logo gestickt, großer Siegel-Aufdruck in blau auf dem Rücken. Reißverschluss vorne, XS bis XXL.', 'grau');
+  insert into Artikel values ('019D04', 'Geschenktasche für Uni-Wein', 'Deko', 1.50, 'Tragetasche aus Papier für eine Flasche Wein mit Seitenfalz und Sichtfenster in Blau.', 'Blau');
+  insert into Artikel values ('020K04', 'Kapuzensweatshirt Unisex', 'Kleidung', 25.00, 'Logo gestickt, großer Siegel-Aufdruck auf dem Rücken, XS bis XXL.', 'Blau');
+  insert into Artikel values ('021K06', 'Kapuzensweatshirt Unisex', 'Kleidung', 25.00, 'Logo gestickt, großer Siegel-Aufdruck in Blau auf dem Rücken, XS bis XXL.', 'grau');
+  insert into Artikel values ('022K04', 'Kapuzenjacke Unisex', 'Kleidung', 28.00, 'Logo gestickt, großer Siegel-Aufdruck in weiß auf dem Rücken. Reißverschluss vorne, XS bis XXL.', 'Blau');
+  insert into Artikel values ('023K06', 'Kapuzenjacke Unisex', 'Kleidung', 28.00, 'Logo gestickt, großer Siegel-Aufdruck in Blau auf dem Rücken. Reißverschluss vorne, XS bis XXL.', 'grau');
   insert into Artikel values ('024K01', 'Herrenshirt', 'Kleidung', 13.00, 'Schwarzes Shirt mit weißem Siegel-Aufdruck auf der linken Seite. Auf dem rechten Ärmel: weißer Schriftzug der Universität, S bis XL.', 'schwarz');
   insert into Artikel values ('025K01', 'Damenshirt', 'Kleidung', 13.00, 'Schwarzes Shirt mit weißem Siegel-Aufdruck auf der linken Seite. Auf dem rechten Ärmel: weißer Schriftzug der Universität, XS bis XL.', 'schwarz');
   insert into Artikel values ('026B0D', 'Geschichte der Universität Trier', 'Buch', 15.00, 'Das vorliegende Buch berichtet ausführlich über die Geschichte der Universität Trier. Mit 49 farbigen Abbildungen und 25 Bilder in Schwarz/Weiß. 328 Seiten', 'Deutsch');
@@ -102,7 +102,7 @@ create table Geschenk(
   insert into Anwendung values ('019D04', 'Accessoire');
   insert into Anwendung values ('020K04', 'Alltag');
   insert into Anwendung values ('021K06', 'Alltag'); -- Kapuzensweatshirt grau
-  insert into Anwendung values ('022K04', 'Alltag'); -- Kapuzenjacke blau
+  insert into Anwendung values ('022K04', 'Alltag'); -- Kapuzenjacke Blau
   insert into Anwendung values ('023K06', 'Alltag'); -- Kapuzenjacke grau
   insert into Anwendung values ('024K01', 'Alltag'); -- Herrenshirt
   insert into Anwendung values ('025K01', 'Alltag'); -- Damenshirt
@@ -139,18 +139,18 @@ create table Geschenk(
   insert into Geschenk values ('016A00', 'Gastgeschenk');
   insert into Geschenk values ('018D00', 'Gastgeschenk');
   insert into Geschenk values ('018D00', 'Geschenk');
-  insert into Geschenk values ('020K04', 'Erinnerungsstück'); -- Kapuzensweatshirt blau
+  insert into Geschenk values ('020K04', 'Erinnerungsstück'); -- Kapuzensweatshirt Blau
   insert into Geschenk values ('020K04', 'Geschenk');
   insert into Geschenk values ('020K04', 'Gastgeschenk');
   insert into Geschenk values ('021K06', 'Erinnerungsstück'); -- Kapuzensweatshirt grau
   insert into Geschenk values ('021K06', 'Geschenk');
   insert into Geschenk values ('021K06', 'Gastgeschenk');
-  insert into Geschenk values ('022K04', 'Erinnerungsstück'); -- Kapuzenjacke blau
-  insert into Geschenk values ('022K04', 'Geschenk')
-  insert into Geschenk values ('022K04', 'Gastgeschenk')
+  insert into Geschenk values ('022K04', 'Erinnerungsstück'); -- Kapuzenjacke Blau
+  insert into Geschenk values ('022K04', 'Geschenk');
+  insert into Geschenk values ('022K04', 'Gastgeschenk');
   insert into Geschenk values ('023K06', 'Erinnerungsstück'); -- Kapuzenjacke grau
-  insert into Geschenk values ('022K04', 'Geschenk')
-  insert into Geschenk values ('022K04', 'Gastgeschenk')
+  insert into Geschenk values ('022K04', 'Geschenk');
+  insert into Geschenk values ('022K04', 'Gastgeschenk');
   insert into Geschenk values ('024K01', 'Erinnerungsstück'); -- Herrenshirt
   insert into Geschenk values ('024K01', 'Geschenk');
   insert into Geschenk values ('024K01', 'Gastgeschenk');
@@ -221,7 +221,7 @@ where anwendungsgebiet is null;
 
 update pseudotabellepro
 set ausfuehrung = 'Blau'
-where ausfuehrung = 'blau';
+where ausfuehrung = 'Blau';
 
 update pseudotabellepro
 set ausfuehrung = 'Grün'
