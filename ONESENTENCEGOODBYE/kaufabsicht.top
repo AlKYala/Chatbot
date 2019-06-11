@@ -48,6 +48,12 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
            	        {Ah, jetzt verstehe ich's. [Lass uns anfangen!] [Super, auf geht's!]. # ^reuse( FIRSTQ )
                 } else {dbinit failed - $$db_error} # ^reuse( INTRO )}
                 ^reuse( FIRSTQ )
+	
+	a: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 				
 				
 		#! Nein.
@@ -64,6 +70,12 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
                   $introyes = _0 if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 ))
                     {[Egal, fangen wir mal an.] [Ich fange einfach mak an, ja?] ^reuse( FIRSTQ )}
                   else {dbinit failed - $$db_error ^reuse(INTRO)}
+				  
+			b: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
 
 u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel für einen bestimmten Zweck suchen. Was möchtest du?
@@ -79,6 +91,12 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
         Erinnerungsstück, Gastgeschenk, Geschenk oder Mitbringsel.
         # if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
         # else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+	
+	a: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
        #! Mitbringsel
          b: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
@@ -93,6 +111,13 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
 
        # Nicht erkannt.
          b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+		 
+		
+		b: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
 	   
 	#! bestimmter Zweck
@@ -100,6 +125,13 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
 	     Accessoire, Alltag, EssenTrinken, Schreibwaren oder Unterhaltung.
 	    # if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
         #  else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+		
+		
+	a: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
        #! EssenTrinken
        	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
@@ -109,6 +141,13 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
 
        # Nicht erkannt.
          b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+		 
+		
+		b: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
 
     # Konkrete Angabe - gehe direkt weiter!
@@ -116,11 +155,14 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
         if (_0 == Erinnerungsstueck) {$geschenkidee = ^"'Erinnerungsstück'"}
         $zusammenfassung = ^"Du suchst ein $geschenkidee."
         ^reuse( ~keyexonesentence.STARTONESENTENCE )
+		
 
 	# Konkrete Angabe
 	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
 	    $zusammenfassung = ^"Du weißt schon, wofür du dein Produkt möchtest, und zwar: $anwendungszweck."
 	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
+		
+	
 
 	# Keins von beidem
 	a: ( ~keinsvonbeiden )
@@ -129,18 +171,36 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
 	
 	# Nicht erkannt
 	a: () Ich habe das leider nicht richtig verstanden. Könntest du das bitte wiederholen?
+	
+	a: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
 	#! Geschenk
         b: (~willGeschenk) $anwendungszweck = ^"'nichts'" Du möchtest etwas verschenken. Ich kann dir folgende Kategorien anbieten:
             Erinnerungsstück, Gastgeschenk, Geschenk oder Mitbringsel.
             # if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
             #  else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+			
+		b: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
            #! Mitbringsel
              c: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
                  if (_0 == Erinnerungsstueck) {$geschenkidee = ^"'Erinnerungsstück'"}
                  $zusammenfassung = ^"Du suchst ein $geschenkidee."
                   ^reuse( ~keyexonesentence.STARTONESENTENCE )
+				  
+			c: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
            #! Geschenk
              c: ( Geschenk ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"'Geschenk'"
@@ -156,6 +216,12 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
     	    Accessoire, Alltag, EssenTrinken, Schreibwaren oder Unterhaltung.
     	    # if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
             # else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+			
+		b: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
            #! EssenTrinken
            	c: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
@@ -165,9 +231,16 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
 
            # Nicht erkannt.
             c: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+			
+			c: (~ciao) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
+	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+             ^eval(:quit)
 
         # Wieder nicht erkannt.
         b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+	
 
 
 

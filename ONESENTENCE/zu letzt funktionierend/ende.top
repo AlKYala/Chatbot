@@ -26,7 +26,8 @@ topic: ~ende keep repeat []
 
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
-u: ASKIFHAPPY ($enterEnd2) [Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
+u: ASKIFHAPPY ($enterEnd2) Wir sind nur zur Beratung da. Weitere Infos gibts auf: https://www.uni-trier.de/index.php?id=50041
+	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
 
 	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
 	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
@@ -60,9 +61,15 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfach nur dazu dienen, dass wenn
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREP
 
-t: SETNULLANDREP ($enterEnd50) $kaufbereitschaft = null $geschenkidee = null  $anwendungszweck = null $things = null
-    $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes = null
-    Resetting values ^reuse( ~kaufabsicht.INTRO )
+t: SETNULLANDREP ($enterEnd50)
+    $geschenkidee = null  $anwendungszweck = null $things = null $art = null
+    $ausfuehrung = null $preis = null
+    $kaufbereitschaft = 1 $introyes = 1 $gosearch = null $searchcreate = null $searchable = null $produktname = null
+    $produkbeschreibung = null $weitersuchen = null $enterEnd2 = null $stillhelp = null
+    Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
+	
+	
+#Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch interesse daran besteht, was zu kaufen. Daher auch kaufbereitschaft = null
 
 # Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.
 # So kommt man nur mit reuse rein. Wenn ich kein Erfolg haben sollte, mach ich das halt so

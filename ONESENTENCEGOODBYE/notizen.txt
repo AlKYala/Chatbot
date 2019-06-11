@@ -1,0 +1,13 @@
+create table $tablename as (
+select * 
+from pseudotabellepro
+)
+
+
+^dbexecute(^"drop table mystring1285";)
+
+if (^dbexecute(^"drop table mystring1285";)) {Alles klar, Ciao!}
+	else {dbexecute failed list from table- $$db_error Datenbank nicht gelöscht, trotzdem Ciao! }
+	
+	if (^dbexecute(^"create table $tablename as (select * from pseudotabellepro);" )) {Datenbank erstellt}
+	else {dbexecute failed list from table- $$db_error Gibt nix, machst nix }

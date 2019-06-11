@@ -1,0 +1,59 @@
+
+topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
+
+
+# Taucht jedes Mal auf.
+t:  ( %input<%userfirstline )
+    ^keep()
+    [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
+
+# Wird nur beim ersten Mal verwendet - noch in Arbeit.
+# Drop table nur um mit build mine zu arbeiten.
+t: GREET (~emohello) Möchtest du mir deinen Vornamen verraten Debug NEW? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist ein bisschen persönlicher.]
+
+	#! Ich bin /Ich heiße / Meine Name ist
+	a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
+	    if ($cs_token == $stdtoken)
+           {
+           $cs_token = #DO_INTERJECTION_SPLITTING |
+                       #DO_SUBSTITUTE_SYSTEM | #DO_NUMBER_MERGE |
+                       #DO_PARSE
+           retry(SENTENCE)
+           }
+        $kunde =  pos(noun '_0 proper)
+        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
+        $cs_token = $stdtoken
+        $userprompt = ^"$kunde: >"
+		
+	# Einfach nur ein No 
+	a: ( ~no ) 	^reuse( KEINE_VORSTELLUNG )
+
+	#! nur Name
+	a: ( < _*1 > )
+	   if ($cs_token == $stdtoken)
+       {
+       $cs_token = #DO_INTERJECTION_SPLITTING |
+                   #DO_SUBSTITUTE_SYSTEM | #DO_NUMBER_MERGE |
+                   #DO_PARSE
+       retry(SENTENCE)
+       }
+       $kunde = pos(noun '_0 proper)
+       ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
+       $cs_token = $stdtoken
+       $userprompt = ^"$kunde: >"
+
+	#! Das will ich nicht sagen.
+	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
+
+	#! Das will ich nicht
+	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)
+
+	#! Nein.
+	a: (~negativ) ^reuse(KEINE_VORSTELLUNG)
+
+	# Das hier noch überarbeiten!
+	a: () Das habe ich leider nicht verstanden. Fangen wir trotzdem an! ^reuse( ~kaufabsicht.STARTKAUF )
+
+
+
+# Bitte bei reuse nie ~ vergessen ^reuse( ~topicname.untertopic )
