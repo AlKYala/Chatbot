@@ -26,7 +26,7 @@ topic: ~ende keep repeat []
 
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
-u: ASKIFHAPPY ($enterEnd2) Wir sind nur zur Beratung da. Weitere Infos gibts auf: https://www.uni-trier.de/index.php?id=50041
+u: ASKIFHAPPY ($enterEnd2)
 	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
 
 	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
@@ -37,13 +37,13 @@ u: ASKIFHAPPY ($enterEnd2) Wir sind nur zur Beratung da. Weitere Infos gibts auf
 
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
-	a:  (~positivkaufen) $introyes = 1
+	a:  (~positivkaufen) $introyes = 1a
 	        if ($kunde) {Dann will ich dir doch dabei helfen, $kunde.
 	        } else { Dann will ich dir dabei helfen. }
 	        ^reuse( SETNULLANDREP )
 
 	# Ja.
-	a: (~positiv) $stillhelp = 1 ^reuse(STILLHELP)
+	a: (~positiv) $stillhelp = 1i ^reuse(STILLHELP)
 	
 	# Nutzer will noch etwas kaufen
 u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
@@ -62,9 +62,10 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREP
 
 t: SETNULLANDREP ($enterEnd50)
+    WALKVARIABLES: ^walkvariables('^testvariables)
     $geschenkidee = null  $anwendungszweck = null $things = null $art = null
     $ausfuehrung = null $preis = null $zusammenfassung = null
-    $kaufbereitschaft = 1 $introyes = 1 $gosearch = null $searchcreate = null $searchable = null $produktname = null
+    $kaufbereitschaft = 1-a $introyes = 1a $gosearch = null $searchcreate = null $searchable = null $produktname = null
     $produkbeschreibung = null $weitersuchen = null $enterEnd2 = null $stillhelp = null
     Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
 	
