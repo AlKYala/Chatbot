@@ -37,7 +37,7 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
 
  u: INTRO ( $enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
 # u: INTRO ($kaufbereitschaft) Du möchtest also etwas kaufen, sehe ich das richtig?
-        WALKVARIABLES: ^walkvariables('^testvariables)
+       #  WALKVARIABLES: ^walkvariables('^testvariables)
 
 
 	# Ja
@@ -87,7 +87,7 @@ t: STARTKAUF ($enter999) ^reuse( INTRO)
 
 
 u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel für einen bestimmten Zweck suchen. Was möchtest du?
-                       WALKVARIABLES: ^walkvariables('^testvariables)
+                    #   WALKVARIABLES: ^walkvariables('^testvariables)
       $anwendungszweck = ^"'nichts'"
       $geschenkidee = ^"'nichts'"
 

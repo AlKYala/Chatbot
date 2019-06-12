@@ -96,3 +96,11 @@ select count (distinct artnr)
 from $tablename
 where queried = 4;
 
+
+
+select *
+from artikel
+where name = 'Monopoly'
+
+drop table mystring1285
+

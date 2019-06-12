@@ -46,7 +46,7 @@ topic: ~dbsearch  [] ($gosearch)
 # Nur wenn artikel gosearch auch exisitert
 # tablename ist nun der Name für die Eigene
 t: WELCOME ($gosearch)
-    WALKVARIABLES: ^walkvariables('^testvariables)
+    # WALKVARIABLES: ^walkvariables('^testvariables)
     $searchcreate = 1d Debug:Willkommen bei der Datenbanksuche
    # if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $kunde as (SELECT * FROM pseudotabellepro);" )) {
    #        if (^dbexecute(^"UPDATE $kunde SET queried = 0;" )) {^reuse( SEARCHPRODUCT )}
@@ -58,7 +58,7 @@ t: WELCOME ($gosearch)
 # $tablename = ^join("mystring" $cs_randindex)
 
 t: SEARCHCREATE ($searchcreate)
-      WALKVARIABLES: ^walkvariables('^testvariables)
+    #  WALKVARIABLES: ^walkvariables('^testvariables)
 #     if (!$tablename) {
 #       $tablename = ^join("mystring" $cs_randindex)
 #	   if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $tablename AS (SELECT row_number() OVER(ORDER BY artnr), * FROM pseudotabellepro);" )) {Datenbank erstellt}
@@ -123,7 +123,7 @@ t: PRODUCTPRICE ($Produktpreis)
 	
 	# EnterEnd955 wieder nur dazu da, um ein zufälliges Eintreten in diesen Zustand zu verhindern. 
 u: RESPONSE ($ENTEREND955)
-    WALKVARIABLES: ^walkvariables('^testvariables)
+   # WALKVARIABLES: ^walkvariables('^testvariables)
     DEBUG: You're in RESPONSE! [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
     #! Ja
       a: ( [~yes ~zustimmung] ) Schön, dass ich dir helfen konnte.

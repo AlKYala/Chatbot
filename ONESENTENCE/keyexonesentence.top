@@ -14,7 +14,7 @@ u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenze
     wenn du keine weiteren Kriterien festlegen möchtest.
     Damit ich dich gut verstehen kann, verwende bitte keine Interpunktion. Die ganzen Punkte, Kommata und Semikola verwirren mich
     immer so.
-    WALKVARIABLES: ^walkvariables('^testvariables)
+	# WALKVARIABLES: ^walkvariables('^testvariables)
     $things = ^"'nichts'"        $art = ^"'nichts'"
     $ausfuehrung = ^"'nichts'"   $preis = -1
 	
@@ -161,7 +161,7 @@ u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenze
 		
 
 u: SUMMARY ($ENTEREND888)
-            WALKVARIABLES: ^walkvariables('^testvariables)
+            # WALKVARIABLES: ^walkvariables('^testvariables)
             # Ersetzen von ausgeschriebenen Umlaute in ihre korrekte Form
              $things =  ^substitute(character $things ae ä)
              $things =  ^substitute(character $things ue ü)

@@ -62,11 +62,30 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREP
 
 t: SETNULLANDREP ($enterEnd50)
-    WALKVARIABLES: ^walkvariables('^testvariables)
-    $geschenkidee = null  $anwendungszweck = null $things = null $art = null
-    $ausfuehrung = null $preis = null $zusammenfassung = null
-    $kaufbereitschaft = 1-a $introyes = 1a $gosearch = null $searchcreate = null $searchable = null $produktname = null
-    $produkbeschreibung = null $weitersuchen = null $enterEnd2 = null $stillhelp = null
+	^cleartopics()
+	$_kundetemp = $kunde
+	$_tabletemp = $tablename
+	$_stdtokentmp = $stdtoken
+	$_cs_tokentmp = $cs_token
+	$_botprompttmp = $botprompt
+	$_userprompttmp = $userprompt
+	$_cs_externaltagtmp = $cs_externaltag
+	$_cs_languagetmp = $cs_language
+	$_cs_control_maintmp = $cs_control_main
+	$_cs_bottmp = $cs_bot
+    ^reset( VARIABLES )
+	$kunde = $_kundetemp
+	$tablename = $_tabletemp 
+	$stdtoken = $_stdtokentmp
+	$cs_token = $_cs_tokentmp
+	$botprompt = $_botprompttmp
+	$userprompt = $_userprompttmp
+	$cs_externaltag = $_cs_externaltagtmp
+	$cs_language = $_cs_languagetmp
+	$cs_control_main = $_cs_control_maintmp
+	$cs_bot = $_cs_bottmp 
+	TEST: Deine Tabelle ist $tablename
+	WALKVARIABLES: ^walkvariables('^testvariables)
     Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
 	
 	

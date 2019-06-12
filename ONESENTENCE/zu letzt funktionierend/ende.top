@@ -55,7 +55,7 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 	a: (~positiv) Dann helfe ich dir dabei. ^reuse( SETNULLANDREP )
 	
 	a: ([~nicht ~no]) In Ordnung, du möchtest nichts mehr.
-	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit)
+	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit) }
 	
 	
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfach nur dazu dienen, dass wenn
@@ -63,7 +63,7 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 
 t: SETNULLANDREP ($enterEnd50)
     $geschenkidee = null  $anwendungszweck = null $things = null $art = null
-    $ausfuehrung = null $preis = null
+    $ausfuehrung = null $preis = null $zusammenfassung = null
     $kaufbereitschaft = 1 $introyes = 1 $gosearch = null $searchcreate = null $searchable = null $produktname = null
     $produkbeschreibung = null $weitersuchen = null $enterEnd2 = null $stillhelp = null
     Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
