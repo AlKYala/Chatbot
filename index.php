@@ -13,23 +13,25 @@
 }
 
 .chatbot{
-  background: #fff;
+  background: #b8c6de;                    /* Abgeschwächtes Blau des Logos / des Banners? */
   color: #000;
   float: left;
   margin-left: 20px;
   margin-right: 55px;
 }
 
-.header{	
+.header{	                            /* Banner am Kopf */
 	position: center;
 	width: auto;
   text-align: center;
 	padding-top: 5px;
   height: 40px;
   color: #fff;
-  background-color: #0145F0;
+  background-color: #005e9c;
   font-weight: none;
   font-size: 30px;
+  -webkit-box-shadow:5px 5px 4px -4px #222;   /* Schatten drinnen lassen oder wieder herausnehmen? */
+  box-shadow:5px 5px 4px -4px #222;
 }
 
 .container{	
@@ -48,10 +50,10 @@
   height: 3em;
 }
 
-.user{
+.user{                                          /* Nachrichten des USERS */
   float: right;
-  background: #b2b2ff;
-  color: #fff;
+  background: #defec4;                          /* Alternative: #b5ff78 */
+  color: #000000;
   margin-right: 10px;
   margin-left: 50px;
 }
@@ -61,7 +63,7 @@
   width:60%;
 	height: 30px;
 	margin-bottom: 20px;
-	color: #333;
+	color: #333;                                            /* Dunkles Grau bzw. Schwarz */
 	background-color: #eee;
 	border: 2px solid #bbb;
 	border-radius: 5px;
@@ -69,11 +71,11 @@
 }
 
 #txtMessage:focus{
-	border: 1px solid #F59305;
+	border: 1px solid #005e9c;                                      /* Farbe: Orange */
 }
 
-#Button{
-	  background-color: #4CAF50;
+#Button{                                                            /* Senden-Button */
+	  background-color: #005e9c;
   border: none;
   color: white;
   padding: 9px;
@@ -112,7 +114,7 @@ a {
 
 body {
 	background-color: #;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: "Open Sans",Helvetica,"Arial",sans-serif;
 	margin-top: 0px;
   font-size: 18px;
 }
@@ -120,9 +122,9 @@ body {
 div.bild {
    position: absolute;
    top: -1px;
-   width:200px; /*width of your image*/
-   height:46px; /*height of your image*/
-   background-image:url('utr_logoSM.png');
+   width:274px; /*width of your image*/
+   height:47px; /*height of your image*/
+   background-image:url('UniTrier_Logo.png');
    background-color: #000;
   /* If you want no margin */
    padding:; /*if your want to padding */
