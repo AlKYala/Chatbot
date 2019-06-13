@@ -1,0 +1,7 @@
+outputmacro: ^testvariables($_arg1)
+	if($_arg1 == $var1) {
+            var1: $_arg1.
+        }
+	else{
+		other variable : $_arg1
+	}

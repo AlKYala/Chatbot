@@ -14,6 +14,7 @@ u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenze
     wenn du keine weiteren Kriterien festlegen möchtest.
     Damit ich dich gut verstehen kann, verwende bitte keine Interpunktion. Die ganzen Punkte, Kommata und Semikola verwirren mich
     immer so.
+	# WALKVARIABLES: ^walkvariables('^testvariables)
     $things = ^"'nichts'"        $art = ^"'nichts'"
     $ausfuehrung = ^"'nichts'"   $preis = -1
 	
@@ -160,6 +161,7 @@ u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenze
 		
 
 u: SUMMARY ($ENTEREND888)
+            # WALKVARIABLES: ^walkvariables('^testvariables)
             # Ersetzen von ausgeschriebenen Umlaute in ihre korrekte Form
              $things =  ^substitute(character $things ae ä)
              $things =  ^substitute(character $things ue ü)
@@ -173,7 +175,7 @@ u: SUMMARY ($ENTEREND888)
              [Habe ich das alles richtig verstanden] [Stimmt das so]?
 
     #! Ja
-    a: (~positiv) $gosearch = 1 Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
+    a: (~positiv) $gosearch = 1c Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
 
     #! Nein
     a: (~negativ) Okay. [Fangen wir von vorne an.] [Gehen wir das nochmal durch.]
@@ -183,4 +185,4 @@ u: SUMMARY ($ENTEREND888)
         ^reuse( QUALITY ) # I need this to back to ASKNAME and run procedures again
 
     # Unverständliches
-    a: () $gosearch = 1 Alles klar! Ich suche mal im Shop. d4 ^reuse( ~dbsearch.WELCOME )
+    a: () $gosearch = 1c Alles klar! Ich suche mal im Shop. d4 ^reuse( ~dbsearch.WELCOME )

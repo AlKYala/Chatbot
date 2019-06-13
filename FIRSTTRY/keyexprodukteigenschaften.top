@@ -1,29 +1,29 @@
 topic: ~keyexprodukteigenschaften keep ( ~anwendungszweck ~geschenkidee ) []
 
-t: STARTPRODUKTEIGENSCHAFTEN ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungszweck: Entweder $geschenkidee  oder $anwendungszweck ^reuse ( ASKNAME )
+t: STARTPRODUKTEIGENSCHAFTEN ($ENTER999) Debug: Reminder, für Geschenkidee und Anwedungszweck: Entweder $geschenkidee oder $anwendungszweck ^reuse ( ASKNAME )
 
 u: ASKNAME () [Ich will dir bei der Produktsuche helfen] [Ich möchte dir helfen, die Auswahl näher einzugrenzen].
               [Weißt du, wie der Artikel heißt, den du du suchst?] [Wie heißt der Artikel, den du suchst? Weißt du das?]
 	a:  ( _~things ) $art = ^"'nichts'" $things = ^"''_0'"' Alles klar, der Name lautet $things.
 	                $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.") ^reuse( DESIGN )
 	a: (~no) $things = ^"'nichts'" Kein Thema, dafür bin ja da. ^reuse( KIND )
-	a: () $things = ^"'nichts'" Ich konnte leider nichts mit deiner Eingabe anfangen. Versuchen wir etwas Anderes. ^reuse( KIND )
+	a: () $things = ^"'nichts'" Ich konnte leider nichts mit deiner Eingabe anfangen. Egal, versuchen wirs mal weiter! ^reuse( KIND )
 
 
 # Wenn für $things null ist, wird versucht, über die Art des Produktes zu gehen.
-u: KIND (!$things) Weißt du vielleicht, was für eine Art von Produkt du willst?
+u: KIND (!$things) Weißt du dann vielleicht, was für eine Art von Produkt du willst?
         Suchst du zum Beispiel ein Buch, ein Spiel, Kleidung oder Deko?
 	a: (_~art) $art = ^"''_0'" Also ein $art. Gut, machen wir weiter!
 	    $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")
 	    ^reuse( DESIGN )
-	a: () $art = ^"'nichts'" In Ordnung, dann zur Ausführung.  ^reuse( DESIGN )
+	a: () $art = ^"'nichts'" Okay. Versuchen wir es weiter! ^reuse( DESIGN )
 
 u: DESIGN () Kannst du etwas zur Ausführung sagen?
         if ($art == 'Buch' OR $geschenkidee == 'Gastgeschenk' OR $geschenkidee == 'Erinnerungsstück' OR $anwendungszweck == 'Unterhaltung')
             {Wir haben Bücher in Deutsch, Englisch, Französisch und Chinesisch im Sortiment.
         } else {Vielleicht eine Farbe?}
 	a: (_~ausfuehrung) $ausfuehrung = ^"''_0'" Alles klar, es ist in $ausfuehrung.
-	    if (!$art) {$zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines gewünschten
+	    if (!$art) {$zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines geuschten
 	        Produktes hast du zwar nicht, aber weißt, dass du etwas in $ausfuehrung möchtest.")
 	    } else {$zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung.")}
 	    ^reuse( PRICE )

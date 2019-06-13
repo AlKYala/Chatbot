@@ -45,7 +45,9 @@ topic: ~dbsearch  [] ($gosearch)
 
 # Nur wenn artikel gosearch auch exisitert
 # tablename ist nun der Name für die Eigene
-t: WELCOME ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
+t: WELCOME ($gosearch)
+    # WALKVARIABLES: ^walkvariables('^testvariables)
+    $searchcreate = 1d Debug:Willkommen bei der Datenbanksuche
    # if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $kunde as (SELECT * FROM pseudotabellepro);" )) {
    #        if (^dbexecute(^"UPDATE $kunde SET queried = 0;" )) {^reuse( SEARCHPRODUCT )}
    # } else {dbexecute failed table - $$db_error} # to see tables: SELECT * FROM pg_catalog.pg_table
@@ -55,11 +57,17 @@ t: WELCOME ($gosearch) $searchcreate = 1 Debug:Willkommen bei der Datenbanksuche
 
 # $tablename = ^join("mystring" $cs_randindex)
 
-t: SEARCHCREATE ($searchcreate) $searchenable = 1
+t: SEARCHCREATE ($searchcreate)
+    #  WALKVARIABLES: ^walkvariables('^testvariables)
+#     if (!$tablename) {
+#       $tablename = ^join("mystring" $cs_randindex)
+#	   if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $tablename AS (SELECT row_number() OVER(ORDER BY artnr), * FROM pseudotabellepro);" )) {Datenbank erstellt}
+#	   else {^dbexecute(^"DROP TABLE $tablename;") searchcreate problem }
+#     } $searchenable = 1e ^reuse( SEARCHPRODUCT)
+     $searchenable = 1e
      $tablename = ^join("mystring" $cs_randindex)
-	 if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $tablename AS (SELECT row_number() OVER(ORDER BY artnr), * FROM pseudotabellepro);" )) {Datenbank erstellt ^reuse( SEARCHPRODUCT)}
-	 else {^dbexecute(^"DROP TABLE $tablename;") searchcreate problem }
-
+     if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $tablename AS (SELECT row_number() OVER(ORDER BY artnr), * FROM pseudotabellepro);" )) {Datenbank erstellt ^reuse( SEARCHPRODUCT)}
+     else {^dbexecute(^"DROP TABLE $tablename;") searchcreate problem }
 
 t: SEARCHPRODUCT ($searchenable) $ergebnis = null
     if (^dbexecute( ^"UPDATE $tablename
@@ -81,7 +89,7 @@ t: SEARCHPRODUCT ($searchenable) $ergebnis = null
             geschenkidee = (CASE WHEN $geschenkidee LIKE '%nichts%' THEN geschenkidee ELSE $geschenkidee END)
         AND
             anwendungsgebiet = (CASE WHEN $anwendungszweck LIKE '%nichts%' THEN anwendungsgebiet ELSE $anwendungszweck END)
-        LIMIT 1);" )) { $produktname = 1  Debug: SEARCHPRODUCT erfolgreich ^reuse( PRODUCTNAME )}
+        LIMIT 1);" )) { $produktname = 1f  Debug: SEARCHPRODUCT erfolgreich ^reuse( PRODUCTNAME )}
     else {dbexecute failed list from table- $$db_error Ups, da habe ich mich ein wenig verrechnet. Tut mir Leid. Können wir nochmal von vorne anfangen? ^reuse(~ende.SETNULLANDREP) }
 
 
@@ -89,7 +97,7 @@ t: PRODUCTNAME ($produktname) $ergebnis = null $namensuche = 1 # [Ich habe dies 
    if (^dbexecute( ^"SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
          if ($ergebnis == null)      { Wir haben im Shop leider nichts, was auf deine Eingaben passt.
                                       Vielleicht probierst du es noch einmal mit anderen Kriterien. ^reuse(~ende.SETNULLANDREP)}
-         else {$produktbeschreibung = 1 ^reuse(PRODUCTDESCR)}
+         else {$produktbeschreibung = 1g ^reuse(PRODUCTDESCR)}
        } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
 
 
@@ -114,7 +122,9 @@ t: PRODUCTPRICE ($Produktpreis)
 	
 	
 	# EnterEnd955 wieder nur dazu da, um ein zufälliges Eintreten in diesen Zustand zu verhindern. 
-u: RESPONSE ($ENTEREND955) DEBUG: You're in RESPONSE! [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
+u: RESPONSE ($ENTEREND955)
+   # WALKVARIABLES: ^walkvariables('^testvariables)
+    DEBUG: You're in RESPONSE! [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
     #! Ja
       a: ( [~yes ~zustimmung] ) Schön, dass ich dir helfen konnte.
                   Möchtest du ein weiteres Produkt suchen? Du kannst dir auch ansehen, was du soweit ausgewählt hast.
@@ -129,7 +139,7 @@ u: RESPONSE ($ENTEREND955) DEBUG: You're in RESPONSE! [Bist du zufrieden? ] [War
                    b: ([~noch ~kaufen]) Fangen wir von Neuem an. ^reuse (~ende.SETNULLANDREP)
 
                   #! Nein.
-                  b: ( [~no ~nicht] ) $enterEnd2 = 1 In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
+                  b: ( [~no ~nicht] ) $enterEnd2 = 1b In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
 				  
 				  # Zeigen, was bisher gekauft und wieviel
 				  # Für das Iterieren der Gefundenen: ggf. auf queried = 5 setzen um nicht immer dasselbe zu bekommen
@@ -141,7 +151,7 @@ u: RESPONSE ($ENTEREND955) DEBUG: You're in RESPONSE! [Bist du zufrieden? ] [War
 
 
     #! Nein
-    a: ( [~no ~nicht] ) Alles klar. Lass mich weitersuchen. $weitersuchen = 1 ^reuse(SEARCHAGAIN)
+    a: ( [~no ~nicht] ) Alles klar. Lass mich weitersuchen. $weitersuchen = 1h ^reuse(SEARCHAGAIN)
 
 
 t: SEARCHAGAIN ($weitersuchen)

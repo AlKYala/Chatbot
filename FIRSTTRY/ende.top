@@ -26,7 +26,8 @@ topic: ~ende keep repeat []
 
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
-u: ASKIFHAPPY ($enterEnd2) [Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
+u: ASKIFHAPPY ($enterEnd2)
+	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
 
 	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
 	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
@@ -36,13 +37,13 @@ u: ASKIFHAPPY ($enterEnd2) [Kann ich noch etwas für dich tun] [Möchtest du noc
 
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
-	a:  (~positivkaufen) $introyes = 1
+	a:  (~positivkaufen) $introyes = 1a
 	        if ($kunde) {Dann will ich dir doch dabei helfen, $kunde.
 	        } else { Dann will ich dir dabei helfen. }
 	        ^reuse( SETNULLANDREP )
 
 	# Ja.
-	a: (~positiv) $stillhelp = 1 ^reuse(STILLHELP)
+	a: (~positiv) $stillhelp = 1i ^reuse(STILLHELP)
 	
 	# Nutzer will noch etwas kaufen
 u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
@@ -54,15 +55,41 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 	a: (~positiv) Dann helfe ich dir dabei. ^reuse( SETNULLANDREP )
 	
 	a: ([~nicht ~no]) In Ordnung, du möchtest nichts mehr.
-	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit)
+	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit) }
 	
 	
 # EnterEnd50 ist keine Variable, die jemals instanziiert werden soll. Dieses :t soll einfach nur dazu dienen, dass wenn
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREP
 
-t: SETNULLANDREP ($enterEnd50) $kaufbereitschaft = null $geschenkidee = null  $anwendungszweck = null $things = null
-    $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes = null
-    Resetting values ^reuse( ~kaufabsicht.INTRO )
+t: SETNULLANDREP ($enterEnd50)
+	^cleartopics()
+	$_kundetemp = $kunde
+	$_tabletemp = $tablename
+	$_stdtokentmp = $stdtoken
+	$_cs_tokentmp = $cs_token
+	$_botprompttmp = $botprompt
+	$_userprompttmp = $userprompt
+	$_cs_externaltagtmp = $cs_externaltag
+	$_cs_languagetmp = $cs_language
+	$_cs_control_maintmp = $cs_control_main
+	$_cs_bottmp = $cs_bot
+    ^reset( VARIABLES )
+	$kunde = $_kundetemp
+	$tablename = $_tabletemp 
+	$stdtoken = $_stdtokentmp
+	$cs_token = $_cs_tokentmp
+	$botprompt = $_botprompttmp
+	$userprompt = $_userprompttmp
+	$cs_externaltag = $_cs_externaltagtmp
+	$cs_language = $_cs_languagetmp
+	$cs_control_main = $_cs_control_maintmp
+	$cs_bot = $_cs_bottmp 
+	TEST: Deine Tabelle ist $tablename
+	WALKVARIABLES: ^walkvariables('^testvariables)
+    Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
+	
+	
+#Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch interesse daran besteht, was zu kaufen. Daher auch kaufbereitschaft = null
 
 # Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.
 # So kommt man nur mit reuse rein. Wenn ich kein Erfolg haben sollte, mach ich das halt so
