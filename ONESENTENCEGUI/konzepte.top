@@ -1,0 +1,27 @@
+topic: ~konzepte []
+
+concept: ~kaufen [kaufen suche shop uni-shop bestellen such bestell kauf kaufe]
+concept: ~kdienst [kundendienst]
+concept: ~things [Doktorhut Schlüsselband Wein-Set "Wein Set" Einkaufschip chip Kaffeetasse tasse Schreibset
+    USB-Stick Notizbuch Uni-Bär  Baumwolltasche tasche Schultertasche "Metallkugelschreiber in Box" 
+     "Magnet mit Kunstsiebdruck" Magnet "Kugelschreiber mit Soft-Touch" "2017er Universitäts-Wein"
+    "Geschenktasche für Uni-Wein"  "Kapuzensweatshirt Unisex" 
+   "Kapuzenjacke Unisex" Herrenshirt Damenshirt "Geschichte der Universität Trier"
+    "Trier für Anfänger" Mordsstimmung "Memory Trier" "Monopoly Trier"]
+concept: ~art [Spiel Kleidung Buch Uni Alltag Deko]
+concept: ~ausfuehrung [Blau Silber Gruen Grau Schwarz Franzoesisch Deutsch Englisch Chinesisch]
+concept: ~geschenkidee [Mitbringsel Erinnerungsstueck Gastgeschenk "Erinnerungsstück"]
+concept: ~anwendungszweck [Unterhaltung Schreibwaren EssenTrinken Essentrinken Alltag Accessoire]
+# für einen bestimmten Zweck
+concept: ~willZweck [zweck bestimmten besonderen ]
+concept: ~willGeschenk [Geschenk verschenken]
+concept: ~nicht [garnix garnicht "gar nix" "gar nicht" nix nichts nicht]
+concept: ~warenkorb ["bereits ausgesucht" ausgewählt ausgesucht Warenkorb Auswahl rausgesucht gefunden Überischt Überblick]
+concept: ~noch ["noch was" "noch etwas" noch nochwas weiteres anderes]
+concept: ~zustimmung [ja "ja wohl" jawoll "ja woll" "richtig" "korrekt" "in der Tat" "in der tat" Ja]
+concept: ~thingsandart[ ~things ~art ]
+concept: ~negativ [ ~no ~nicht]
+concept: ~positiv [~yes ~zustimmung ja Ja sofort gerne schön]
+concept: ~positivkaufen [ ~yes ~zustimmung ~kaufen]
+concept: ~keinsvonbeiden ["weiß nicht" "ich weiß nicht"  "Das weiß ich nicht" "keine Ahnung" "nichts" "keins von beiden" "keins"]
+concept: ~ciao [ciao tschüss "good bye" bye "daje" "eddi un merci" "äddi a merci"]
