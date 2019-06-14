@@ -29,22 +29,7 @@ topic: ~ende keep repeat []
 u: ASKIFHAPPY ($enterEnd2)
 	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
 
-	a: ( ~negativ )
-	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
-        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
-        Auf der Website des Uni-Shops unter https://www.uni-trier.de/index.php?id=50041 findest du weitere Informationen.
-        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], $kunde. [Ciao] [Auf Wiedersehen]!
-        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
-        ^reuse( GOODBYE ) }
-
-	##<<
-	if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
-	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
-	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], $kunde. [Ciao] [Auf Wiedersehen]!
-	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
-             ^reset( USER )
-             ^eval(:quit) # } :reset( user ? )
-     ##>>
+	a: ( ~negativ ) ^reuse( GOODBYE )
 
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
@@ -102,7 +87,14 @@ t: SETNULLANDREP ($enterEnd50)
 # Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch interesse daran besteht, was zu kaufen. Daher auch kaufbereitschaft = null
 
 
-u: GOODBYE ($enterEnd69) ^eval(:quit)
+u: GOODBYE ($enterEnd69) if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+       Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
+       Auf der Website des Uni-Shops unter https://www.uni-trier.de/index.php?id=50041 findest du weitere Informationen.
+       if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], $kunde. [Ciao] [Auf Wiedersehen]!
+       } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+        ^reuse ( QUIT ) }
+
+u: QUIT ($enterEnd66) ^eval(:quit)
 
 
 # Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.

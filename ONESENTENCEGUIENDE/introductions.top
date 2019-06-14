@@ -4,17 +4,19 @@ topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
 # Wenn der ChatBot bei der Konversation anfängt oder der Nutzer beim ersten Mal keine Eingabe macht
 t: HELLOFIRSTLINE ( %input<%userfirstline )
    ^keep()
-   [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
+   [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. Wenn du an
+   irgendeiner Stelle während unserer Unterhaltung "Tschüss" sagst, beende ich mich.  ^reuse( GREET )
 
 # Wenn der Nutzer mit einer Begrüßung anfängt
 t: HELLOSECLINE ( ~emohello )
    ^keep()
-   [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
+   [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. Wenn du an
+   irgendeiner Stelle während unserer Unterhaltung "Tschüss" sagst, beende ich mich. ^reuse( GREET )
 
 
 # Wird nur beim ersten Mal verwendet - noch in Arbeit.
 # Drop table nur um mit build mine zu arbeiten.
-t: GREET () Möchtest du mir deinen Vornamen verraten Debug NEW? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist ein bisschen persönlicher.]
+t: GREET () Möchtest du mir deinen Vornamen verraten Debug NEW? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist etwas persönlicher.]
 
 	#! Ich bin /Ich heiße / Meine Name ist
 	a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
