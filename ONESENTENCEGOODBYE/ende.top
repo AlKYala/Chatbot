@@ -26,24 +26,20 @@ topic: ~ende keep repeat []
 
 # Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
 # Es muss enterEnd2 instanziiert sein, damit wir reinkommen. 
-u: ASKIFHAPPY ($enterEnd2) Wir sind nur zur Beratung da. Weitere Infos gibts auf: https://www.uni-trier.de/index.php?id=50041
+u: ASKIFHAPPY ($enterEnd2)
 	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]? DEBUG: YOU'RE IN ENDE!
 
-	a: (~no) # if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
-	        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Prssestelle gehen.
-	        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], kunde. [Ciao] [Auf Wiedersehen]!
-	        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
-             ^eval(:quit) 
+	a: ( ~negativ ) $endimmediately = 1 ^reuse( GOODBYE )
 
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
-	a:  (~positivkaufen) $introyes = 1
+	a:  (~positivkaufen) $introyes = 1a
 	        if ($kunde) {Dann will ich dir doch dabei helfen, $kunde.
 	        } else { Dann will ich dir dabei helfen. }
 	        ^reuse( SETNULLANDREP )
 
 	# Ja.
-	a: (~positiv) $stillhelp = 1 ^reuse(STILLHELP)
+	a: (~positiv) $stillhelp = 1i ^reuse(STILLHELP)
 	
 	# Nutzer will noch etwas kaufen
 u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
@@ -62,14 +58,46 @@ u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck
 # man an bestmmten Stellen einige Variablen auf null setzen will, man verwendet man SETNULLANDREP
 
 t: SETNULLANDREP ($enterEnd50)
-    $geschenkidee = null  $anwendungszweck = null $things = null $art = null
-    $ausfuehrung = null $preis = null $zusammenfassung = null
-    $kaufbereitschaft = 1 $introyes = 1 $gosearch = null $searchcreate = null $searchable = null $produktname = null
-    $produkbeschreibung = null $weitersuchen = null $enterEnd2 = null $stillhelp = null
+	^cleartopics()
+	$_kundetemp = $kunde
+	$_tabletemp = $tablename
+	$_stdtokentmp = $stdtoken
+	$_cs_tokentmp = $cs_token
+	$_botprompttmp = $botprompt
+	$_userprompttmp = $userprompt
+	$_cs_externaltagtmp = $cs_externaltag
+	$_cs_languagetmp = $cs_language
+	$_cs_control_maintmp = $cs_control_main
+	$_cs_bottmp = $cs_bot
+    ^reset( VARIABLES )
+	$kunde = $_kundetemp
+	$tablename = $_tabletemp 
+	$stdtoken = $_stdtokentmp
+	$cs_token = $_cs_tokentmp
+	$botprompt = $_botprompttmp
+	$userprompt = $_userprompttmp
+	$cs_externaltag = $_cs_externaltagtmp
+	$cs_language = $_cs_languagetmp
+	$cs_control_main = $_cs_control_maintmp
+	$cs_bot = $_cs_bottmp 
+	TEST: Deine Tabelle ist $tablename
+	WALKVARIABLES: ^walkvariables('^testvariables)
     Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
-	
-	
-#Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch interesse daran besteht, was zu kaufen. Daher auch kaufbereitschaft = null
+
+# Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch interesse daran besteht, was zu kaufen. Daher auch kaufbereitschaft = null
+
+
+u: GOODBYE ($endimmediately)
+       if ($tablename) { if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {} }
+       Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Pressestelle gehen.
+       Auf der Website des Uni-Shops unter https://www.uni-trier.de/index.php?id=50041 findest du weitere Informationen.
+       if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], $kunde. [Ciao] [Auf Wiedersehen]!
+       } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+       $endimmediately = NULL
+       ^reuse( QUIT )
+
+u: QUIT ($enterEnd66) ^eval(:quit)
+
 
 # Einen Ansatz den ich seit neuestem benutze ist der, Variablen zu verlangen, die NIE instanziiert werden.
 # So kommt man nur mit reuse rein. Wenn ich kein Erfolg haben sollte, mach ich das halt so
