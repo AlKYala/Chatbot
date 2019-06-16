@@ -33,13 +33,13 @@ u: ASKIFHAPPY ($enterEnd2)
 
 	# Der Nutzer will noch was 
 	# Der Nutzer sagt JA und/oder dass er was kaufen will
-	a:  (~positivkaufen) $introyes = 1a
+	a:  (~positivkaufen) $introyes = 1
 	        if ($kunde) {Dann will ich dir doch dabei helfen, $kunde.
 	        } else { Dann will ich dir dabei helfen. }
 	        ^reuse( SETNULLANDREP )
 
 	# Ja.
-	a: (~positiv) $stillhelp = 1i ^reuse(STILLHELP)
+	a: (~positiv) $stillhelp = 1 ^reuse(STILLHELP)
 	
 	# Nutzer will noch etwas kaufen
 u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
@@ -81,7 +81,6 @@ t: SETNULLANDREP ($enterEnd50)
 	$cs_control_main = $_cs_control_maintmp
 	$cs_bot = $_cs_bottmp 
 	TEST: Deine Tabelle ist $tablename
-	WALKVARIABLES: ^walkvariables('^testvariables)
     Resetting values ^reuse( ~kaufabsicht.FIRSTQ )
 
 # Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch interesse daran besteht, was zu kaufen. Daher auch kaufbereitschaft = null

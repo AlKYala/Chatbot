@@ -12,7 +12,7 @@ outputmacro: ^dbSec($_arg1 $_arg2 $_arg3 $_arg4 $_arg5 $_arg6 $_arg7 $_arg8 $_ar
                   	     $_arg17 $_arg18 $_arg19 $_arg20 $_arg21 $_arg22 $_arg23 $_arg24 $_arg25 $_arg26 $_arg27 $_arg28 $_arg29 $_arg30
                   	     ^flushoutput()
                   	    } else {
-                  	     [Der Preis des Produkts beträgt: ] [Dieses Produkt kostet: ] [Es kostet: ] [Der Preis beträgt: ] []
+                  	     [Der Preis des Produkts beträgt ] [Dieses Produkt kostet ] [Es kostet ] [Der Preis beträgt ] []
                          $_arg1 Euro.
                          ^flushoutput()
                   	    }
@@ -85,24 +85,28 @@ t: SEARCHPRODUCT ($searchenable) $ergebnis = null
     else {dbexecute failed list from table- $$db_error Ups, da habe ich mich ein wenig verrechnet. Tut mir Leid. Können wir nochmal von vorne anfangen? ^reuse(~ende.SETNULLANDREP) }
 
 
-t: PRODUCTNAME ($produktname) $ergebnis = null $namensuche = 1 # [Ich habe dies gefunden: ] [Was hältst du davon? ] [Was ist hiermit? ]
+t: PRODUCTNAME ($produktname) $ergebnis = null $namensuche = 1
    if (^dbexecute( ^"SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
          if ($ergebnis == null)      { Wir haben im Shop leider nichts, was auf deine Eingaben passt.
-                                      Vielleicht probierst du es noch einmal mit anderen Kriterien. ^reuse(~ende.SETNULLANDREP)}
+                                      Vielleicht probierst du es noch einmal mit anderen Kriterien.
+                                      $gosearch = NULL $searchcreate = NULL $searchenable = NULL $produkname = NULL
+                                      if (!$geschenkidee AND !$anwendungszweck) {$zusammenfassung = " "
+                                      } else if (!$geschenkidee) { $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+                                      } else {$zusammenfassung = ^"Du suchst ein $geschenkidee ."}
+                                      ^reuse( ~keyexonesentence.QUALITY )
+                                      }
          else {$produktbeschreibung = 1 ^reuse(PRODUCTDESCR)}
        } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
 
 
 t: PRODUCTDESCR ($produktbeschreibung)
     $namensuche = null $beschreibungssuche = 1
-  # [Dazu kann ich dir Folgendes sagen: ] [Ich habe noch mehr Informationen: ] [Also: ] [ ]
    if (^dbexecute( ^"SELECT beschreibung FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
              ^reuse( PRODUCTPRICE )
    } else {dbexecute failed list from table- $$db_error Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~ende.SETNULLANDREP)}
 
 t: PRODUCTPRICE ($Produktpreis)
     $beschreibungssuche = null
-	# [Der Preis des Produkts beträgt: ] [Dieses Produkt kostet: ] []
 	if (^dbexecute( ^"SELECT preis FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
            ^reuse( RESPONSE )
     } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
@@ -124,21 +128,18 @@ u: RESPONSE ($ENTEREND955) DEBUG: You're in RESPONSE! [Bist du zufrieden? ] [War
                                    UPDATE $tablename SET queried = 5 WHERE queried = 3;" )) {debug: queried auf 3,4,5 gesetzt}
 		
                   # weiteres Produkt suchen
-               #   b:  ([~noch ~kaufen])   $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null $introyes=ja
-               #       Fangen wir von Neuem an. ^reuse(~kaufabsicht.FIRSTQ)
                    b: ([~noch ~kaufen]) Fangen wir von Neuem an. ^reuse (~ende.SETNULLANDREP)
 
                   #! Nein.
                   b: ( [~no ~nicht] ) $enterEnd2 = 1 In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
 				  
-				  # Zeigen, was bisher gekauft und wieviel
+				  # Zeigen, was bisher ausgesucht wurde und wieviel
 				  # Für das Iterieren der Gefundenen: ggf. auf queried = 5 setzen um nicht immer dasselbe zu bekommen
 				  # Dann nach Ausgabe alles, was 4 ist auf 3 setzen
 				  # Danach gehen wir zu ENDE
 				  b: ( ~warenkorb ) [Du hast bisher]
 				    if (^dbexecute( ^"SELECT COUNT (DISTINCT artnr) FROM $tablename WHERE queried = 4;" '^dbThird)) {Artikel gefunden, und zwar}:
 				   if (^dbexecute( ^"SELECT name, preis FROM $tablename WHERE queried = 4;" '^dbThird)) {^reuse(~ende.ASKIFHAPPY)}
-
 
 				  b: ( ~ciao ) $endimmediately = 1 ^reuse( ~ende.GOODBYE )
 
