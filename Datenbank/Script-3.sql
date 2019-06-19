@@ -104,3 +104,7 @@ where name = 'Monopoly'
 
 drop table mystring1285
 
+drop table mystring48
+
+ALTER TABLE userfiles DROP CONSTRAINT userfiles_pkey;
+
