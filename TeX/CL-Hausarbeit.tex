@@ -1,0 +1,247 @@
+\documentclass[
+oneside,							% einseitiges Layout
+captions=signature,	  % caps immer unter Element (Bild, Grafik...)
+openany,							% Kapitel können auch auf linken Seiten beginnen
+listof=totoc				% Abb.- und Tab.verzeichnis im Inhalt	
+]
+{scrbook}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{mathptmx}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+					
+\usepackage[ngerman]{babel}
+
+
+\usepackage{qtree} % Baumstrukturen zeichnen
+
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{booktabs}
+
+%% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx} 	% Zum Laden von Grafiken
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{microtype} 	% visual enhancement randausgleich
+\usepackage{float} 			% ermöglicht den H param bei Bilder 
+												% für Plazierungen an der Position
+
+\usepackage{rotating} % Text drehen
+
+\usepackage[nogroupskip, nonumberlist, toc]{glossaries}
+\usepackage{glossary-inline}
+\usepackage[printonlyused]{acronym}
+
+\usepackage{pifont} 	%symbol fonts like Windings
+\usepackage{amsmath}	% Math font optimisation
+\usepackage{amssymb} 	% Math symbols
+
+\usepackage{tocloft} % Table of content - list of figures, tables - management
+
+
+%% Bibliographiestil %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{natbib}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\setlength{\parindent}{0cm}			% Absatzeinzug
+\setlength{\parskip}{6pt}				% Leerzeile zwischen Absätzen im Inhaltsverzeichnis
+\textwidth=15.7cm								% Textbreite
+\leftmargin=-3cm
+
+\textheight=22.6cm							% Texthöhe
+\topmargin=-0.7cm								% Rand (Vorsicht minus)
+\headheight=0.2cm								% Höhe der Kopfzeile
+\headsep=1.5cm									% Abstand von der Kopfzeile zum Text
+
+%\setlength{\bibsep}{0.4\parskip}   	 	%Bibliographieabstand fest
+\setlength{\bibsep}{0.3em plus 0.5em}	
+%Bibliographieabstand variabel um Seitenumbruch zu unterdrücken
+
+\setlength{\bibhang}{1cm}    			%Bibliographieeinzug
+%\newcommand{\bibfont}{\normalsize}   	%Bibliographiezeichengröße
+\renewenvironment{quote}{\list{}{\rightmargin0pt\leftmargin1cm}\item\relax}{\endlist} 
+% neue \quote-Definition als globale Variabel für rechtsbündige Zitate
+
+\setcitestyle{notesep={: }}
+\setcitestyle{aysep={}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\setlist{\setlength{\itemsep}{0.8em plus 2em}, parsep=.65em, partopsep=1em} %listenformatierung
+
+%%%%%% TOC Tiefe %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{tocdepth}{3}
+
+%%%%%%%% Nummerierungstiefe absätze %%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{3}
+
+%\setkomafont{section}{\LARGE}
+%\setkomafont{subsection}{\Large}
+%\setkomafont{subsubsection}{\large}
+%\setkomafont{paragraph}{\large}
+%\setkomafont{subparagraph}{\large}
+% Die Überschriften sind in der Lokalen *.cls 
+% Classendefinition definiert %%%%%
+
+
+%% Abk. und Kapitälchen%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setglossarystyle{index}
+\makenoidxglossaries
+\setacronymstyle{sc-short-long}
+
+\newacronym{fmx}{Formex}{Formalized Exchange of Electronic Publications}
+\newacronym{cl}{cl}{Computerlinguistik der Universität Trier}
+\newacronym{darpa}{darpa}{Defence Advanced Research Projects Agency}
+\newacronym{bleu}{bleu}{Bilingual Evaluation Understudy}
+\newacronym{nist}{nist}{National Institute of Standards and Technology}
+\newacronym{hter}{hter}{Human-targeted Translation Edit Rate}
+\newacronym{rbmt}{rbmt}{Rule Based Machine Translation -- Regelbasierte Maschinelle Übersetzung}
+\newacronym{smt}{smt}{Statistical Machine Translation -- Statistische Maschinelle Übersetzung}
+\newacronym{meteor}{meteor}{Metric for Evaluation of Translation with Explicit ORdering}
+\newacronym{lepor}{lepor}{Length Penalty, Precision, n-gram Position difference Penalty and Recall}
+\newacronym{amber}{amber}{A Modified Bleu Enhanced Ranking}
+
+\newglossaryentry{glos:precision}{name=precision, description={Genauigkeit}}
+\newglossaryentry{glos:recall}{name=precision, description={Trefferquote}}
+
+
+%%% Trennungsregeln für das gesamte Dokument.
+
+\hyphenation{Über-set-zungs-epo-che}
+\hyphenation{Über-set-zungs-ver-fah-ren}
+\hyphenation{Über-set-zung}
+\hyphenation{Kor-re-la-tions-koef-fi-zient}
+\hyphenation{Kor-re-la-tions-koef-fi-zien-ten}
+\hyphenation{Rang-Kor-re-la-tions-koef-fi-zien-ten}
+
+
+%%definition von quotation
+
+\let\oldquotation\quotation
+\renewcommand\quotation{\oldquotation\noindent\renewcommand{\baselinestretch}{1}\small\ignorespaces} 
+
+%% Absolute Value definition %
+
+\delimitershortfall-1sp
+\newcommand\abs[1]{\left|#1\right|}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand\phantomsection{}
+
+% Farbige unterteilung
+
+\newcommand{\status}[2]{%
+  \colorlet{author#1}{#2}% Create an author colour
+  \expandafter\def\csname authoredby#1\endcsname{% Create author colour settings
+    \renewcommand{\cftchapfont}{\bfseries\color{author#1}}% Chapter colour
+    \renewcommand{\cftsecfont}{\color{author#1}}% Section colour
+    \renewcommand{\cftsubsecfont}{\color{author#1}}% Subsection colour
+	\renewcommand{\cftsubsubsecfont}{\color{author#1}}}% Subsection colour
+	}
+
+\makeatletter
+\newcommand{\setstatus}[1]{\addtocontents{toc}{\protect\@nameuse{authoredby#1}}}%
+\makeatother
+
+\status{R}{red}% Author A will be coloured red
+\status{Y}{orange}% Author B will be coloured blue
+\status{G}{green}% Author B will be coloured blue
+
+
+\begin{document}
+
+
+
+
+%%%%%% T I T E L S E I T E %%%%%%%
+
+\thispagestyle{empty}
+
+\vspace*{-2cm} \hspace{-1cm}
+{\includegraphics[height=2.5cm]{BILDER/logo.png}} \\ \vspace{3cm}
+	\begin{center}
+		\textsf{ \Huge{\textbf{Hausarbeit}}}\\ \vspace{1.5cm}
+		\textsf{ \Huge{zu dem Thema}} \vspace{1.5cm}
+			\begin{center}
+				\textsf{ \Huge{\textbf{Vorlage zur Erstellung einer Hausarbeit im Fach CL}}}
+			\end{center}
+			\vfill \vfill \textsf{\Large \today}
+	\end{center}
+\vfill \hspace{-2cm}
+\textsf{{\large
+\begin{tabular}{ll}
+		Vorname Name\\
+		Email: mein.name@uni-trier.de\\
+\end{tabular}
+}}
+\newpage
+
+
+
+
+%% Erzeugung von Verzeichnissen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtocontents{toc}{\protect\thispagestyle{empty}} % unterdrückt Seitenzahl
+\addtocontents{lot}{\protect\thispagestyle{empty}} % unterdrückt Seitenzahl
+\addtocontents{lof}{\protect\thispagestyle{empty}} % unterdrückt Seitenzahl
+
+\tableofcontents			% Inhaltsverzeichnis
+
+
+
+%% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter					% Vorspann (z.B. Glossar)
+
+\phantomsection 
+
+\printnoidxglossary[sort=letter, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
+
+\mainmatter						% Hauptteil
+
+\renewcommand{\baselinestretch}{1} %%% Zeilenabstand für das Dokument definieren.
+
+
+
+\include{INHALT/Einleitung}
+\include{INHALT/HAUPT/Ali}
+\include{INHALT/HAUPT/Julia}
+\include{INHALT/Fazit}
+
+%Glossar ausgeben
+%\printglossary[style=altlist,title=Glossar]
+\printglossary
+
+\listoftables				% Tabellenverzeichnis
+\listoffigures			% Abbildungsverzeichnis
+
+\newpage
+
+%\setbibpreamble{Präambel}		% Text vor dem Verzeichnis
+%\bibliographystyle{dinat}
+%\bibliography{bibliographie}	% Sie benötigen einen *.bib-Datei
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% B I B L I O G R A P H I E
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\baselinestretch}{1}\normalsize 	%Zeilenabstand innerhalb der Angaben
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\bibname}	%Bib. im Inhaltsvz.
+
+\bibliography{CL-bib}					%Bibliographiedatenbank
+\bibliographystyle{CL-DE}		%Zitierstruktur - natbib muss deklariert sein!
+
+\nocite{*} 		%optional - gibt die gesammte Bib-Datenbank aus ansonsten werden nur 
+%die zitierten Werke ausgegeben
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
