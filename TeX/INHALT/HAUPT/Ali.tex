@@ -3,19 +3,88 @@
 
 Bei ChatScript handelt es sich um ein Framework, der es Entwicklern erlaubt, regelbasierte Chatbots zu entwickeln. Es handelt sich hierbei um "Natural Language tool" mit eigenem Interpreter, welcher Code in C++ übersezt. 
 
-
- 
-
 \section{ChatScript: Regeln}
 \label{sec:ChatScript: Regeln}
+
+Regeln sind elementarer Bestandteil in ChatScript. In Regeln wird u.A. die Analyse von Nutzereingaben analysiert, Antworten des Bots festgelegt, Datenbankabfragen ausgeführt und der Gesprächsablauf gesteuert.  
+
+In Augusta finden sich Regeln in verschiedenen Formen wieder. Diese sind: 
+
+\begin{itemize}
+\item t: für Ausgaben des Chatbots, ohne folgende Antwort 
+\item u: für Ausgaben in Form von Fragen, das beduetet, dass auf Regeln mit u: eine Antwort des Nutzers folgen muss 
+\item a:, b:, c: etc. für Antworten des Nutzers. Auf diese Regeln können Pattern-Matching-Ansätze angewandt werden, um Teile der Eingabe ggf. zu extrahieren.
+\end{itemize}
+
+Topics haben, auch wenn optional, meist einen Bezeichner, eine Bedingung zur Ausführung und es lassen sich dabei Variablen zuweisen. Ein abstraktes Beispiel:
+
+\begin{lstlisting}[caption={Syntax für Regeln}]
+t: BEZEICHNER (KONDITION) $meineVariable=Wert Ausgabe des Bots
+\end{lstlisting}
+
+Im folgenden einige Beispiele für Regeln:
+
+\begin{lstlisting}[caption={Beispiel für t:}]
+t:  ( %input<%userfirstline )
+    ^keep()
+    [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
+\end{lstlisting}
+
+In dieser Regel wird der Nutzer begrüßt und im folgenden der Gesprächsverlauf zur Regel 'GREET' weitergeleitet.
+
+\begin{lstlisting}[caption={Beispiel für Gesprächsablauf mit Antworten u:, a: und b:}]
+ u: INTRO ($enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
+
+		a: ( ~positiv ) $introyes = 1a
+	# DATENBANK
+	    if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234))
+	        {[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
+	    } else {dbinit failed - $$db_error  ^reuse( FIRSTQ ) }
+	a: ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
+		b: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 )) {Schön zu hören. ^reuse( FIRSTQ )}
+                                      else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
+	    b: ( ~positiv ) $enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
+\end{lstlisting}
+
+In diesem Abschnitt fragt der Bot mit zufällig ausgewählter Frage, ob der Kunde etwas kaufen möchte. Falls die Eingabe des Kunden ein Wort aus dem Konzept ~positiv enthält, wird entsprechend die Datenbank geladen und in die Regel FIRSTQ im selben Topic aktiviert. Falls die Eingabe ein Wort aus dem Konzept ~negativ enthält, so wird gefragt, ob man nicht wirklich was sucht. Je nach Antwort darauf wird eine entsprechende Regel, d.h. eines der beiden b: Regeln ausgeführt. 
 
 \section{ChatScript: Topics}
 \label{sec:ChatScript: Topics}
 
-Die Quelldateien in einem ChatScript-Programm werden auch als "Topics" bezeichnet und haben die Dateiendung .top. Topics können als Zusammenfassung mehrerer Regeln betrachtet werden. Es bietet sich an, Topics als Module eines Chatbots zu handhaben. So wird z.B. in diesem Projekt "Augusta" die Datenbankabfrage als eignenes Topic gehandhabt. 
+Die Quelldateien in einem ChatScript-Programm werden auch als "Topics" bezeichnet und haben die Dateiendung .top. Topics können als Zusammenfassung mehrerer Regeln betrachtet werden. Es bietet sich an, Topics als Module eines Chatbots zu handhaben. So wird z.B. in diesem Projekt "Augusta" die Datenbankabfrage als eignenes Topic gehandhabt.
+Topics beginnen immer mit einer Tilde "~" als Präfix gefolgt vom Topicnamen, meist als erste Zeile in einer .top-Datei oder vor Auflisting von Regeln:
+
+\begin{lstlisting}[caption={Topicbezeichner in dbsearch.top}]
+topic: ~dbsearch  [] ($gosearch)
+\end{lstlisting}
 
 \section{ChatScript: Konzepte}
 \label{sec:ChatScript: Konzepte}
+
+Syntaktisch werden Konzepte wie topics gehandhabt, das heißt, dass Konzepte mit ~Konzeptname referenziert werden. Ein Konzept kann als eine Menge von Synonymen verstanden werden, ähnlich zu Einträgen in einem Thesaurus. Obwohl es sich hier um Mengen handelt, stehen diese aus syntaktischer Sicht in Klammern () oder []. Ein Beispiel anhand des Konzepts "ciao":
+
+\begin{lstlisting}[caption={Konzept 'ciao' aus konzepte.top}]
+concept: ~ciao [ciao tschüss "good bye" bye "daje" "eddi un merci" "äddi a merci"]
+\end{lstlisting}
+
+Anzumerken ist, dass multiword expressions in Anführungszeichen stehen müssen, da einzelne Bestandteile dieser sonst als einzelne Elemente betrachtet werden.
+
+Konzepte sind besonders wichtig in "Augusta", da es sich anbietet, das Pattern-Matching von Konzepten abhängig zu machen. So wird mit Hilfe von Konzepten das Arbeiten mit der PostgreSQL-Schnittstelle gewährleistet: Für jeden möglichen Eintrag pro Spalte in der PostgreSQL Datenbank existiert eine Konzept. Als Beispiel alle Einträge für die Spalte "Anwendungszweck":  
+
+\begin{lstlisting}[caption={Konzept 'anwendungszweck' aus konzepte.top}]
+concept: ~anwendungszweck [Unterhaltung Schreibwaren EssenTrinken Essentrinken Alltag Accessoire]
+\end{lstlisting}
+
+Der Nutzer beschreibt beispielsweise in einem Satz, welchen Anwendungszweck das gesuchte Produkt erfüllen soll. Wird ein Wort aus dem Konzept gefunden, so wird dieser als solches Erkannt, sofern vom Skript vorgesehen. Damit wird sichergestellt, dass in den Queries nur Eigenschaften vorkommen, die in Datenbankeinträgen existieren. Sollte der Anwender nach Eigenschaften suchen, die nicht existieren, so werden diese ignoriert (Siehe: Pattern-Matching, Query). 
+
+Des Weiteren erlaubt es ChatScript, mehrere Konzepte in einem Konzept zu vereinen. Ein solches Konzept ist als Vereinigung mehrerer Konzepte zu verstehen:
+
+\begin{lstlisting}[caption={Konzept 'positivkaufen' aus konzepte.top}]
+concept: ~positivkaufen [ ~yes ~zustimmung ~kaufen]
+\end{lstlisting}
+
+'Positivkaufen' enthält somit alle Wörter, die in ~yes, ~zustimmung und ~kaufen vorkommen. 
+
 
 \section{ChatScript: Bedingungen zur Steuerung von Programmablauf}
 \label{sec:ChatScript: Bedingungen zur Steuerung von Programmablauf}

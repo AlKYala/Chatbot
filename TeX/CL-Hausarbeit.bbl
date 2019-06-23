@@ -1,0 +1,10 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem[{Wilcox(2019)}]{chatscript2019}
+\textsc{Wilcox, Bruce} (2019) \emph{ChatScript}.
+  \url{https://github.com/ChatScript/ChatScript}.
+
+\end{thebibliography}
