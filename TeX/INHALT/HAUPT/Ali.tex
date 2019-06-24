@@ -85,18 +85,101 @@ concept: ~positivkaufen [ ~yes ~zustimmung ~kaufen]
 
 'Positivkaufen' enthält somit alle Wörter, die in ~yes, ~zustimmung und ~kaufen vorkommen. 
 
+\section{ChatScript: Variablen}
+\label{sec:ChatScript: Variablen}
+Variablen in Augusta kommen größenteils in der Form \$variablenname vor. \$ vor dem Identifier bedeutet, dass diese Variable permanent ist und über Regeln hinaus gespeichert wird. Variablen werden für gewöhnlich im Kopf einer Regel instanziiert. Bei den zugewiesenen Werten kann es sich um Konstante handeln oder Werte die mit Hilfe von Pattern-Matching. Im folgenden Beispiel wird das erste Wort der Nutzereingabe, welches sich im Konzept ~geschenkidee befindet in der Variable \$geschenkidee gespeichert. 
 
-\section{ChatScript: Bedingungen zur Steuerung von Programmablauf}
-\label{sec:ChatScript: Bedingungen zur Steuerung von Programmablauf}
+\begin{lstlisting}[caption={Zuweisung des Wertes einer Variable }]
+a: ( _~geschenkidee ) \$anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
+\end{lstlisting}
+
+\textdollar
+
+Bereits instanziierte Variablen lassen sich einsehen mit dem Befehl ^walkvariables(^outputmacro). 
+
+Da das zurücksetzen von Variablen nicht trivial ist, lassen sich diese mit dem Befehl ^reset( VARIABLES ) zurücksetzen. Dieser Befehl setzt alle Variablen auf globaler Ebene zurücksetzen. Wenn man verhindern will, dass eine Variable zurückgesetzt wird, empfiehlt es sich diese als temporäre Variable zwischenzuspiechern, wie folgt:
+
+\begin{lstlisting}[caption={Zwischenspeichern einer Variable}]
+	\$_cs_bottmp = \$cs_bot
+    ^reset( VARIABLES )
+    #....
+	$cs_bot = \$_cs_bottmp 
+\end{lstlisting}
+
+Dieser Schritt findet in ende.top statt. Dies ist nötig, um zu gewährleisten, dass Informationen wie der Name des Kunden als auch die Insatz des Bots nicht verloren geht, wenn eine weitere Empfehlung im selben Gespräch erfolgen soll. 
+
+\section{ChatScript: Variablen als Bedingungen zur Steuerung von Programmablauf}
+\label{sec:ChatScript: Variablen als Bedingungen zur Steuerung von Programmablauf}
+
+Nativ wählt ChatScript Regeln in einem Topic zufällig aus, um durch themenbezogene zufällige Antworten natürlich zu wirken. Da Augusta, ein Chatbot zur Kaufberatung, jedoch eine lineare Konversation gewährleisten muss, wird in fast allen Regeln mit Bedingungen gearbeitet. Ein Beispiel: 
+
+\begin{lstlisting}[caption={Regelkopf von FIRSTQ in kaufabsicht.top}]
+u: FIRSTQ ($introyes) Wir können nach etwas zum ... 
+\end{lstlisting}
+
+Die Regel FIRSTQ darf nur aktiviert werden, sofern die Variable \$introyes existiert. 
+
+Ähnlich lässt es sich auch verhindern, dass der Bot in eine Regel übergeht, indem man Variablen als Bedingungen stellt, die in keiner Regel instanziiert werden:
+
+\begin{lstlisting}[caption={Regelkopf von STARTKAUF in kaufabsicht.top}]
+t: STARTKAUF ($enter999) ^reuse( INTRO)
+\end{lstlisting}
+
+Die Regel Startkauf ist gewöhnlich nicht betretbar für den Bot, da \$enter999 als Variable nie instanziiert wird. Selbiges gilt für alle Regeln, dessen Bedingung die Existenz einer Variable mit '\$enter...' erfordert. Diese Bedingungen dienen dazu, um ein zufälliges Springen des Bots zu verhindern. Stattdessen muss manuell von einer Regel auf diese weitergeleitet werden, was mit Hilfe von Befehlen zur Steuerung des Promgrammablaufs erfolgt. 
+
+Alternativ, jedoch nicht so häufig ist die Bedingung, dass ein Wort eines Konzepts zu erwähnen ist, damit eine Regel betreten wird:
+
+\begin{lstlisting}[caption={Regelkopf einer Regel in kaufabsicht.top}]
+b: (~willGeschenk) $anwendungszweck = ^"'nichts'" Du möchtest etwas verschenken. Ich kann dir folgende Kategorien anbieten:
+\end{lstlisting}
+
+Diese Regel, sofern erreichbar, erfordert von der Nutzereingabe, dass ein Wort aus dem Konzept 'willGeschenk' erwähnt wird. Ist dies nicht der Fall, so wird auch nicht in diese Regel übergegangen.
 
 \section{ChatScript: Befehle zur Steuerung von Programmablauf}
 \label{sec:ChatScript: Befehle zur Steuerung von Programmablauf}
 
+In Augusta wurden zwei Methoden genutzt, um den Gesprächverlauf zu lenken. Dabei handelt es sich zum einen um ^gambit(~topic) und zum anderen um ^reuse(~topic.rule). Im Laufe des Projekts hat sich ^reuse(~topic.rule) als praktischer herausgestellt, da man direkt in Regeln desselben Topics als auch in Regeln anderer Topics springen kann. Des Weiteren ignoriert ^reuse die Bedingungen der Zielregel, sodass Regeln betreten werden, unabhängig davon, ob ein Wort des geforderten Konzepts oder die geforderte Variable existiert. Sofern sich eine Regel im selben Topic befindet, muss in ^reuse nur die Zielregel angegeben werden:
+
+\begin{lstlisting}[caption={Regel STARTKAUF in kaufabsicht.top}]
+t: STARTKAUF ($enter999) ^reuse( INTRO)
+\end{lstlisting}
+
+Wird die Regel 'STARTKAUF' betreten, so wird am Ende der Ausführung in die Regel 'INTRO' desselben Topics übergegangen. 
+
+\begin{lstlisting}[caption={Regel in keyexonesentence.top}]
+a: (~positiv) $gosearch = 1c Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
+\end{lstlisting}
+
+Sofern ein Wort aus dem Konzept '~positiv' aus der Nutzereingabe erkannt und ist diese Regel betretbar, so wird diese Regel ausgeführt und anschließend die Regel 'WELCOME' in dbsearch.top, einem anderen Topic, betreten.
+
+Im Verlauf der Entwicklung wurde ^gambit mit ^reuse ersetzt, da ^reuse eine Präzisere Steuerung des Programmablaufs erlaubt. Während ^gambit lediglich in eine anderes topic springt und diesen von der ersten betretbaren Regel ausführt, lässt sich durch ^reuse präzisieren, welche Regel zu betreten ist, ohne auf die Bedingung der Zielregel achten zu müssen.  
+
 \section{ChatScript: Pattern-Matching}
 \label{sec:ChatScript: Pattern-Matching}
 
+
+Schreiben über:
+
+(<<[sagen] nicht>>)
+
+([heiße bin ist lautet] _*1 >)
+
+([~nicht ~no])
+
+1. muster keyexonesentence
+
 \section{ChatScript: Zufällige Ausgabe}
 \label{sec:ChatScript: Zufällige Ausgabe}
+
+ChatScript erlaubt es, dass an einer Stelle mehrere Ausgaben durch den Bot möglich sind. Mögliche Ausgaben werden mit Hilfe von [] unterschieden:
+
+u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
+
+\begin{lstlisting}[caption={Regel in keyexonesentence.top}]
+u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
+\end{lstlisting}
+
+Hier wählt der Bot zufällig aus, ob 'Das ist gut', 'Das ist toll' etc. ausgegeben wird gefolgt von 'Also dann ...'. 
 
 \chapter{Augusta: Programmlogik}
 \label{sec:Augusta: Programmlogik}
@@ -104,15 +187,6 @@ concept: ~positivkaufen [ ~yes ~zustimmung ~kaufen]
 
 
 Hier, stelle in z.B. einem Automaten dar, wie der Programmablauf normalerweise ablaufen soll
-\section{Befehle und Programmablauf}
-\label{sec:Befehle und Programmablauf}
 
-\section{Variablen und Programmablauf}
-\label{sec:Variablen und Programmablauf}
-
-\section{Konzepte und Programmablauf}
-\label{sec:Konzepte und Programmablauf}
-
-\section{Programmablauf im Detail}
-\label{sec:Programmablauf im Detail}
+Sage auch, dass Regeln zustände sind.
 
