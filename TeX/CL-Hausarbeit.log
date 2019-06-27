@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  24 JUN 2019 19:53
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  27 JUN 2019 20:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -223,7 +223,306 @@ File: babel.def 2019/06/03 3.32 Babel common definitions
 )
 Package babel Info: Making " an active character on input line 121.
 )))
-(c:/texlive/2019/texmf-dist/tex/latex/qtree/qtree.sty
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks17
+\pgfutil@tempdima=\dimen104
+\pgfutil@tempdimb=\dimen105
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)
+) (c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box29
+
+(c:/texlive/2019/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2019/05/09 v3.1.3 (3.1.3)
+))
+Package: pgf 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 99.
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen106
+\Gin@req@width=\dimen107
+)
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks18
+\pgfkeys@temptoks=\toks19
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks20
+))
+\pgf@x=\dimen108
+\pgf@y=\dimen109
+\pgf@xa=\dimen110
+\pgf@ya=\dimen111
+\pgf@xb=\dimen112
+\pgf@yb=\dimen113
+\pgf@xc=\dimen114
+\pgf@yc=\dimen115
+\pgf@xd=\dimen116
+\pgf@yd=\dimen117
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count92
+\c@pgf@countb=\count93
+\c@pgf@countc=\count94
+\c@pgf@countd=\count95
+\t@pgf@toka=\toks21
+\t@pgf@tokb=\toks22
+\t@pgf@tokc=\toks23
+\pgf@sys@id@count=\count96
+ (c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2019/05/09 v3.1.3 (3.1.3)
+)
+Driver file for pgf: pgfsys-xetex.def
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2019/05/09 v3.1.3 (3.1.3)
+)
+\pgfsys@objnum=\count97
+)))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfsyssoftpath@smallbuffer@items=\count98
+\pgfsyssoftpath@bigbuffer@items=\count99
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)) (c:/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen118
+\pgfmath@count=\count100
+\pgfmath@box=\box30
+\pgfmath@toks=\toks24
+\pgfmath@stack@operand=\toks25
+\pgfmath@stack@operation=\toks26
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.te
+x)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric
+.code.tex)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.t
+ex)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.co
+de.tex)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te
+x)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithm
+etics.code.tex)))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count101
+))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@picminx=\dimen119
+\pgf@picmaxx=\dimen120
+\pgf@picminy=\dimen121
+\pgf@picmaxy=\dimen122
+\pgf@pathminx=\dimen123
+\pgf@pathmaxx=\dimen124
+\pgf@pathminy=\dimen125
+\pgf@pathmaxy=\dimen126
+\pgf@xx=\dimen127
+\pgf@xy=\dimen128
+\pgf@yx=\dimen129
+\pgf@yy=\dimen130
+\pgf@zx=\dimen131
+\pgf@zy=\dimen132
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.cod
+e.tex
+File: pgfcorepathconstruct.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@path@lastx=\dimen133
+\pgf@path@lasty=\dimen134
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.te
+x
+File: pgfcorepathusage.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@shorten@end@additional=\dimen135
+\pgf@shorten@start@additional=\dimen136
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfpic=\box31
+\pgf@hbox=\box32
+\pgf@layerbox@main=\box33
+\pgf@picture@serial@count=\count102
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code
+.tex
+File: pgfcoregraphicstate.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgflinewidth=\dimen137
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.c
+ode.tex
+File: pgfcoretransformations.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@pt@x=\dimen138
+\pgf@pt@y=\dimen139
+\pgf@pt@temp=\dimen140
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.co
+de.tex
+File: pgfcorepathprocessing.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfarrowsep=\dimen141
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@max=\dimen142
+\pgf@sys@shading@range@num=\count103
+\pgf@shadingcount=\count104
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfexternal@startupbox=\box34
+))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code
+.tex
+File: pgfcoretransparency.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2019/05/09 v3.1.3 (3.1.3)
+) (c:/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2019/05/09 v3.1.3 (3.1.3)
+))) (c:/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.te
+x
+File: pgfmoduleshapes.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfnodeparttextbox=\box35
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.st
+y
+Package: pgfcomp-version-0-65 2019/05/09 v3.1.3 (3.1.3)
+\pgf@nodesepstart=\dimen143
+\pgf@nodesepend=\dimen144
+)
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
+y
+Package: pgfcomp-version-1-18 2019/05/09 v3.1.3 (3.1.3)
+)) (c:/texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(c:/texlive/2019/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen145
+\pgffor@skip=\dimen146
+\pgffor@stack=\toks27
+\pgffor@toks=\toks28
+))
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2019/05/09 v3.1.3 (3.1.3)
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.co
+de.tex
+File: pgflibraryplothandlers.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@plot@mark@count=\count105
+\pgfplotmarksize=\dimen147
+)
+\tikz@lastx=\dimen148
+\tikz@lasty=\dimen149
+\tikz@lastxsaved=\dimen150
+\tikz@lastysaved=\dimen151
+\tikzleveldistance=\dimen152
+\tikzsiblingdistance=\dimen153
+\tikz@figbox=\box36
+\tikz@figbox@bg=\box37
+\tikz@tempbox=\box38
+\tikz@tempbox@bg=\box39
+\tikztreelevel=\count106
+\tikznumberofchildren=\count107
+\tikznumberofcurrentchild=\count108
+\tikz@fig@count=\count109
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfmatrixcurrentrow=\count110
+\pgfmatrixcurrentcolumn=\count111
+\pgf@matrix@numberofcolumns=\count112
+)
+\tikz@expandcount=\count113
+
+(c:/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2019/05/09 v3.1.3 (3.1.3)
+))) (c:/texlive/2019/texmf-dist/tex/latex/qtree/qtree.sty
 Package: 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
 Package: qtree 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
 (c:/texlive/2019/texmf-dist/tex/latex/pict2e/pict2e.sty
@@ -233,47 +532,40 @@ Package: pict2e 2016/02/05 v0.3b Improved picture commands (HjG,RN,JT)
 File: pict2e.cfg 2016/02/05 v0.1u pict2e configuration for teTeX/TeXLive
 )
 Package pict2e Info: Driver file: xetex.def on input line 119.
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
-File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
-)
 Package pict2e Info: Driver file for pict2e: p2e-xetex.def on input line 121.
 
 (c:/texlive/2019/texmf-dist/tex/latex/pict2e/p2e-xetex.def
 File: p2e-xetex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+\pIIe@GRAPH=\toks29
+\@arclen=\dimen154
+\@arcrad=\dimen155
+\@tempdimd=\dimen156
 )
-\pIIe@GRAPH=\toks17
-\@arclen=\dimen104
-\@arcrad=\dimen105
-\@tempdimd=\dimen106
-)
-\c@treecount=\count92
-\c@branchcount=\count93
-\parentbox=\box29
-\treebox=\box30
-\treeboxone=\box31
-\treeboxtwo=\box32
-\treeboxthree=\box33
-\treeboxfour=\box34
-\treeboxfive=\box35
-\treeboxsix=\box36
-\treeboxseven=\box37
-\treeboxeight=\box38
-\treeboxnine=\box39
-\treeboxten=\box40
-\treeboxeleven=\box41
-\treeboxtwelve=\box42
-\treeboxthirteen=\box43
-\treeboxfourteen=\box44
-\treeboxfifteen=\box45
-\treeboxsixteen=\box46
-\treeboxseventeen=\box47
-\treeboxeighteen=\box48
-\treeboxnineteen=\box49
-\treeboxtwenty=\box50
+\c@treecount=\count114
+\c@branchcount=\count115
+\parentbox=\box40
+\treebox=\box41
+\treeboxone=\box42
+\treeboxtwo=\box43
+\treeboxthree=\box44
+\treeboxfour=\box45
+\treeboxfive=\box46
+\treeboxsix=\box47
+\treeboxseven=\box48
+\treeboxeight=\box49
+\treeboxnine=\box50
+\treeboxten=\box51
+\treeboxeleven=\box52
+\treeboxtwelve=\box53
+\treeboxthirteen=\box54
+\treeboxfourteen=\box55
+\treeboxfifteen=\box56
+\treeboxsixteen=\box57
+\treeboxseventeen=\box58
+\treeboxeighteen=\box59
+\treeboxnineteen=\box60
+\treeboxtwenty=\box61
 \treeoffsetone=\skip58
 \treeoffsettwo=\skip59
 \treeoffsetthree=\skip60
@@ -348,147 +640,107 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 \branchwidth=\skip129
 \parentwidth=\skip130
 \treewidth=\skip131
-\qta=\toks18
-\qtb=\toks19
-\nbranches=\count94
-\qroofx=\count95
-\qroofy=\count96
-\@qrscratchbox=\box51
+\qta=\toks30
+\qtb=\toks31
+\nbranches=\count116
+\qroofx=\count117
+\qroofy=\count118
+\@qrscratchbox=\box62
 )
 (c:/texlive/2019/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
 
 (c:/texlive/2019/texmf-dist/tex/latex/tools/array.sty
 Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
-\col@sep=\dimen107
-\ar@mcellbox=\box52
-\extrarowheight=\dimen108
-\NC@list=\toks20
+\col@sep=\dimen157
+\ar@mcellbox=\box63
+\extrarowheight=\dimen158
+\NC@list=\toks32
 \extratabsurround=\skip132
 \backup@length=\skip133
-\ar@cellbox=\box53
+\ar@cellbox=\box64
 )
-\TX@col@width=\dimen109
-\TX@old@table=\dimen110
-\TX@old@col=\dimen111
-\TX@target=\dimen112
-\TX@delta=\dimen113
-\TX@cols=\count97
-\TX@ftn=\toks21
+\TX@col@width=\dimen159
+\TX@old@table=\dimen160
+\TX@old@col=\dimen161
+\TX@target=\dimen162
+\TX@delta=\dimen163
+\TX@cols=\count119
+\TX@ftn=\toks33
 )
 (c:/texlive/2019/texmf-dist/tex/latex/tabulary/tabulary.sty
 Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
-\TY@count=\count98
-\TY@linewidth=\dimen114
-\tymin=\dimen115
-\tymax=\dimen116
-\TY@tablewidth=\dimen117
+\TY@count=\count120
+\TY@linewidth=\dimen164
+\tymin=\dimen165
+\tymax=\dimen166
+\TY@tablewidth=\dimen167
 )
 (c:/texlive/2019/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
 \multirow@colwidth=\skip134
-\multirow@cntb=\count99
+\multirow@cntb=\count121
 \multirow@dima=\skip135
-\bigstrutjot=\dimen118
+\bigstrutjot=\dimen168
 )
 (c:/texlive/2019/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2018/12/12 v1.0d Color table columns (DPC)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: xetex.def on input line 147.
-)
-\everycr=\toks22
+\everycr=\toks34
 \minrowclearance=\skip136
 )
 (c:/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen119
-\lightrulewidth=\dimen120
-\cmidrulewidth=\dimen121
-\belowrulesep=\dimen122
-\belowbottomsep=\dimen123
-\aboverulesep=\dimen124
-\abovetopsep=\dimen125
-\cmidrulesep=\dimen126
-\cmidrulekern=\dimen127
-\defaultaddspace=\dimen128
-\@cmidla=\count100
-\@cmidlb=\count101
-\@aboverulesep=\dimen129
-\@belowrulesep=\dimen130
-\@thisruleclass=\count102
-\@lastruleclass=\count103
-\@thisrulewidth=\dimen131
+\heavyrulewidth=\dimen169
+\lightrulewidth=\dimen170
+\cmidrulewidth=\dimen171
+\belowrulesep=\dimen172
+\belowbottomsep=\dimen173
+\aboverulesep=\dimen174
+\abovetopsep=\dimen175
+\cmidrulesep=\dimen176
+\cmidrulekern=\dimen177
+\defaultaddspace=\dimen178
+\@cmidla=\count122
+\@cmidlb=\count123
+\@aboverulesep=\dimen179
+\@belowrulesep=\dimen180
+\@thisruleclass=\count124
+\@lastruleclass=\count125
+\@thisrulewidth=\dimen181
 )
 (c:/texlive/2019/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count104
-\lst@gtempboxa=\box54
-\lst@token=\toks23
-\lst@length=\count105
-\lst@currlwidth=\dimen132
-\lst@column=\count106
-\lst@pos=\count107
-\lst@lostspace=\dimen133
-\lst@width=\dimen134
-\lst@newlines=\count108
-\lst@lineno=\count109
-\lst@maxwidth=\dimen135
+\lst@mode=\count126
+\lst@gtempboxa=\box65
+\lst@token=\toks35
+\lst@length=\count127
+\lst@currlwidth=\dimen182
+\lst@column=\count128
+\lst@pos=\count129
+\lst@lostspace=\dimen183
+\lst@width=\dimen184
+\lst@newlines=\count130
+\lst@lineno=\count131
+\lst@maxwidth=\dimen185
 
 (c:/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
-\c@lstnumber=\count110
-\lst@skipnumbers=\count111
-\lst@framebox=\box55
+\c@lstnumber=\count132
+\lst@skipnumbers=\count133
+\lst@framebox=\box66
 )
 (c:/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2019/02/27 1.8b listings configuration
 ))
 Package: listings 2019/02/27 1.8b (Carsten Heinz)
 
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: xetex.def on input line 99.
-)
-\Gin@req@height=\dimen136
-\Gin@req@width=\dimen137
-)
-(c:/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package xcolor Info: Driver file: xetex.def on input line 225.
-LaTeX Info: Redefining \color on input line 709.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `RGB' extended on input line 1364.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-)
 (c:/texlive/2019/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2019/02/28 v2.7b Micro-typographical refinements (RS)
-\MT@toks=\toks24
-\MT@count=\count112
+\MT@toks=\toks36
+\MT@count=\count134
 LaTeX Info: Redefining \textls on input line 790.
-\MT@outer@kern=\dimen138
+\MT@outer@kern=\dimen186
 LaTeX Info: Redefining \textmicrotypecontext on input line 1336.
-\MT@listname@count=\count113
+\MT@listname@count=\count135
 
 (c:/texlive/2019/texmf-dist/tex/latex/microtype/microtype-xetex.def
 File: microtype-xetex.def 2019/02/28 v2.7b Definitions specific to xetex (RS)
@@ -501,11 +753,11 @@ File: microtype.cfg 2019/02/28 v2.7b microtype main configuration file (RS)
 ))
 (c:/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count114
-\float@exts=\toks25
-\float@box=\box56
-\@float@everytoks=\toks26
-\@floatcapt=\box57
+\c@float@type=\count136
+\float@exts=\toks37
+\float@box=\box67
+\@float@everytoks=\toks38
+\@floatcapt=\box68
 )
 (c:/texlive/2019/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
@@ -513,11 +765,11 @@ Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 (c:/texlive/2019/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count115
+\c@r@tfl@t=\count137
 \rotFPtop=\skip137
 \rotFPbot=\skip138
-\rot@float@box=\box58
-\rot@mess@toks=\toks27
+\rot@float@box=\box69
+\rot@mess@toks=\toks39
 )
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2019/01/06 v4.42 (NLCT)
@@ -527,10 +779,10 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 (c:/texlive/2019/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (c:/texlive/2019/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks28
-\XKV@tempa@toks=\toks29
+\XKV@toks=\toks40
+\XKV@tempa@toks=\toks41
 )
-\XKV@depth=\count116
+\XKV@depth=\count138
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (c:/texlive/2019/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
@@ -538,10 +790,10 @@ Package: mfirstuc 2017/11/14 v2.06 (NLCT)
 
 (c:/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count117
+\etb@tempcnta=\count139
 )
-\@glsmfirst=\toks30
-\@glsmrest=\toks31
+\@glsmfirst=\toks42
+\@glsmrest=\toks43
 )
 (c:/texlive/2019/texmf-dist/tex/latex/textcase/textcase.sty
 Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
@@ -562,57 +814,57 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks32
-\ex@=\dimen139
+\@emptytoks=\toks44
+\ex@=\dimen187
 ))
 (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen140
+\pmbraise@=\dimen188
 )
 (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count118
+\inf@bad=\count140
 LaTeX Info: Redefining \frac on input line 223.
-\uproot@=\count119
-\leftroot@=\count120
+\uproot@=\count141
+\leftroot@=\count142
 LaTeX Info: Redefining \overline on input line 385.
-\classnum@=\count121
-\DOTSCASE@=\count122
+\classnum@=\count143
+\DOTSCASE@=\count144
 LaTeX Info: Redefining \ldots on input line 482.
 LaTeX Info: Redefining \dots on input line 485.
 LaTeX Info: Redefining \cdots on input line 606.
-\Mathstrutbox@=\box59
-\strutbox@=\box60
-\big@size=\dimen141
+\Mathstrutbox@=\box70
+\strutbox@=\box71
+\big@size=\dimen189
 LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
-\macc@depth=\count123
-\c@MaxMatrixCols=\count124
+\macc@depth=\count145
+\c@MaxMatrixCols=\count146
 \dotsspace@=\muskip10
-\c@parentequation=\count125
-\dspbrk@lvl=\count126
-\tag@help=\toks33
-\row@=\count127
-\column@=\count128
-\maxfields@=\count129
-\andhelp@=\toks34
-\eqnshift@=\dimen142
-\alignsep@=\dimen143
-\tagshift@=\dimen144
-\tagwidth@=\dimen145
-\totwidth@=\dimen146
-\lineht@=\dimen147
-\@envbody=\toks35
+\c@parentequation=\count147
+\dspbrk@lvl=\count148
+\tag@help=\toks45
+\row@=\count149
+\column@=\count150
+\maxfields@=\count151
+\andhelp@=\toks46
+\eqnshift@=\dimen190
+\alignsep@=\dimen191
+\tagshift@=\dimen192
+\tagwidth@=\dimen193
+\totwidth@=\dimen194
+\lineht@=\dimen195
+\@envbody=\toks47
 \multlinegap=\skip140
 \multlinetaggap=\skip141
-\mathdisplay@stack=\toks36
+\mathdisplay@stack=\toks48
 LaTeX Info: Redefining \[ on input line 2844.
 LaTeX Info: Redefining \] on input line 2845.
 )
 (c:/texlive/2019/texmf-dist/tex/latex/substr/substr.sty
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count130
+\c@su@anzahl=\count152
 )
 (c:/texlive/2019/texmf-dist/tex/latex/datatool/datatool-fp.sty
 Package: datatool-fp 2018/12/07 v2.31 (NLCT)
@@ -623,19 +875,19 @@ Package: fp 1995/04/02
 `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
 (c:/texlive/2019/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count131
+\actioncount=\count153
 )
 (c:/texlive/2019/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count132
-\FP@xia=\count133
-\FP@xib=\count134
-\FP@xfa=\count135
-\FP@xfb=\count136
-\FP@rega=\count137
-\FP@regb=\count138
-\FP@regs=\count139
-\FP@times=\count140
+\FP@xs=\count154
+\FP@xia=\count155
+\FP@xib=\count156
+\FP@xfa=\count157
+\FP@xfb=\count158
+\FP@rega=\count159
+\FP@regb=\count160
+\FP@regs=\count161
+\FP@times=\count162
 )
 (c:/texlive/2019/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
@@ -654,7 +906,7 @@ Package: fp-pas 1994/08/29
 )
 (c:/texlive/2019/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count141
+\FPseed=\count163
 )
 (c:/texlive/2019/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
@@ -665,15 +917,15 @@ Package: fp-upn 1996/10/21
 (c:/texlive/2019/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 )))
-\@dtl@toks=\toks37
-\@dtl@tmpcount=\count142
+\@dtl@toks=\toks49
+\@dtl@tmpcount=\count164
 \dtl@tmplength=\skip142
-\dtl@sortresult=\count143
-\@dtl@numgrpsepcount=\count144
-\@dtl@datatype=\count145
-\dtl@codeA=\count146
-\dtl@codeB=\count147
-\@dtl@foreach@level=\count148
+\dtl@sortresult=\count165
+\@dtl@numgrpsepcount=\count166
+\@dtl@datatype=\count167
+\dtl@codeA=\count168
+\dtl@codeB=\count169
+\@dtl@foreach@level=\count170
 )
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-307
 .sty
@@ -688,13 +940,13 @@ Package: translator 2019-05-31 v1.12a Easy translation of strings in LaTeX
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries-german/glossaries-german.ldf
 File: glossaries-german.ldf 2014/11/23 v1.0
 )
-\gls@level=\count149
-\@gls@tmpb=\toks38
+\gls@level=\count171
+\@gls@tmpb=\toks50
 \gls@tmplen=\skip143
-\glskeylisttok=\toks39
-\glslabeltok=\toks40
-\glsshorttok=\toks41
-\glslongtok=\toks42
+\glskeylisttok=\toks51
+\glslabeltok=\toks52
+\glsshorttok=\toks53
+\glslongtok=\toks54
 
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
 Package: glossary-hypernav 2019/01/06 v4.42 (NLCT)
@@ -712,17 +964,17 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
 \LTright=\skip146
 \LTpre=\skip147
 \LTpost=\skip148
-\LTchunksize=\count150
-\LTcapwidth=\dimen148
-\LT@head=\box61
-\LT@firsthead=\box62
-\LT@foot=\box63
-\LT@lastfoot=\box64
-\LT@cols=\count151
-\LT@rows=\count152
-\c@LT@tables=\count153
-\c@LT@chunks=\count154
-\LT@p@ftn=\toks43
+\LTchunksize=\count172
+\LTcapwidth=\dimen196
+\LT@head=\box72
+\LT@firsthead=\box73
+\LT@foot=\box74
+\LT@lastfoot=\box75
+\LT@cols=\count173
+\LT@rows=\count174
+\c@LT@tables=\count175
+\c@LT@chunks=\count176
+\LT@p@ftn=\toks55
 )
 Class scrbook Info: longtable captions redefined on input line 43.
 \glsdescwidth=\skip149
@@ -733,22 +985,22 @@ Package: glossary-super 2019/01/06 v4.42 (NLCT)
 
 (c:/texlive/2019/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
-\c@tracingst=\count155
-\ST@wd=\dimen149
+\c@tracingst=\count177
+\ST@wd=\dimen197
 \ST@rightskip=\skip151
 \ST@leftskip=\skip152
 \ST@parfillskip=\skip153
-\ST@pageleft=\dimen150
-\ST@headht=\dimen151
-\ST@tailht=\dimen152
-\ST@pagesofar=\dimen153
-\ST@pboxht=\dimen154
-\ST@lineht=\dimen155
-\ST@stretchht=\dimen156
-\ST@prevht=\dimen157
-\ST@toadd=\dimen158
-\ST@dimen=\dimen159
-\ST@pbox=\box65
+\ST@pageleft=\dimen198
+\ST@headht=\dimen199
+\ST@tailht=\dimen256
+\ST@pagesofar=\dimen257
+\ST@pboxht=\dimen258
+\ST@lineht=\dimen259
+\ST@stretchht=\dimen260
+\ST@prevht=\dimen261
+\ST@toadd=\dimen262
+\ST@dimen=\dimen263
+\ST@pbox=\box76
 ))
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
 Package: glossary-tree 2019/01/06 v4.42 (NLCT)
@@ -765,9 +1017,9 @@ Package: suffix 2006/07/15 1.5a Variant command support
 )
 (c:/texlive/2019/texmf-dist/tex/generic/xstring/xstring.sty
 (c:/texlive/2019/texmf-dist/tex/generic/xstring/xstring.tex
-\integerpart=\count156
+\integerpart=\count178
 Invalid UTF-8 byte or sequence at line 35 replaced by U+FFFD.
-\decimalpart=\count157
+\decimalpart=\count179
 Invalid UTF-8 byte or sequence at line 79 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 79 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 83 replaced by U+FFFD.
@@ -906,7 +1158,7 @@ Invalid UTF-8 byte or sequence at line 1006 replaced by U+FFFD.
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
-\AC@clearlist=\toks44
+\AC@clearlist=\toks56
 )
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
@@ -983,8 +1235,8 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cftbeforefigskip=\skip181
 \cftfigindent=\skip182
 \cftfignumwidth=\skip183
-\c@lofdepth=\count158
-\c@lotdepth=\count159
+\c@lofdepth=\count180
+\c@lotdepth=\count181
 \cftbeforelottitleskip=\skip184
 \cftafterlottitleskip=\skip185
 \cftbeforetabskip=\skip186
@@ -996,7 +1248,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip189
 \bibsep=\skip190
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count160
+\c@NAT@ctr=\count182
 ) (./CL-Hausarbeit.aux
 (./INHALT/Einleitung.aux) (./INHALT/HAUPT/Ali.aux) (./INHALT/HAUPT/Julia.aux)
 (./INHALT/Fazit.aux))
@@ -1022,7 +1274,9 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 9.85492pt on input line 162.
-\c@lstlisting=\count161
+
+ABD: EveryShipout initializing macros
+\c@lstlisting=\count183
 LaTeX Info: Redefining \microtypecontext on input line 162.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1117,8 +1371,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 )
-\tf@toc=\write3
-\openout3 = `CL-Hausarbeit.toc'.
+\tf@toc=\write4
+\openout4 = `CL-Hausarbeit.toc'.
 
  [2]
 
@@ -1240,24 +1494,8 @@ Overfull \hbox (14.50658pt too wide) in paragraph at lines 93--94
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.96 ...blen lassen sich einsehen mit dem Befehl ^
+l.98 ...blen lassen sich einsehen mit dem Befehl ^
                                                   walkvariables(^outputmacro).
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.97 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.98 ...al ist, lassen sich diese mit dem Befehl ^
-                                                  reset( VARIABLES ) zurücks...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
@@ -1269,12 +1507,28 @@ l.99
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.100 ...l ist, lassen sich diese mit dem Befehl ^
+                                                  reset( VARIABLES ) zurücks...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.101 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ä in font zptmcm7m!
 
-Overfull \hbox (932.90923pt too wide) in paragraph at lines 98--99
+Overfull \hbox (932.90923pt too wide) in paragraph at lines 100--101
 []\T1/phv/m/n/10.95 Da das zu-rück-set-zen von Va-ria-blen nicht tri-vi-al ist,
  las-sen sich die-se mit dem Be-fehl $[]\OML/ztmcm/m/it/10.95 eset\OT1/ztmcm/m/
 n/10.95 (\OML/ztmcm/m/it/10.95 VARIABLES\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/1
@@ -1288,14 +1542,14 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [4]
-Overfull \hbox (280.59201pt too wide) in paragraph at lines 131--132
+Overfull \hbox (280.59201pt too wide) in paragraph at lines 133--134
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.139 ...ken. Dabei handelt es sich zum einen um ^
+l.141 ...ken. Dabei handelt es sich zum einen um ^
                                                   gambit(~topic) und zum and...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1303,14 +1557,14 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.140 
+l.142 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 Missing character: There is no ä in font zptmcm7m!
 
-Overfull \hbox (1749.11636pt too wide) in paragraph at lines 139--140
+Overfull \hbox (1749.11636pt too wide) in paragraph at lines 141--142
 \T1/phv/m/n/10.95 zum ei-nen um $[]\OML/ztmcm/m/it/10.95 ambit\OT1/ztmcm/m/n/10
 .95 ( \OML/ztmcm/m/it/10.95 topic\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 un
 dzumanderenum[]euse\OT1/ztmcm/m/n/10.95 ( \OML/ztmcm/m/it/10.95 topic:rule\OT1/
@@ -1324,7 +1578,7 @@ indet; mussin[]eusenurdieZielregelangegebenwerden \OT1/ztmcm/m/n/10.95 :$
  []
 
 
-Overfull \hbox (109.11473pt too wide) in paragraph at lines 148--149
+Overfull \hbox (109.11473pt too wide) in paragraph at lines 150--151
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
@@ -1332,7 +1586,7 @@ Overfull \hbox (109.11473pt too wide) in paragraph at lines 148--149
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.153 Im Verlauf der Entwicklung wurde ^
+l.155 Im Verlauf der Entwicklung wurde ^
                                         gambit mit ^reuse ersetzt, da ^reuse...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1340,7 +1594,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.154 
+l.156 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1352,7 +1606,7 @@ Missing character: There is no ä in font zptmcm7m!
 Missing character: There is no ä in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 
-Overfull \hbox (985.69872pt too wide) in paragraph at lines 153--154
+Overfull \hbox (985.69872pt too wide) in paragraph at lines 155--156
 []\T1/phv/m/n/10.95 Im Ver-lauf der Ent-wick-lung wur-de $[]\OML/ztmcm/m/it/10.
 95 ambitmit[]euseersetzt; da[]euseeinePrzisereSteuerungdesProgrammablaufserlaub
 t:Whrend[]ambitlediglichineineanderestopicspringtunddiesenvondererstenbetretbar
@@ -1368,21 +1622,296 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.163 ([heiße bin ist lautet] _
-                               *1 >)
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+\scr@@makesinglelinecaption ...espaces #3\unskip }
+                                                  
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten $.
+\@settodim #1#2#3->\setbox \@tempboxa \hbox {{#3}
+                                                 }#2#1\@tempboxa \setbox \@t...
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten $.
+\@settodim #1#2#3->\setbox \@tempboxa \hbox {{#3}}
+                                                  #2#1\@tempboxa \setbox \@t...
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra }, or forgotten \endgroup.
+\scr@@makesinglelinecaption ...espaces #3\unskip }
+                                                  
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten \endgroup.
+\scr@makesinglelinecaption ...{#2}{#3}\cap@right }
+                                                  \par \kern \dp \strutbox }...
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten \endgroup.
+\scr@makesinglelinecaption ...kern \dp \strutbox }
+                                                  }\kern -\dp \strutbox 
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten \endgroup.
+\scr@makesinglelinecaption ...ern \dp \strutbox }}
+                                                  \kern -\dp \strutbox 
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+\@@makecaption ...ption \fi \endgroup {#1}{#2}{#3}
+                                                  
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (268.76599pt too wide) in paragraph at lines 177--178
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[6]
+Overfull \hbox (79.54968pt too wide) in paragraph at lines 199--200
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+ []
+
+
+Overfull \hbox (44.07162pt too wide) in paragraph at lines 200--201
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][]
+ []
+
+
+Overfull \hbox (280.59201pt too wide) in paragraph at lines 202--203
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (292.41803pt too wide) in paragraph at lines 203--204
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][] 
+ []
+
+
+Overfull \hbox (523.0254pt too wide) in paragraph at lines 206--207
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (428.41725pt too wide) in paragraph at lines 207--208
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][] 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.212 ...ur angabe von Preis kommt. Dabei stehen _
+                                                  0, _1, _2 etc. für das ers...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.164 
+l.214 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
 
-Overfull \hbox (759.54579pt too wide) in paragraph at lines 177--178
+Overfull \hbox (79.15762pt too wide) in paragraph at lines 212--214
+\T1/phv/m/n/10.95 Preis kommt. Da-bei ste-hen $[]\OML/ztmcm/m/it/10.95 ;[] ;[] 
+etc:frdaserste; zweite; dritteerkannteWortaufKonzepten:Imfolgendenwirdineinerif
+ \OMS/ztmcm/m/n/10.95 ^^@
+ []
+
+
+Overfull \hbox (1075.04742pt too wide) in paragraph at lines 212--214
+\OML/ztmcm/m/it/10.95 Abfrageermittelt; obessichbeidemerstenWortumeinTokenausde
+mKonzept thingsoder arthandeltundentsprechendeineRckmeldunggegeben:Insgesamt\OT
+1/ztmcm/m/n/10.95 11\OML/ztmcm/m/it/10.95 verschiedenePatterndieserArtfindensic
+hinkeyonesentencevor; aufgrundderTatsache; dassderNutzerfreiangebenkann; wanner
+AngabenzuNamedesGegenstandsArt; AusfhrungoderPreismacht:$ 
+ []
+
+
+Overfull \hbox (759.54579pt too wide) in paragraph at lines 223--224
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][] 
@@ -1392,16 +1921,171 @@ Overfull \hbox (759.54579pt too wide) in paragraph at lines 177--178
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[6]
+[7]
 chapter 3.
-) [7
+! Missing $ inserted.
+<inserted text> 
+                $
+l.237 \item{A.3 ist introductions.KEINE_
+                                        VORSTELLUNG}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+l.237 ...{A.3 ist introductions.KEINE_VORSTELLUNG}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 \item
+           {B.1 ist kaufabsicht.Startkauf}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 \item{
+            B.1 ist kaufabsicht.Startkauf}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 \item{
+            B.1 ist kaufabsicht.Startkauf}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Command \end{enumerate} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.239 \end{enumerate}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.239 \end{enumerate}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.239 \end{enumerate}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.239 \end{enumerate}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.239 \end{enumerate}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.241 ...d in die Regel 'vorstellung' bzw. 'keine_
+                                                  vorstellung' übergegangen....
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.242 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ü in font zptmcm7m!
+
+Overfull \hbox (292.05675pt too wide) in paragraph at lines 241--242
+\T1/phv/m/n/10.95 (sie-he Ab-schnitt: Pattern-Matching) wird in die Re-gel 'vor
+-stel-lung' bzw. 'keine$[]\OML/ztmcm/m/it/10.95 orstellung[]bergegangen:Daraufh
+inwirddieRegel[]Startkauf[]desTopicskaufabsichtbetreten:$ 
+ []
+
+[8
 
 ]
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[9]
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[10]
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[11]
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[12])
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[13]
 \openout2 = `INHALT/HAUPT/Julia.aux'.
 
  (./INHALT/HAUPT/Julia.tex
 chapter 4.
-) [8
+) [14
 
 
 
@@ -1410,21 +2094,21 @@ chapter 4.
 
  (./INHALT/Fazit.tex
 chapter 5.
-) [9
+) [15
 
 
 
 ]
 No file CL-Hausarbeit.gls.
 (./CL-Hausarbeit.lot)
-\tf@lot=\write4
-\openout4 = `CL-Hausarbeit.lot'.
+\tf@lot=\write5
+\openout5 = `CL-Hausarbeit.lot'.
 
  (./CL-Hausarbeit.lof)
-\tf@lof=\write5
-\openout5 = `CL-Hausarbeit.lof'.
+\tf@lof=\write6
+\openout6 = `CL-Hausarbeit.lof'.
 
- [10
+ [16
 
 ] (./CL-Hausarbeit.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
@@ -1442,20 +2126,24 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) [11
+) [17
 
 
 
 ]
 (./CL-Hausarbeit.aux (./INHALT/Einleitung.aux) (./INHALT/HAUPT/Ali.aux)
-(./INHALT/HAUPT/Julia.aux) (./INHALT/Fazit.aux)) ) 
+(./INHALT/HAUPT/Julia.aux) (./INHALT/Fazit.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 16244 strings out of 492909
- 273420 string characters out of 6136299
- 556674 words of memory out of 5000000
- 19940 multiletter control sequences out of 15000+600000
+ 26315 strings out of 492909
+ 492609 string characters out of 6136299
+ 757702 words of memory out of 5000000
+ 29800 multiletter control sequences out of 15000+600000
  47640 words of font info for 79 fonts, out of 8000000 for 9000
  1354 hyphenation exceptions out of 8191
- 56i,9n,66p,9092b,1534s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,8n,70p,9092b,1535s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on CL-Hausarbeit.pdf (13 pages).
+Output written on CL-Hausarbeit.pdf (19 pages).
