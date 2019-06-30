@@ -4,13 +4,14 @@ The top-level auxiliary file: CL-Hausarbeit.aux
 A level-1 auxiliary file: INHALT/Einleitung.aux
 A level-1 auxiliary file: INHALT/HAUPT/Ali.aux
 A level-1 auxiliary file: INHALT/HAUPT/Julia.aux
+A level-1 auxiliary file: INHALT/HAUPT/Probleme.aux
 A level-1 auxiliary file: INHALT/Fazit.aux
 The style file: CL-DE.bst
 Database file #1: CL-bib.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 You've used 1 entry,
             3248 wiz_defined-function locations,
-            665 strings with 5122 characters,
+            666 strings with 5147 characters,
 and the built_in function-call counts, 379 in all, are:
 = -- 32
 > -- 10

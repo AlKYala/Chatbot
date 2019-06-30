@@ -16,5 +16,10 @@
 \contentsline {chapter}{\numberline {4}Kapitel1j}{14}% 
 \contentsline {section}{\numberline {4.1}UnterKapitel2j}{14}% 
 \contentsline {section}{\numberline {4.2}UnterKapitel3j}{14}% 
-\contentsline {chapter}{\numberline {5}Fazit}{15}% 
-\contentsline {chapter}{Literaturverzeichnis}{17}% 
+\contentsline {chapter}{\numberline {5}Probleme}{15}% 
+\contentsline {section}{\numberline {5.1}Zwei-Query Problem}{15}% 
+\contentsline {section}{\numberline {5.2}Probleme mit der GUI}{15}% 
+\contentsline {subsection}{\numberline {5.2.1}Fehlender Support von PostgreSQL-Server für Mac und Linux}{15}% 
+\contentsline {subsection}{\numberline {5.2.2}Server mit PostgreSQL-Unterstüzung vs. Server ohne PostgreSQL-Unterstüzung}{15}% 
+\contentsline {chapter}{\numberline {6}Fazit}{17}% 
+\contentsline {chapter}{Literaturverzeichnis}{19}% 

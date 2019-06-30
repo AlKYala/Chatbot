@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  27 JUN 2019 20:13
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  30 JUN 2019 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -733,9 +733,15 @@ File: listings.cfg 2019/02/27 1.8b listings configuration
 ))
 Package: listings 2019/02/27 1.8b (Carsten Heinz)
 
+(c:/texlive/2019/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks36
+\verbatim@line=\toks37
+\verbatim@in@stream=\read2
+)
 (c:/texlive/2019/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2019/02/28 v2.7b Micro-typographical refinements (RS)
-\MT@toks=\toks36
+\MT@toks=\toks38
 \MT@count=\count134
 LaTeX Info: Redefining \textls on input line 790.
 \MT@outer@kern=\dimen186
@@ -754,9 +760,9 @@ File: microtype.cfg 2019/02/28 v2.7b microtype main configuration file (RS)
 (c:/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count136
-\float@exts=\toks37
+\float@exts=\toks39
 \float@box=\box67
-\@float@everytoks=\toks38
+\@float@everytoks=\toks40
 \@floatcapt=\box68
 )
 (c:/texlive/2019/texmf-dist/tex/latex/graphics/rotating.sty
@@ -769,7 +775,7 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \rotFPtop=\skip137
 \rotFPbot=\skip138
 \rot@float@box=\box69
-\rot@mess@toks=\toks39
+\rot@mess@toks=\toks41
 )
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2019/01/06 v4.42 (NLCT)
@@ -779,8 +785,8 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 (c:/texlive/2019/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (c:/texlive/2019/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks40
-\XKV@tempa@toks=\toks41
+\XKV@toks=\toks42
+\XKV@tempa@toks=\toks43
 )
 \XKV@depth=\count138
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
@@ -792,8 +798,8 @@ Package: mfirstuc 2017/11/14 v2.06 (NLCT)
 Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count139
 )
-\@glsmfirst=\toks42
-\@glsmrest=\toks43
+\@glsmfirst=\toks44
+\@glsmrest=\toks45
 )
 (c:/texlive/2019/texmf-dist/tex/latex/textcase/textcase.sty
 Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
@@ -814,7 +820,7 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks44
+\@emptytoks=\toks46
 \ex@=\dimen187
 ))
 (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -844,21 +850,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \dotsspace@=\muskip10
 \c@parentequation=\count147
 \dspbrk@lvl=\count148
-\tag@help=\toks45
+\tag@help=\toks47
 \row@=\count149
 \column@=\count150
 \maxfields@=\count151
-\andhelp@=\toks46
+\andhelp@=\toks48
 \eqnshift@=\dimen190
 \alignsep@=\dimen191
 \tagshift@=\dimen192
 \tagwidth@=\dimen193
 \totwidth@=\dimen194
 \lineht@=\dimen195
-\@envbody=\toks47
+\@envbody=\toks49
 \multlinegap=\skip140
 \multlinetaggap=\skip141
-\mathdisplay@stack=\toks48
+\mathdisplay@stack=\toks50
 LaTeX Info: Redefining \[ on input line 2844.
 LaTeX Info: Redefining \] on input line 2845.
 )
@@ -917,7 +923,7 @@ Package: fp-upn 1996/10/21
 (c:/texlive/2019/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 )))
-\@dtl@toks=\toks49
+\@dtl@toks=\toks51
 \@dtl@tmpcount=\count164
 \dtl@tmplength=\skip142
 \dtl@sortresult=\count165
@@ -941,12 +947,12 @@ Package: translator 2019-05-31 v1.12a Easy translation of strings in LaTeX
 File: glossaries-german.ldf 2014/11/23 v1.0
 )
 \gls@level=\count171
-\@gls@tmpb=\toks50
+\@gls@tmpb=\toks52
 \gls@tmplen=\skip143
-\glskeylisttok=\toks51
-\glslabeltok=\toks52
-\glsshorttok=\toks53
-\glslongtok=\toks54
+\glskeylisttok=\toks53
+\glslabeltok=\toks54
+\glsshorttok=\toks55
+\glslongtok=\toks56
 
 (c:/texlive/2019/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
 Package: glossary-hypernav 2019/01/06 v4.42 (NLCT)
@@ -974,7 +980,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
 \LT@rows=\count174
 \c@LT@tables=\count175
 \c@LT@chunks=\count176
-\LT@p@ftn=\toks55
+\LT@p@ftn=\toks57
 )
 Class scrbook Info: longtable captions redefined on input line 43.
 \glsdescwidth=\skip149
@@ -1158,7 +1164,7 @@ Invalid UTF-8 byte or sequence at line 1006 replaced by U+FFFD.
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
-\AC@clearlist=\toks56
+\AC@clearlist=\toks58
 )
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
@@ -1201,7 +1207,7 @@ Class scrbook Warning: Usage of package `tocloft' together
 (scrbook)              `part', `section', `subsection',
 (scrbook)              `subsubsection', `paragraph' and `subparagraph'.
 (scrbook)              Nevertheless, using requested
-(scrbook)              package `tocloft' on input line 49.
+(scrbook)              package `tocloft' on input line 63.
 
 (c:/texlive/2019/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
@@ -1251,33 +1257,34 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count182
 ) (./CL-Hausarbeit.aux
 (./INHALT/Einleitung.aux) (./INHALT/HAUPT/Ali.aux) (./INHALT/HAUPT/Julia.aux)
-(./INHALT/Fazit.aux))
+(./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux))
 \openout1 = `CL-Hausarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 162.
- (c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1phv.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 176.
+LaTeX Font Info:    ... okay on input line 176.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 176.
+
+(c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 162.
+(Font)              scaled to size 9.85492pt on input line 176.
 
 ABD: EveryShipout initializing macros
 \c@lstlisting=\count183
-LaTeX Info: Redefining \microtypecontext on input line 162.
+LaTeX Info: Redefining \microtypecontext on input line 176.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -1290,17 +1297,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 File: BILDER/logo.png Graphic file (type bmp)
 <BILDER/logo.png>
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 22.39185pt on input line 174.
+(Font)              scaled to size 22.39185pt on input line 188.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 174.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 188.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 174.
+(Font)              scaled to size 22.39185pt on input line 188.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 12.9599pt on input line 179.
+(Font)              scaled to size 12.9599pt on input line 193.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 187.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 18
-7.
+(Font)              scaled to size 10.79993pt on input line 201.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 20
+1.
 
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
@@ -1309,40 +1316,40 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 18
-7.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 20
+1.
 
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 18
-7.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 20
+1.
 
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 18
-7.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 20
+1.
 
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 187.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 201.
 
 
 (c:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 187.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
 
 (c:/texlive/2019/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 187.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 187.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
 
 (c:/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
@@ -1353,11 +1360,11 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 18.66588pt on input line 198.
+(Font)              scaled to size 18.66588pt on input line 212.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 198.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 212.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 18.66588pt on input line 198.
+(Font)              scaled to size 18.66588pt on input line 212.
 
 (./CL-Hausarbeit.toc
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
@@ -1378,7 +1385,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 
 Package glossaries Warning: Empty glossary for \printnoidxglossary[type={main}]
 . Rerun may be required (or you may have forgotten to use commands like \gls) o
-n input line 207.
+n input line 221.
 
 \openout2 = `INHALT/Einleitung.aux'.
 
@@ -1425,22 +1432,38 @@ File: omsphv.fd
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 21.
 
-Overfull \hbox (298.33104pt too wide) in paragraph at lines 30--31
+(c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 5.39996pt on input line 22.
+
+Overfull \hbox (381.11852pt too wide) in paragraph at lines 30--31
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][] 
+][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (759.54579pt too wide) in paragraph at lines 36--38
+Overfull \hbox (900.15271pt too wide) in paragraph at lines 36--38
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][][] 
+[][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (67.72366pt too wide) in paragraph at lines 40--41
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (124.88644pt too wide) in paragraph at lines 40--41
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (46.0458pt too wide) in paragraph at lines 41--42
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [2
@@ -1448,36 +1471,37 @@ Overfull \hbox (67.72366pt too wide) in paragraph at lines 40--41
 
 
 ]
-Overfull \hbox (310.15706pt too wide) in paragraph at lines 43--44
+Overfull \hbox (394.25862pt too wide) in paragraph at lines 43--44
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][] 
+][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (493.46036pt too wide) in paragraph at lines 44--45
+Overfull \hbox (604.50032pt too wide) in paragraph at lines 44--45
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (61.81065pt too wide) in paragraph at lines 45--46
-[][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (124.88644pt too wide) in paragraph at lines 45--46
+[][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (61.81065pt too wide) in paragraph at lines 46--47
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (38.15862pt too wide) in paragraph at lines 67--68
+Overfull \hbox (124.88644pt too wide) in paragraph at lines 46--47
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ] 
  []
 
 
-Overfull \hbox (126.85376pt too wide) in paragraph at lines 75--76
-[][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (92.03618pt too wide) in paragraph at lines 67--68
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+
+Overfull \hbox (190.58698pt too wide) in paragraph at lines 75--76
+[][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
@@ -1487,15 +1511,31 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [3]
-Overfull \hbox (14.50658pt too wide) in paragraph at lines 93--94
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (78.89607pt too wide) in paragraph at lines 93--94
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.98 ...blen lassen sich einsehen mit dem Befehl ^
+l.96 ...blen lassen sich einsehen mit dem Befehl ^
                                                   walkvariables(^outputmacro).
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.97 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.98 ...al ist, lassen sich diese mit dem Befehl ^
+                                                  reset( VARIABLES ) zurücks...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
@@ -1507,28 +1547,12 @@ l.99
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.100 ...l ist, lassen sich diese mit dem Befehl ^
-                                                  reset( VARIABLES ) zurücks...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.101 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ä in font zptmcm7m!
 
-Overfull \hbox (932.90923pt too wide) in paragraph at lines 100--101
+Overfull \hbox (932.90923pt too wide) in paragraph at lines 98--99
 []\T1/phv/m/n/10.95 Da das zu-rück-set-zen von Va-ria-blen nicht tri-vi-al ist,
  las-sen sich die-se mit dem Be-fehl $[]\OML/ztmcm/m/it/10.95 eset\OT1/ztmcm/m/
 n/10.95 (\OML/ztmcm/m/it/10.95 VARIABLES\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/1
@@ -1542,14 +1566,15 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [4]
-Overfull \hbox (280.59201pt too wide) in paragraph at lines 133--134
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (367.97841pt too wide) in paragraph at lines 132--133
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
  []
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.141 ...ken. Dabei handelt es sich zum einen um ^
+l.140 ...ken. Dabei handelt es sich zum einen um ^
                                                   gambit(~topic) und zum and...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1557,14 +1582,14 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.142 
+l.141 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 Missing character: There is no ä in font zptmcm7m!
 
-Overfull \hbox (1749.11636pt too wide) in paragraph at lines 141--142
+Overfull \hbox (1749.11636pt too wide) in paragraph at lines 140--141
 \T1/phv/m/n/10.95 zum ei-nen um $[]\OML/ztmcm/m/it/10.95 ambit\OT1/ztmcm/m/n/10
 .95 ( \OML/ztmcm/m/it/10.95 topic\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 un
 dzumanderenum[]euse\OT1/ztmcm/m/n/10.95 ( \OML/ztmcm/m/it/10.95 topic:rule\OT1/
@@ -1578,15 +1603,15 @@ indet; mussin[]eusenurdieZielregelangegebenwerden \OT1/ztmcm/m/n/10.95 :$
  []
 
 
-Overfull \hbox (109.11473pt too wide) in paragraph at lines 150--151
+Overfull \hbox (177.44687pt too wide) in paragraph at lines 149--150
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][] 
+][][][][][][][] 
  []
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.155 Im Verlauf der Entwicklung wurde ^
+l.154 Im Verlauf der Entwicklung wurde ^
                                         gambit mit ^reuse ersetzt, da ^reuse...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1594,7 +1619,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.156 
+l.155 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1606,7 +1631,7 @@ Missing character: There is no ä in font zptmcm7m!
 Missing character: There is no ä in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 
-Overfull \hbox (985.69872pt too wide) in paragraph at lines 155--156
+Overfull \hbox (985.69872pt too wide) in paragraph at lines 154--155
 []\T1/phv/m/n/10.95 Im Ver-lauf der Ent-wick-lung wur-de $[]\OML/ztmcm/m/it/10.
 95 ambitmit[]euseersetzt; da[]euseeinePrzisereSteuerungdesProgrammablaufserlaub
 t:Whrend[]ambitlediglichineineanderestopicspringtunddiesenvondererstenbetretbar
@@ -1619,10 +1644,21 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [5]
+Overfull \hbox (46.0458pt too wide) in paragraph at lines 164--165
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (46.0458pt too wide) in paragraph at lines 170--171
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1630,7 +1666,7 @@ you left one out. Proceed, with fingers crossed.
 ! Extra }, or forgotten $.
 \scr@@makesinglelinecaption ...espaces #3\unskip }
                                                   
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1641,7 +1677,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra }, or forgotten $.
 \@settodim #1#2#3->\setbox \@tempboxa \hbox {{#3}
                                                  }#2#1\@tempboxa \setbox \@t...
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1652,7 +1688,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra }, or forgotten $.
 \@settodim #1#2#3->\setbox \@tempboxa \hbox {{#3}}
                                                   #2#1\@tempboxa \setbox \@t...
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1663,7 +1699,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1674,7 +1710,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1685,7 +1721,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1696,7 +1732,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1707,7 +1743,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1718,7 +1754,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1729,7 +1765,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1740,7 +1776,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1751,7 +1787,7 @@ my insertion and my current dilemma will both disappear.
 ! Extra }, or forgotten \endgroup.
 \scr@@makesinglelinecaption ...espaces #3\unskip }
                                                   
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1762,7 +1798,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra }, or forgotten \endgroup.
 \scr@makesinglelinecaption ...{#2}{#3}\cap@right }
                                                   \par \kern \dp \strutbox }...
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1773,7 +1809,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra }, or forgotten \endgroup.
 \scr@makesinglelinecaption ...kern \dp \strutbox }
                                                   }\kern -\dp \strutbox 
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1784,7 +1820,7 @@ deleted material, e.g., by typing `I$}'.
 ! Extra }, or forgotten \endgroup.
 \scr@makesinglelinecaption ...ern \dp \strutbox }}
                                                   \kern -\dp \strutbox 
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1795,7 +1831,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1803,7 +1839,7 @@ you left one out. Proceed, with fingers crossed.
 ! Extra }, or forgotten $.
 \@@makecaption ...ption \fi \endgroup {#1}{#2}{#3}
                                                   
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1814,7 +1850,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1822,7 +1858,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.176 ... KEINE_VORSTELLUNG in introductions.top}]
+l.175 ... KEINE_VORSTELLUNG in introductions.top}]
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1831,9 +1867,9 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (268.76599pt too wide) in paragraph at lines 177--178
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
-
+Overfull \hbox (348.26825pt too wide) in paragraph at lines 176--177
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
  []
 
 
@@ -1841,44 +1877,44 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [6]
-Overfull \hbox (79.54968pt too wide) in paragraph at lines 199--200
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+Overfull \hbox (138.02655pt too wide) in paragraph at lines 198--199
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
-Overfull \hbox (44.07162pt too wide) in paragraph at lines 200--201
+Overfull \hbox (98.60623pt too wide) in paragraph at lines 199--200
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][]
+][][][][][]
  []
 
 
-Overfull \hbox (280.59201pt too wide) in paragraph at lines 202--203
+Overfull \hbox (381.11852pt too wide) in paragraph at lines 201--202
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][] 
+][][][][] 
  []
 
 
-Overfull \hbox (292.41803pt too wide) in paragraph at lines 203--204
+Overfull \hbox (400.82867pt too wide) in paragraph at lines 202--203
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][] 
+][][][][][][][] 
  []
 
 
-Overfull \hbox (523.0254pt too wide) in paragraph at lines 206--207
+Overfull \hbox (663.6308pt too wide) in paragraph at lines 205--206
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][] 
+][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (428.41725pt too wide) in paragraph at lines 207--208
+Overfull \hbox (545.36984pt too wide) in paragraph at lines 206--207
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][] 
+][][][][][][][][] 
  []
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.212 ...ur angabe von Preis kommt. Dabei stehen _
+l.211 ...ur angabe von Preis kommt. Dabei stehen _
                                                   0, _1, _2 etc. für das ers...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1886,7 +1922,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.214 
+l.213 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1895,14 +1931,14 @@ Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 
-Overfull \hbox (79.15762pt too wide) in paragraph at lines 212--214
+Overfull \hbox (79.15762pt too wide) in paragraph at lines 211--213
 \T1/phv/m/n/10.95 Preis kommt. Da-bei ste-hen $[]\OML/ztmcm/m/it/10.95 ;[] ;[] 
 etc:frdaserste; zweite; dritteerkannteWortaufKonzepten:Imfolgendenwirdineinerif
  \OMS/ztmcm/m/n/10.95 ^^@
  []
 
 
-Overfull \hbox (1075.04742pt too wide) in paragraph at lines 212--214
+Overfull \hbox (1075.04742pt too wide) in paragraph at lines 211--213
 \OML/ztmcm/m/it/10.95 Abfrageermittelt; obessichbeidemerstenWortumeinTokenausde
 mKonzept thingsoder arthandeltundentsprechendeineRckmeldunggegeben:Insgesamt\OT
 1/ztmcm/m/n/10.95 11\OML/ztmcm/m/it/10.95 verschiedenePatterndieserArtfindensic
@@ -1911,10 +1947,10 @@ AngabenzuNamedesGegenstandsArt; AusfhrungoderPreismacht:$
  []
 
 
-Overfull \hbox (759.54579pt too wide) in paragraph at lines 223--224
+Overfull \hbox (893.58266pt too wide) in paragraph at lines 222--223
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][] 
+[][][][][][][][][][][][] 
  []
 
 
@@ -1926,13 +1962,15 @@ chapter 3.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.237 \item{A.3 ist introductions.KEINE_
-                                        VORSTELLUNG}
+l.236 ...[A.3 ist introductions.KEINE_VORSTELLUNG]
+                                                  
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.237 ...{A.3 ist introductions.KEINE_VORSTELLUNG}
+\llap #1->\hb@xt@ \z@ {\hss #1}
+                               
+l.236 ...[A.3 ist introductions.KEINE_VORSTELLUNG]
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1940,94 +1978,19 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.238 \item
-           {B.1 ist kaufabsicht.Startkauf}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.238 \item{
-            B.1 ist kaufabsicht.Startkauf}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.238 \item{
-            B.1 ist kaufabsicht.Startkauf}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Command \end{enumerate} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 \end{enumerate}
-                     
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 \end{enumerate}
-                     
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 \end{enumerate}
-                     
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.239 \end{enumerate}
-                     
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
+l.236 ...[A.3 ist introductions.KEINE_VORSTELLUNG]
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
 ! Missing } inserted.
 <inserted text> 
                 }
-l.239 \end{enumerate}
-                     
+l.236 ...[A.3 ist introductions.KEINE_VORSTELLUNG]
+                                                  
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -2037,7 +2000,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.241 ...d in die Regel 'vorstellung' bzw. 'keine_
+l.240 ...d in die Regel 'vorstellung' bzw. 'keine_
                                                   vorstellung' übergegangen....
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2045,14 +2008,14 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.242 
+l.241 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 Missing character: There is no ü in font zptmcm7m!
 
-Overfull \hbox (292.05675pt too wide) in paragraph at lines 241--242
+Overfull \hbox (292.05675pt too wide) in paragraph at lines 240--241
 \T1/phv/m/n/10.95 (sie-he Ab-schnitt: Pattern-Matching) wird in die Re-gel 'vor
 -stel-lung' bzw. 'keine$[]\OML/ztmcm/m/it/10.95 orstellung[]bergegangen:Daraufh
 inwirddieRegel[]Startkauf[]desTopicskaufabsichtbetreten:$ 
@@ -2090,11 +2053,97 @@ chapter 4.
 
 
 ]
+\openout2 = `INHALT/HAUPT/Probleme.aux'.
+
+ (./INHALT/HAUPT/Probleme.tex
+chapter 5.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 20.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.29 ...en erwiesen sich Übergänge in Regeln mit ^
+                                                  reuse () als problematisch...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+)
+! Missing $ inserted.
+<inserted text> 
+                $
+l.232 \include{INHALT/HAUPT/Probleme}
+                                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ä in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ö in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ä in font zptmcm7m!
+Missing character: There is no ö in font zptmcm7m!
+Missing character: There is no ä in font zptmcm7m!
+Missing character: There is no ä in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+Missing character: There is no ü in font zptmcm7m!
+
+Overfull \hbox (1341.8356pt too wide) in paragraph at lines 28--232
+\T1/phv/m/n/10.95 Über-gän-ge in Re-geln mit $[]\OML/ztmcm/m/it/10.95 euse\OT1/
+ztmcm/m/n/10.95 ()\OML/ztmcm/m/it/10.95 alsproblematisch:BeiAufsetzendesServers
+mitLocalPgServer:bat; istesvorgekommen; dasseinigedervorgesehenenRegelbergngepe
+rreusenichtaktiviertwurden:DaProblememitLocalPgServer:batnichtinderDokumentatio
+nvonChatScriptbehandeltwerdenundderMacherundEntwicklervonChatScript; BruceWilco
+x; nichtaufNachfragenmitdemHosteneinesServersmitPostgres \OMS/ztmcm/m/n/10.95 ^
+^@
+ []
+
+
+Overfull \hbox (356.39633pt too wide) in paragraph at lines 28--232
+\OML/ztmcm/m/it/10.95 Untersttzungantwortet; konntenalleProblememitdemServermit
+Postgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95 Untersttzungzeitnahnich
+tgelstwerden:EsliegtdieVermutungnahe; dassdasHosteneinesServersmitPostgres \OMS
+/ztmcm/m/n/10.95 ^^@
+ []
+
+
+Overfull \hbox (1268.3137pt too wide) in paragraph at lines 28--232
+\OML/ztmcm/m/it/10.95 Untersttzungdazufhrt; dasseineweitereDatenbankberPostgres
+seitensdesServersohneEinflussvonEntwicklererstelltwird; waszuallerleiKonflikten
+fhrt:AufgrundZeitmangels; mangelnderDokumentationundfehlenderEinsichtindieBinrd
+ateienbzw:KonfigurationistdiesesProblembisdatonichtgelst:DieFehlerquellekonnten
+ichtausfindiggemachtwerdenundesisteinRtsel; warumauchnicht \OMS/ztmcm/m/n/10.95
+ ^^@
+ []
+
+
+Overfull \hbox (51.13579pt too wide) in paragraph at lines 28--232
+\OML/ztmcm/m/it/10.95 Postgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95 A
+blufesichbeidemServermitPostgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95
+ UntersttzungandersverhaltenalsohnePostgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm
+/m/it/10.95 Untersttzung:$ 
+ []
+
+[15
+
+
+
+]
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[16]
 \openout2 = `INHALT/Fazit.aux'.
 
  (./INHALT/Fazit.tex
-chapter 5.
-) [15
+chapter 6.
+) [17
 
 
 
@@ -2108,7 +2157,7 @@ No file CL-Hausarbeit.gls.
 \tf@lof=\write6
 \openout6 = `CL-Hausarbeit.lof'.
 
- [16
+ [18
 
 ] (./CL-Hausarbeit.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
@@ -2117,33 +2166,21 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 9.85492pt on input line 7.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 8.
-
-(c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `pcr' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-) [17
+) [19
 
 
 
 ]
 (./CL-Hausarbeit.aux (./INHALT/Einleitung.aux) (./INHALT/HAUPT/Ali.aux)
-(./INHALT/HAUPT/Julia.aux) (./INHALT/Fazit.aux))
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(./INHALT/HAUPT/Julia.aux) (./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux)) 
+) 
 Here is how much of TeX's memory you used:
- 26315 strings out of 492909
- 492609 string characters out of 6136299
- 757702 words of memory out of 5000000
- 29800 multiletter control sequences out of 15000+600000
- 47640 words of font info for 79 fonts, out of 8000000 for 9000
+ 26362 strings out of 492909
+ 493616 string characters out of 6136299
+ 760015 words of memory out of 5000000
+ 29838 multiletter control sequences out of 15000+600000
+ 51009 words of font info for 81 fonts, out of 8000000 for 9000
  1354 hyphenation exceptions out of 8191
- 64i,8n,70p,9092b,1535s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,8n,70p,9092b,1561s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on CL-Hausarbeit.pdf (19 pages).
+Output written on CL-Hausarbeit.pdf (21 pages).

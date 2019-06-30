@@ -25,6 +25,18 @@ listof=totoc				% Abb.- und Tab.verzeichnis im Inhalt
 \usepackage{colortbl}
 \usepackage{booktabs}
 \usepackage{listings}
+\usepackage{verbatim}
+
+\lstset{
+  frame=l,
+  basicstyle=\ttfamily,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{green}\ttfamily,
+  stringstyle=\color{mauve},
+  texcl=false 
+}
 
 %% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
 
@@ -33,6 +45,8 @@ listof=totoc				% Abb.- und Tab.verzeichnis im Inhalt
 \usepackage{color}
 \usepackage{microtype} 	% visual enhancement randausgleich
 \usepackage{float} 			% ermöglicht den H param bei Bilder 
+					
+					
 												% für Plazierungen an der Position
 
 \usepackage{rotating} % Text drehen

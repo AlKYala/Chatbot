@@ -1,0 +1,30 @@
+\chapter{Probleme}
+\label{sec:Probleme}
+
+
+\section{Zwei-Query Problem}
+\label{Section: Zwei-Query Problem}
+
+\section{Probleme mit der GUI}
+\label{sec: Probleme mit der GUI}
+
+Bei dem Testen der GUI fallen einige Probleme auf: 
+
+\begin{enumerate}
+\item{Fehlender Support von PostgreSQL-Server für Mac und Linux}
+\item{Server mit PostgreSQL-Unterstüzung vs. Server ohne PostgreSQL-Unterstüzung}
+\end{enumerate}
+
+Das Testen der GUI erfolgte durch das Hosten auf Localhost (127.0.0.1) der durch ChatScript bereitgestellten Dateien im Ordner 'SERVER BATCH FILES' \citep{chatscript2019}. Während das aufsetzen eines Servers auf Windows mit wenig Problemen verbunden war, fiel schnell auf, dass einige unvorhergesehene Probleme auftraten. 
+
+\subsection{Fehlender Support von PostgreSQL-Server für Mac und Linux}
+\label{sec:Fehlender Support von PostgreSQL-Server für Mac und Linux}
+
+In der Dokumentation für ChatScript wird aufgelistet, wie ein Server ohne Postgres-Unterstützung auf Windows, Mac und Linux-Distributionen aufzusetzen ist. Für Windows wird eine .bat Datei 'LocalPgServer.bat' beigeliefert wird, sodass das aufsetzen eines Servers auf Windows keine Probleme macht. Im Gegensatz dazu wird nichts über Server mit Postgres-Support für Linux oder Mac in der Dokumentation aufgelistet. Nach mehreren erfolglosen Versuchen wurde im Forum für chatbots nachgefragt, wobei diese Antwort unbeantwortet blieb. 
+
+\subsection{Server mit PostgreSQL-Unterstüzung vs. Server ohne PostgreSQL-Unterstüzung}
+\label{sec: Server mit PostgreSQL-Unterstüzung vs. Server ohne PostgreSQL-Unterstüzung}
+
+Ein weiteres Problem bei dem Test der GUI war, dass der Bot verschiedene Verhaltensweisen je nach .bat-Datei aufweist. So entspricht der Programmablauf des Bots dem der Konsolenausgabe, wenn ein Server ohne Postgres-Support, z.B. durch LocalServer.bat, eingerichtet wird. Hier verhält sich der Bot in den Zustandsübergängen identisch zu der Konsolenausgabe, mit dem Unterschied, dass der Nutzer die erste Eingabe machen muss bei Nutzung der GUI/des Webinterfaces. Das bedeutet, dass bis zum Zeitpunkt der Datenbankabfrage in dbsearch.top keine Probleme auftreten. Probleme treten in diesem Ansatz verständlicherweise erst dann auf, wenn eine Datenbankabfrage ausgeführt werden muss, da dieser Ansatz keine Unterstützung für Postgres liefert. 
+Im Gegensatz dazu gab es in vieler Hinsicht Probleme mit der Einrichtung eines Servers mit Postgres-Unterstüzung. Bei einigen Anläufen startete der Bot gar nicht, im besten Fall wird ~dbsearch.response erreicht jedoch von dort aus erreicht der Bot keine weitere Regel, sondern iteriert weitergehend auf ~dbsearch.response. In vielen Versuchen erwiesen sich Übergänge in Regeln mit ^reuse () als problematisch. Bei Aufsetzen des Servers mit LocalPgServer.bat, ist es vorgekommen, dass einige der vorgesehenen Regelübergänge per reuse nicht aktiviert wurden. 
+Da Probleme mit LocalPgServer.bat nicht in der Dokumentation von ChatScript behandelt werden und der Macher und Entwickler von ChatScript, Bruce Wilcox, nicht auf Nachfragen mit dem Hosten eines Servers mit Postgres-Unterstützung antwortet, konnten alle Probleme mit dem Server mit Postgres-Unterstützung zeitnah nicht gelöst werden. Es liegt die Vermutung nahe, dass das Hosten eines Servers mit Postgres-Unterstützung dazu führt, dass eine weitere Datenbank über Postgres seitens des Servers ohne Einfluss von Entwickler erstellt wird, was zu allerlei Konflikten führt. Aufgrund Zeitmangels, mangelnder Dokumentation und fehlender Einsicht in die Binärdateien bzw. Konfiguration ist dieses Problem bis dato nicht gelöst. Die Fehlerquelle konnte nicht ausfindig gemacht werden und es ist ein Rätsel, warum auch nicht-Postgres-Abläufe sich bei dem Server mit Postgres-Unterstützung anders verhalten als ohne Postgres-Unterstützung. 
