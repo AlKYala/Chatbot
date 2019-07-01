@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  30 JUN 2019 12:26
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  1 JUL 2019 14:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2058,13 +2058,18 @@ chapter 4.
  (./INHALT/HAUPT/Probleme.tex
 chapter 5.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 20.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 30.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 20.
+(Font)              scaled to size 10.79993pt on input line 30.
+[15
+
+
+
+]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.29 ...en erwiesen sich Übergänge in Regeln mit ^
+l.39 ...en erwiesen sich Übergänge in Regeln mit ^
                                                   reuse () als problematisch...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2094,7 +2099,7 @@ Missing character: There is no ä in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 Missing character: There is no ü in font zptmcm7m!
 
-Overfull \hbox (1341.8356pt too wide) in paragraph at lines 28--232
+Overfull \hbox (1341.8356pt too wide) in paragraph at lines 38--232
 \T1/phv/m/n/10.95 Über-gän-ge in Re-geln mit $[]\OML/ztmcm/m/it/10.95 euse\OT1/
 ztmcm/m/n/10.95 ()\OML/ztmcm/m/it/10.95 alsproblematisch:BeiAufsetzendesServers
 mitLocalPgServer:bat; istesvorgekommen; dasseinigedervorgesehenenRegelbergngepe
@@ -2105,7 +2110,7 @@ x; nichtaufNachfragenmitdemHosteneinesServersmitPostgres \OMS/ztmcm/m/n/10.95 ^
  []
 
 
-Overfull \hbox (356.39633pt too wide) in paragraph at lines 28--232
+Overfull \hbox (356.39633pt too wide) in paragraph at lines 38--232
 \OML/ztmcm/m/it/10.95 Untersttzungantwortet; konntenalleProblememitdemServermit
 Postgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95 Untersttzungzeitnahnich
 tgelstwerden:EsliegtdieVermutungnahe; dassdasHosteneinesServersmitPostgres \OMS
@@ -2113,7 +2118,7 @@ tgelstwerden:EsliegtdieVermutungnahe; dassdasHosteneinesServersmitPostgres \OMS
  []
 
 
-Overfull \hbox (1268.3137pt too wide) in paragraph at lines 28--232
+Overfull \hbox (1268.3137pt too wide) in paragraph at lines 38--232
 \OML/ztmcm/m/it/10.95 Untersttzungdazufhrt; dasseineweitereDatenbankberPostgres
 seitensdesServersohneEinflussvonEntwicklererstelltwird; waszuallerleiKonflikten
 fhrt:AufgrundZeitmangels; mangelnderDokumentationundfehlenderEinsichtindieBinrd
@@ -2123,18 +2128,14 @@ ichtausfindiggemachtwerdenundesisteinRtsel; warumauchnicht \OMS/ztmcm/m/n/10.95
  []
 
 
-Overfull \hbox (51.13579pt too wide) in paragraph at lines 28--232
+Overfull \hbox (51.13579pt too wide) in paragraph at lines 38--232
 \OML/ztmcm/m/it/10.95 Postgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95 A
 blufesichbeidemServermitPostgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm/m/it/10.95
  UntersttzungandersverhaltenalsohnePostgres \OMS/ztmcm/m/n/10.95 ^^@ \OML/ztmcm
 /m/it/10.95 Untersttzung:$ 
  []
 
-[15
 
-
-
-]
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
@@ -2172,8 +2173,11 @@ LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 
 ]
 (./CL-Hausarbeit.aux (./INHALT/Einleitung.aux) (./INHALT/HAUPT/Ali.aux)
-(./INHALT/HAUPT/Julia.aux) (./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux)) 
-) 
+(./INHALT/HAUPT/Julia.aux) (./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  26362 strings out of 492909
  493616 string characters out of 6136299
