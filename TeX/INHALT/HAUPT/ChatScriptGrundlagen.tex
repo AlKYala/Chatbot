@@ -1,0 +1,233 @@
+\chapter{ChatScript: Grundlagen}
+\label{sec:ChatScript: Grundlagen}
+
+Bei ChatScript handelt es sich um ein Framework, der es Entwicklern erlaubt, regelbasierte Chatbots zu entwickeln. Es handelt sich hierbei um "Natural Language tool" mit eigenem Interpreter, welcher Code in C++ übersezt. 
+
+
+\section{Regeln}
+\label{sec:ChatScript: Regeln}
+
+Regeln sind ein elementarer Bestandteil in ChatScript. In diesen Regeln wird unter Anderem Nutzereingaben analysiert, Antworten des Bots festgelegt, Datenbankabfragen ausgeführt und der Gesprächsablauf gesteuert.  
+
+In Augusta finden sich Regeln in verschiedenen Formen wieder. Diese sind: 
+
+\begin{itemize}
+\item t: für Ausgaben des Chatbots, ohne folgende Antwort 
+\item u: für Ausgaben in Form von Fragen, das beduetet, dass auf Regeln mit u: eine Antwort des Nutzers folgen muss 
+\item a:, b:, c: etc. für Antworten des Nutzers. Auf diese Regeln können Pattern-Matching-Ansätze angewandt werden, um Teile der Eingabe ggf. zu extrahieren.
+\end{itemize}
+
+Topics haben, auch wenn optional, meist einen Bezeichner, eine Bedingung zur Ausführung und es lassen sich dabei Variablen zuweisen. Ein abstraktes Beispiel:
+
+\begin{lstlisting}[caption={Syntax für Regeln}]
+t: BEZEICHNER (KONDITION) \$meineVariable=Wert Ausgabe des Bots
+\end{lstlisting}
+
+Im folgenden einige Beispiele für Regeln:
+
+\begin{lstlisting}[caption={Beispiel für t:}]
+t:  ( %input<%userfirstline )
+    ^keep()
+    [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
+\end{lstlisting}
+
+In dieser Regel wird der Nutzer begrüßt und im Folgenden der Gesprächsverlauf zur Regel GREET weitergeleitet.
+
+\begin{lstlisting}[caption={Beispiel für Gesprächsablauf mit Antworten u:, a: und b:}]
+ u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
+
+		a: ( ~positiv ) \$introyes = 1a
+	# DATENBANK
+	    if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234))
+	        {[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
+	    } else {dbinit failed - \$$db_error  ^reuse( FIRSTQ ) }
+	a: ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
+		b: ( ~negativ )  \$introyes = 1a if (^dbinit(dbname = postgres port = 5432 user = postgres password = 1234 )) {Schön zu hören. ^reuse( FIRSTQ )}
+                                      else {dbinit failed - \$$db_error ^reuse(FIRSTQ)}
+	    b: ( ~positiv ) \$enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
+\end{lstlisting}
+
+In diesem Abschnitt fragt der Bot mit zufällig ausgewählter Frage, ob der Kunde etwas kaufen möchte. Falls die Eingabe des Kunden ein Wort aus dem Konzept ~positiv enthält, wird entsprechend die Datenbank geladen und in die Regel FIRSTQ im selben Topic aktiviert. Falls die Eingabe ein Wort aus dem Konzept ~negativ enthält, so wird gefragt, ob man nicht wirklich was sucht. Je nach Antwort darauf wird eine entsprechende Regel, d.h. eines der beiden b: Regeln ausgeführt. 
+
+
+\section{Topics}
+\label{sec:ChatScript: Topics}
+
+Die Quelldateien in einem ChatScript-Programm werden auch als "`Topics"' bezeichnet und haben die Dateiendung .top. Topics können als Zusammenfassung mehrerer Regeln betrachtet werden. Es bietet sich an, Topics als Module eines Chatbots zu handhaben. So wird z.B. in diesem Projekt "`Augusta"' die Datenbankabfrage als eignenes Topic gehandhabt.
+Topics beginnen immer mit einer Tilde ("`~"') als Präfix gefolgt vom Topicnamen, meist als erste Zeile in einer .top-Datei oder vor dem Auflisten von Regeln:
+
+\begin{lstlisting}[caption={Topicbezeichner in dbsearch.top}]
+topic: ~dbsearch  [] (\$gosearch)
+\end{lstlisting}
+
+
+\section{Konzepte}
+\label{sec:ChatScript: Konzepte}
+
+Syntaktisch werden Konzepte wie Topics gehandhabt, das heißt, dass Konzepte mit ~Konzeptname referenziert werden. Ein Konzept kann als eine Menge von Synonymen verstanden werden, ähnlich zu Einträgen in einem Thesaurus. Obwohl es sich hier um Mengen handelt, stehen diese aus syntaktischer Sicht in Klammern () oder []. Ein Beispiel anhand des Konzepts "`~ciao"':
+
+\begin{lstlisting}[caption={Konzept 'ciao' aus konzepte.top}]
+concept: ~ciao [ciao tschüss "good bye" bye "daje" "eddi un merci" "äddi a merci"]
+\end{lstlisting}
+
+Anzumerken ist, dass Ausdrücke aus mehreren Wörtern, sogenannte "`multiword expressions"', in Anführungszeichen stehen müssen, da die einzelnen Bestandteile dieser sonst als einzelne Elemente betrachtet werden.
+
+
+In "`Augusta"' sind Konzepte besonders wichtig, da es sich anbietet, das Pattern-Matching von Konzepten abhängig zu machen. So wird mit Hilfe von Konzepten das Arbeiten mit der PostgreSQL-Schnittstelle gewährleistet: Für jeden möglichen Eintrag pro Spalte in der PostgreSQL-Datenbank existiert ein Konzept. Als Beispiel alle Einträge für die Spalte "`Anwendungszweck"' (zur Datenbank s. \ref{sec:DB}):  
+
+\begin{lstlisting}[caption={Konzept 'anwendungszweck' aus konzepte.top}]
+concept: ~anwendungszweck [Unterhaltung Schreibwaren EssenTrinken Essentrinken Alltag Accessoire]
+\end{lstlisting}
+
+Der Nutzer beschreibt beispielsweise in einem Satz, welchen Anwendungszweck das gesuchte Produkt erfüllen soll. Wird ein Wort aus dem Konzept gefunden, so wird dieses als solches erkannt, \textcolor[rgb]{1,0.41,0.13}{sofern vom Skript vorgesehen.} Damit wird sichergestellt, dass in den Queries nur Eigenschaften vorkommen, die in Datenbankeinträgen existieren. Sollte der Anwender nach Eigenschaften suchen, die nicht existieren, so werden diese ignoriert (zum Pattern-Matching s. \ref{sec:ChatScript: Pattern-Matching} und zur Query s. \ref{sec:SQL}). 
+
+\textcolor[rgb]{1,0.41,0.13}{Des Weiteren erlaubt es ChatScript, mehrere verschiedene Konzepte in einem Konzept zu vereinen. Ein solches Konzept ist als Vereinigung mehrerer Konzepte zu verstehen: Diese Sätze sind doppeltgemoppelt}
+
+\begin{lstlisting}[caption={Konzept 'positivkaufen' aus konzepte.top}]
+concept: ~positivkaufen [ ~yes ~zustimmung ~kaufen]
+\end{lstlisting}
+
+'~positivkaufen' enthält somit alle Wörter, die in ~yes, ~zustimmung und ~kaufen vorkommen. 
+
+\section{ChatScript: Variablen}
+\label{sec:ChatScript: Variablen}
+Variablen in Augusta kommen größtenteils in der Form \$variablenname vor. \$ vor dem Identifier bedeutet, dass diese Variable permanent \textcolor[rgb]{1,0.41,0.13}{global?} ist und über die Regel hinaus existiert. Variablen werden für gewöhnlich im Kopf einer Regel instanziiert. Bei den zugewiesenen Werten kann es sich um eine Konstante handeln oder Werte, die mit Hilfe von Pattern-Matching gefunden und aus der Antwort des Benutzers extrahiert werden. Im folgenden Beispiel wird das erste Wort der Nutzereingabe, welches sich im Konzept ~geschenkidee befindet in der Variable \$geschenkidee gespeichert. 
+
+\begin{lstlisting}[caption={Zuweisung des Wertes einer Variable }]
+a: ( _~geschenkidee ) \$anwendungszweck = ^"'nichts'" \$geschenkidee = ^"''_0'"}
+\end{lstlisting}
+
+Bereits instanziierte Variablen lassen sich einsehen mit dem Befehl \lstinline|^walkvariables|(\^outputmacro) einsehen. 
+
+Da das Zurücksetzen von Variablen nicht trivial ist, lassen sich diese mit dem Befehl \lstinline|^reset( VARIABLES )| zurücksetzen. Dieser Befehl setzt alle Variablen auf globaler Ebene zurück. Wenn man verhindern möchte, dass eine Variable zurückgesetzt wird, empfiehlt es sich diese als temporäre Variable zwischenzuspiechern, wie folgt:
+
+
+\begin{lstlisting}[caption={Zwischenspeichern einer Variable}]
+	\$_cs_bottmp = \$cs_bot
+    ^reset( VARIABLES )
+    #....
+	\$cs_bot = \$_cs_bottmp 
+\end{lstlisting}
+
+Dieser Schritt findet in ende.top statt. Dies ist nötig, um zu gewährleisten, dass sowohl Informationen wie der Name des Kunden als auch die Insatz des Bots nicht verloren gehen, wenn eine weitere Empfehlung im selben Gespräch erfolgen soll. 
+
+
+\section{Variablen als Bedingungen zur Steuerung von Programmablauf}
+\label{sec:ChatScript: Variablen als Bedingungen zur Steuerung von Programmablauf}
+
+Nativ wählt ChatScript Regeln in einem Topic zufällig aus, um durch themenbezogene zufällige Antworten natürlich zu wirken. Da Augusta, ein Chatbot zur Kaufberatung, jedoch eine lineare Konversation gewährleisten muss, wird in fast allen Regeln mit Bedingungen gearbeitet. Ein Beispiel: 
+
+\begin{lstlisting}[caption={Regelkopf von FIRSTQ in kaufabsicht.top}]
+u: FIRSTQ (\$introyes) Wir können nach etwas zum ... 
+\end{lstlisting}
+
+Die Regel FIRSTQ darf nur aktiviert werden, sofern die Variable \$introyes existiert. 
+
+Ähnlich lässt es sich auch verhindern, dass der Bot in eine Regel übergeht, indem man Variablen als Bedingungen stellt, die in keiner Regel instanziiert werden:
+
+\begin{lstlisting}[caption={Regelkopf von STARTKAUF in kaufabsicht.top}]
+t: STARTKAUF (\$enter999) ^reuse( INTRO)
+\end{lstlisting}
+
+Die Regel Startkauf ist gewöhnlich nicht betretbar für den Bot, da \$enter999 als Variable nie instanziiert wird. Selbiges gilt für alle Regeln, dessen Bedingung die Existenz einer Variable mit '\$enter...' erfordert. Diese Bedingungen dienen dazu, um ein zufälliges Springen des Bots zu verhindern. \textcolor[rgb]{1,0.41,0.13}{Stattdessen} muss manuell von einer Regel auf diese weitergeleitet werden, was mit Hilfe von Befehlen zur Steuerung des Programmablaufs erfolgt. 
+
+Alternativ, jedoch nicht so häufig, ist die Bedingung, dass ein Wort eines Konzepts zu erwähnen ist, damit eine Regel betreten wird:
+
+\begin{lstlisting}[caption={Regelkopf einer Regel in kaufabsicht.top}]
+b: (~willGeschenk) \$anwendungszweck = ^"'nichts'" Du möchtest etwas verschenken. Ich kann dir folgende Kategorien anbieten:
+\end{lstlisting}
+
+Diese Regel, sofern erreichbar, erfordert von der Nutzereingabe, dass ein Wort aus dem Konzept '~willGeschenk' erwähnt wird. Ist dies nicht der Fall, so wird auch nicht in diese Regel übergegangen.
+
+
+\section{Befehle zur Steuerung von Programmablauf}
+\label{sec:ChatScript: Befehle zur Steuerung von Programmablauf}
+
+In Augusta wurden zwei Methoden genutzt, um den Gesprächverlauf zu lenken. Dabei handelt es sich zum einen um \lstinline|^gambit(~topic)| und zum anderen um \lstinline|^reuse(~topic.rule)|. Im Laufe des Projekts hat sich \lstinline|^reuse(~topic.rule)| als praktischer herausgestellt, da man direkt in Regeln desselben Topics als auch in Regeln anderer Topics springen kann. Des Weiteren ignoriert \lstinline|^reuse| die Bedingungen der Zielregel, sodass Regeln betreten werden, unabhängig davon, ob ein Wort des geforderten Konzepts oder die geforderte Variable existiert. Sofern sich eine Regel im selben Topic befindet, muss in \lstinline|^reuse| nur die Zielregel angegeben werden:
+
+\begin{lstlisting}[caption={Regel STARTKAUF in kaufabsicht.top}]
+t: STARTKAUF (\$enter999) ^reuse( INTRO)
+\end{lstlisting}
+
+Wird die Regel 'STARTKAUF' betreten, so wird am Ende der Ausführung in die Regel 'INTRO' desselben Topics übergegangen. 
+
+\begin{lstlisting}[caption={Regel in keyexonesentence.top}]
+a: (~positiv) \$gosearch = 1c Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbsearch.WELCOME )
+\end{lstlisting}
+
+Sofern ein Wort aus dem Konzept '~positiv' aus der Nutzereingabe erkannt und ist diese Regel betretbar, so wird diese Regel ausgeführt und anschließend die Regel 'WELCOME' in dbsearch.top, einem anderen Topic, betreten.
+
+Im Verlauf der Entwicklung wurde \lstinline|^gambit| mit \lstinline|^reuse| ersetzt, da \lstinline|^reuse| eine präzisere Steuerung des Programmablaufs erlaubt. Während \lstinline|^gambit| lediglich in eine anderes Topic springt und dieses von der ersten betretbaren Regel an ausführt, lässt sich durch \lstinline|^reuse| festlegen, welche Regel zu betreten ist, ohne auf die Bedingung der Zielregel achten zu müssen.  
+
+
+\section{Pattern-Matching}
+\label{sec:ChatScript: Pattern-Matching}
+
+\textcolor[rgb]{1,0.41,0.13}{Schreiben über:}
+
+ChatScripts Interpreter bietet einen hauseigenen Pattern-Matcher zum Vergleichen von Nutzereingaben. Diese Ansätze eignen sich an erster Stelle dazu, Bedingungen für Regeln zu schreiben. Die einfachste Form, um eine Nutzereingabe abzugleichen, ist, zu überprüfen, ob Nutzereingaben ein aus Konzepten bekanntes Token enthalten. Die folgende Regel überprüft, ob die Nutzereingabe ein Wort aus dem Konzept '~positiv' enthält. Ist dies der Fall und ist die Regel erreichbar, so wird die folgende Regel ausgeführt:
+
+\begin{lstlisting}[caption={Regel in kaufabsicht.top}]
+c: ( ~positiv ) \$enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
+\end{lstlisting}
+
+Es besteht des Weiteren die Möglichkeit, eine Nutzereingabe auf mehrere Konzepte zu überprüfen: 
+
+\begin{lstlisting}[caption={Regel in kaufabsicht.top}]
+b: ( [~no ~nicht] ) \$enterEnd2 = 1b In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
+\end{lstlisting}
+
+Außerdem stellt ChatScript Mittel bereit, um Aussagen über die Reihenfolge von Wörtern in einer Nutzereingabe zu treffen. Im Folgenden wird überprüft, ob das Wort 'nicht' in derselben Nutzeringabe wie ein Wort aus dem Konzept sagen vorkommt. Dabei wird nicht eingeschränkt, an welchem Index die Wörter in der Nutzereingabe vorkommen, sodass Nutzereingaben wie 'Das will ich nicht verraten' oder 'Nicht das will ich verraten' von dieser Bedingung akzeptiert werden. 
+
+\begin{lstlisting}[caption={Regel KEINE\_VORSTELLUNG in introductions.top}]
+a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
+\end{lstlisting}
+
+Interessanter wird es, wenn Wörter aus Nutzereingaben extrahiert werden müssen. Für diesen Zweck bietet ChatScript Wildcards der Form *n. Diese erlauben es, Token an einer bestimmten Stelle zu extrahieren und ggf. in einer Variable zu speichern. 
+
+\begin{lstlisting}[caption={Regel in introductions.top}]
+a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
+	    if (\$cs_token == \$stdtoken)
+           {
+           \$cs_token = #DO_INTERJECTION_SPLITTING |
+                       #DO_SUBSTITUTE_SYSTEM | #DO_NUMBER_MERGE |
+                       #DO_PARSE
+           retry(SENTENCE)
+           }
+        \$kunde =  pos(noun '_0 proper)
+\end{lstlisting}
+
+Im Grunde wird hier das erste Wort nach 'heiße', 'bin', 'lautet' oder 'ist' genommen und nach Verarbeitung in der Variable \$kunde gespeichert. 
+
+Wildcards spielen in Augusta eine zentrale Rolle, wenn es darum geht, Kundenwünsche zu verarbeiten. In keyexonesentence.top finden sich verschiedene Muster zum Verständnis von Kundenwünschen. Dabei wird drauf geachtet, dass Wörter erwähnt werden, die in den Konzepten entsprechend vorkommen, sodass eine Query anhand der gegebenen Wörtern möglich ist: 
+
+\begin{lstlisting}[caption={Muster 1 in keyexonesentence.top}]
+    a: ( !!~positiveinteger * _~thingsandart {in} _~ausfuehrung * {_~positiveinteger} *  )
+    # a: ( < {Ich} {möchten wollen suchen} {ein eine einen} _~thingsandart * {in}  _~ausfuehrung *  {für Preis Wert} * {_~positiveinteger} * )
+        # Test, ob _0 Name oder Art ist
+        if (pattern _0~things) {\$things = ^"''_0'" zusammenfassung = ^join(\$zusammenfassung ^" Das Produkt heißt \$things.")
+        } else {\$art = ^"''_0'"  \$zusammenfassung = ^join(\$zusammenfassung ^" Dein Produkt fällt unter den Obergriff \$art.")}
+        \$ausfuehrung = ^"''_1'"
+        # Optionaler Preis
+        if ( _2 AND ^isnumber(_2) ) {\$preis = ^"''_2'" \$zusammenfassung = ^join(\$zusammenfassung ^" Es ist in \$ausfuehrung und maximal soll es \$preis Euro kosten.")
+        } else {\$zusammenfassung = ^join(\$zusammenfassung ^" Es soll in \$ausfuehrung sein und eine preisliche Obergrenze hast du nicht angegeben.")}
+        1. MUSTER
+        ^reuse( SUMMARY )
+\end{lstlisting}
+        
+In diesem Pattern wird anfangs gesagt, dass eine positive Zahl nicht zu Beginn auftauchen darf. Es dürfen beliebig viele Token kommen, bis das erste Token aus dem Konzept '~thingsandart' erwähnt wird, optionaler Weise gefolgt von einem 'in' und einem Begriff aus dem Konzept '~ausfuehrung'. Darauf dürfen dann beliebig viele weitere Token folgen. Es ist freigestellt, ob darauf noch eine positive Zahl zur angabe von Preis kommt. Dabei stehen \_0, \_1, \_2 etc. für das erste, zweite, dritte erkannte Wort auf Konzepten. Im Folgenden wird in einer if-Abfrage ermittelt, ob es sich bei dem ersten Wort um ein Token aus dem Konzept '~things' oder '~art' handelt und entsprechend eine Rückmeldung gegeben. 
+Insgesamt 11 verschiedene Pattern dieser Art kommen in keyonesentence vor, aufgrund der Tatsache, dass der Nutzer frei angeben kann, wann er Angaben zu Name des Gegenstands Art, Ausführung oder Preis macht. 
+
+
+\section{Zufällige Ausgabe}
+\label{sec:ChatScript: Zufällige Ausgabe}
+
+ChatScript erlaubt es, dass an einer Stelle mehrere Ausgaben durch den Bot möglich sind. Mögliche Ausgaben werden mit Hilfe von [] unterschieden:
+
+u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
+
+\begin{lstlisting}[caption={Regel in keyexonesentence.top}]
+u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
+\end{lstlisting}
+
+Hier wählt der Bot zufällig aus, ob 'Das ist gut', 'Das ist toll' etc. ausgegeben wird gefolgt von 'Also dann ...'.

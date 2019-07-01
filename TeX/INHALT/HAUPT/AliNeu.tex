@@ -1,10 +1,10 @@
 \chapter{ChatScript: Grundlagen}
 \label{sec:ChatScript: Grundlagen}
 
-Bei ChatScript handelt es sich um ein Framework, das es Entwicklern erlaubt, regelbasierte Chatbots zu entwickeln. Es handelt sich hierbei um ein "`Natural Language Tool"' mit eigenem Interpreter, welcher Code in C++ übersezt. 
+Bei ChatScript handelt es sich um ein Framework, der es Entwicklern erlaubt, regelbasierte Chatbots zu entwickeln. Es handelt sich hierbei um "Natural Language tool" mit eigenem Interpreter, welcher Code in C++ übersezt. 
 
 
-\section{ChatScript: Regeln}
+\section{Regeln}
 \label{sec:ChatScript: Regeln}
 
 Regeln sind ein elementarer Bestandteil in ChatScript. In diesen Regeln wird unter Anderem Nutzereingaben analysiert, Antworten des Bots festgelegt, Datenbankabfragen ausgeführt und der Gesprächsablauf gesteuert.  
@@ -31,7 +31,7 @@ t:  ( %input<%userfirstline )
     [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. ^reuse( GREET )
 \end{lstlisting}
 
-In dieser Regel wird der Nutzer begrüßt und im folgenden der Gesprächsverlauf zur Regel 'GREET' weitergeleitet.
+In dieser Regel wird der Nutzer begrüßt und im Folgenden der Gesprächsverlauf zur Regel GREET weitergeleitet.
 
 \begin{lstlisting}[caption={Beispiel für Gesprächsablauf mit Antworten u:, a: und b:}]
  u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
@@ -49,54 +49,57 @@ In dieser Regel wird der Nutzer begrüßt und im folgenden der Gesprächsverlauf
 
 In diesem Abschnitt fragt der Bot mit zufällig ausgewählter Frage, ob der Kunde etwas kaufen möchte. Falls die Eingabe des Kunden ein Wort aus dem Konzept ~positiv enthält, wird entsprechend die Datenbank geladen und in die Regel FIRSTQ im selben Topic aktiviert. Falls die Eingabe ein Wort aus dem Konzept ~negativ enthält, so wird gefragt, ob man nicht wirklich was sucht. Je nach Antwort darauf wird eine entsprechende Regel, d.h. eines der beiden b: Regeln ausgeführt. 
 
-\section{ChatScript: Topics}
+
+\section{Topics}
 \label{sec:ChatScript: Topics}
 
-Die Quelldateien in einem ChatScript-Programm werden auch als "Topics" bezeichnet und haben die Dateiendung .top. Topics können als Zusammenfassung mehrerer Regeln betrachtet werden. Es bietet sich an, Topics als Module eines Chatbots zu handhaben. So wird z.B. in diesem Projekt "Augusta" die Datenbankabfrage als eignenes Topic gehandhabt.
-Topics beginnen immer mit einer Tilde "~" als Präfix gefolgt vom Topicnamen, meist als erste Zeile in einer .top-Datei oder vor Auflisting von Regeln:
+Die Quelldateien in einem ChatScript-Programm werden auch als "`Topics"' bezeichnet und haben die Dateiendung .top. Topics können als Zusammenfassung mehrerer Regeln betrachtet werden. Es bietet sich an, Topics als Module eines Chatbots zu handhaben. So wird z.B. in diesem Projekt "`Augusta"' die Datenbankabfrage als eignenes Topic gehandhabt.
+Topics beginnen immer mit einer Tilde ("`~"') als Präfix gefolgt vom Topicnamen, meist als erste Zeile in einer .top-Datei oder vor dem Auflisten von Regeln:
 
 \begin{lstlisting}[caption={Topicbezeichner in dbsearch.top}]
 topic: ~dbsearch  [] (\$gosearch)
 \end{lstlisting}
 
-\section{ChatScript: Konzepte}
+
+\section{Konzepte}
 \label{sec:ChatScript: Konzepte}
 
-Syntaktisch werden Konzepte wie topics gehandhabt, das heißt, dass Konzepte mit ~Konzeptname referenziert werden. Ein Konzept kann als eine Menge von Synonymen verstanden werden, ähnlich zu Einträgen in einem Thesaurus. Obwohl es sich hier um Mengen handelt, stehen diese aus syntaktischer Sicht in Klammern () oder []. Ein Beispiel anhand des Konzepts "ciao":
+Syntaktisch werden Konzepte wie Topics gehandhabt, das heißt, dass Konzepte mit ~Konzeptname referenziert werden. Ein Konzept kann als eine Menge von Synonymen verstanden werden, ähnlich zu Einträgen in einem Thesaurus. Obwohl es sich hier um Mengen handelt, stehen diese aus syntaktischer Sicht in Klammern () oder []. Ein Beispiel anhand des Konzepts "`~ciao"':
 
 \begin{lstlisting}[caption={Konzept 'ciao' aus konzepte.top}]
 concept: ~ciao [ciao tschüss "good bye" bye "daje" "eddi un merci" "äddi a merci"]
 \end{lstlisting}
 
-Anzumerken ist, dass multiword expressions in Anführungszeichen stehen müssen, da einzelne Bestandteile dieser sonst als einzelne Elemente betrachtet werden.
+Anzumerken ist, dass Ausdrücke aus mehreren Wörtern, sogenannte "`multiword expressions"', in Anführungszeichen stehen müssen, da die einzelnen Bestandteile dieser sonst als einzelne Elemente betrachtet werden.
 
-Konzepte sind besonders wichtig in "Augusta", da es sich anbietet, das Pattern-Matching von Konzepten abhängig zu machen. So wird mit Hilfe von Konzepten das Arbeiten mit der PostgreSQL-Schnittstelle gewährleistet: Für jeden möglichen Eintrag pro Spalte in der PostgreSQL Datenbank existiert eine Konzept. Als Beispiel alle Einträge für die Spalte "Anwendungszweck":  
+
+In "`Augusta"' sind Konzepte besonders wichtig, da es sich anbietet, das Pattern-Matching von Konzepten abhängig zu machen. So wird mit Hilfe von Konzepten das Arbeiten mit der PostgreSQL-Schnittstelle gewährleistet: Für jeden möglichen Eintrag pro Spalte in der PostgreSQL-Datenbank existiert ein Konzept. Als Beispiel alle Einträge für die Spalte "`Anwendungszweck"' (zur Datenbank s. \ref{sec:DB}):  
 
 \begin{lstlisting}[caption={Konzept 'anwendungszweck' aus konzepte.top}]
 concept: ~anwendungszweck [Unterhaltung Schreibwaren EssenTrinken Essentrinken Alltag Accessoire]
 \end{lstlisting}
 
-Der Nutzer beschreibt beispielsweise in einem Satz, welchen Anwendungszweck das gesuchte Produkt erfüllen soll. Wird ein Wort aus dem Konzept gefunden, so wird dieser als solches Erkannt, sofern vom Skript vorgesehen. Damit wird sichergestellt, dass in den Queries nur Eigenschaften vorkommen, die in Datenbankeinträgen existieren. Sollte der Anwender nach Eigenschaften suchen, die nicht existieren, so werden diese ignoriert (Siehe: Pattern-Matching, Query). 
+Der Nutzer beschreibt beispielsweise in einem Satz, welchen Anwendungszweck das gesuchte Produkt erfüllen soll. Wird ein Wort aus dem Konzept gefunden, so wird dieses als solches erkannt, \textcolor[rgb]{1,0.41,0.13}{sofern vom Skript vorgesehen.} Damit wird sichergestellt, dass in den Queries nur Eigenschaften vorkommen, die in Datenbankeinträgen existieren. Sollte der Anwender nach Eigenschaften suchen, die nicht existieren, so werden diese ignoriert (zum Pattern-Matching s. \ref{sec:ChatScript: Pattern-Matching} und zur Query s. \ref{sec:SQL}). 
 
-Des Weiteren erlaubt es ChatScript, mehrere Konzepte in einem Konzept zu vereinen. Ein solches Konzept ist als Vereinigung mehrerer Konzepte zu verstehen:
+\textcolor[rgb]{1,0.41,0.13}{Des Weiteren erlaubt es ChatScript, mehrere verschiedene Konzepte in einem Konzept zu vereinen. Ein solches Konzept ist als Vereinigung mehrerer Konzepte zu verstehen: Diese Sätze sind doppeltgemoppelt}
 
 \begin{lstlisting}[caption={Konzept 'positivkaufen' aus konzepte.top}]
 concept: ~positivkaufen [ ~yes ~zustimmung ~kaufen]
 \end{lstlisting}
 
-'Positivkaufen' enthält somit alle Wörter, die in ~yes, ~zustimmung und ~kaufen vorkommen. 
+'~positivkaufen' enthält somit alle Wörter, die in ~yes, ~zustimmung und ~kaufen vorkommen. 
 
 \section{ChatScript: Variablen}
 \label{sec:ChatScript: Variablen}
-Variablen in Augusta kommen größenteils in der Form \$variablenname vor. \$ vor dem Identifier bedeutet, dass diese Variable permanent ist und über Regeln hinaus gespeichert wird. Variablen werden für gewöhnlich im Kopf einer Regel instanziiert. Bei den zugewiesenen Werten kann es sich um Konstante handeln oder Werte die mit Hilfe von Pattern-Matching. Im folgenden Beispiel wird das erste Wort der Nutzereingabe, welches sich im Konzept ~geschenkidee befindet in der Variable \$geschenkidee gespeichert. 
+Variablen in Augusta kommen größtenteils in der Form \$variablenname vor. \$ vor dem Identifier bedeutet, dass diese Variable permanent \textcolor[rgb]{1,0.41,0.13}{global?} ist und über die Regel hinaus existiert. Variablen werden für gewöhnlich im Kopf einer Regel instanziiert. Bei den zugewiesenen Werten kann es sich um eine Konstante handeln oder Werte, die mit Hilfe von Pattern-Matching gefunden und aus der Antwort des Benutzers extrahiert werden. Im folgenden Beispiel wird das erste Wort der Nutzereingabe, welches sich im Konzept ~geschenkidee befindet in der Variable \$geschenkidee gespeichert. 
 
 \begin{lstlisting}[caption={Zuweisung des Wertes einer Variable }]
 a: ( _~geschenkidee ) \$anwendungszweck = ^"'nichts'" \$geschenkidee = ^"''_0'"}
 \end{lstlisting}
 
-Bereits instanziierte Variablen lassen sich einsehen mit dem Befehl ^walkvariables(^outputmacro). 
+Bereits instanziierte Variablen lassen sich einsehen mit dem Befehl \lstinline|^walkvariables|(\^outputmacro) einsehen. 
 
-Da das zurücksetzen von Variablen nicht trivial ist, lassen sich diese mit dem Befehl ^reset( VARIABLES ) zurücksetzen. Dieser Befehl setzt alle Variablen auf globaler Ebene zurücksetzen. Wenn man verhindern will, dass eine Variable zurückgesetzt wird, empfiehlt es sich diese als temporäre Variable zwischenzuspiechern, wie folgt:
+Da das Zurücksetzen von Variablen nicht trivial ist, lassen sich diese mit dem Befehl \lstinline|^reset( VARIABLES )| zurücksetzen. Dieser Befehl setzt alle Variablen auf globaler Ebene zurück. Wenn man verhindern möchte, dass eine Variable zurückgesetzt wird, empfiehlt es sich diese als temporäre Variable zwischenzuspiechern, wie folgt:
 
 
 \begin{lstlisting}[caption={Zwischenspeichern einer Variable}]
@@ -106,9 +109,10 @@ Da das zurücksetzen von Variablen nicht trivial ist, lassen sich diese mit dem 
 	\$cs_bot = \$_cs_bottmp 
 \end{lstlisting}
 
-Dieser Schritt findet in ende.top statt. Dies ist nötig, um zu gewährleisten, dass Informationen wie der Name des Kunden als auch die Insatz des Bots nicht verloren geht, wenn eine weitere Empfehlung im selben Gespräch erfolgen soll. 
+Dieser Schritt findet in ende.top statt. Dies ist nötig, um zu gewährleisten, dass sowohl Informationen wie der Name des Kunden als auch die Insatz des Bots nicht verloren gehen, wenn eine weitere Empfehlung im selben Gespräch erfolgen soll. 
 
-\section{ChatScript: Variablen als Bedingungen zur Steuerung von Programmablauf}
+
+\section{Variablen als Bedingungen zur Steuerung von Programmablauf}
 \label{sec:ChatScript: Variablen als Bedingungen zur Steuerung von Programmablauf}
 
 Nativ wählt ChatScript Regeln in einem Topic zufällig aus, um durch themenbezogene zufällige Antworten natürlich zu wirken. Da Augusta, ein Chatbot zur Kaufberatung, jedoch eine lineare Konversation gewährleisten muss, wird in fast allen Regeln mit Bedingungen gearbeitet. Ein Beispiel: 
@@ -125,20 +129,21 @@ Die Regel FIRSTQ darf nur aktiviert werden, sofern die Variable \$introyes exist
 t: STARTKAUF (\$enter999) ^reuse( INTRO)
 \end{lstlisting}
 
-Die Regel Startkauf ist gewöhnlich nicht betretbar für den Bot, da \$enter999 als Variable nie instanziiert wird. Selbiges gilt für alle Regeln, dessen Bedingung die Existenz einer Variable mit '\$enter...' erfordert. Diese Bedingungen dienen dazu, um ein zufälliges Springen des Bots zu verhindern. Stattdessen muss manuell von einer Regel auf diese weitergeleitet werden, was mit Hilfe von Befehlen zur Steuerung des Promgrammablaufs erfolgt. 
+Die Regel Startkauf ist gewöhnlich nicht betretbar für den Bot, da \$enter999 als Variable nie instanziiert wird. Selbiges gilt für alle Regeln, dessen Bedingung die Existenz einer Variable mit '\$enter...' erfordert. Diese Bedingungen dienen dazu, um ein zufälliges Springen des Bots zu verhindern. \textcolor[rgb]{1,0.41,0.13}{Stattdessen} muss manuell von einer Regel auf diese weitergeleitet werden, was mit Hilfe von Befehlen zur Steuerung des Programmablaufs erfolgt. 
 
-Alternativ, jedoch nicht so häufig ist die Bedingung, dass ein Wort eines Konzepts zu erwähnen ist, damit eine Regel betreten wird:
+Alternativ, jedoch nicht so häufig, ist die Bedingung, dass ein Wort eines Konzepts zu erwähnen ist, damit eine Regel betreten wird:
 
 \begin{lstlisting}[caption={Regelkopf einer Regel in kaufabsicht.top}]
 b: (~willGeschenk) \$anwendungszweck = ^"'nichts'" Du möchtest etwas verschenken. Ich kann dir folgende Kategorien anbieten:
 \end{lstlisting}
 
-Diese Regel, sofern erreichbar, erfordert von der Nutzereingabe, dass ein Wort aus dem Konzept 'willGeschenk' erwähnt wird. Ist dies nicht der Fall, so wird auch nicht in diese Regel übergegangen.
+Diese Regel, sofern erreichbar, erfordert von der Nutzereingabe, dass ein Wort aus dem Konzept '~willGeschenk' erwähnt wird. Ist dies nicht der Fall, so wird auch nicht in diese Regel übergegangen.
 
-\section{ChatScript: Befehle zur Steuerung von Programmablauf}
+
+\section{Befehle zur Steuerung von Programmablauf}
 \label{sec:ChatScript: Befehle zur Steuerung von Programmablauf}
 
-In Augusta wurden zwei Methoden genutzt, um den Gesprächverlauf zu lenken. Dabei handelt es sich zum einen um ^gambit(~topic) und zum anderen um ^reuse(~topic.rule). Im Laufe des Projekts hat sich ^reuse(~topic.rule) als praktischer herausgestellt, da man direkt in Regeln desselben Topics als auch in Regeln anderer Topics springen kann. Des Weiteren ignoriert ^reuse die Bedingungen der Zielregel, sodass Regeln betreten werden, unabhängig davon, ob ein Wort des geforderten Konzepts oder die geforderte Variable existiert. Sofern sich eine Regel im selben Topic befindet, muss in ^reuse nur die Zielregel angegeben werden:
+In Augusta wurden zwei Methoden genutzt, um den Gesprächverlauf zu lenken. Dabei handelt es sich zum einen um \lstinline|^gambit(~topic)| und zum anderen um \lstinline|^reuse(~topic.rule)|. Im Laufe des Projekts hat sich \lstinline|^reuse(~topic.rule)| als praktischer herausgestellt, da man direkt in Regeln desselben Topics als auch in Regeln anderer Topics springen kann. Des Weiteren ignoriert \lstinline|^reuse| die Bedingungen der Zielregel, sodass Regeln betreten werden, unabhängig davon, ob ein Wort des geforderten Konzepts oder die geforderte Variable existiert. Sofern sich eine Regel im selben Topic befindet, muss in \lstinline|^reuse| nur die Zielregel angegeben werden:
 
 \begin{lstlisting}[caption={Regel STARTKAUF in kaufabsicht.top}]
 t: STARTKAUF (\$enter999) ^reuse( INTRO)
@@ -152,14 +157,15 @@ a: (~positiv) \$gosearch = 1c Alles klar! Ich suche mal im Shop. d3 ^reuse( ~dbs
 
 Sofern ein Wort aus dem Konzept '~positiv' aus der Nutzereingabe erkannt und ist diese Regel betretbar, so wird diese Regel ausgeführt und anschließend die Regel 'WELCOME' in dbsearch.top, einem anderen Topic, betreten.
 
-Im Verlauf der Entwicklung wurde ^gambit mit ^reuse ersetzt, da ^reuse eine Präzisere Steuerung des Programmablaufs erlaubt. Während ^gambit lediglich in eine anderes topic springt und diesen von der ersten betretbaren Regel ausführt, lässt sich durch ^reuse präzisieren, welche Regel zu betreten ist, ohne auf die Bedingung der Zielregel achten zu müssen.  
+Im Verlauf der Entwicklung wurde \lstinline|^gambit| mit \lstinline|^reuse| ersetzt, da \lstinline|^reuse| eine präzisere Steuerung des Programmablaufs erlaubt. Während \lstinline|^gambit| lediglich in eine anderes Topic springt und dieses von der ersten betretbaren Regel an ausführt, lässt sich durch \lstinline|^reuse| festlegen, welche Regel zu betreten ist, ohne auf die Bedingung der Zielregel achten zu müssen.  
 
-\section{ChatScript: Pattern-Matching}
+
+\section{Pattern-Matching}
 \label{sec:ChatScript: Pattern-Matching}
 
-Schreiben über:
+\textcolor[rgb]{1,0.41,0.13}{Schreiben über:}
 
-ChatScripts Interpreter bietet einen Hauseigenen Pattern-Matcher zum Vergleichen von Nutzereingaben. Diese Ansätze eignen sich an erster Stelle dazu, Bedingungen für Regeln zu schreiben. Die einfachste Form, um eine Nutzereingabe abzugleichen, ist zu überprüfen, ob Nutzereingaben ein aus Konzepten bekanntes Token enthalten. Die folgende Regel überprüft, ob die Nutzereingabe ein Wort aus dem Konzept ~positiv enthält. Ist dies der Fall und ist die Regel erreichbar, so wird die folgende Regel ausgeführt:
+ChatScripts Interpreter bietet einen hauseigenen Pattern-Matcher zum Vergleichen von Nutzereingaben. Diese Ansätze eignen sich an erster Stelle dazu, Bedingungen für Regeln zu schreiben. Die einfachste Form, um eine Nutzereingabe abzugleichen, ist, zu überprüfen, ob Nutzereingaben ein aus Konzepten bekanntes Token enthalten. Die folgende Regel überprüft, ob die Nutzereingabe ein Wort aus dem Konzept '~positiv' enthält. Ist dies der Fall und ist die Regel erreichbar, so wird die folgende Regel ausgeführt:
 
 \begin{lstlisting}[caption={Regel in kaufabsicht.top}]
 c: ( ~positiv ) \$enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
@@ -173,7 +179,7 @@ b: ( [~no ~nicht] ) \$enterEnd2 = 1b In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
 
 Außerdem stellt ChatScript Mittel bereit, um Aussagen über die Reihenfolge von Wörtern in einer Nutzereingabe zu treffen. Im Folgenden wird überprüft, ob das Wort 'nicht' in derselben Nutzeringabe wie ein Wort aus dem Konzept sagen vorkommt. Dabei wird nicht eingeschränkt, an welchem Index die Wörter in der Nutzereingabe vorkommen, sodass Nutzereingaben wie 'Das will ich nicht verraten' oder 'Nicht das will ich verraten' von dieser Bedingung akzeptiert werden. 
 
-\begin{lstlisting}[caption={Regel KEINE_VORSTELLUNG in introductions.top}]
+\begin{lstlisting}[caption={Regel KEINE\_VORSTELLUNG in introductions.top}]
 a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
 \end{lstlisting}
 
@@ -191,9 +197,9 @@ a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
         \$kunde =  pos(noun '_0 proper)
 \end{lstlisting}
 
-Im Grunde wird hier das erste Wort nach 'heiße', 'bin', 'lautet' oder 'ist' genommen und nach Verarbeitung in der Variable kunde gespeichert. 
+Im Grunde wird hier das erste Wort nach 'heiße', 'bin', 'lautet' oder 'ist' genommen und nach Verarbeitung in der Variable \$kunde gespeichert. 
 
-Wildcards spielen in Augusta eine Zentrale Rolle, wenn es darum, geht, Kundenwünsche zu verarbeiten. In keyexonesentence.top finden sich verschiedene Muster zum Verständnis von Kundenwünschen. Dabei wird drauf geachtet, dass Wörter erwähnt werden, die in den Konzepten entsprechend vorkommen, sodass eine Query anhand der gegebenen Wörtern möglich ist: 
+Wildcards spielen in Augusta eine zentrale Rolle, wenn es darum geht, Kundenwünsche zu verarbeiten. In keyexonesentence.top finden sich verschiedene Muster zum Verständnis von Kundenwünschen. Dabei wird drauf geachtet, dass Wörter erwähnt werden, die in den Konzepten entsprechend vorkommen, sodass eine Query anhand der gegebenen Wörtern möglich ist: 
 
 \begin{lstlisting}[caption={Muster 1 in keyexonesentence.top}]
     a: ( !!~positiveinteger * _~thingsandart {in} _~ausfuehrung * {_~positiveinteger} *  )
@@ -209,10 +215,11 @@ Wildcards spielen in Augusta eine Zentrale Rolle, wenn es darum, geht, Kundenwü
         ^reuse( SUMMARY )
 \end{lstlisting}
         
-In diesem Pattern anfangs wird gesagt, dass eine positive Zahl nicht zu Beginn auftauchen darf. Es dürfen beliebig viele Token kommen, bis der erste Token aus dem Konzept ~thingsandart erwähnt wird, optionaler Weise gefolgt von einem 'in' und einem Begriff aus dem Konzept ~ausfuehrung. Darauf dürfen dann beliebig viele weitere Token folgen. Es ist freigestellt, ob darauf noch eine positive Zahl zur angabe von Preis kommt. Dabei stehen _0, _1, _2 etc. für das erste, zweite, dritte erkannte Wort auf Konzepten. Im folgenden wird in einer if-Abfrage ermittelt, ob es sich bei dem ersten Wort um ein Token aus dem Konzept ~things oder ~art handelt und entsprechend eine Rückmeldung gegeben. 
-Insgesamt 11 verschiedene Pattern dieser Art finden sich in keyonesentence vor, aufgrund der Tatsache, dass der Nutzer frei angeben kann, wann er Angaben zu Name des Gegenstands Art, Ausführung oder Preis macht. 
+In diesem Pattern wird anfangs gesagt, dass eine positive Zahl nicht zu Beginn auftauchen darf. Es dürfen beliebig viele Token kommen, bis das erste Token aus dem Konzept '~thingsandart' erwähnt wird, optionaler Weise gefolgt von einem 'in' und einem Begriff aus dem Konzept '~ausfuehrung'. Darauf dürfen dann beliebig viele weitere Token folgen. Es ist freigestellt, ob darauf noch eine positive Zahl zur angabe von Preis kommt. Dabei stehen \_0, \_1, \_2 etc. für das erste, zweite, dritte erkannte Wort auf Konzepten. Im Folgenden wird in einer if-Abfrage ermittelt, ob es sich bei dem ersten Wort um ein Token aus dem Konzept '~things' oder '~art' handelt und entsprechend eine Rückmeldung gegeben. 
+Insgesamt 11 verschiedene Pattern dieser Art kommen in keyonesentence vor, aufgrund der Tatsache, dass der Nutzer frei angeben kann, wann er Angaben zu Name des Gegenstands Art, Ausführung oder Preis macht. 
 
-\section{ChatScript: Zufällige Ausgabe}
+
+\section{Zufällige Ausgabe}
 \label{sec:ChatScript: Zufällige Ausgabe}
 
 ChatScript erlaubt es, dass an einer Stelle mehrere Ausgaben durch den Bot möglich sind. Mögliche Ausgaben werden mit Hilfe von [] unterschieden:
@@ -223,7 +230,9 @@ u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann
 u: INTRO (\$enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen DEBUG?
 \end{lstlisting}
 
-Hier wählt der Bot zufällig aus, ob 'Das ist gut', 'Das ist toll' etc. ausgegeben wird gefolgt von 'Also dann ...'. 
+Hier wählt der Bot zufällig aus, ob 'Das ist gut', 'Das ist toll' etc. ausgegeben wird gefolgt von 'Also dann ...'.
+
+
 
 \chapter{Augusta: Programmlogik}
 \label{sec:Augusta: Programmlogik}
@@ -232,13 +241,13 @@ Da ChatBot Augusta im Grunde ein Deterministischer Automat ist, bietet es sich a
 Folgendes gilt:
 
 \begin{enumerate}
-\item[A ist die erste Regel die aufgerufen wird in introductions.top]
-\item[A.2 ist introductions.vorstellung]
-\item[A.3 ist introductions.KEINE_VORSTELLUNG]
-\item[B.1 ist kaufabsicht.Startkauf]
+\item{A ist die erste Regel die aufgerufen wird in introductions.top} % Klammern geändert: Jetzt {} statt [] da das sonst am linken Rand abgeschnitten ist
+\item{A.2 ist introductions.vorstellung}
+\item{A.3 ist introductions.KEINE\_VORSTELLUNG}
+\item{B.1 ist kaufabsicht.Startkauf}
 \end{enumerate}
 
-Für introductions gilt: Anfangs grüßt der Bot den Nutzer, geht in Regel 'greet' über und fragt den Nutzer ob dieser seinen Namen verraten will. Je nachdem, ob aus der Nutzereingabe ein Name erkannt wird (siehe Abschnitt: Pattern-Matching) wird in die Regel 'vorstellung' bzw. 'keine_vorstellung' übergegangen. Daraufhin wird die Regel 'Startkauf' des Topics kaufabsicht betreten. 
+Für introductions gilt: Anfangs grüßt der Bot den Nutzer, geht in Regel 'GREET' über und fragt den Nutzer ob dieser seinen Namen verraten will. Je nachdem, ob aus der Nutzereingabe ein Name erkannt wird (siehe Abschnitt: Pattern-Matching) wird in die Regel 'VORSTELLUNG' bzw. 'KEINE\_VORSTELLUNG' übergegangen. Daraufhin wird die Regel 'STARTKAUF' des Topics kaufabsicht betreten. 
 
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
@@ -284,10 +293,10 @@ Folgendes gilt:
 \item{Ansonsten sind die Zustände nach ihren Regeln benannt}
 \end{enumerate}
 
-Von der Regel 'Startkauf' geht der Bot über in INTRO und fragt, ob ein Kaufwunsch besteht. Dies wird so lange erfragt, bis der Bot die Antwort des Nutzers verstanden hat. 
-Ist dies nicht der Fall, erfolgt erneutige Nachfrage. Bestätigt der Nutzer, dass kein Kaufwunsch besteht, so wird dieser zu Regel 'ASKIFHAPPY' in Topic 'ENDE' weitergeleitet. Besteht doch ein Kaufwunsch, so wird in die Regel 'Firstq' weitergeleitet. Sollten Probleme mit der Initialisierung der Datenbank auftreten, so wird dieser Zustand so lange wiederholt, bis die Datenbank aktiviert werden kann. 
-Daraufhin wird der Nutzer gefragt, ob dieser etwas zum Schenken oder etwas nach einem Zweck sucht. Nennt der Nutzer nur, dass er ein Geschenk bzw. etwas für einen Zweck sucht, so wird ihm mit Hilfe einer Datenbankquery vorgeschlagen, welche Geschnkzwecke bzw. Anwendungszwecke zur Verfügung stehen. Der Nutzer muss einen der aufgelisteten Geschenkideen/Anwendungszwecke nennen, welche als Variable abgespeichert werden. Nennt der Nutzer stattdessen direkt, was für eine Geschenkidee oder Anwendungszweck er möchte und ist dies auch bekannt, dann muss die Absicht nicht weiter konkretisiert werden und wird abgespeichert. 
-Im folgenden betritt der Bot die Regel keyexprodukteigenschaften.startprodukteigenschaften bzw. keyexonesentence.startkauf, abhängig vom vorleigenden Ansatz (beide Ansätze im Projekt enthalten). 
+Von der Regel 'STARTKAUF' geht der Bot über in INTRO und fragt, ob ein Kaufwunsch besteht. Dies wird so lange erfragt, bis der Bot die Antwort des Nutzers verstanden hat. 
+Ist dies nicht der Fall, erfolgt erneute Nachfrage. Bestätigt der Nutzer, dass kein Kaufwunsch besteht, so wird dieser zu Regel 'ASKIFHAPPY' in Topic 'ENDE' weitergeleitet. Besteht doch ein Kaufwunsch, so wird in die Regel 'FIRSTQ' weitergeleitet. Sollten Probleme mit der Initialisierung der Datenbank auftreten, so wird dieser Zustand so lange wiederholt, bis die Datenbank aktiviert werden kann. 
+Daraufhin wird der Nutzer gefragt, ob dieser etwas zum Schenken oder nach einem Zweck sucht. Nennt der Nutzer nur, dass er ein Geschenk bzw. etwas für einen Zweck sucht, so wird ihm mit Hilfe einer Datenbankquery vorgeschlagen, welche Geschenkzwecke bzw. Anwendungszwecke zur Verfügung stehen. Der Nutzer muss einen der aufgelisteten Geschenkideen/Anwendungszwecke nennen, welche als Variable abgespeichert werden. Nennt der Nutzer stattdessen direkt, was für eine Geschenkidee oder Anwendungszweck er möchte und ist dies auch bekannt, dann muss die Absicht nicht weiter konkretisiert werden und wird abgespeichert. 
+Im folgenden betritt der Bot die Regel keyexprodukteigenschaften.startprodukteigenschaften bzw. keyexonesentence.startkauf, abhängig vom vorliegenden Ansatz (beide Ansätze im Projekt enthalten). 
 
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
@@ -349,8 +358,8 @@ Folgendes gilt:
 \end{enumerate}
 
 
-Wird der Ansatz Keyexprodukteigenschaften gewählt, so erfolgt ein Erfragen für die einzelnen Eigenschaften. In der Regel gilt: Werden in den Eingaben Stichworte erkannt, die als Eigenschaften in der Datenbank bekannt sind, so werden diese in Variablen gespeichert (siehe: Pattern-Matching) Zunächst wird gefragt, ob der Nutzer sein gewünschtes Produkt beim Produktnamen kennt. Ist dies nicht der Fall oder wird die Eingabe nicht als solches identifiziert, wird gefragt, ob der Nutzer weiß, von welcher 'Art', z.B. Kleidung, Verzehrmittel seine Idee ist. Erfolgt eine Eingabe, die im Konzept ~art bekannt ist, so wird in der entsprechenden Variable 'art' dieser Wert gespeichert. 
-Daraufhin wird gefragt, ob man was zur Ausführung, z.B. Farbe oder Sprache sagen kann. Wird eine bekannte Ausführung erkannt, so wird diese gespeichert, ansonsten wird die Eingabe ignoriert. 
+Wird der Ansatz Keyexprodukteigenschaften gewählt, so erfolgt ein Erfragen für die einzelnen Eigenschaften. In der Regel gilt: Werden in den Eingaben Stichworte erkannt, die als Eigenschaften in der Datenbank bekannt sind, so werden diese in Variablen gespeichert (siehe \ref{ChatScript: PatternMatching}) Zunächst wird gefragt, ob der Nutzer sein gewünschtes Produkt beim Produktnamen kennt. Ist dies nicht der Fall oder wird die Eingabe nicht als solches identifiziert, wird gefragt, ob der Nutzer weiß, von welcher 'Art', z.B. Kleidung, Verzehrmittel seine Idee ist. Erfolgt eine Eingabe, die im Konzept ~art bekannt ist, so wird in der entsprechenden Variable 'art' dieser Wert gespeichert. 
+Daraufhin wird gefragt, ob man was zur Ausführung, z.B. Farbe oder Sprache, sagen kann. Wird eine bekannte Ausführung erkannt, so wird diese gespeichert, ansonsten wird die Eingabe ignoriert. 
 Im Anschluss wird gefragt, welchen Preis man maximal Zahlen will. Hierbei muss eine positive Integerzahl angegeben werden als Preislimit. 
 In 'SUMMARY' wird zusammengefasst, was der Bot erkennen konnte und fragt den Nutzer, ob dies dem Nutzerwunsch entspricht. Ist dies der Fall, so betritt der Bot die Regel 'Welcome' in dbsearch, ansonsten fängt man bei 'startprodukteigenschaften' von Vorne an. 
 
@@ -410,9 +419,9 @@ Folgendes gilt:
 \item{D.1 ist dbsearch welcome}
 \end{enumerate}
 
-In Keyexonesentence kommt der im Abschnitt 'Pattern-Matching' besprochene Ansatz zur Extrahierung mehrer Informationen in einem Satz zum vorschein. 
+In Keyexonesentence kommt der im Abschnitt 'Pattern-Matching' besprochene Ansatz zur Extrahierung mehrerer Informationen in einem Satz zum Vorschein. 
 Im Grunde wird in 'QUALITY' die Nutzereingabe genommen, ermittelt, um welches der 11 Muster es sich bei der Nutzereingabe handelt und die Informationen entsprechend extrahiert. 
-In 'SUMMARY' wird zusammengefasst, was der Bot erkennen konnte und fragt den Nutzer, ob dies dem Nutzerwunsch entspricht. Ist dies der Fall, so betritt der Bot die Regel 'Welcome' in dbsearch, ansonsten fängt man bei 'startonesentence' von Vorne an. 
+In 'SUMMARY' wird zusammengefasst, was der Bot erkennen konnte und fragt den Nutzer, ob dies dem Nutzerwunsch entspricht. Ist dies der Fall, so betritt der Bot die Regel 'Welcome' in dbsearch, ansonsten fängt man bei 'STARTONESENTENCE' von Vorne an. 
 
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
@@ -454,7 +463,7 @@ Folgendes gilt:
 \item{X.A ist ENDE.ASKIFHAPPY}
 \end{enumerate}
 
-Basierend auf den ermittelten Nutzerinformationen wird nun eine Query erstellt. Dabei wird für jeden Nutzer eine Tabelle erstellt, die eine Kopie der originalen Datenbank ist. Diese wird im Schritt searchcreate erstellt. Daraufhin wird der Schritt Searchproduct betreten, in der alle Artikel, die der Beschreibung des Nutzers entsprechen. In den den folgeden drei Regeln 'PRODUCTNAME', 'PRODUCTDESCR' und 'PRODUCTPRICE' jeweils Einträge aus Name, Beschreibung und Preis der Datenbank vorgestellt. In Response wird gefragt, ob dies dem Nutzerwunsch entspricht. Ist dies Nicht der Fall, so wird in 'SEARCHAGAIN' übergegangen und erneut gesucht, wobei das bereits gefundene Produkt mit Hilfe der Eigenschaft 'queried' in der Datenbank (siehe: Erläuterungen zur Datenbank) nicht erneut gefunden werden kann. Ist der Nutzer hingegen zufrieden, so wird dieser gefragt, ob dieser noch ein Produkt suchen will, ob dieser bereits gewähltes einsehen will oder ob dieser fertig ist. Ist ersteres der Fall, so wird in die Regel 'SETNULLANDREP' im Topic 'Ende' weitergeleitet, sodass eine erneute Suche möglich ist. Ist zweiteres der Fall, so wird in der Datenbank erneut anhand der 'queried'-Eigenschaft eine Anfrage für alle Produkte aufgerufen, die akzeptiert worden sind. Will der Nutzer kein weiteres Produkt mehr suchen, so wird die Regel 'ASKIFHAPPY' in 'Ende' betreten.  
+Basierend auf den ermittelten Nutzerinformationen wird nun eine Query erstellt. Dabei wird für jeden Nutzer eine Tabelle erstellt, die eine Kopie der originalen Datenbank ist. Diese wird im Schritt searchcreate erstellt. Daraufhin wird der Schritt SEARCHPRODUCT betreten, in der alle Artikel, die der Beschreibung des Nutzers entsprechen. In den den folgenden drei Regeln 'PRODUCTNAME', 'PRODUCTDESCR' und 'PRODUCTPRICE' jeweils Einträge aus Name, Beschreibung und Preis der Datenbank vorgestellt. In Response wird gefragt, ob dies dem Nutzerwunsch entspricht. Ist dies nicht der Fall, so wird in 'SEARCHAGAIN' übergegangen und erneut gesucht, wobei das bereits gefundene Produkt mit Hilfe der Eigenschaft 'queried' in der Datenbank (siehe \ref{sec:queried}) nicht erneut gefunden werden kann. Ist der Nutzer hingegen zufrieden, so wird dieser gefragt, ob dieser noch ein Produkt suchen will, ob dieser bereits Gewähltes einsehen will oder ob dieser fertig ist. Ist ersteres der Fall, so wird in die Regel 'SETNULLANDREP' im Topic 'Ende' weitergeleitet, sodass eine erneute Suche möglich ist. Ist zweiteres der Fall, so wird in der Datenbank erneut anhand der 'queried'-Eigenschaft eine Anfrage für alle Produkte aufgerufen, die akzeptiert worden sind. Will der Nutzer kein weiteres Produkt mehr suchen, so wird die Regel 'ASKIFHAPPY' in 'Ende' betreten.  
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
@@ -573,12 +582,3 @@ Wird die Regel 'ASKIFHAPPY' in ENDE betreten, so wird dem Nutzer die Frage geste
 \fill [black] (58,-38.5) -- (57.2,-38) -- (57.2,-39);
 \end{tikzpicture}
 \end{center}
-
-
-
-
-
-
-
-
-
