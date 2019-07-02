@@ -1,19 +1,45 @@
 \chapter{Installation von Augusta}
 \label{sec:InstallationAugusta}
 
+\section{Installation}
+\label{sec:Installation}
+
+Zum Ausführen des Chatbots wird folgendes Benötigt:
+
+\begin{enumerate}
+\item[Windows als Betriebssystem]
+\item[Eine vorhandene Installation von PostgreSQL]
+\item[Optional: Eine Möglichkeit Webseiten zu hosten, z.B. auf Localhost]
+\end{enumerate}
+
+Obwohl ChatScript auch auf Mac und Linux laufen kann, existiert ein Problem bei ChatScript mit PostgreSQL-Support, dafür siehe Kapitel 'Probleme'. Sofern die GUI getestet werden will, muss dem Tester eine Möglichkeit bereit stehen, Webseiten, ggf. auf Localhost, zu hosten. Für Anmerkungen zu GUI siehe Kapitel 'Probleme'. 
+Um den Bot zu testen, muss ChatScript runtergeladen werden auf \url{https://github.com/ChatScript/ChatScript}. Die Ordner 'FIRSTTRY', 'ONESENTENCE', 'ONESENTENCEGOODBYE' und 'ONESENTENCEGUIENDE' sind alle in den Ordner 'RAWDATA' zu kopieren. Dies gilt ebenso für die Dateien 'filesmine.txt', 'filesgoodbye.txt', 'filesonesentencegui.txt' und 'filesonesentenceguiende.txt', welche zum Kompilieren ihres zugewiesenen Ansatzes benötigt werden. 
+Um ChatScript zu Starten, empfiehlt es sich, die Datei 'ChatScriptpg.exe' im Ordner 'BINARIES' auszuführen, für PostgreSQL-Support. 
+Sollte der Wunsch bestehen, die GUI zu testen, so muss die .bat-Datei 'LocalPgServer' ausgeführt werden, um den Server zum Laufen zu bringen und die Dateien index.php und ui.php sollten in das jeweilige Verzeichnis für den Server kopiert werden. 
+Für Anmerkungen, warum dies nur auf Windows erfolgt, siehe Kapitel 'Probleme'. 
 
 \section{Versionen}
 \label{Versionen}
 
-\subsection{OnesentenceGui}
-\label{sec:OnesentenceGui}
+In diesem Projekt finden sich verschiedene Ansätze für Chatbots wieder. Die Ansätze unterscheiden sich je nach Zweck verschieden stark.
 
+\subsection{FIRSTTRY}
+\label{sec:FIRSTTRY}
+
+Der Ordner 'FIRSTTRY' enthält den ursprüunglichen Ansatz der Kaufempfehlung. Dieser Ansatz zeichnet sich dadurch aus, dass bei der Ermittlung des Kundenwunschs Satz für Satz erfragt wird, welche Eigenschaften das vom Kunden gewünschte Produkt haben soll. Dieser Ansatz lässt sich mit dem Befehl ':build mine' kompilieren. Für weitere Details zur Programmlogik und Ablauf dieses Ansatzes, siehe Kapitel: 'Augusta: Programmlogik'. 
+
+\subsection{Onesentence}
+\subsection{sec:Onesentence}
+
+Der Ansatz 'Onesentence' unterscheidet sich von FIRSTTRY in der Extraktion und Analyse des Kundenwunschs. Hier wird unter erweiterter Anwendung von Pattern-Matching-Verfahren, die von ChatScript aus bereitgestellt werden, der Kundenwunsch anhand eines Satzes extrahiert und analysiert. Dies soll einen intuitiveren Ansatz darstellen, da in natürlicher Sprache oft sogenannte Kundenwünsche in einem Satz beschrieben werden, ansatt als Antworten auf Konkrete fragen. Man kann diesen Ansatz mithilfe von ':build onesentence' kompilieren. Ansonsten sind Ansätze wie Vorstellung, Query und Interaktion nach Vorschlag an FIRSTTRY angelehnt.
 
 \subsection{OnesentenceGoodbye}
 \label{sec:OnesentenceGoodbye}
 
-\subsection{KeyExProdukteigenschaften}
-\label{sec:KeyExProdukteigenschaften}
+Dieser Ansatz ist eine Modifizierung von 'Onesentence', die es dem Kunden erlaubt, zu jedem Zustand sich vom Bot zu verabschieden. Dies hat den Vorteil, dass ein 'drop'-Befehl die Tabelle, die dem Kunden zugeordnet wird, erfolgt und somit ein spätere Komplikationen auf Datenbankebene vermieden werden. Dieser Ansatz lässt sich mit ':build onesentencegoodbye' testen. 
 
-\section{Installation}
-\label{sec:Installation}
+\subsection{OnesentenceGui}
+\label{sec:OnesentenceGui}
+
+Onesentencegui ist eine weitere Modifizierung von 'Onesentence'. Dieser Ansatz ist für die GUI gedacht, die erfordert, dass der Nutzer die erste Eingabe, wie z.B. 'Hallo' tätigt. Ansonsten unterscheidet sich die Programmlogik nicht von 'Onesentence'. Dieser Ansatz kann mit ':build onsentencegui' kompiliert werden, ist aber weniger für das Testen in der Konsole und am besten für die Benutzung in der GUI geeignet. Für Anmerkungen zu GUI, siehe Kapitel 'Probleme'. 'ONESENTENCEGUIENDE' ist der Ansatz 'OnesentenceGoodbye' für die GUI, d.h. es handelt sich hier um einen Ansatz für die GUI, die es dem Kunden Erlaubt, in jedem Zustand 'Tschüss' oder Ähnliches zu sagen, um den Bot zu beenden. 
+

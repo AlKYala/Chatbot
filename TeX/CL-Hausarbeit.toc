@@ -2,24 +2,45 @@
 \thispagestyle {empty}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}% 
 \contentsline {section}{\numberline {1.1}Ziele des Projekts}{1}% 
-\contentsline {section}{\numberline {1.2}Struktur der Arbeit}{1}% 
-\contentsline {chapter}{\numberline {2}ChatScript: Grundlagen}{2}% 
-\contentsline {section}{\numberline {2.1}ChatScript: Regeln}{2}% 
-\contentsline {section}{\numberline {2.2}ChatScript: Topics}{3}% 
-\contentsline {section}{\numberline {2.3}ChatScript: Konzepte}{3}% 
-\contentsline {section}{\numberline {2.4}ChatScript: Variablen}{4}% 
-\contentsline {section}{\numberline {2.5}ChatScript: Variablen als Bedingungen zur Steuerung von Programmablauf}{4}% 
-\contentsline {section}{\numberline {2.6}ChatScript: Befehle zur Steuerung von Programmablauf}{5}% 
-\contentsline {section}{\numberline {2.7}ChatScript: Pattern-Matching}{6}% 
-\contentsline {section}{\numberline {2.8}ChatScript: Zufällige Ausgabe}{7}% 
-\contentsline {chapter}{\numberline {3}Augusta: Programmlogik}{8}% 
-\contentsline {chapter}{\numberline {4}Kapitel1j}{14}% 
-\contentsline {section}{\numberline {4.1}UnterKapitel2j}{14}% 
-\contentsline {section}{\numberline {4.2}UnterKapitel3j}{14}% 
-\contentsline {chapter}{\numberline {5}Probleme}{15}% 
-\contentsline {section}{\numberline {5.1}Zwei-Query Problem}{15}% 
-\contentsline {section}{\numberline {5.2}Probleme mit der GUI}{15}% 
-\contentsline {subsection}{\numberline {5.2.1}Fehlender Support von PostgreSQL-Server für Mac und Linux}{16}% 
-\contentsline {subsection}{\numberline {5.2.2}Server mit PostgreSQL-Unterstüzung vs. Server ohne PostgreSQL-Unterstüzung}{16}% 
-\contentsline {chapter}{\numberline {6}Fazit}{17}% 
-\contentsline {chapter}{Literaturverzeichnis}{19}% 
+\contentsline {section}{\numberline {1.2}Der Chatbot Augusta}{1}% 
+\contentsline {section}{\numberline {1.3}Struktur der Arbeit}{2}% 
+\contentsline {chapter}{\numberline {2}Installation von Augusta}{3}% 
+\contentsline {section}{\numberline {2.1}Installation}{3}% 
+\contentsline {section}{\numberline {2.2}Versionen}{3}% 
+\contentsline {subsection}{\numberline {2.2.1}FIRSTTRY}{3}% 
+\contentsline {subsection}{\numberline {2.2.2}Onesentence}{4}% 
+\contentsline {subsection}{\numberline {2.2.3}sec:Onesentence}{4}% 
+\contentsline {subsection}{\numberline {2.2.4}OnesentenceGoodbye}{4}% 
+\contentsline {subsection}{\numberline {2.2.5}OnesentenceGui}{4}% 
+\contentsline {chapter}{\numberline {3}ChatScript: Grundlagen}{5}% 
+\contentsline {section}{\numberline {3.1}Regeln}{5}% 
+\contentsline {section}{\numberline {3.2}Topics}{6}% 
+\contentsline {section}{\numberline {3.3}Konzepte}{6}% 
+\contentsline {section}{\numberline {3.4}ChatScript: Variablen}{7}% 
+\contentsline {section}{\numberline {3.5}Variablen als Bedingungen zur Steuerung von Programmablauf}{8}% 
+\contentsline {section}{\numberline {3.6}Befehle zur Steuerung von Programmablauf}{8}% 
+\contentsline {section}{\numberline {3.7}Pattern-Matching}{9}% 
+\contentsline {section}{\numberline {3.8}Zufällige Ausgabe}{11}% 
+\contentsline {chapter}{\numberline {4}Augusta: Programmlogik}{12}% 
+\contentsline {chapter}{\numberline {5}Datenbank und ihre Einbindung in den Chatbot}{18}% 
+\contentsline {section}{\numberline {5.1}Aufbau der Datenbank}{18}% 
+\contentsline {subsection}{\numberline {5.1.1}Die Relation \textit {Artikel}}{18}% 
+\contentsline {subsection}{\numberline {5.1.2}Die Relation \textit {Anwendung}}{19}% 
+\contentsline {subsection}{\numberline {5.1.3}Die Relation \textit {Geschenk}}{20}% 
+\contentsline {subsection}{\numberline {5.1.4}Die Relation \textit {PseudotabellePro}}{20}% 
+\contentsline {subsection}{\numberline {5.1.5}Die Relation \textit {mystringXXXX}}{21}% 
+\contentsline {section}{\numberline {5.2}Einbindung von PostgreSQL in ChatScript}{21}% 
+\contentsline {subsection}{\numberline {5.2.1}Die Funktionen \lstinline |^dbinit| und \lstinline |^dbclose|}{21}% 
+\contentsline {subsection}{\numberline {5.2.2}Die Funktion \lstinline |^dbexecute| und Outputmacros}{22}% 
+\contentsline {section}{\numberline {5.3}Der Gerbauch der Datenbank Uni-Shop in Augusta}{22}% 
+\contentsline {subsection}{\numberline {5.3.1}Die Eigenschaft queried}{23}% 
+\contentsline {subsection}{\numberline {5.3.2}Die Query zur Produktsuche}{24}% 
+\contentsline {subsection}{\numberline {5.3.3}Die Ausgabe der Produkteigenschaften und der Warenkorb}{25}% 
+\contentsline {subsection}{\numberline {5.3.4}Alternative Ausgabe von Anwendungsgebiet und Geschenkidee in FIRSTQ}{26}% 
+\contentsline {chapter}{\numberline {6}Probleme}{27}% 
+\contentsline {section}{\numberline {6.1}Zwei-Query Problem}{27}% 
+\contentsline {section}{\numberline {6.2}Probleme mit der GUI}{27}% 
+\contentsline {subsection}{\numberline {6.2.1}Fehlender Support von PostgreSQL-Server für Mac und Linux}{28}% 
+\contentsline {subsection}{\numberline {6.2.2}Server mit PostgreSQL-Unterstüzung vs. Server ohne PostgreSQL-Unterstüzung}{28}% 
+\contentsline {chapter}{\numberline {7}Fazit}{29}% 
+\contentsline {chapter}{Literaturverzeichnis}{31}% 
