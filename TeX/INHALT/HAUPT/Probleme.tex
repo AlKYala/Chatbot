@@ -8,8 +8,8 @@
 Ein Problem, wofür ein Workaround gefunden werden konnte, war das 'Zwei-Query-Problem'. Dieses Problem tritt im Ansatz 'Onesentence' und allen davon abgeleiteten Ansätzen auf und tritt wegen einem der folgenden Fehler auf:
 
 \begin{enumerate}
-\item[Suche auf einer vor der Nutzung existierenden Datenbank]
-\item[Fehlschlag in Queries]
+\item Suche auf einer vor der Nutzung existierenden Datenbank
+\item Fehlschlag in Queries
 \end{enumerate}  
 
 Ersteres tritt auf, wenn man mit Hilfe des Befehls ':build onesentence' o.Ä. den Bot, hier onesentence, neu kompiliert. Dies hat den Ursprung darin, dass der Bezeichner für die Datenbanken per Client mit einer Zufallszahl konkateniert wird und jeder 'Build'-Befehl dieselbe Zufallszahl generiert. Wird eine Tabelle nach Nutzung nicht gedroppt, dann tritt dieser Fehlschlag auf. Dieses Problem tritt in dieser Form nicht außerhalb des Testens auf, da es unwahrscheinlich ist, dass zwei Tabellen mit demselben Bezeichner 'zufallsgeneriert' werden, tritt dieses Problem nicht auf, wenn ein Bot unregelmäßig, d.h. durch Verabschiedung in ~ende, geschlossen wird. Man kann dieses Problem manuell durch explizite drop-Befehle außerhalb von Chatscript behandeln. Findet eine solche Verabschiedung statt, tritt dies Problem nicht auf. 

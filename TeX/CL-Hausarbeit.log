@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  2 JUL 2019 16:28
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.6.22)  3 JUL 2019 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1260,7 +1260,10 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count182
 ) (./CL-Hausarbeit.aux
-(./INHALT/Einleitung.aux) (./INHALT/HAUPT/InstallationAugusta.aux))
+(./INHALT/Einleitung.aux) (./INHALT/HAUPT/InstallationAugusta.aux)
+(./INHALT/HAUPT/ChatScriptGrundlagen.aux)
+(./INHALT/HAUPT/AugustaProgrammlogik.aux) (./INHALT/HAUPT/DBuEinbindung.aux)
+(./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux))
 \openout1 = `CL-Hausarbeit.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 193.
@@ -1378,11 +1381,40 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 231.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 231.
- (./CL-Hausarbeit.toc)
+ (./CL-Hausarbeit.toc
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 3.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 9.85492pt on input line 3.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 27.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 9.85492pt on input line 27.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 33.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 33.
+ (c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+[2])
 \tf@toc=\write4
 \openout4 = `CL-Hausarbeit.toc'.
 
- [2]
+
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[3]
 
 Package glossaries Warning: Empty glossary for \printnoidxglossary[type={main}]
 . Rerun may be required (or you may have forgotten to use commands like \gls) o
@@ -1407,18 +1439,10 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              a package that still implements the
 (scrbook)              deprecated \float@addtolist interface .
 
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.85492pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 7.
-
-Package natbib Warning: Citation `chatscript2019' on page 1 undefined on input 
-line 10.
-
 
 Overfull \hbox (2.80957pt too wide) in paragraph at lines 10--11
 \T1/phv/m/n/10.95 Vorrangiges Ziel des Pro-jekts war der Ver-such der Ent-wick-
@@ -1430,10 +1454,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
 
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 19.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 9.85492pt on input line 19.
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--20
 
@@ -1453,20 +1473,6 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
  (./INHALT/HAUPT/InstallationAugusta.tex
 chapter 2.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 16.
-(c:/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `pcr' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
 
 Overfull \hbox (8.20511pt too wide) in paragraph at lines 15--20
 \T1/pcr/m/n/10.95 https : / / github . com / ChatScript / ChatScript$\T1/phv/m/
@@ -1497,8 +1503,6 @@ File: omsphv.fd
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 22.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 5.39996pt on input line 23.
  [5
 
@@ -1509,17 +1513,6 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [6]
-
-LaTeX Warning: Reference `sec:DB' on page 7 undefined on input line 76.
-
-
-LaTeX Warning: Reference `sec:ChatScript: Pattern-Matching' on page 7 undefined
- on input line 82.
-
-
-LaTeX Warning: Reference `sec:SQL' on page 7 undefined on input line 82.
-
-
 Overfull \hbox (14.40196pt too wide) in paragraph at lines 102--103
 []\T1/phv/m/n/10.95 Da das Zu-rück-set-zen von Va-ria-blen nicht tri-vi-al ist,
  las-sen sich die-se mit dem Be-fehl [][][][][][][][][]
@@ -1568,10 +1561,6 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [14]
-
-LaTeX Warning: Reference `sec:queried' on page 15 undefined on input line 230.
-
-
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
@@ -1594,13 +1583,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--6
  []
 
 
-LaTeX Warning: Reference `sec:Anwendung' on page 18 undefined on input line 13.
-
-
-
-LaTeX Warning: Reference `sec:Geschenk' on page 18 undefined on input line 13.
-
-
 Overfull \hbox (18.23601pt too wide) in paragraph at lines 11--15
 \T1/phv/m/n/10.95 ne Pro-duk-te zu emp-feh-len. Die Da-ten-bank Uni-Shop, die m
 it-tels des SQL-Skripts in \T1/phv/m/sl/10.95 Uni-Shop_Datenbank.sql
@@ -1617,13 +1599,6 @@ LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
 (Font)              Font shape `T1/phv/b/sl' tried instead on input line 17.
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
 (Font)              scaled to size 10.79993pt on input line 17.
-
-LaTeX Warning: Reference `sec:Einbindung' on page 18 undefined on input line 25
-.
-
-
-LaTeX Warning: Reference `BspArtikel' on page 18 undefined on input line 28.
-
 
 Overfull \hbox (2.53244pt too wide) in paragraph at lines 33--33
 []|\T1/phv/m/n/10.95 Preis| 
@@ -1664,10 +1639,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--44
 
 
 ]
-
-LaTeX Warning: Reference `BspAnwendung' on page 19 undefined on input line 50.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 48--67
 
  []
@@ -1677,16 +1648,9 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [19]
-
-LaTeX Warning: Reference `BspGeschenk' on page 20 undefined on input line 74.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 71--90
 
  []
-
-
-LaTeX Warning: Reference `sec:queried' on page 20 undefined on input line 96.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 94--98
@@ -1718,36 +1682,15 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [21]
-
-LaTeX Warning: Reference `sec:queried' on page 22 undefined on input line 134.
-
-
-LaTeX Warning: Reference `sec:ChatScript: Zufällige Ausgabe' on page 22 undefin
-ed on input line 143.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
-
-
-LaTeX Warning: Reference `sec:Alternative' on page 22 undefined on input line 1
-53.
 
 
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [22]
-
-LaTeX Warning: Reference `sec:mystring' on page 23 undefined on input line 175.
-
-
-
-LaTeX Warning: Reference `ÜbersichtQueried' on page 23 undefined on input line 
-178.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 175--180
 
  []
@@ -1789,14 +1732,6 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
  (./INHALT/HAUPT/Probleme.tex
 chapter 6.
-
-Package natbib Warning: Citation `chatscript2019' on page 27 undefined on input
- line 16.
-
-
-Package natbib Warning: Citation `chatscript2019' on page 27 undefined on input
- line 28.
-
 [27
 
 
@@ -1829,38 +1764,27 @@ No file CL-Hausarbeit.gls.
 ] (./CL-Hausarbeit.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/sc' will be
 (Font)              scaled to size 9.85492pt on input line 7.
-)
-
-Package natbib Warning: There were undefined citations.
-
-[31
+) [31
 
 
 
-] (./CL-Hausarbeit.aux (./INHALT/Einleitung.aux)
+]
+(./CL-Hausarbeit.aux (./INHALT/Einleitung.aux)
 (./INHALT/HAUPT/InstallationAugusta.aux)
 (./INHALT/HAUPT/ChatScriptGrundlagen.aux)
 (./INHALT/HAUPT/AugustaProgrammlogik.aux) (./INHALT/HAUPT/DBuEinbindung.aux)
-(./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux)
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+(./INHALT/HAUPT/Probleme.aux) (./INHALT/Fazit.aux))
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 26540 strings out of 492909
- 496097 string characters out of 6136299
- 851998 words of memory out of 5000000
- 30006 multiletter control sequences out of 15000+600000
+ 26556 strings out of 492909
+ 496572 string characters out of 6136299
+ 853193 words of memory out of 5000000
+ 30012 multiletter control sequences out of 15000+600000
  56718 words of font info for 86 fonts, out of 8000000 for 9000
  1354 hyphenation exceptions out of 8191
  64i,12n,70p,9092b,1694s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on CL-Hausarbeit.pdf (33 pages).
+Output written on CL-Hausarbeit.pdf (34 pages).
