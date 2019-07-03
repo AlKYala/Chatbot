@@ -1,0 +1,132 @@
+\chapter{Beispiele zum Dialogablauf}
+\label{sec:Beispieldialog}
+
+Im Folgenden gibt es einige Beispiele für den Ablauf des Dialogs zwischen Chabot und Kunde, die wir vor und teilweise auch während des Programmieren geschrieben haben. So enthält beispielsweise Dialog 3 gegenüber Dialog 1 bereits Änderungen, die wir mit in das Programm übernommen haben.\\
+Die kursiv geschriebenen Ausgaben des Chatbots (z. B. \textit{ABC} oder \textit{Beschreibung}) werden in der Realität durch Name, Beschreibung und Ähnliches ersetzt.\\
+
+\Large\textbf{Dialog 1: Abgelehntes Produkt}\\
+\normalsize
+Dieser Dialog war der erste, der für den Chatbot geschrieben wurde. Er stellt eine Situation dar, in der ein Kunde das ihm vorgeschlagene Produkt ablehnt, wonach der Chatbot erneut suchen muss.\\
+In der ersten Vorstellung hatten wir noch geplant, dass der Kunde bei Interesse nach Produktinformationen fragen kann. Im Verlauf des Projekts haben wir uns gegen das Nachfragen entschieden und präsentieren dem Kunden den Namen, die Beschreibung und den Preis sofort (s. \ref{sec:AusgabeWarenkorb}). Zum einen ist diese Variante einfacher und zum anderen sind Beschreibung und Name zusammen aussagekräftiger als der Name alleine.
+Außerdem fiel beim Schreiben des Dialogs auf, dass Fragen mit oder zu vermeiden sind, da manche Personen dazu neigen, solche Fragen mit "`Ja."' und "`Nein."' zu beantworten.
+%\vspace{8pt}
+%\begin{table}
+\begin{center}
+\begin{tabular}{p{2,5cm}p{12,6cm}}
+	\textsc{Chatbot:} & Hallo. Suchen Sie ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
+	\textsc{Kunde:} & Ich suche ein Geschenk.\\
+	\textsc{Chatbot:} & Nach was für einer Art (von Geschenk) suchen Sie? Ich kann Ihnen folgende Optionen anbieten: Geschenk, Gastgeschenk, Mitbringsel, Erinnerungsstück.\\
+	\textsc{Kunde:} & Gastgeschenk. \\
+	\textsc{Chatbot:} & Ich kann Ihnen dieses Produkt empfehlen: \textit{ABC}. Möchten Sie weitere Informationen darüber oder soll ich weitersuchen?\\
+	\textsc{Kunde:} & Weitere Informationen. \\
+	\textsc{Chatbot:} & \textit{Beschreibung}. Ist es das, was Sie gesucht haben?\\
+	\textsc{Kunde:} & Nein. \\
+	\textsc{Chatbot:} & Ich werde weitersuchen. Das kann ich noch empfehlen: \textit{DEF}. Möchten Sie weitere Informationen darüber oder soll ich weitersuchen? \\
+	\textsc{Kunde:} & Ich will mehr Infos. \\
+	\textsc{Chatbot:} & \textit{Beschreibung.} War es das, was Sie gesucht haben? \\
+	\textsc{Kunde:} & Wie viel kostet das? \\
+	\textsc{Chatbot:} & \textit{DEF} kostet \textit{9,50} Euro. Möchten Sie \textit{DEF} erwerben?\\
+	\textsc{Kunde:} &  Ja.\\
+	\textsc{Chatbot:} & Sie können das Ticket für \textit{DEF} über den Tukan erwerben und dieses dann in der Pressestelle oder im Shop abgeben. Suchen Sie ein weiteres Produkt? Ein Geschenk oder einen Artikel für einen bestimmten Zweck?\\
+	\textsc{Kunde:} & Nein. Tschüss. \\
+	\textsc{Chatbot:} & Auf Wiedersehen.\\
+	\end{tabular}
+\end{center}
+%\end{table}
+\vspace{12pt}
+
+
+\Large\textbf{Dialog 2: Zweite Suche}\\
+\normalsize
+In diesem Dialog wird nach einem ersten Treffer noch nach einem zweiten Produkt mit verschiedenen Kriterien gesucht. Nach der Bestätigung, dass nach einem neuen Produkt gesucht werden soll, beginnt der Dialog ab der Frage nach einem Geschenk oder Anwendungszweck von vorne.\\
+Da wir die Kategorien der Geschenkideen und Anwendungsgebiete automatisch ausgeben wollten, hat sich hier die Ausgabe ein wenig verändert. Die Oder-Frage des vergangenen Dialogs haben wir herausgenommen. Dazu wird die Information über der Uni-Shop erst dann ausgegeben, wenn der Kunde nicht mehr möchte, damit auch bei mehreren Suchen dieser Satz nur einmal erwähnt wird.
+\vspace{8pt}
+\begin{center}
+\begin{tabular}{p{2,5cm}p{12,6cm}}
+	\textsc{Chatbot:} & Hallo. Suchen Sie ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
+	\textsc{Kunde:} & Ich suche ein Geschenk.\\
+	\textsc{Chatbot:} & Nach was für einer Art Geschenk suchen Sie? Ich kann Ihnen folgende Optionen anbieten: Geschenk. Gastgeschenk. Mitbringsel. Erinnerungsstück.\\
+	\textsc{Kunde:} & Ich will ein Gastgeschenk. \\
+	\textsc{Chatbot:} & Ich kann Ihnen dieses Produkt empfehlen: \textit{ABC}. Möchten Sie weitere Informationen dazu? Wenn Sie möchten, kann ich weitersuchen. \\
+	\textsc{Kunde:} & Informationen. \\
+	\textsc{Chatbot:} & \textit{Beschreibung}. Ist es das, was Sie gesucht haben?\\
+	\textsc{Kunde:} & Ja. \\
+	\textsc{Chatbot:} & Möchten Sie ein weiteres Produkt suchen? \\
+	\textsc{Kunde:} & Ja. \\
+	\textsc{Chatbot:} & \textit{Beschreibung.} Suchen Sie ein Geschenk oder ein Produkt für einen bestimmten Zweck?\\
+	\textsc{Kunde:} & Bestimmter Zweck. \\
+	\textsc{Chatbot:} & Wofür benötigen Sie das Produkt: Ich kann Ihnen folgende Kategorien anbieten: Accessoire. Alltag. EssenTrinken. Deko. Uni. \\
+	\textsc{Kunde:} &  Alltag.\\
+	\textsc{Chatbot:} & Ich kann Ihnen dieses Produkt empfehlen: \textit{DEF}. Möchten Sie weitere Informationen dazu? Wenn Sie möchten, kann ich weitersuchen. \\
+	\textsc{Kunde:} & Wie teuer ist das? \\
+	\textsc{Chatbot:} & \textit{DEF} kostet \textit{9,50} Euro. War es das, was Sie gesucht haben? \\
+	\textsc{Kunde:} & Ja. \\
+	\textsc{Chatbot:} & Möchten Sie ein weiteres Produkt suchen? \\
+	\textsc{Kunde:} & Nein. Tschüss. \\
+	\textsc{Chatbot:} & Sie können das Ticket für die Produkte über den Tukan erwerben und dieses dann in der Pressestelle oder im Shop abgeben. Auf Wiedersehen.\\
+	\end{tabular}
+\end{center}
+\vspace{12pt}
+
+
+\Large\textbf{Dialog 3: Suche mit genaueren Kriterien und Warenkorb}\\
+\normalsize
+Dieser Dialog ist etwas später entstanden. Hier gibt es bereits die Möglichkeit, zusätzlich zu Geschenk und Anwendung noch weitere Kriterien wie die Ausführung oder den Preis anzugeben. In den Onesentence-Chatbots ist dies in der Variante implementiert, wie im Dialog beschrieben: Der Kunde gibt die Kriterien in einem Satz an und der Chatbot weist Variablen zu. In KeyExProdukteigenschaften wird einzeln nach Name, Art, Ausführung und Preis gefragt. Dies hatten wir zu Beginn geschrieben, um zumindest einen Dialog führen und die Variablen zuzuweisen zu können und dann es später die schwierigere Variante mit einem einzigen Satz auszutauschen. Allerdings stellte sich im Anwendungstest \textcolor[rgb]{1,0,0}{(s. \ref{sec:UsabilityTesting})} heraus, dass vom Benutzer der Dialog mit den einzelnen Abfragen als einfacher empfunden wird.\\
+Dazu wird beim Produktvorschlag gleich die Beschreibung mit ausgegeben und der Kunde erhält die Möglichkeit, sich anzusehen, was er bereits ausgewählt hat.\\
+Zudem duzt der Chatbot den Kunden und fragt nach einem Namen, um persönlicher sein zu können.
+\vspace{8pt}
+\begin{center}
+\begin{tabular}{p{2,5cm}p{12,6cm}}
+	\textsc{Chatbot:} & Hallo. Möchtest du mir deinen Namen verraten? Das ist etwas persönlicher. \\
+	\textsc{Kunde:} & XYZ.\\
+	\textsc{Chatbot:} & Hallo, \textit{XYZ}. Du bist hier, um etwas zu kaufen, oder? \\
+	\textit{XYZ:} & Ja. \\
+	\textsc{Chatbot:} & Dann fangen wir an. Suchst du ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
+	\textsc{Kunde:} & Geschenk.\\
+	\textsc{Chatbot:} & Nach was für einer Art Geschenk suchst du? Ich kann dir folgende Optionen anbieten: Geschenk, also zum Beispiel zum Geburtstag oder zu Weihnachten. Gastgeschenk. Mitbringsel. Erinnerungsstück.\\
+	\textsc{XYZ:} & Ein Gastgeschenk. \\
+	\textsc{Chatbot:} & Hier kannst du in einem Satz noch weitere Kriterien für das gesuchte Produkt hinzufügen. Den Namen oder die Art des Produkts, zum Beispiel. Zudem bieten wir manche Produkte in verschiedenen Farben oder Sprachen an. Außerdem kannst du eine preisliche Obergrenze festlegen.\\
+	\textsc{XYZ:} & Ein Buch in Englisch für 10 Euro.\\
+	\textsc{Chatbot:} & Ich wiederhole: Du möchtest ein Gastgeschenk. Es handelt sich dabei um ein Buch. Es ist in Englisch und kostet maximal 10 Euro. Stimmt das so? \\
+	\textsc{XYZ:} & Ja. \\
+	\textsc{Chatbot:} & Ich kann dir dieses Produkt empfehlen: \textit{ABC}. \textit{Beschreibung.} Möchtest du weitere Informationen dazu? Wenn du möchtest, kann ich weitersuchen. \\
+	\textsc{Chatbot:} & Ist es das, was du gesucht hast?\\
+	\textsc{XYZ:} & Ja. \\
+	\textsc{Chatbot:} & Möchtest du ein weiteres Produkt suchen? Du kannst dir auch ansehen, was du bereits ausgewählt hast. \\
+	\textsc{XYZ:} & Ich will mir ansehen, was ich bereits ausgewählt habe. \\
+	\textsc{Chatbot:} & Du hast \textit{1} Produkt ausgewählt. Es ist \textit{ABC}. Die Beschreibung lautet \textit{Beschreibung.} Es kostet \textit{6,50} Euro. Möchtest du ein weiteres Produkt suchen? \\
+	\textsc{XYZ:} & Nein.\\
+	\textsc{Chatbot:} & Du kannst das Ticket für die Produkte über den Tukan erwerben und dieses dann in der Pressestelle oder im Shop abgeben. Auf Wiedersehen.\\
+	\end{tabular}
+\end{center}
+\vspace{12pt}
+
+
+\Large\textbf{Dialog 4: Kein Ergebnis / Fehler bei der Suche}\\
+\normalsize
+Dieser Dialog stellt die Möglichkeit, dass es bei der Suche zu einem Fehler kommt. Wenn der Chatbot kein Produkt findet, wird es statt "`Oh, tut mir Leid, da habe ich mich verrechnet. Lass uns von vorne anfangen."' "`Ich habe leider kein Prpdukt gefunden, dass auf deine Kriterien passt. Versuchen wir nochmal mit anderen Kriterien"' ausgeben.\\
+Dazu kann der Kunde hier den Bot auch mitten im Dialog beenden, was im Chatbot OnesentenceGoodbye implementiert ist.
+\vspace{8pt}
+\begin{center}
+\begin{tabular}{p{2,5cm}p{12,6cm}}
+	\textsc{Chatbot:} & Hallo. Du kannst jederzeit "`Tschüss"' sagen, wenn du mich beenden  Möchtest du mir deinen Namen verraten? Das ist etwas persönlicher. \\
+	\textsc{Kunde:} & Nein.\\
+	\textsc{Chatbot:} & Das kann ich verstehen. Du bist hier, um etwas zu kaufen, oder? \\
+	\textsc{Kunde:} & Ja. \\
+	\textsc{Chatbot:} & Dann fangen wir an. Suchst du ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
+	\textsc{Kunde:} & Geschenk.\\
+	\textsc{Chatbot:} & Nach was für einer Art Geschenk suchst du? Ich kann dir folgende Optionen anbieten: Geschenk, also zum Beispiel zum Geburtstag oder zu Weihnachten. Gastgeschenk. Mitbringsel. Erinnerungsstück.\\
+	\textsc{Kunde:} & Gastgeschenk. \\
+	\textsc{Chatbot:} & Hier kannst du in einem Satz noch weitere Kriterien für das gesuchte Produkt hinzufügen. Den Namen oder die Art des Produkts, zum Beispiel. Zudem bieten wir manche Produkte in verschiedenen Farben oder Sprachen an. Außerdem kannst du eine preisliche Obergrenze festlegen.\\
+	\textsc{Kunde:} & Englisch Buch 10.\\
+	\textsc{Chatbot:} & Ich wiederhole: Du möchtest ein Gastgeschenk. Es handelt sich dabei um ein Buch. Es ist in Englisch und kostet maximal 10 Euro. Stimmt das so? \\
+	\textsc{Kunde:} & Ja. \\
+	\textsc{Chatbot:} & Oh, tut mir Leid, da habe ich mich verrechnet. Lass uns von vorne anfangen. Suchst du ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
+	\textsc{Kunde:} & Tschüss. \\
+	\textsc{Chatbot:} & Du kannst das Ticket für die Produkte über den Tukan erwerben und dieses dann in der Pressestelle oder im Shop abgeben. Auf Wiedersehen.\\
+	\end{tabular}
+\end{center}
+
+
+%\textsc{Chatbot:} & \\
+%\textsc{XYZ:} & \\
