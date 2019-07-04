@@ -9,8 +9,6 @@ Die kursiv geschriebenen Ausgaben des Chatbots (z. B. \textit{ABC} oder \textit{
 Dieser Dialog war der erste, der für den Chatbot geschrieben wurde. Er stellt eine Situation dar, in der ein Kunde das ihm vorgeschlagene Produkt ablehnt, wonach der Chatbot erneut suchen muss.\\
 In der ersten Vorstellung hatten wir noch geplant, dass der Kunde bei Interesse nach Produktinformationen fragen kann. Im Verlauf des Projekts haben wir uns gegen das Nachfragen entschieden und präsentieren dem Kunden den Namen, die Beschreibung und den Preis sofort (s. \ref{sec:AusgabeWarenkorb}). Zum einen ist diese Variante einfacher und zum anderen sind Beschreibung und Name zusammen aussagekräftiger als der Name alleine.
 Außerdem fiel beim Schreiben des Dialogs auf, dass Fragen mit oder zu vermeiden sind, da manche Personen dazu neigen, solche Fragen mit "`Ja."' und "`Nein."' zu beantworten.
-%\vspace{8pt}
-%\begin{table}
 \begin{center}
 \begin{tabular}{p{2,5cm}p{12,6cm}}
 	\textsc{Chatbot:} & Hallo. Suchen Sie ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
@@ -32,7 +30,6 @@ Außerdem fiel beim Schreiben des Dialogs auf, dass Fragen mit oder zu vermeiden
 	\textsc{Chatbot:} & Auf Wiedersehen.\\
 	\end{tabular}
 \end{center}
-%\end{table}
 \vspace{12pt}
 
 
@@ -71,7 +68,7 @@ Da wir die Kategorien der Geschenkideen und Anwendungsgebiete automatisch ausgeb
 
 \Large\textbf{Dialog 3: Suche mit genaueren Kriterien und Warenkorb}\\
 \normalsize
-Dieser Dialog ist etwas später entstanden. Hier gibt es bereits die Möglichkeit, zusätzlich zu Geschenk und Anwendung noch weitere Kriterien wie die Ausführung oder den Preis anzugeben. In den Onesentence-Chatbots ist dies in der Variante implementiert, wie im Dialog beschrieben: Der Kunde gibt die Kriterien in einem Satz an und der Chatbot weist Variablen zu. In KeyExProdukteigenschaften wird einzeln nach Name, Art, Ausführung und Preis gefragt. Dies hatten wir zu Beginn geschrieben, um zumindest einen Dialog führen und die Variablen zuzuweisen zu können und dann es später die schwierigere Variante mit einem einzigen Satz auszutauschen. Allerdings stellte sich im Anwendungstest \textcolor[rgb]{1,0,0}{(s. \ref{sec:UsabilityTesting})} heraus, dass vom Benutzer der Dialog mit den einzelnen Abfragen als einfacher empfunden wird.\\
+Dieser Dialog ist etwas später entstanden. Hier gibt es bereits die Möglichkeit, zusätzlich zu Geschenk und Anwendung noch weitere Kriterien wie die Ausführung oder den Preis anzugeben. In den Onesentence-Chatbots ist dies in der Variante implementiert, wie im Dialog beschrieben: Der Kunde gibt die Kriterien in einem Satz an und der Chatbot weist Variablen zu. In KeyExProdukteigenschaften wird einzeln nach Name, Art, Ausführung und Preis gefragt. Dies hatten wir zu Beginn geschrieben, um zumindest einen Dialog führen und die Variablen zuzuweisen zu können und dann es später die schwierigere Variante mit einem einzigen Satz auszutauschen. Allerdings stellte sich im Anwendungstest (s. Ergebnis des Usability Testing) heraus, dass vom Benutzer der Dialog mit den einzelnen Abfragen als einfacher empfunden wird.\\
 Dazu wird beim Produktvorschlag gleich die Beschreibung mit ausgegeben und der Kunde erhält die Möglichkeit, sich anzusehen, was er bereits ausgewählt hat.\\
 Zudem duzt der Chatbot den Kunden und fragt nach einem Namen, um persönlicher sein zu können.
 \vspace{8pt}
@@ -80,9 +77,9 @@ Zudem duzt der Chatbot den Kunden und fragt nach einem Namen, um persönlicher s
 	\textsc{Chatbot:} & Hallo. Möchtest du mir deinen Namen verraten? Das ist etwas persönlicher. \\
 	\textsc{Kunde:} & XYZ.\\
 	\textsc{Chatbot:} & Hallo, \textit{XYZ}. Du bist hier, um etwas zu kaufen, oder? \\
-	\textit{XYZ:} & Ja. \\
+	\textsc{XYZ:} & Ja. \\
 	\textsc{Chatbot:} & Dann fangen wir an. Suchst du ein Geschenk oder ein Produkt für einen bestimmten Zweck? \\
-	\textsc{Kunde:} & Geschenk.\\
+	\textsc{XYZ:} & Geschenk.\\
 	\textsc{Chatbot:} & Nach was für einer Art Geschenk suchst du? Ich kann dir folgende Optionen anbieten: Geschenk, also zum Beispiel zum Geburtstag oder zu Weihnachten. Gastgeschenk. Mitbringsel. Erinnerungsstück.\\
 	\textsc{XYZ:} & Ein Gastgeschenk. \\
 	\textsc{Chatbot:} & Hier kannst du in einem Satz noch weitere Kriterien für das gesuchte Produkt hinzufügen. Den Namen oder die Art des Produkts, zum Beispiel. Zudem bieten wir manche Produkte in verschiedenen Farben oder Sprachen an. Außerdem kannst du eine preisliche Obergrenze festlegen.\\
