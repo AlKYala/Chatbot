@@ -11,9 +11,9 @@ Folgendes gilt:
 
 \begin{enumerate}
 \item{A ist die erste Regel, die in Introductions aufgerufen wird}
-\item{A.2 ist ~introductions.VORSTELLUNG}
-\item{A.3 ist ~introductions.KEINE\_VORSTELLUNG}
-\item{B.1 ist ~kaufabsicht.STARTKAUF}
+\item{A.2 ist \texttildelow introductions.VORSTELLUNG}
+\item{A.3 ist \texttildelow introductions.KEINE\_VORSTELLUNG}
+\item{B.1 ist \texttildelow kaufabsicht.STARTKAUF}
 \end{enumerate}
 
 In Introductions grüßt der Bot zu Beginn den Nutzer, geht in Regel GREET über und fragt, ob dieser seinen Namen verraten möchte. Je nachdem, ob bei der Nutzereingabe ein Name erkannt wird (siehe Abschnitt: \ref{sec:ChatScript: Pattern-Matching}) wird in die Regel VORSTELLUNG beziehungsweise KEINE\_VORSTELLUNG übergegangen. Daraufhin wird die Regel STARTKAUF des Topics Kaufabsicht betreten. 
@@ -59,7 +59,7 @@ Folgendes gilt:
 \item{B.1 ist STARTKAUF}
 \item{B.2 ist die Nachfrage, ob ein Kaufwunsch besteht}
 \item{B.3 ist die Regel nach Angabe, dass man ein Geschenk bzw. etwas zu einer Anwendung möchte}
-\item{X.A ist ~ende.ASKIFHAPPY}
+\item{X.A ist \texttildelow ende.ASKIFHAPPY}
 \item{C.1 ist keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN bzw. keyexonesentence.STARTKAUF}
 \item{Die restlichen Zustände sind nach ihren Regeln benannt}
 \end{enumerate}
@@ -128,13 +128,13 @@ Folgendes gilt:
 \item{C.3 ist DESIGN}
 \item{C.4 ist PRICE }
 \item{C.5 ist SUMMARY }
-\item{D.1 ist ~dbsearch.WELCOME}
+\item{D.1 ist \texttildelow dbsearch.WELCOME}
 \end{enumerate}
 
 
 Wird die Version Produkteigeschaften gewählt, so erfolgt ein einzelnes Erfragen der jeweiligen Eigenschaften.\\
 In der Regel gilt: Werden in den Eingaben Stichworte erkannt, die als Eigenschaften in der Datenbank bekannt sind, so werden diese in Variablen gespeichert (s. \ref{sec:ChatScript: Pattern-Matching}).\\
-Zunächst wird gefragt, ob der Nutzer sein gewünschtes Produkt beim Produktnamen kennt. Ist dies nicht der Fall oder wird die Eingabe nicht als Name identifiziert, wird gefragt, ob der Nutzer weiß, von welcher Kategorie, zum Beispiel Kleidung oder Buch seine Idee ist. Erfolgt eine Eingabe, die im Konzept ~art bekannt ist, so wird in der entsprechenden Variable \lstinline|$art| dieser Wert gespeichert.\\
+Zunächst wird gefragt, ob der Nutzer sein gewünschtes Produkt beim Produktnamen kennt. Ist dies nicht der Fall oder wird die Eingabe nicht als Name identifiziert, wird gefragt, ob der Nutzer weiß, von welcher Kategorie, zum Beispiel Kleidung oder Buch seine Idee ist. Erfolgt eine Eingabe, die im Konzept \texttildelow art bekannt ist, so wird in der entsprechenden Variable \lstinline|$art| dieser Wert gespeichert.\\
 Daraufhin wird gefragt, ob der Kunde etwas zur Ausführung, zum Beispiel Farbe oder Sprache, sagen kann. Wird eine bekannte Ausführung erkannt, so wird diese gespeichert, ansonsten wird die Eingabe ignoriert.\\
 Im Anschluss wird erfragt, welchen Preis man maximal zahlen möchte. Hierbei muss als Preislimit eine positive Integerzahl angegeben werden.\\ 
 In SUMMARY wird zusammengefasst, was der Bot erkennen konnte und fragt den Nutzer, ob dies seinem Wunsch entspricht. Ist dies der Fall, so betritt der Bot die Regel WELCOME in Dbsearch, ansonsten wird bei STARTPRODUKTEIGENSCHAFTEN von Vorne angefangen. Für die Zusammenfassung wurden ab FIRSTQ ein entsprechender Satz in der Variable \lstinline|$zusammenfassung| gespeichert, sodass in SUMMARY ein zusammenhängender Text ausgegeben werden kann.
@@ -194,7 +194,7 @@ Folgendes gilt:
 \item{C.1 ist STARTONESENTENCE}
 \item{C.X ist QUALITY}
 \item{C.5 ist SUMMARY}
-\item{D.1 ist ~dbsearch.WELCOME}
+\item{D.1 ist \texttildelow dbsearch.WELCOME}
 \end{enumerate}
 
 In KeyExOnesentence kommt der in Abschnitt \ref{sec:ChatScript: Pattern-Matching} zum Pattern-Matching besprochene Ansatz zur Extrahierung mehrerer Informationen aus einem einzelnen Satz zum Tragen.\\
@@ -241,8 +241,8 @@ Folgendes gilt:
 \item{D.6 ist PRODUCTPRICE}
 \item{D.7 ist RESPONSE}
 \item{D.X ist SEARCHAGAIN}
-\item{X.S ist ~ende.SETNULLREP}
-\item{X.A ist ~ende.ASKIFHAPPY}
+\item{X.S ist \texttildelow ende.SETNULLREP}
+\item{X.A ist \texttildelow ende.ASKIFHAPPY}
 \end{enumerate}
 
 Basierend auf den ermittelten Nutzerinformationen wird nun eine Query erstellt. Dabei wird für jeden Nutzer in der Regel SEARCHCREATE eine eigene Tabelle erstellt, die eine Kopie der originalen Datenbank ist.\\
@@ -318,7 +318,7 @@ Folgendes gilt:
 \item{X.A ist ASKIFHAPPY}
 \item{X.B ist STILLHELP}
 \item{X.C ist das Ablehnen einer weiteren Suche}
-\item{X.D ist fgt} %% IST DAS FORGET? FORGET kann raus.
+\item{\textcolor[rgb]{1,0.41,0.13}{X.D ist fgt}} %% IST DAS FORGET? FORGET kann raus.
 \item{X.E ist GOODBYE}
 \item{X.S ist SETNULLREP}
 \item{FIRSTQ ist FIRSTQ aus Kaufabsicht}

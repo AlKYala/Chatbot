@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.27)  8 JUL 2019 03:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.27)  8 JUL 2019 15:14
 entering extended mode
 **./Augusta_Dokumentation.tex
 (Augusta_Dokumentation.tex
@@ -1101,6 +1101,161 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks37
 \verbatim@in@stream=\read2
 )
+("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+
+("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"
+File: ts1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+))
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtyp
 e.sty"
 Package: microtype 2018/01/14 v2.7a Micro-typographical refinements (RS)
@@ -1505,25 +1660,33 @@ LaTeX Info: Redefining \cite on input line 694.
 (INHALT/ANHANG/Beispieldialog.aux) (INHALT/ANHANG/UsabilityTesting.aux))
 \openout1 = `Augusta_Dokumentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 194.
-LaTeX Font Info:    ... okay on input line 194.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 194.
-LaTeX Font Info:    ... okay on input line 194.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 194.
-LaTeX Font Info:    ... okay on input line 194.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 194.
-LaTeX Font Info:    ... okay on input line 194.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 194.
-LaTeX Font Info:    ... okay on input line 194.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 194.
-LaTeX Font Info:    ... okay on input line 194.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 194.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 196.
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 196.
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 196.
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 196.
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 196.
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 196.
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 196.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 196.
+
+
+("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 196.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 196.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 194.
+(Font)              scaled to size 9.85492pt on input line 196.
 
 ABD: EveryShipout initializing macros
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
@@ -1605,7 +1768,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \c@lstlisting=\count187
-LaTeX Info: Redefining \microtypecontext on input line 194.
+LaTeX Info: Redefining \microtypecontext on input line 196.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1622,20 +1785,20 @@ Package microtype Info: Loading generic protrusion settings for font family
 <BILDER/logo.png, id=4, 544.0325pt x 100.87688pt>
 File: BILDER/logo.png Graphic file (type png)
 <use BILDER/logo.png>
-Package pdftex.def Info: BILDER/logo.png  used on input line 204.
+Package pdftex.def Info: BILDER/logo.png  used on input line 206.
 (pdftex.def)             Requested size: 383.61768pt x 71.13188pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 22.39185pt on input line 206.
+(Font)              scaled to size 22.39185pt on input line 208.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 206.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 208.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 206.
+(Font)              scaled to size 22.39185pt on input line 208.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 12.9599pt on input line 211.
+(Font)              scaled to size 12.9599pt on input line 213.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 221.
+(Font)              scaled to size 10.79993pt on input line 223.
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 22
-1.
+3.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd
 "
@@ -1646,42 +1809,42 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 22
-1.
+3.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd
 "
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 22
-1.
+3.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd
 "
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 22
-1.
+3.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd
 "
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 221.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 223.
 
  ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 221.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 223.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\mt-ptm.c
 fg"
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 221.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 223.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 221.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 223.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\mt-msa.c
 fg"
@@ -1691,12 +1854,12 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 fg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (23.86284pt too wide) in paragraph at lines 213--222
+Overfull \hbox (23.86284pt too wide) in paragraph at lines 215--224
   []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--222
+Underfull \hbox (badness 10000) in paragraph at lines 215--224
 
  []
 
@@ -1705,11 +1868,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 213--222
 {C:/Users/Julia/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./BILDER/lo
 go.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 18.66588pt on input line 232.
+(Font)              scaled to size 18.66588pt on input line 234.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 232.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 234.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 18.66588pt on input line 232.
+(Font)              scaled to size 18.66588pt on input line 234.
  (Augusta_Dokumentation.toc
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 3.
@@ -1749,7 +1912,7 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 Package glossaries Warning: Empty glossary for \printnoidxglossary[type={main}]
 . Rerun may be required (or you may have forgotten to use commands like \gls) o
-n input line 241.
+n input line 243.
 
 \openout2 = `INHALT/Einleitung.aux'.
 
@@ -1846,12 +2009,16 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
  (INHALT/HAUPT/ChatScriptGrundlagen.tex
 chapter 3.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 14.
-("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
-File: omsphv.fd 
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 14.
+("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ts1phv.fd"
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
-LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
+LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 14.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `phv' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 
 Package Listings Warning: Text dropped after begin of listing on input line 21.
 
@@ -1896,6 +2063,11 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [7]
+
+Package Listings Warning: Text dropped after begin of listing on input line 81.
+
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
@@ -1985,15 +2157,14 @@ Package Listings Warning: Text dropped after begin of listing on input line 183
 .
 
 
-Overfull \vbox (3.8295pt too high) has occurred while \output is active []
-
-
-[10]
-
 Package Listings Warning: Text dropped after begin of listing on input line 189
 .
 
 
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[10]
 Underfull \hbox (badness 10000) in paragraph at lines 201--202
 
  []
@@ -2003,7 +2174,7 @@ Package Listings Warning: Text dropped after begin of listing on input line 205
 .
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--221
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
 
  []
 
@@ -2013,7 +2184,7 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 [11]
 
-Package Listings Warning: Text dropped after begin of listing on input line 228
+Package Listings Warning: Text dropped after begin of listing on input line 227
 .
 
 )
@@ -2216,7 +2387,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--7
 <BILDER/gui.png, id=112, 1111.15125pt x 650.43pt>
 File: BILDER/gui.png Graphic file (type png)
 <use BILDER/gui.png>
-Package pdftex.def Info: BILDER/gui.png  used on input line 13.
+Package pdftex.def Info: BILDER/gui.png  used on input line 11.
 (pdftex.def)             Requested size: 227.62204pt x 133.23976pt.
 ) [28
 
@@ -2230,6 +2401,13 @@ chapter 7.
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
+ []
+
+
+Overfull \hbox (12.60059pt too wide) in paragraph at lines 17--21
+\T1/phv/m/n/10.95 (-20) Wenn kein Pro-dukt ge-fun-den wer-den kann, ist dem Skr
+ipt zu Fol-ge in den Zu-stand \TS1/phv/m/n/10.95 ~\T1/phv/m/n/10.95 (-20) en-de
+.SETNULLANDREP
  []
 
 
@@ -2331,13 +2509,13 @@ No file Augusta_Dokumentation.gls.
 (INHALT/HAUPT/Probleme.aux) (INHALT/ANHANG/Beispieldialog.aux)
 (INHALT/ANHANG/UsabilityTesting.aux)) ) 
 Here is how much of TeX's memory you used:
- 28631 strings out of 493303
- 535892 string characters out of 3129784
- 840759 words of memory out of 3000000
- 31259 multiletter control sequences out of 15000+200000
- 86424 words of font info for 257 fonts, out of 3000000 for 9000
- 1149 hyphenation exceptions out of 8191
- 64i,12n,70p,8834b,1742s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29161 strings out of 493303
+ 543861 string characters out of 3129784
+ 822566 words of memory out of 3000000
+ 31779 multiletter control sequences out of 15000+200000
+ 86486 words of font info for 256 fonts, out of 3000000 for 9000
+ 1150 hyphenation exceptions out of 8191
+ 64i,12n,70p,8834b,1755s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Julia/AppData/Local/Programs/M
 iKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/Julia/AppData/Local/Programs/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Julia/AppData/Loca
@@ -2351,9 +2529,9 @@ elvetic/uhvr8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/urw/helvetic/uhvro8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.
 9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Augusta_Dokumentation.pdf (41 pages, 374494 bytes).
+Output written on Augusta_Dokumentation.pdf (41 pages, 374234 bytes).
 PDF statistics:
  183 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 39447 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 39959 words of extra memory for PDF output out of 42996 (max. 10000000)
 

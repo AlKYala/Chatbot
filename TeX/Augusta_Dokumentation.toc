@@ -15,8 +15,8 @@
 \contentsline {section}{\numberline {3.2}Topics}{7}
 \contentsline {section}{\numberline {3.3}Konzepte}{7}
 \contentsline {section}{\numberline {3.4}ChatScript: Variablen}{8}
-\contentsline {section}{\numberline {3.5}Variablen als Bedingungen zur Steuerung von Programmablauf}{9}
-\contentsline {section}{\numberline {3.6}Befehle zur Steuerung von Programmablauf}{10}
+\contentsline {section}{\numberline {3.5}Variablen als Bedingungen zur Steuerung des Programmablaufs}{9}
+\contentsline {section}{\numberline {3.6}Befehle zur Steuerung von Programmablauf}{9}
 \contentsline {section}{\numberline {3.7}Pattern-Matching}{10}
 \contentsline {section}{\numberline {3.8}Zuf\IeC {\"a}llige Ausgabe}{12}
 \contentsline {chapter}{\numberline {4}Augusta: Programmlogik}{13}

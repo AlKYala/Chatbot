@@ -1,7 +1,7 @@
 \chapter{Datenbank und ihre Einbindung in den Chatbot}
 \label{sec:DBuEinbindung}
 
-Herz des Dialogsystems ist eine Datenbank, in der die Produkte des Uni-Shops sowie Informationen zu ihnen wie Beschreibung oder Preis gespeichert sind. ChatScript unterstützt seit Version 4.2 PostgreSQL (changes.txt in \citet{chatscript2019}).\\
+Herz des Dialogsystems ist eine Datenbank, in der die Produkte des Uni-Shops sowie Informationen zu ihnen wie Beschreibung oder Preis gespeichert sind.\\
 Der folgende Abschnitt behandelt den Aufbau der Datenbank des Uni-Shops sowie ihre Einbindung in den Chatbot.\\
 
 
@@ -21,7 +21,7 @@ In der Relation \textit{Artikel} sind die grundlegenden Informationen zu den ein
 Die Artikelnummer stellt, da sie für jeden Artikel einzigartig ist, den Schlüssel für ein Produkt dar. Die Nummer ist sechsstellig und setzt sich aus drei fortlaufenden Ziffern, einem Buchstaben für die Kategorie und zwei Ziffern oder Buchstaben für die Ausführung zusammen.\\
 Der Name der Produkte ist nicht eindeutig, es kommt also vor, dass Artikel in, zum Beispiel, verschiedenen Farben unterschiedliche Artikelnummern haben, aber denselben Namen tragen.\\
 Die Kategorie des Produkt wird in der Relation mit \textit{Art} bezeichnet. Hierbei handelt es sich um eine Art Hyperonym, dem das Produkt zuzuordnen ist. So gehört die Kaffeetasse beispielsweise zur Kategorie "`Alltag"' und das Notizbuch zum Oberbegriff "`Uni"'.\\
-Der Preis, wird, wie im englischen Sprachraum üblich, mit einem Punkt, statt, wie in Deutschland, mit einem Komma angegeben, was dem der Struktur des PostgreSQL geschuldet ist. Zudem ist vorgegeben, dass der Preis maximal nur zwei Vorkomma-Stellen (d. h. kleiner als 99,99 Euro) haben darf.\\
+Der Preis, wird, wie im englischen Sprachraum üblich, mit einem Punkt, statt, wie in Deutschland, mit einem Komma angegeben, was dem der Struktur des PostgreSQL geschuldet ist. Zudem ist vorgegeben, dass der Preis maximal nur zwei Vorkomma-Stellen (d. h. weniger als 100,00 Euro) haben darf.\\
 Bei der Beschreibung ist es wichtig zu beachten, dass diese aus nicht mehr als 30 Wörtern insgesamt besteht, da sie andererseits nicht vollständig über den Chatbot ausgegeben werden kann. Zu näheren Informationen hierzu siehe \ref{sec:Einbindung}.\\
 Die Ausführung behandelt bestimmte Eigenschaften eines Produkts, die für den Käufer relevant sind. Hierzu zählt die Farbe oder, bei Büchern, die Sprache. Zu beachten ist, dass nicht bei jedem Produkt ein Eintrag für die Ausführung vorliegt.\\
 Die Größe eines Artikel, was im Fall der Kleidungsstücke für den Kunden von Bedeutung ist, wird in der Datenbank nicht berücksichtigt. Für diese bewusste Entscheidung gibt es mehrere Gründe: Da der Chatbot nur eine Kundenberatung darstellt und keine Bestellmöglichkeit beinhaltet, muss der Kunde persönlich beim Uni-Shop erscheinen, um das Produkt zu erwerben. Dort wird er über die vorhandenen Größen informiert und kann das Kleidungsstück möglicherweise auch anprobieren. Da Kleidunggrößen generell sehr unterschiedlich ausfallen können, gerade bei Unisex-Kleidung, ist der Aussagewert der Größe in diesem Fall ohnehin als gering anzusehen. Des Weiteren erteilt der Chatbot zu keinem Zeitpunkt eine Auskunft über die Größe.\\
@@ -108,7 +108,7 @@ Bei \textit{mystringXXXX} handelt es sich um eine Kopie der Relation \textit{Pse
 
 \section{Einbindung von PostgreSQL in ChatScript}
 \label{sec:Einbindung}
-Seit Version 4.2 erlaubt ChatScript das einbinden von PostgreSQL-Datenbanken in den Chatbot. Dafür stellt ChatScript die Funktionen \lstinline|^dbinit|, \lstinline|^dbclose| und \lstinline|^dbexecute| zur Verfügung. Im Folgenden werden die Funktionen kurz vorgestellt. Für weitere Informationen sei auf ChatScript-PostgreSQL in \citet{chatscript2019} verwiesen. Dort findet sich auch eine kurze Einführung in PostgreSQL.
+Seit Version 4.2 erlaubt ChatScript das Einbinden von PostgreSQL-Datenbanken in den Chatbot (changes.txt in \citet{chatscript2019}). Dafür stellt ChatScript die Funktionen \lstinline|^dbinit|, \lstinline|^dbclose| und \lstinline|^dbexecute| zur Verfügung. Im Folgenden werden die Funktionen kurz vorgestellt. Für weitere Informationen sei auf ChatScript-PostgreSQL in \citet{chatscript2019} verwiesen. Dort findet sich auch eine kurze Einführung in PostgreSQL.
 
 
 \subsection{Die Funktionen \lstinline|^dbinit| und \lstinline|^dbclose|}
@@ -232,7 +232,7 @@ WHERE name =
 In den Zeilen 4 bis 20 findet sich der erste Teil der Suche, in dem nach dem passenden Produkt gesucht wird, wobei nur Produkte berücksichtigt werden, die dem Kunden vorher noch nicht gezeigt worden sind (queried = 0).\\
 Das Einbinden von Variablen aus der ChatScript-Umgebung in die SQL-Abfrage ist nicht unproblematisch, da Variablen mit NULL-Werten in SQL nicht als NULL sondern als leerer String interpretiert werden, was in der Folge zu einem Fehlschlagen der Abfrage führt. Um dennoch nicht für jeden der 68 möglichen Fälle eine eigene Abfrage schreiben zu müssen, haben wir eine Lösung gefunden, die dieses Problem umgeht.\\
 Die Variablen für die extrahierten Stichwörter (\lstinline|$anwendungszweck|, \lstinline|$geschenkidee|, \lstinline|$things|, \lstinline|$art|, \lstinline|$preis| und \lstinline|$ausfuehrung|) werden, wenn ihnen durch den Nutzer keine Kriterien zugewiesen werden, mit dem String "`nichts"' bzw. bei \lstinline|$preis| mit -1 initialisiert. In der Relation \textit{mystringXXXX} wurden die Null-Werte ebenfalls durch den String "`nichts"' ersetzt.\\ 
-Um in PostgreSQL explizit anzugeben, dass eine Eigenschaft egal ist, kann dies so formuliert werden:
+Um in PostgreSQL explizit anzugeben, dass eine Eigenschaft unwichtig ist, kann dies so formuliert werden:
 \begin{lstlisting}{caption={SQL-Query, bei der die Eigenschaft property irrelevant ist}, label=EigenschaftEgal}
 SELECT *
 FROM table
@@ -260,8 +260,8 @@ In den Regeln PRODUCTNAME, PRODUCTDESCR und PRODUCTPRICE wird jeweils einzeln de
 SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;
 \end{lstlisting}
 Das Outputmacro \lstinline|^dbsec| ist am Anfang von \textit{dbsearch.top} definiert. Es sieht eine unterschiedliche Ausgabe für die Eigenschaften vor.\\
-Zudem wird in \lstinline|^dbsec| noch die Variable \lstinline|$ergebnis| auf "`positiv"' gesetzt. \lstinline|$ergebnis| wird in PRODUCTNAME instanziiert und dient dazu, überprüfen zu können, ob ein Schritt zuvor überhaupt ein Produkt gefunden wurde. Da in der Suche nur die Einträge in der Relation verändert werden, aber standardmäßig keine SQL-Ausgabe erfolgt, kann in ChatScript an dieser Stelle noch nicht festgestellt werden, ob ein Artikel gefunden wurde. Das passiert erst in PRODUCTNAME, wenn nach Einträge mit queried = 1 gesucht wird. Sind solche Einträge in der Relation vorhanden, wird entsprechend einer davon ausgewählt, \lstinline|^dbsec| wird aufgerufen und \lstinline|$ergebnis| wird "`positiv"'.\\
-Wurde nun allerdings kein passender Artikel gefunden, so wird auf kein Eintrag mit queried = 1 gefunden. Dementsprechend wird weder das Outputmacro \lstinline|^dbsec| aufgerufen noch \lstinline|$ergebnis| verändert, woraufhin eine entsprechende Meldung an den Kunden weitergegeben und der Kunde zu FIRSTQ in dem Topic Kaufabsicht weitergeleitet wird.\\
+Zudem wird in \lstinline|^dbsec| noch die Variable \lstinline|$ergebnis| auf "`positiv"' gesetzt. \lstinline|$ergebnis| wird in PRODUCTNAME instanziiert und dient dazu, überprüfen zu können, ob ein Schritt zuvor überhaupt ein Produkt gefunden wurde. Da in der Suche nur die Einträge in der Relation verändert werden, aber standardmäßig keine SQL-Ausgabe erfolgt, kann in ChatScript an dieser Stelle noch nicht festgestellt werden, ob ein Artikel gefunden wurde. Das passiert erst in PRODUCTNAME, wenn nach Einträgen mit queried = 1 gesucht wird. Sind solche Einträge in der Relation vorhanden, wird entsprechend einer davon ausgewählt, \lstinline|^dbsec| wird aufgerufen und \lstinline|$ergebnis| wird "`positiv"'.\\
+Wurde nun  allerdings bei der vorangeganenen Suche kein passender Artikel gefunden, so wird auch kein Eintrag mit queried = 1 gefunden. Dementsprechend wird weder das Outputmacro \lstinline|^dbsec| aufgerufen noch \lstinline|$ergebnis| verändert, woraufhin eine entsprechende Meldung an den Kunden weitergegeben und der Kunde zu FIRSTQ in dem Topic Kaufabsicht weitergeleitet wird.\\
 Es gibt außerdem die Möglichkeit für den Kunden, dass er sich ansehen kann, welche Artikel er bereits akzeptiert hat. Diese Option, in Anlehnung an die reale Welt und Internetshops als "`Warenkorb"' bezeichnet, findet sich in der Regel REPONSE in Dbsearch.\\
 Akzeptiert der Benutzer in RESPONSE das ihm angebotene Produkt, wird queried erst auf 3 und dort anschließend bei einem Eintrag auf 4 und bei den anderen 5 gesetzt.\\
 Beim Warenkorb werden zunächst die Artikel gezählt, die queried = 4 sind, um dem Kunden darüber informieren zu können, wie viele Produkte er bereits ausgewählt hat. In einem zweiten Schritt wird für diese Artikel dann Name und Preis ausgegeben. Da davon auszugehen ist, dass sich der Kunde noch erinnern kann, was er ausgewählt hat, wenn er den Namen des Produkts liest, ist die Ausgabe der Beschreibung hier nicht nötig. Die Ausgabe erfolgt über das Outputmacro \lstinline|^dbThird|, das ebenfalls in \textit{dbsearch.top} definiert ist.
