@@ -4,7 +4,7 @@
 \section{Installation}
 \label{sec:Installation}
 
-Zum Ausführen des Chatbots wird folgendes Benötigt:
+Zum Ausführen des Chatbots wird Folgendes benötigt:
 
 \begin{enumerate}
 \item {Windows als Betriebssystem}
@@ -12,34 +12,52 @@ Zum Ausführen des Chatbots wird folgendes Benötigt:
 \item {Optional: Eine Möglichkeit Webseiten zu hosten, z.B. auf Localhost}
 \end{enumerate}
 
-Obwohl ChatScript auch auf Mac und Linux laufen kann, existiert ein Problem bei ChatScript mit PostgreSQL-Support, dafür siehe Kapitel 'Probleme'. Sofern die GUI getestet werden will, muss dem Tester eine Möglichkeit bereit stehen, Webseiten, ggf. auf Localhost, zu hosten. Für Anmerkungen zu GUI siehe Kapitel 'Probleme'. 
-Um den Bot zu testen, muss ChatScript runtergeladen werden auf \url{https://github.com/ChatScript/ChatScript}. Die Ordner 'FIRSTTRY', 'ONESENTENCE', 'ONESENTENCEGOODBYE' und 'ONESENTENCEGUIENDE' sind alle in den Ordner 'RAWDATA' zu kopieren. Dies gilt ebenso für die Dateien 'filesmine.txt', 'filesgoodbye.txt', 'filesonesentencegui.txt' und 'filesonesentenceguiende.txt', welche zum Kompilieren ihres zugewiesenen Ansatzes benötigt werden. 
-Um ChatScript zu Starten, empfiehlt es sich, die Datei 'ChatScriptpg.exe' im Ordner 'BINARIES' auszuführen, für PostgreSQL-Support. 
-Sollte der Wunsch bestehen, die GUI zu testen, so muss die .bat-Datei 'LocalPgServer' ausgeführt werden, um den Server zum Laufen zu bringen und die Dateien index.php und ui.php sollten in das jeweilige Verzeichnis für den Server kopiert werden. 
-Für Anmerkungen, warum dies nur auf Windows erfolgt, siehe Kapitel 'Probleme'. 
+Obwohl ChatScript auch auf Mac und Linux laufen kann, existiert ein Problem bei ChatScript mit PostgreSQL-Support. Sofern die GUI getestet werden will, muss dem Tester eine Möglichkeit bereit stehen, Webseiten, gegebenenfalls auf Localhost, zu hosten. \\
+Um den Bot zu testen, wird ChatScript benötigt. Das Framework mit der Dokumentation in der aktuellen Version ist unter \url{https://github.com/ChatScript/ChatScript} zu finden.\\
+Die Adresse der Git-Repository des Projekts lautet \url{https://github.com/AlKYala/Chatbot}. Während des Projekts wurde mit Version 9.31 (30.04.2019) von ChatScript gearbeitet.\\
+Die Ordner \textit{ONESENTENCEGOODBYE}, \textit{ONESENTENCEGUI} und \textit{PRODUKTEIGENSCHAFTEN} sind alle in den Ordner \textit{RAWDATA} im ChatScript-Verzeichnis zu kopieren. Ein Ordner steht dabei für eine Version des Chatbots. Ebenso müssen die Dateien \textit{filesonesentencegoodbye.txt}, \textit{filesonesentencegui.txt} und \textit{filesprodukteigenschaften.txt}, welche zum Kompilieren der jeweiligen Version benötigt werden.\\
+Mithilfe der Datei \textit{UniShop\_Datenbank} muss in PostgreSQL die Datenbank \textit{Uni-Shop} erstellt und das Passwort (hier: \lstinline|1234|) für PostgreSQL an der jeweiligen Stelle in \textit{kaufabsicht.top} eingetragen werden (pro Datei fünf Mal). Die Stellen sind durch den Kommentar \lstinline|# DATENBANK| gekennzeichnet. Hier ein Beispiel:
+
+\begin{lstlisting}{}
+# DATENBANK
+if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = 1234))
+	{[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
+} else {dbinit failed - $$db_error ^reuse( FIRSTQ ) }
+\end{lstlisting}
+
+Da sich der Inhalt von \textit{kaufabsicht.top} von Version zu Version unterscheidet, ist ein Kopieren der Datei in die anderen Versionen nicht zu empfehlen.\\
+Um ChatScript zu starten, empfiehlt es sich, die Datei \textit{ChatScriptpg.exe} im Ordner \textit{BINARIES} auszuführen. Es ist dabei darauf zu achten, dass die .exe-Datei "`pg"' im Namen hat,  da nur hier PostgreSQL unterstützt wird. Zum Kompilieren muss in der Konsole der Befehl \lstinline|:build CHATBOTNAME| eingegeben werden.\\
+Sollte der Wunsch bestehen, die GUI zu testen, so muss die .bat-Datei \textit{LocalPgServer.bat} aus dem Ordner \textit{SERVER BATCH FILES} ausgeführt werden, um den Server zum Laufen zu bringen und die Dateien \textit{index.php} und \textit{ui.php} müssen in das jeweilige Verzeichnis für den Server kopiert werden. Zuvor müssen allerdings sowohl die .bat-Datei als auch \textit{ui.php} in Bezug auf das PostgreSQL-Passwort, den Localhost und Anderes angepasst werden.\\
+Für Anmerkungen zu den Schwierigkeiten mit dem PostgreSQL-Support, der Benutzerschnittstelle und anderen Betriebsystemen als Windows siehe Kapitel \ref{sec:Probleme}.\\
+
 
 \section{Versionen}
-\label{Versionen}
+\label{sec:Versionen}
 
-In diesem Projekt finden sich verschiedene Ansätze für Chatbots wieder. Die Ansätze unterscheiden sich je nach Zweck verschieden stark.
+In diesem Projekt finden sich verschiedene Ansätze für Chatbots wieder. Die Ansätze unterscheiden sich je nach Zweck. Im Folgenden ist eine kleine Übersicht gegeben. Details zur Programmlogik finden sich in Kaptiel \ref{sec:Augusta: Programmlogik}.\\
+Die Version "`Firsttry"' stellt unseren ersten Versuch da, aus der sich die anderen Versionen entwickelt haben. Deshalb ist Firsttry in der jetzigen Git-Repository nicht mehr vorhanden, kann aber über die vorherigen Speicherzustände während der Entwicklung des Projekts eingesehen werden.\\
+Die Kategorien der Anwendungsgebiete und Geschenkideen für FIRSTQ aus dem Topic Kaufabsicht sind in diesen Versionen direkt in den Code geschrieben. Sollte eine automatische Extraktion der Kategorien aus der Datenbank gewünscht sein, so lässt sich dies leicht umstellen. Nähere Information dazu finden sich in Abschnitt \ref{sec:Alternative}.\\
 
-\subsection{FIRSTTRY}
-\label{sec:FIRSTTRY}
-
-Der Ordner 'FIRSTTRY' enthält den ursprüunglichen Ansatz der Kaufempfehlung. Dieser Ansatz zeichnet sich dadurch aus, dass bei der Ermittlung des Kundenwunschs Satz für Satz erfragt wird, welche Eigenschaften das vom Kunden gewünschte Produkt haben soll. Dieser Ansatz lässt sich mit dem Befehl ':build mine' kompilieren. Für weitere Details zur Programmlogik und Ablauf dieses Ansatzes, siehe Kapitel: 'Augusta: Programmlogik'. 
-
-\subsection{Onesentence}
-\subsection{sec:Onesentence}
-
-Der Ansatz 'Onesentence' unterscheidet sich von FIRSTTRY in der Extraktion und Analyse des Kundenwunschs. Hier wird unter erweiterter Anwendung von Pattern-Matching-Verfahren, die von ChatScript aus bereitgestellt werden, der Kundenwunsch anhand eines Satzes extrahiert und analysiert. Dies soll einen intuitiveren Ansatz darstellen, da in natürlicher Sprache oft sogenannte Kundenwünsche in einem Satz beschrieben werden, ansatt als Antworten auf Konkrete fragen. Man kann diesen Ansatz mithilfe von ':build onesentence' kompilieren. Ansonsten sind Ansätze wie Vorstellung, Query und Interaktion nach Vorschlag an FIRSTTRY angelehnt.
 
 \subsection{OnesentenceGoodbye}
 \label{sec:OnesentenceGoodbye}
 
-Dieser Ansatz ist eine Modifizierung von 'Onesentence', die es dem Kunden erlaubt, zu jedem Zustand sich vom Bot zu verabschieden. Dies hat den Vorteil, dass ein 'drop'-Befehl die Tabelle, die dem Kunden zugeordnet wird, erfolgt und somit ein spätere Komplikationen auf Datenbankebene vermieden werden. Dieser Ansatz lässt sich mit ':build onesentencegoodbye' testen. 
+Dieser Ansatz ist für die Verwendung auf der Konsole geschrieben. Er erlaubt es dem Kunden, sich in jedem Zustand durch ein entsprechendes Stichwort vom Bot zu verabschieden. Dies hat den Vorteil, dass ein \lstinline|drop|-Befehl für die Tabelle, die dem Kunden zugeordnet wird, erfolgt und somit ein spätere Komplikationen auf Datenbankebene vermieden werden.\\
+Unter der erweiterten Anwendung eines Pattern-Matching-Verfahrens, das von ChatScript aus bereitgestellt wird, wird der Kundenwunsch anhand eines einzelnen Satzes extrahiert und analysiert. Dies soll einen intuitiveren Ansatz darstellen, da in natürlicher Sprache oft sogenannte Kundenwünsche in einem Satz beschrieben werden, ansatt als Antworten auf konkrete Fragen.\\
+Dieser Ansatz lässt sich mit \lstinline|:build ONESENTENCEGOODBYE| testen.\\
 
 \subsection{OnesentenceGui}
 \label{sec:OnesentenceGui}
 
-Onesentencegui ist eine weitere Modifizierung von 'Onesentence'. Dieser Ansatz ist für die GUI gedacht, die erfordert, dass der Nutzer die erste Eingabe, wie z.B. 'Hallo' tätigt. Ansonsten unterscheidet sich die Programmlogik nicht von 'Onesentence'. Dieser Ansatz kann mit ':build onsentencegui' kompiliert werden, ist aber weniger für das Testen in der Konsole und am besten für die Benutzung in der GUI geeignet. Für Anmerkungen zu GUI, siehe Kapitel 'Probleme'. 'ONESENTENCEGUIENDE' ist der Ansatz 'OnesentenceGoodbye' für die GUI, d.h. es handelt sich hier um einen Ansatz für die GUI, die es dem Kunden Erlaubt, in jedem Zustand 'Tschüss' oder Ähnliches zu sagen, um den Bot zu beenden. 
+OnesentenceGui ist OnesentenceGoodbye recht ähnlich. Dieser Ansatz ist für die GUI gedacht, die erfordert, dass der Nutzer die erste Eingabe, wie z.B. 'Hallo' tätigt. Außerdem werden die Informationen zu dem geführten Dialog, die ChatScript speichert, um die neue Konversation dort fortführen zu können, wo die alte endete, wenn der Benutzer zurückkehrt, beim Programmstart gelöscht, da das Speichern für unsere Anwendung nicht sinnvoll ist. Damit das Löschen allerdings funktioniert, ist es notwendig, dass zuvor der Bot "`ordentlich"' beendet wurde, also beispielsweise über ein \lstinline|:quit| während des Dialoges, nicht aber durch das plötzliche Schließen der .bat-Datei, des Chatbot-Fensters im Browser oder Ähnliches.\\
+Ursprünglich war eine Version vorgesehen, in der der Bot wie in OnesentenceGoodbye jederzeit mit einem Stichwort beendet werden kann und die Tabelle in der Datenbank gelöscht wird. Leider war der Befehl zum Löschen der Konversation (\lstinline|:reset|) und die Funktion, den Bot jederzeit beenden können, aus einem für uns nicht ersichtlichen Grund nicht kompatibel. Diese Version trug den Namen "`OnesentenceGuiEnde"' und wird wie Firsttry nicht ausgeliefert.\\
+Ansonsten unterscheidet sich die Programmlogik nicht von OnesentenceGoodbye. Dieser Ansatz kann mit \lstinline|:build ONESENTENCEGUI| kompiliert werden, ist aber weniger für das Testen in der Konsole und am besten für die Benutzung in der GUI geeignet.\\
+Beim Arbeiten mit der Benutzerschnittstelle sind einige Schwierigkeiten aufgetaucht, weshalb OnesentenceGui mit der GUI nicht richtig funktioniert (allerdings ist die Version auf der Konsole funktionsfähig). Nähere Informationen zu den Problemen finden sich in \ref{sec: Probleme mit der GUI}.\\
 
+\subsection{Produkteigenschaften}
+\label{sec:Produkteigenschaften}
+
+Die Version Produkteigenschaften unterscheidet sich von OnesentenceGoodbye und OnesentenceGui in der Extraktion und Analyse des Kundenwunsches. Statt die Informationen zu Name, Art, Ausführung und Preis frei in einem Satz eingeben zu können, wird der Kunde explizit nach diesen Eigenschaften gefragt.\\
+Das einzelne Fragen diente ursprünglich nur als Übergangslösung bis das Pattern-Matching für die Eingabe mittels eines Satzes fertig wäre, aber da sich während eines Benutzertests (s. Anhang) gezeigt hat, dass die einzelenn Fragen als einfacher empfunden werden, haben wir diese Version belassen.\\
+Produkteigenschaften ist für die Benutzung auf der Konsole geschrieben und verfügt \textbf{nicht} über die Möglichkeit, wie OnesentenceGoodbye jederzeit beendet zu werden.\\
+Die Version kann über den Befehl \lstinline|:build PRODUKTEIGENSCHAFTEN| aufgerufen werden.

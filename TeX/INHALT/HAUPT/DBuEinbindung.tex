@@ -1,16 +1,16 @@
 \chapter{Datenbank und ihre Einbindung in den Chatbot}
 \label{sec:DBuEinbindung}
 
-Herz des Dialogsystem ist eine Datenbank, in der die Produkte des Uni-Shops sowie Informationen zu ihnen wie Beschreibung oder Preis gespeichert ist. ChatScript unterstützt seit Version 4.2 PostgreSQL.
+Herz des Dialogsystems ist eine Datenbank, in der die Produkte des Uni-Shops sowie Informationen zu ihnen wie Beschreibung oder Preis gespeichert sind. ChatScript unterstützt seit Version 4.2 PostgreSQL (changes.txt in \citet{chatscript2019}).\\
 Der folgende Abschnitt behandelt den Aufbau der Datenbank des Uni-Shops sowie ihre Einbindung in den Chatbot.\\
 
 
 \section{Aufbau der Datenbank}
 \label{sec:DB}
 
-Für die Kundenberatung war eine Datenbank erforderlich, auf die der Bot zurückgreifen kann, um einzelne Produkte zu empfehlen. Die Datenbank Uni-Shop, die mittels des SQL-Skripts in \textit {UniShop\_Datenbank.sql} in PostgreSQL gebaut wird, besteht aus den drei Relationen \textit{Artikel}, \textit{Anwendung} und \textit{Geschenk} sowie der Relation \textit{PseudotabellePro}, die sich wiederum aus den drei anderen zusammensetzt. Während des Dialoges erstellt der ChatBot in Uni-Shop noch für jeden Nutzer eine weitere Relation, \textit{mystringXXXX}, die vor der Beendigung des Bots automatisch gelöscht wird.\\
-Die Daten der Artikel betreffend Name, Preis, Beschreibung und Ausführung sind größtenteils dem Uni-Shop der Universität Trier (https://www.uni-trier.de/index.php?id=50041, Stand: Mai 2019) entnommen. Alle Produkte, die dort angeboten werden, finden sich auch in der Datenbank. Um eine größere Auswahl an Produkten zur Verfügung zu haben, was unteranderem dem Testen des Bots dienlich ist, wurden noch eigene, fiktive Einträge hinzugefügt. So gibt es den Einkaufschip, die Bücher und die Spiele nicht im originalen Universitätsshop. Zusätzlich wurde für einige Produkte, wie dem Schlüsselband oder der Kaffeetasse, noch eine weitere Farbe eingefügt.\\
-Die Einträge für das Anwendungsgebiet und die Geschenkideen (s. \ref{sec:Anwendung} und \ref{sec:Geschenk}) beruhen auf unserer Vorstellung. Selbstverständlich sind hier andere Interpreationen möglich. Zudem kann die Datenbank jederzeit um weitere Einträge in den Relationen \textit{Artikel}, \textit{Anwendung} und \textit{Geschenk} erweitert werden, wonach jedoch die Relation \textit{PseudotabelePro} neu erstellt werden muss.\\
+Für die Kundenberatung war eine Datenbank erforderlich, auf die der Bot zurückgreifen kann, um einzelne Produkte zu empfehlen. Die Datenbank \textit{Uni-Shop}, die mittels des SQL-Skripts in \textit {UniShop\_Datenbank.sql} in PostgreSQL gebaut wird, besteht aus den drei Relationen \textit{Artikel}, \textit{Anwendung} und \textit{Geschenk} sowie der Relation \textit{PseudotabellePro}, die sich wiederum aus den drei anderen zusammensetzt. Während des Dialoges erstellt der Chatbot in Uni-Shop noch für jeden Nutzer eine weitere Relation, \textit{mystringXXXX}, die vor der Beendigung des Bots automatisch gelöscht wird.\\
+Die Daten der Artikel betreffend Name, Preis, Beschreibung und Ausführung sind größtenteils dem Uni-Shop der Universität Trier (\url{https://www.uni-trier.de/index.php?id=50041}, Stand: Mai 2019) entnommen. Alle Produkte, die dort angeboten werden, finden sich auch in der Datenbank. Um eine größere Auswahl an Produkten zur Verfügung zu haben, was unter Anderem dem Testen des Bots dienlich ist, wurden noch eigene, fiktive Einträge hinzugefügt. So gibt es den Einkaufschip, die Bücher und die Spiele nicht im originalen Universitätsshop. Zusätzlich wurde für einige Produkte, wie dem Schlüsselband oder der Kaffeetasse, noch eine weitere Farbe eingefügt.\\
+Die Einträge für das Anwendungsgebiet und die Geschenkideen (s. \ref{sec:Anwendung} und \ref{sec:Geschenk}) beruhen auf unserer Vorstellung. Selbstverständlich sind hier andere Interpretationen möglich. Zudem kann die Datenbank jederzeit um weitere Einträge in den Relationen \textit{Artikel}, \textit{Anwendung} und \textit{Geschenk} erweitert werden, wonach jedoch die Relation \textit{PseudotabelePro} neu erstellt werden muss.\\
 Da es bei den Relationen \textit{Anwendung} und \textit{Geschenk} mehrwertige Abhängigkeiten gibt, befindet sich die Datenbank in der vierten Normalform.\\
 
 
@@ -19,13 +19,14 @@ Da es bei den Relationen \textit{Anwendung} und \textit{Geschenk} mehrwertige Ab
 
 In der Relation \textit{Artikel} sind die grundlegenden Informationen zu den einzelnen Produkten des Uni-Shops gespeichert. Jedes Produkt wird über eine eindeutige Artikelnummer, einen Namen, eine Kategorie (Art), einen Preis, eine kurze Beschreibung, sowie eine optionale Art der Ausführung näher bezeichnet.\\
 Die Artikelnummer stellt, da sie für jeden Artikel einzigartig ist, den Schlüssel für ein Produkt dar. Die Nummer ist sechsstellig und setzt sich aus drei fortlaufenden Ziffern, einem Buchstaben für die Kategorie und zwei Ziffern oder Buchstaben für die Ausführung zusammen.\\
-Der Name der Produkte ist nicht eindeutig, es kommt also vor, dass Artikel in zum Beispiel verschiedenen Farben unterschiedliche Artikelnummern haben, aber denselben Namen tragen.\\
-Die Kategorie des Produkt wird in der Relation mit \textit{Art} bezeichnet. Hierbei handelt es sich um eine Art Oberbegriff, dem das Produkt zuzuordnen ist. So gehört die Kaffeetasse beispielsweise zur Kategorie "`Alltag"' und das Notizbuch zum Oberbegriff "`Uni"'.\\
-Der Preis, wird, wie im englischen Sprachraum üblich, mit einem Punkt, statt, wie in Deutschland, mit einem Komma angegeben, was dem der Struktur des PostgreSQl geschuldet ist. Zudem ist vorgegeben, dass der Preis nicht mehr als zwei Vorkomma-Stellen (d. h. kleiner als 99,99 Euro) sein darf.\\
+Der Name der Produkte ist nicht eindeutig, es kommt also vor, dass Artikel in, zum Beispiel, verschiedenen Farben unterschiedliche Artikelnummern haben, aber denselben Namen tragen.\\
+Die Kategorie des Produkt wird in der Relation mit \textit{Art} bezeichnet. Hierbei handelt es sich um eine Art Hyperonym, dem das Produkt zuzuordnen ist. So gehört die Kaffeetasse beispielsweise zur Kategorie "`Alltag"' und das Notizbuch zum Oberbegriff "`Uni"'.\\
+Der Preis, wird, wie im englischen Sprachraum üblich, mit einem Punkt, statt, wie in Deutschland, mit einem Komma angegeben, was dem der Struktur des PostgreSQL geschuldet ist. Zudem ist vorgegeben, dass der Preis maximal nur zwei Vorkomma-Stellen (d. h. kleiner als 99,99 Euro) haben darf.\\
 Bei der Beschreibung ist es wichtig zu beachten, dass diese aus nicht mehr als 30 Wörtern insgesamt besteht, da sie andererseits nicht vollständig über den Chatbot ausgegeben werden kann. Zu näheren Informationen hierzu siehe \ref{sec:Einbindung}.\\
 Die Ausführung behandelt bestimmte Eigenschaften eines Produkts, die für den Käufer relevant sind. Hierzu zählt die Farbe oder, bei Büchern, die Sprache. Zu beachten ist, dass nicht bei jedem Produkt ein Eintrag für die Ausführung vorliegt.\\
-Die Größe eines Artikel, was im Fall der Kleidungsstücke für den Kunden von Bedeutung ist, wird in der Datenbank nicht berücksichtigt. Für diese bewusste Entscheidung gibt es mehrere Gründe: Da der Chatbot nur eine Kundenberatung darstellt und keine Bestellmöglichkeit beinhaltet, muss der Kunde persönlich beim Uni-Shop erscheinen, um das Produkt zu erwerben. Dort wird er über die vorhandenen Größen informiert und kann das Kleidungsstück möglicherweise auch anprobieren. Da Kleidung generell sehr unterschiedlich ausfallen kann, gerade bei Unisex-Kleidung, ist der Aussagewert der Größe in diesem Fall ohnehin als gering anzusehen. Desweiteren erteilt der ChatBot zu keinem Zeitpunkt eine Auskunft über die Größe.\\
-Tabelle \ref{BspArtikel} stellt einen Auszug aus der Relation dar.
+Die Größe eines Artikel, was im Fall der Kleidungsstücke für den Kunden von Bedeutung ist, wird in der Datenbank nicht berücksichtigt. Für diese bewusste Entscheidung gibt es mehrere Gründe: Da der Chatbot nur eine Kundenberatung darstellt und keine Bestellmöglichkeit beinhaltet, muss der Kunde persönlich beim Uni-Shop erscheinen, um das Produkt zu erwerben. Dort wird er über die vorhandenen Größen informiert und kann das Kleidungsstück möglicherweise auch anprobieren. Da Kleidunggrößen generell sehr unterschiedlich ausfallen können, gerade bei Unisex-Kleidung, ist der Aussagewert der Größe in diesem Fall ohnehin als gering anzusehen. Des Weiteren erteilt der Chatbot zu keinem Zeitpunkt eine Auskunft über die Größe.\\
+%% TABELLENNUMMER
+Tabelle 5.1 stellt einen Auszug aus der Relation dar.
 \begin{table}
 \begin{center}
 \begin{tabular}{|p{1,2cm}|p{2,2cm}|p{1cm}|p{0,7cm}|p{6,5cm}|p{1,7cm}|}
@@ -45,9 +46,10 @@ Tabelle \ref{BspArtikel} stellt einen Auszug aus der Relation dar.
 
 \subsection{Die Relation \textit{Anwendung}}
 \label{sec:Anwendung}
-In der Relation \textit{Anwendung} sind Anwendungsvorschläge für die einzelnen Produkte notiert. Ebenso wie in der Relation \textit{Geschenk} muss es nicht für jedes Produkt eine Anwendung geben und dasselbe Produkt kann mehreren Anwendungen zuzuordnen sein.\\
-Die Einträge in der Spalte ArtNr referenzieren die ArtNr der einzelnen Produkte in der Relation \textit{Artikel}. Die Einträge in Anwendungsgebiet zeigen die Anwendungsmöglichkeiten. Derzeit gibt es fünf verschiedene Anwendungen: Accessoire, Alltag, EssenTrinken, Schreibwaren und Unterhaltung.
-Tabelle \ref{BspAnwendung} zeigt einen Ausschnitt aus \textit{Anwendung}.
+In der Relation \textit{Anwendung} sind Anwendungsvorschläge für die einzelnen Produkte notiert. Ebenso wie in der Relation \textit{Geschenk} muss es nicht für jedes Produkt eine Anwendung geben und dasselbe Produkt kann mehreren verschiedenen Anwendungen zuzuordnen sein.\\
+Die Einträge in der Spalte ArtNr referenzieren die ArtNr der einzelnen Produkte in der Relation \textit{Artikel}. Die Einträge in Anwendungsgebiet zeigen die Anwendungsmöglichkeiten. Derzeit gibt es fünf verschiedene Anwendungen: Accessoire, Alltag, EssenTrinken, Schreibwaren und Unterhaltung.\\
+%%TABELLENNUMMER
+Tabelle 5.2 zeigt einen Ausschnitt aus \textit{Anwendung}.
 \begin{table}
 \begin{center}
 \begin{tabular}{|p{1,5cm}|p{4cm}|}
@@ -68,10 +70,11 @@ Tabelle \ref{BspAnwendung} zeigt einen Ausschnitt aus \textit{Anwendung}.
 
 \subsection{Die Relation \textit{Geschenk}}
 \label{sec:Geschenk}
-In der Relation \textit{Geschenk} ist notiert, als was für ein Geschenk ein Artikel dienen könnte. Ebenso wie in der Relation \textit{Anwendung} muss es nicht für jedes Produkt eine Geschenkidee geben und dasselbe Produkt kann mehreren Arten von Geschnken zuzuordnen sein.\\
-Die Einträge in der Spalte ArtNr referenzieren die ArtNr der einzelnen Produkte in der Relation \textit{Artikel}. Die Einträge in Geschenkidee zeigt, wofür das Produkt dienen kann. Derzeit gibt es vier verschiedene Geschenkarten: Erinnerungsstück, Gastgeschenk, Geschenk und Mitbringsel.\\
-Im Falle des Geschenk ist zu beachten, dass dem Begriff hier eine Ambiguität zukommt: zum einen als Oberbegriff und zum anderen als Geschenkart im Sinne eines Präsents zum Geburtstag oder zu Weihnachten. Um desweiteren das Mitbringsel vom Geschenk unterscheiden zu können, wurde mit der internen Definition gearbeitet, dass ein Mitbringsel weniger als 6,00 Euro kostet.\\
-Tabelle \ref{BspGeschenk} zeigt einen Ausschnitt aus \textit{Geschenk}.
+In der Relation \textit{Geschenk} ist notiert, als was für ein Geschenk ein Artikel dienen könnte. Ebenso wie in der Relation \textit{Anwendung} muss es nicht für jedes Produkt eine Geschenkidee geben und dasselbe Produkt kann mehreren verschiedenen Arten von Geschenken zuzuordnen sein.\\
+Die Einträge in der Spalte ArtNr referenzieren die ArtNr der einzelnen Produkte in der Relation \textit{Artikel}. Die Einträge in Geschenkidee zeigen, wofür das Produkt dienen kann. Derzeit gibt es vier verschiedene Geschenkarten: Erinnerungsstück, Gastgeschenk, Geschenk und Mitbringsel.\\
+Im Falle des Geschenks ist zu beachten, dass dem Begriff hier eine Ambiguität zukommt: zum einen als Oberbegriff und zum anderen als Geschenkart im Sinne eines Präsents zum Geburtstag oder zu Weihnachten. Um des Weiteren das Mitbringsel vom Geschenk unterscheiden zu können, wurde mit der internen Definition gearbeitet, dass ein Mitbringsel weniger als 6,00 Euro kostet.\\
+%%TABELLENNUMMER
+Tabelle 5.3 zeigt einen Ausschnitt aus \textit{Geschenk}.
 \begin{table}
 \begin{center}
 \begin{tabular}{|p{1,5cm}|p{4cm}|}
@@ -91,63 +94,63 @@ Tabelle \ref{BspGeschenk} zeigt einen Ausschnitt aus \textit{Geschenk}.
 
 \subsection{Die Relation \textit{PseudotabellePro}}
 \label{sec:PseudotabellePro}
-Die Relation \textit{PseudotabellePro} stellt die Grundlage für die späteren Relationen, die während des Dialogs speziell für den Nutzer erstellt werden.\\
-Sie resultiert aus einem Natural Join von \textit{Artikel} mit \textit{Anwendung} und \textit{Geschenk}, weshalb sie im Zuge der Aktualität nach einer Änderung in einer oder mehreren der drei Relationen neu erstellt werden muss. Außerdem wird die Eigenschaft queried mit einer Integer als Wert (Default: 0) hinzugefügt. 
-werden die Einträge, die Null sind, durch den String "`nichts"' ersetzt. queried und das Ersetzen der Null-Werte ist für die Produktsuche von Bedeutung (s. \ref{sec:queried}).\\
-Da \textit{PseudotanellePro} nur 60 Einträge umfasst, ist es in diesem Fall am einfachsten eine eben solche Relationen aus den anderen drei Relationen zu erstellen anstatt erst während der Suche Joins zum Beispiel nur \textit{Artikel} und \textit{Anwendung} auszuführen.\\
+Die Relation \textit{PseudotabellePro} bildet die Grundlage für die späteren Relationen, die während des Dialogs speziell für den Nutzer erstellt werden.\\
+Sie resultiert aus einem Natural Full Outer Join von \textit{Artikel} mit \textit{Anwendung} und \textit{Geschenk}, weshalb sie im Zuge der Aktualität nach einer Änderung in einer oder mehreren der drei Relationen neu erstellt werden muss. Außerdem wird die Eigenschaft queried mit einer Integer als Wert (Default: 0) hinzugefügt  und die Einträge, die Null sind, werden durch den String "`nichts"' ersetzt. queried und das Ersetzen der Null-Werte ist für die Produktsuche von Bedeutung (s. \ref{sec:queried}).\\
+Da \textit{PseudotanellePro} nur 60 Einträge umfasst, ist es in diesem Fall am einfachsten eine eben solche Relationen aus den anderen drei Relationen zu erstellen, anstatt erst während der Suche Joins zum Beispiel nur \textit{Artikel} und \textit{Anwendung} auszuführen.\\
 
 
 \subsection{Die Relation \textit{mystringXXXX}}
 \label{sec:mystring}
-Während des Dialoges und der Suche wird für jeden Nutzer eine eigene Relation erstellt, die \textit{mystringXXXX} heißt. Der Name setzt sich aus dem String "`mystring"' und einer zufällig gewählten, vierstelligen Zahl zusammen. Diese Zahl wird in Dokumentation als "`XXXX"' wiedergegeben, daher die Betitlung \textit{mystringXXXX}, während die Relation in der Datenbank beispielweise \textit{mystring4083} heißen kann.\\
-Eine eigene Relation für jeden Benutzer ist notwendig, da während der Produktsuche in der Relation die Einträge von queried individuell für jeden Nutzer verändert werden. Bevor sich der Chatbot in den Endzustand übergeht, wird \textit{mystringXXXX} gelöscht.\\
-Bei \textit{mystringXXXX} handelt es sich um eine Kopie der Relation \textit{PseudotabellePro}. Da die Datenbank Uni-Shop aufgrund der mehrwertigen Abhängigkeiten von Anwendungsgebiet und Geschenkidee in der vierten Normalform ist und \textit{PseudotabellePro} alle drei grundlegenden Relationen in sich vereint, ist ArtNr als Schlüssel für die gesamte Relation nicht mehr ausreichend; der Schlüssel setzt sich nun aus ArtNr, Anwendungsgebiet und Geschenkidee zusammen. Da ein Schlüssel aus drei Eigenschaften hier die Suche unnötig verkomplizieren würde, wird noch die Eigenschaft row\_number in \textit{mystringXXXX} eingefügt, die jedes Objekt in der Datenbank eindeutig referenziert.\\
+Während des Dialoges und der Suche wird für jeden Nutzer eine eigene Relation erstellt, die \textit{mystringXXXX} heißt. Der Name setzt sich aus dem String "`mystring"' und einer zufällig gewählten, vierstelligen Zahl zusammen. Diese Zahl wird in Dokumentation als "`XXXX"' wiedergegeben, daher die Betitlung \textit{mystringXXXX}, während die Relation in der Datenbank beispielsweise \textit{mystring4083} heißen kann.\\
+Eine eigene Relation für jeden Benutzer ist notwendig, da während der Produktsuche in der Relation die Einträge von queried individuell für jeden Nutzer verändert werden. Bevor der Chatbot in den Endzustand übergeht, wird \textit{mystringXXXX} gelöscht.\\
+Bei \textit{mystringXXXX} handelt es sich um eine Kopie der Relation \textit{PseudotabellePro}. Da die Datenbank Uni-Shop aufgrund der mehrwertigen Abhängigkeiten von Anwendungsgebiet und Geschenkidee in der vierten Normalform ist und \textit{PseudotabellePro} alle drei grundlegenden Relationen in sich vereint, ist ArtNr als Schlüssel für die gesamte Relation nicht mehr ausreichend; der Schlüssel setzt sich nun aus ArtNr, Anwendungsgebiet und Geschenkidee zusammen. Da ein Schlüssel aus drei Eigenschaften hier die Suche unnötig verkomplizieren würde, wird noch die Eigenschaft row\_number in \textit{mystringXXXX} eingefügt, die jedes Objekt der Relation eindeutig referenziert.\\
 
 
 \section{Einbindung von PostgreSQL in ChatScript}
 \label{sec:Einbindung}
-Seit Version 4.2 erlaubt ChatScript das einbinden von PostgreSQL-Datenbanken in den Chatbot. Dafür stellt ChatScript die Funktionen \lstinline|^dbinit|, \lstinline|^dbclose| und \lstinline|^dbexecute| zur Verfügung. Im Folgenden werden die Funktionen kurz vorgestellt. Für weitere Informationen sei auf \textcolor[rgb]{1,0,0}{ChatScript PostgreSQL} verwiesen. Dort findet sich auch eine kurze Einführung in PostgreSQL.
+Seit Version 4.2 erlaubt ChatScript das einbinden von PostgreSQL-Datenbanken in den Chatbot. Dafür stellt ChatScript die Funktionen \lstinline|^dbinit|, \lstinline|^dbclose| und \lstinline|^dbexecute| zur Verfügung. Im Folgenden werden die Funktionen kurz vorgestellt. Für weitere Informationen sei auf ChatScript-PostgreSQL in \citet{chatscript2019} verwiesen. Dort findet sich auch eine kurze Einführung in PostgreSQL.
 
 
 \subsection{Die Funktionen \lstinline|^dbinit| und \lstinline|^dbclose|}
 \label{sec:dbinit}
-Mit \lstinline|^dbinit| wird eine Verbindung zu einer bereits existierenden Datenbank aufgebaut. Ohne diese Funktion schlagen alle weiteren Datenbank-Operationen fehl. Wenn bereits eine Verbindung zur Datenbank besteht und \lstinline|^dbinit| erneut aufgerufen wird, schlägt dies ebenfalls fehl. Als ein Beispiel für \lstinline|^dbinit| sei hier einer der Aufrufe aus \textit{kaufabsicht.top} wiedergegeben:
+Mit \lstinline|^dbinit| wird eine Verbindung zu einer bereits existierenden Datenbank aufgebaut. Ohne diese Funktion schlagen alle weiteren Datenbank-Operationen fehl. Wenn bereits eine Verbindung zur Datenbank besteht und \lstinline|^dbinit| erneut aufgerufen wird, scheitert dies ebenfalls. Als ein Beispiel für \lstinline|^dbinit| sei hier einer der Aufrufe aus Kaufabsicht wiedergegeben:
 
-\begin{lstlisting}[caption={Beispiel für \lstinline|^dbinit|}]
+\begin{lstlisting}{}					%[caption={Beispiel für \lstinline|^dbinit|}]
  if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password =  1234))
 	        {[Lass uns anfangen] [Super, auf geht's]! ^reuse( FIRSTQ )
 	    } else {dbinit failed - $$db_error ^reuse( FIRSTQ ) }
 \end{lstlisting}
 
-Die Datenbank, die mit \lstinline|^dbinit| initialisiert wurde, bleibt die Datenbank, mit der gearbeitet wird, bis die Verbindung mit \lstinline|^dbclose| geschlossen wird.\\
+Die Datenbank, die mit \lstinline|^dbinit| initialisiert wurde, bleibt die Datenbank, mit der gearbeitet wird, bis die Verbindung mit \lstinline|^dbclose| getrennt wird.\\
 
 \subsection{Die Funktion \lstinline|^dbexecute| und Outputmacros}
 \label{sec:dbexecute}
 
 Um die SQL-Anweisungen aus ChatScript in  PostgreSQL ausführen zu können, wird \lstinline|^dbexecute| benötigt. Ein Aufruf könnte beispielsweise so aussehen:
 
-\begin{lstlisting}[caption={Beispiel für \lstinline|^dbexecute|}]
+\begin{lstlisting}{}				%[caption={Beispiel für \lstinline|^dbexecute|}]
 if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
 else {dbexecute failed - $$db_error ^reuse( FIRSTQ ) }
 \end{lstlisting}
 
-Dieses Beispiel entstammt ebenfalls \textit{kaufabsicht.top}. Der String (SELECT DISTINCT anwendungsgebiet FROM anwendung;) enthält dabei die Queries, während sich \^dbFirst auf das Outputmacro bezieht. Es ist dabei darauf zu achten, dass die einzelne Query mit einem Semikolon beendet wird und der Anweisungsblock insgesamt von doppelten Anführungszeichen wie im Beispiel vorgegeben eingerahmt wird. Durch die Verwendung der doppelten Anführungszeichen können die Werte von Variablen aus der ChatScript-Umgebung an SQL übergeben werden. Allerdings müssen die Variablen instanziiert sein, da eine Null-Variable in ChatScript in SQL als leerer String übersetzt wird. Zur Lösung dieses Problems in Augusta siehe \ref{sec:queried}.\\
+Dieses Beispiel entstammt ebenfalls Kaufabsicht. Der String ("`SELECT DISTINCT anwendungsgebiet FROM anwendung;"') enthält dabei die Queries, während sich \lstinline|^dbFirst| auf das Outputmacro bezieht. Es ist dabei darauf zu achten, dass die einzelne Query mit einem Semikolon beendet wird und der Anweisungsblock insgesamt von doppelten Anführungszeichen, wie im Beispiel vorgegeben, eingerahmt wird. Durch die Verwendung der doppelten Anführungszeichen können die Werte von Variablen aus der ChatScript-Umgebung an PostreSQL übergeben werden. Allerdings müssen die Variablen instanziiert sein, da eine Null-Variable aus ChatScript in SQL als leerer String übersetzt wird. Zur Lösung dieses Problems in Augusta siehe \ref{sec:queried}.\\
 Das Outputmacro gibt vor, wie die Ergebnisse der SQL-Query ausgegeben werden. Im Prinzip handelt es sich dabei um eine selbstdefinierte Funktion am Kopf der .top-Dateien, bei der die einzelnen Wörter des SQL-Ergebnisses die Argumente darstellen. Die Zahl der Argumente ist hierbei auf maximal 31 beschränkt. Das folgende Beispiel für das Outputmacro ist recht einfach:
 
-\begin{lstlisting}[caption={Beispiel für ein Outputmacro}]
+\begin{lstlisting}{}					%%[caption={Beispiel für ein Outputmacro}]
 outputmacro: ^dbFirst($_arg1)
 	    $_arg1.
 	    ^flushoutput()
 \end{lstlisting}
 
-\lstinline|^dbFirst| ist für Suchergebnisse geschrieben, die pro Objekt nur aus einem Wort bestehen. Sollte es ein zweites Wort geben, wird dieses ignoriert. Hier wird lediglich nach jedem Wort ein Punkt gesetzt. Es sind aber auch kompliziertere Outputmacros möglich, die beispielsweise if-Anweisungen oder die zufällige Ausgabe von Wörtern und Sätzen (s. \ref{sec:ChatScript: Zufällige Ausgabe}) beinhalten. Bei SQL-Anweisungen, die keine Ausgabe beinhalten, wie beim Einfügen von Daten in eine Relation, ist die Angabe eines Outputmacros nicht erforderlich.\\
+\lstinline|^dbFirst| ist für Suchergebnisse geschrieben, die pro Objekt nur aus einem Wort bestehen. Sollte es ein zweites Wort geben, wird dieses ignoriert. Hier wird lediglich nach jedem Wort ein Punkt gesetzt. Es sind aber auch kompliziertere Outputmacros möglich, die beispielsweise if-Anweisungen oder die zufällige Ausgabe von Wörtern und Sätzen (s. \ref{sec:ChatScript: Zufällige Ausgabe}) beinhalten. Bei SQL-Anweisungen, die keine Ausgabe haben, wie beim Einfügen von Daten in eine Relation, ist die Angabe eines Outputmacros nicht erforderlich.\\
+
 
 \section{Der Gerbauch der Datenbank Uni-Shop in Augusta}
 \label{sec:SQL}
 % - Datenbank init
 % - konzepte? (Wird schon erwähnt)
 % - Erstellen und Droppen von mystring
-Nach dem erfolgreichen Herstellen der Verbindung zu Uni-Shop in INTRO aus dem Topic Kaufabsicht ist die Datenbank einsatzbereit.
+Nach dem erfolgreichen Herstellen der Verbindung zu Uni-Shop in INTRO aus dem Topic Kaufabsicht ist die Datenbank einsatzbereit.\\
 Vor dem ersten Durchsuchen der Datenbank nach einem passenden Produkt wird in SEARCHCREATE die Relation \textit{mystringXXXX} erstellt. Da während der Suche die Werte für queried individuell verändert werden, ist eine eigene Relation für jeden Benutzer unerlässlich. \textit{mystringXXXX} wird bei einem sauberen Programmende in ASKIFHAPPY gelöscht.\\
 Zentraler Punkt  der Suche ist die Eigenschaft queried. Sie funktioniert als Gedächtnis des Chatbots und stellt die Grundlage für die Ausgabe der Produktinformationen an den Benutzer und den Warenkorb dar.\\
 In der vorliegenden Version, wird die Datenbank erst zur Produktsuche im Topic Dbsearch verwendet, es ist allerdings auch möglich, die Anwendungsgebiete und Geschenkideen in FIRSTQ automatisch aus der Datenbank heraussuchen zu lassen. Näheres dazu siehe in \ref{sec:Alternative}.
@@ -156,6 +159,7 @@ In der vorliegenden Version, wird die Datenbank erst zur Produktsuche im Topic D
 \subsection{Die Eigenschaft queried}
 \label{sec:queried}
 % - Bedeutung von queried
+
 \begin{table}
 \begin{center}
 \begin{tabular}{|p{1,5cm}|p{11,5cm}|}
@@ -174,9 +178,10 @@ In der vorliegenden Version, wird die Datenbank erst zur Produktsuche im Topic D
 \end{table}
 Obwohl ChatScript über die Möglichkeit verfügt, den geführten Dialog für jeden Nutzer einzeln zu speichern, erschien es uns einfacher und sinnvoller, die Informationen, welche Produkte schon gefunden, vom Kunden akzeptiert oder abgelehnt wurden, in der Datenbank selbst zu speichern. Dies geschieht in der Eigenschaft queried der Relation \textit{mystringXXXX} (für \textit{mystringXXXX} s. \ref{sec:mystring}).\\
 queried ist vom Typ Integer und kann einen Wert von 0 bis einschließlich 5 betragen. Zu Beginn, wenn noch keine Suche ausgeführt wurde, beträgt queried also bei jedem Objekt 0. Das Produkt, das den Suchkriterien entspricht und dem Kunden vorgeschlagen wird, wird mit 1 markiert. Da es dasselbe Produkt aufgrund der mehrwertigen Abhängigkeit mehrere Einträge in der Relation haben kann, ist es möglich, dass während eines Suchvorgangs mehrmals die 1 vorgeben wird. Mit einer 2 gekennzeichnete Artikel wurden vom Kunden abgelehnt. In Folge dessen werden diese auch in folgenden Suchen mit möglicherweise veränderten Kriterien dem Benutzer nicht mehr angezeigt. \\
-Der Artikel, der der Kunde bei der aktuellen Suche ausgewählt hat, wird mit 3 kenntlich gemacht. In einem weiteren Schritt werden aus den Produkten mit 3 entweder eine 4 oder 5. Der Grund dafür liegt erneut darin, dass in \textit{mystringXXXX} ein Produkt mehrere Einträge haben kann. Dem Kunden werden nur der Name, die Beschreibung und der Preis angezeigt. Da sich die Einträge aber in Anwendungsgebiet oder Geschenkidee unterscheiden, ist ein Unterschied für den Kunden nicht erkennbar und er wundert sich, weshalb ihm dieselbe Information mehrmals präsentiert wird oder hält es für einen Fehler. Um dies zu vermeiden, wird einer der mit 3 markierten Einträge mit 4 gekennzeichnet und die anderen mit 5. Nur der Eintrag des Produkts mit einer 4 wird dem Kunden bei Bedarf, zum Beispiel beim Warenkorb gekennzeichnet.\\
-Tabelle \ref{ÜbersichtQueried} bietet eine Übersicht der Bedeutung der queried-Werte.
-queried bildet die Grundlage der Suche. Es wird einmal nach einem Produkt gesucht und dieses daraufhin mit 1 gekennzeichnet. Alle darauffolgenden Operationen, die auf dieser Suche basieren, d. h. Ausgabe der Name und der Beschreibung, Markierung mit den anderen Zahlen und Ausgabe des Warenkorbs, erfolgt anschließend auf der Basis des queried-Werts.\\
+Der Artikel, den der Kunde bei der aktuellen Suche ausgewählt hat, wird mit 3 kenntlich gemacht. In einem weiteren Schritt werden aus den Produkten mit 3 entweder eine 4 oder 5. Der Grund dafür liegt erneut darin, dass in \textit{mystringXXXX} ein Produkt mehrere Einträge haben kann. Dem Kunden werden nur der Name, die Beschreibung und der Preis angezeigt. Da sich die Einträge aber in Anwendungsgebiet oder Geschenkidee unterscheiden, ist ein Unterschied für den Kunden nicht erkennbar und er wundert sich, weshalb ihm dieselbe Information mehrmals präsentiert wird oder hält es für einen Fehler. Um dies zu vermeiden, wird einer der mit 3 markierten Einträge mit 4 gekennzeichnet und die anderen mit 5. Nur der Eintrag des Produkts mit einer 4 wird dem Kunden bei Bedarf, zum Beispiel beim Warenkorb gekennzeichnet.\\
+%% TABELLENNUMMER
+Tabelle 5.4 bietet eine Übersicht der Bedeutung der queried-Werte.\\
+queried bildet die Grundlage der Suche. Es wird einmal nach einem Produkt gesucht und dieses daraufhin mit 1 gekennzeichnet. Alle darauffolgenden Operationen, die auf dieser Suche basieren, zum Beispiel Ausgabe des Namens und der Beschreibung, Markierung mit den anderen Zahlen und Ausgabe des Warenkorbs, erfolgt anschließend auf der Basis des queried-Werts.\\
 
 % Kurze Version der oberen Tabelle. Für alle Fälle noch hier. 
 % \begin{table}
@@ -201,7 +206,7 @@ queried bildet die Grundlage der Suche. Es wird einmal nach einem Produkt gesuch
 \label{sec:Produktsuche}
 % - Suche (setzen auf 1)
 % - Warum 'nichts'? / Problem mit NULL  \\
-Die eigentlich SQL-Query zur Suche hat noch keine Ausgabe, sondern verändert nur den Wert für queried auf 1. Die Query besteht aus zwei Teilen: Zuerst wird \textbf{ein} Artikel gesucht, dessen Eigenschaften den Suchkriterien entsprechen und in einem zweiten Schritt werden dann alle Einträge in \textit{mystringXXXX}, die im Namen mit dem gefundenen Artikel übereinstimmen und daher das gleiche Produkt beschreiben, mit 1 markiert. Der folgende Programmcode zeigt die SQL-Abfrage:\\
+Die eigentliche SQL-Query zur Suche hat noch keine Ausgabe, sondern verändert nur den Wert für queried auf 1. Die Query besteht aus zwei Teilen: Zuerst wird \textbf{ein} Artikel gesucht, dessen Eigenschaften den Suchkriterien entsprechen, und in einem zweiten Schritt werden dann alle Einträge in \textit{mystringXXXX}, die im Namen mit dem gefundenen Artikel übereinstimmen und daher das gleiche Produkt beschreiben, mit 1 markiert. Der folgende Programmcode zeigt die SQL-Abfrage:\\
 \begin{lstlisting}{caption={Die SQL-Query zur Suche in dbsearch.top}, label=SQLSuche}
 UPDATE $tablename
 SET queried = 1
@@ -225,7 +230,7 @@ WHERE name =
   LIMIT 1); 
 \end{lstlisting}
 In den Zeilen 4 bis 20 findet sich der erste Teil der Suche, in dem nach dem passenden Produkt gesucht wird, wobei nur Produkte berücksichtigt werden, die dem Kunden vorher noch nicht gezeigt worden sind (queried = 0).\\
-Das Einbinden von Variablen aus der ChatScript-Umgebung in die SQL-Abfrage ist nicht unproblematisch, da Variablen mit NULL-Werten in SQl nicht als NULL sondern als leerer String interpretiert werden, was in der Folge zu einem Fehlschlagen der Abfrage führt. Um dennoch nicht für jeden der 68 möglichen Fälle eine eigene Abfrage schreiben zu müssen, haben wir eine Lösung gefunden, die dieses Problem umgeht.\\
+Das Einbinden von Variablen aus der ChatScript-Umgebung in die SQL-Abfrage ist nicht unproblematisch, da Variablen mit NULL-Werten in SQL nicht als NULL sondern als leerer String interpretiert werden, was in der Folge zu einem Fehlschlagen der Abfrage führt. Um dennoch nicht für jeden der 68 möglichen Fälle eine eigene Abfrage schreiben zu müssen, haben wir eine Lösung gefunden, die dieses Problem umgeht.\\
 Die Variablen für die extrahierten Stichwörter (\lstinline|$anwendungszweck|, \lstinline|$geschenkidee|, \lstinline|$things|, \lstinline|$art|, \lstinline|$preis| und \lstinline|$ausfuehrung|) werden, wenn ihnen durch den Nutzer keine Kriterien zugewiesen werden, mit dem String "`nichts"' bzw. bei \lstinline|$preis| mit -1 initialisiert. In der Relation \textit{mystringXXXX} wurden die Null-Werte ebenfalls durch den String "`nichts"' ersetzt.\\ 
 Um in PostgreSQL explizit anzugeben, dass eine Eigenschaft egal ist, kann dies so formuliert werden:
 \begin{lstlisting}{caption={SQL-Query, bei der die Eigenschaft property irrelevant ist}, label=EigenschaftEgal}
@@ -239,7 +244,7 @@ Die Abfrage in Augusta funktioniert ähnlich. Beim Betrachten von beispielsweise
 art  = (CASE WHEN $art LIKE '%nichts%' THEN art ELSE $art END)
 \end{lstlisting}
 Es gibt also zwei Möglichkeiten, wie die Zeile die Suche beeinflussen kann: Wenn \lstinline|$art| den String "`nichts"' beinhaltet, was nur der Fall ist, wenn der Kunde keine Angaben zur Art des Produkts gemacht hat, lautet das Suchkriterium \lstinline|art = art|. Hier würde die Produktauswahl nicht weiter eingeschränkt werden.\\
-Ist nun aber \lstinline{$art} ein anderer String als "`nichts"' zugewiesen, dann lautet das Suchkriterium \lstinline|art = $art|, sodass die Art des Artikels bei der Suche berücksichtigt wird. Analog werden die anderen Variablen gehandhabt.\\
+Ist nun aber \lstinline|$art| ein anderer String als "`nichts"' zugewiesen, dann lautet das Suchkriterium \lstinline|art = $art|, sodass die Art des Artikels bei der Suche berücksichtigt wird. Analog werden die anderen Variablen gehandhabt.\\
 Es wäre schön gewesen, wenn wir bei Name und Art ein LIKE hätten verwenden können, sodass bei der Eingabe von zum Beispiel "`Tasse"' für Name die Kaffeetasse gefunden worden wäre. Leider ist das Verwenden von LIKE bei unserer Lösung nicht möglich, sodass die Werte in den Variablen exakt mit den Einträgen in der Tabelle übereinstimmen müssen.\\
 Nach dem die Produkte gefunden wurden, wird das Ergebnis auf ein Produkt reduziert.\\
 Der zweite Teil der Suche findet sich in Zeile 1 bis 3. queried wird in \textit{mystringXXXX} dort auf 1 gesetzt, wo der Name des Eintrags mit dem des im ersten Teil gefundenen Produkts übereinstimmt. Wie bereits erwähnt, gibt es in der Relation aufgrund der mehrwertigen Abhängigkeit von Anwendungsgebiet und Geschenkidee für einige Produkte mehrere Einträge. Auch wird bei den Suchergebnissen nicht zwischen der Ausführung unterschieden, da dem Kunden ohnehin nur Name, Beschreibung und Preis angezeigt werden.\\
@@ -247,6 +252,7 @@ Der zweite Teil der Suche findet sich in Zeile 1 bis 3. queried wird in \textit{
 
 \subsection{Die Ausgabe der Produkteigenschaften und der Warenkorb}
 \label{sec:AusgabeWarenkorb}
+
 % - Ausgabe von Name, Preis, Beschreibung
 % - Einkaufskorb
 In den Regeln PRODUCTNAME, PRODUCTDESCR und PRODUCTPRICE wird jeweils einzeln der Name, die Beschreibung bzw. der Preis des gefunden Produkts ausgegeben. Die SQL-Query für den Namen sei hier als Beispiel gegeben; die Abfragen für Beschreibung und Preis sind analog aufgebaut:
@@ -254,11 +260,11 @@ In den Regeln PRODUCTNAME, PRODUCTDESCR und PRODUCTPRICE wird jeweils einzeln de
 SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;
 \end{lstlisting}
 Das Outputmacro \lstinline|^dbsec| ist am Anfang von \textit{dbsearch.top} definiert. Es sieht eine unterschiedliche Ausgabe für die Eigenschaften vor.\\
-Zudem wird in \lstinline|^dbsec| noch die Variable \lstinline|$ergebnis| auf "`positiv"' gesetzt. \lstinline|$ergebnis| wird in PRODUCTNAME instanziiert und dient dazu, überprüfen zu können, ob überhaupt ein Schritt zuvor überhaupt ein Produkt gefunden wurde. Da in der Suche nur die Einträge in der Relation verändert werden, aber standardmäßig keine SQL-Ausgabe erfolgt, kann in ChatScript an dieser Stelle noch nicht festgestellt werden, ob ein Artikel gefunden wurde. Das passiert erst in PRODUCTNAME, wenn nach Einträge mit queried = 1 gesucht wird. Sind solche Einträge in der Relation vorhanden, wird entsprechend einer davon ausgewählt, \lstinline|^dbsec| wird aufgerufen und \lstinline|$ergebnis| wird "`positiv"'.\\
+Zudem wird in \lstinline|^dbsec| noch die Variable \lstinline|$ergebnis| auf "`positiv"' gesetzt. \lstinline|$ergebnis| wird in PRODUCTNAME instanziiert und dient dazu, überprüfen zu können, ob ein Schritt zuvor überhaupt ein Produkt gefunden wurde. Da in der Suche nur die Einträge in der Relation verändert werden, aber standardmäßig keine SQL-Ausgabe erfolgt, kann in ChatScript an dieser Stelle noch nicht festgestellt werden, ob ein Artikel gefunden wurde. Das passiert erst in PRODUCTNAME, wenn nach Einträge mit queried = 1 gesucht wird. Sind solche Einträge in der Relation vorhanden, wird entsprechend einer davon ausgewählt, \lstinline|^dbsec| wird aufgerufen und \lstinline|$ergebnis| wird "`positiv"'.\\
 Wurde nun allerdings kein passender Artikel gefunden, so wird auf kein Eintrag mit queried = 1 gefunden. Dementsprechend wird weder das Outputmacro \lstinline|^dbsec| aufgerufen noch \lstinline|$ergebnis| verändert, woraufhin eine entsprechende Meldung an den Kunden weitergegeben und der Kunde zu FIRSTQ in dem Topic Kaufabsicht weitergeleitet wird.\\
-Es gibt außerdem die Möglichkeit für den Kunden, dass er sich ansehen kann, welche Artikel er bereits akzeptiert hat. Die Möglichkeit in Anlehnung an die reale Welt und Internetshops als "`Warenkorb"' bezeichnet und findet sich in der Regel REPONSE im Topic DBsearch.\\
+Es gibt außerdem die Möglichkeit für den Kunden, dass er sich ansehen kann, welche Artikel er bereits akzeptiert hat. Diese Option, in Anlehnung an die reale Welt und Internetshops als "`Warenkorb"' bezeichnet, findet sich in der Regel REPONSE in Dbsearch.\\
 Akzeptiert der Benutzer in RESPONSE das ihm angebotene Produkt, wird queried erst auf 3 und dort anschließend bei einem Eintrag auf 4 und bei den anderen 5 gesetzt.\\
-Beim Warenkorb werden zunächst die Artikel gezählt, die queried = 4 sind, um dem Kunden darüber informieren zu können, wieviele Produkte er bereits ausgewählt hat. In einem zweiten Schritt wird für diese Artikel dann Name und Preis ausgegeben. Da davon auszugehen ist, dass sich der Kunde noch erinnern kann, was er ausgewählt hat, wenn er den Namen des Produkts liest, ist die Ausgabe der Beschreibung hier nicht nötig. Die Ausgabe erfolgt über das Outputmacro \lstinline|^dbThird|, das ebenfalls in \textit{dbsearch.top} definiert ist.
+Beim Warenkorb werden zunächst die Artikel gezählt, die queried = 4 sind, um dem Kunden darüber informieren zu können, wie viele Produkte er bereits ausgewählt hat. In einem zweiten Schritt wird für diese Artikel dann Name und Preis ausgegeben. Da davon auszugehen ist, dass sich der Kunde noch erinnern kann, was er ausgewählt hat, wenn er den Namen des Produkts liest, ist die Ausgabe der Beschreibung hier nicht nötig. Die Ausgabe erfolgt über das Outputmacro \lstinline|^dbThird|, das ebenfalls in \textit{dbsearch.top} definiert ist.
 
 
 \subsection{Alternative Ausgabe von Anwendungsgebiet und Geschenkidee in FIRSTQ}

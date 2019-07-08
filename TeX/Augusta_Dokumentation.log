@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.27)  5 JUL 2019 01:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.27)  8 JUL 2019 03:17
 entering extended mode
 **./Augusta_Dokumentation.tex
 (Augusta_Dokumentation.tex
@@ -1722,12 +1722,12 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 27.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 31.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 9.85492pt on input line 27.
+(Font)              scaled to size 9.85492pt on input line 31.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 33.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 33.
+(Font)              scaled to size 8.99994pt on input line 37.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 37.
 
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -1770,30 +1770,31 @@ Class scrbook Warning: \float@addtolists detected!
 (scrbook)              a package that still implements the
 (scrbook)              deprecated \float@addtolist interface .
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--6
+
+ []
+
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 7.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 8.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 7.
+(Font)              scaled to size 12.9599pt on input line 8.
 
-Package natbib Warning: Citation `chatscript2019' on page 1 undefined on input 
-line 10.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--11
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--20
+Underfull \hbox (badness 10000) in paragraph at lines 17--21
 
  []
 
-) [1
+[1
 
 
 
 
-]
+])
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
@@ -1802,78 +1803,239 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
  (INHALT/HAUPT/InstallationAugusta.tex
 chapter 2.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 26.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 26.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 5.39996pt on input line 22.
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--32
+
+ []
+
 [3
 
 
 
-])
+]
+Underfull \hbox (badness 10000) in paragraph at lines 37--40
+
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 42.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 42.
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--48
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--56
+
+ []
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[4]
+[4])
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[5]
 \openout2 = `INHALT/HAUPT/ChatScriptGrundlagen.aux'.
 
  (INHALT/HAUPT/ChatScriptGrundlagen.tex
 chapter 3.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 15.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 14.
 ("C:\Users\Julia\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.39996pt on input line 23.
-[5
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
+
+Package Listings Warning: Text dropped after begin of listing on input line 21.
+
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 27.
+
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 36.
+
+
+[6
 
 
 
 ]
-Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
+
+ []
 
 
-[6]
+Package Listings Warning: Text dropped after begin of listing on input line 61.
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 73.
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+
+ []
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [7]
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 89.
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 100
+.
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [8]
+
+Package Listings Warning: Text dropped after begin of listing on input line 108
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 123
+.
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 131
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 139
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
+
+ []
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [9]
+
+Package Listings Warning: Text dropped after begin of listing on input line 151
+.
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 157
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 171
+.
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 177
+.
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 183
+.
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[10])
+[10]
+
+Package Listings Warning: Text dropped after begin of listing on input line 189
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 205
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--221
+
+ []
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [11]
+
+Package Listings Warning: Text dropped after begin of listing on input line 228
+.
+
+)
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[12]
 \openout2 = `INHALT/HAUPT/AugustaProgrammlogik.aux'.
 
  (INHALT/HAUPT/AugustaProgrammlogik.tex
 chapter 4.
-[12
+[13
 
 
 
 ]
-
-LaTeX Warning: Reference `ChatScript: PatternMatching' on page 13 undefined on 
-input line 125.
-
-
-Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+Overfull \hbox (48.65782pt too wide) in paragraph at lines 63--64
+[]\T1/phv/m/n/10.95 (-20) C.1 ist key-ex-pro-dukt-eigen-schaf-ten.STARTPRODUKTE
+IGENSCHAFTEN bzw. key-ex-one-sen-tence.STARTKAUF 
+ []
 
 
-[13]
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
@@ -1885,11 +2047,15 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[16])
+[16]
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[17]
+[17])
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[18]
 \openout2 = `INHALT/HAUPT/DBuEinbindung.aux'.
 
  (INHALT/HAUPT/DBuEinbindung.tex
@@ -1911,45 +2077,31 @@ LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
 (Font)              scaled to size 10.79993pt on input line 17.
 
-Overfull \hbox (2.08344pt too wide) in paragraph at lines 33--33
+Overfull \hbox (2.08344pt too wide) in paragraph at lines 34--34
 []|\T1/phv/m/n/10.95 (-20) Preis| 
  []
 
 
-Overfull \hbox (0.87196pt too wide) in paragraph at lines 33--33
+Overfull \hbox (0.87196pt too wide) in paragraph at lines 34--34
 []|\T1/phv/m/n/10.95 (-20) Ausführung| 
  []
 
 
-Overfull \hbox (6.51303pt too wide) in paragraph at lines 31--39
+Overfull \hbox (6.51303pt too wide) in paragraph at lines 32--40
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--44
+Underfull \hbox (badness 10000) in paragraph at lines 20--45
 
  []
 
-[18
+[19
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 48--67
-
- []
-
-
-Overfull \vbox (3.8295pt too high) has occurred while \output is active []
-
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 71--90
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 94--98
+Underfull \hbox (badness 10000) in paragraph at lines 49--69
 
  []
 
@@ -1958,25 +2110,12 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [20]
-Overfull \hbox (3.75311pt too wide) in paragraph at lines 102--105
-\T1/phv/m/n/10.95 (-20) Während des Dia-lo-ges und der Su-che wird für je-den N
-ut-zer ei-ne ei-ge-ne Re-la-ti-on er-stellt, die \T1/phv/m/sl/10.95 (-20) mystr
-ingXXXX
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--105
+Underfull \hbox (badness 10000) in paragraph at lines 73--93
 
  []
 
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 112.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 112.
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 112.
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 97--100
 
  []
 
@@ -1985,7 +2124,29 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Overfull \hbox (3.75311pt too wide) in paragraph at lines 104--107
+\T1/phv/m/n/10.95 (-20) Während des Dia-lo-ges und der Su-che wird für je-den N
+ut-zer ei-ne ei-ge-ne Re-la-ti-on er-stellt, die \T1/phv/m/sl/10.95 (-20) mystr
+ingXXXX
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--107
+
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 114.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 114.
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 114.
+
+Package Listings Warning: Text dropped after begin of listing on input line 118
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
@@ -1994,7 +2155,16 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 175--180
+
+Package Listings Warning: Text dropped after begin of listing on input line 131
+.
+
+
+Package Listings Warning: Text dropped after begin of listing on input line 139
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
@@ -2003,7 +2173,7 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+Underfull \hbox (badness 10000) in paragraph at lines 179--185
 
  []
 
@@ -2012,7 +2182,7 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [24]
-Underfull \hbox (badness 10000) in paragraph at lines 241--246
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
@@ -2020,11 +2190,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--246
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[25])
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 246--251
+
+ []
+
+
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[26]
+[26])
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
@@ -2033,10 +2208,6 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
  (INHALT/HAUPT/Benutzerschnittstelle.tex
 chapter 6.
-
-Package natbib Warning: Citation `chatscript2019' on page 28 undefined on input
- line 4.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
@@ -2057,12 +2228,14 @@ Package pdftex.def Info: BILDER/gui.png  used on input line 13.
  (INHALT/HAUPT/Probleme.tex
 chapter 7.
 
-Package natbib Warning: Citation `chatscript2019' on page 29 undefined on input
- line 16.
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
 
 
-Package natbib Warning: Citation `chatscript2019' on page 29 undefined on input
- line 28.
+Underfull \hbox (badness 10000) in paragraph at lines 17--21
+
+ []
 
 [29
 
@@ -2073,6 +2246,10 @@ Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
 [30]
+Overfull \vbox (3.8295pt too high) has occurred while \output is active []
+
+
+[31]
 \openout2 = `INHALT/ANHANG/Beispieldialog.aux'.
 
  (INHALT/ANHANG/Beispieldialog.tex
@@ -2089,7 +2266,7 @@ Overfull \hbox (6.9286pt too wide) in paragraph at lines 13--32
  [] 
  []
 
-[31
+[32
 
 
 
@@ -2103,7 +2280,7 @@ Overfull \hbox (6.9286pt too wide) in paragraph at lines 42--65
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[32]
+[33]
 Overfull \hbox (6.9286pt too wide) in paragraph at lines 76--98
  [] 
  []
@@ -2112,7 +2289,7 @@ Overfull \hbox (6.9286pt too wide) in paragraph at lines 76--98
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[33]
+[34]
 Overfull \hbox (6.9286pt too wide) in paragraph at lines 108--125
  [] 
  []
@@ -2121,12 +2298,12 @@ Overfull \hbox (6.9286pt too wide) in paragraph at lines 108--125
 Overfull \vbox (3.8295pt too high) has occurred while \output is active []
 
 
-[34]
+[35]
 \openout2 = `INHALT/ANHANG/UsabilityTesting.aux'.
 
  (INHALT/ANHANG/UsabilityTesting.tex
 chapter without number
-) [35
+) [36
 
 
 
@@ -2140,54 +2317,43 @@ No file Augusta_Dokumentation.gls.
 \tf@lof=\write7
 \openout7 = `Augusta_Dokumentation.lof'.
 
- [36
+ [37
 
 ]
-(Augusta_Dokumentation.bbl)
-
-Package natbib Warning: There were undefined citations.
-
-[37
+(Augusta_Dokumentation.bbl) [38
 
 
 
-] (Augusta_Dokumentation.aux (INHALT/Einleitung.aux)
-(INHALT/HAUPT/InstallationAugusta.aux) (INHALT/HAUPT/ChatScriptGrundlagen.aux)
-(INHALT/HAUPT/AugustaProgrammlogik.aux) (INHALT/HAUPT/DBuEinbindung.aux)
-(INHALT/HAUPT/Benutzerschnittstelle.aux) (INHALT/HAUPT/Probleme.aux)
-(INHALT/ANHANG/Beispieldialog.aux) (INHALT/ANHANG/UsabilityTesting.aux)
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] (Augusta_Dokumentation.aux
+(INHALT/Einleitung.aux) (INHALT/HAUPT/InstallationAugusta.aux)
+(INHALT/HAUPT/ChatScriptGrundlagen.aux) (INHALT/HAUPT/AugustaProgrammlogik.aux)
+(INHALT/HAUPT/DBuEinbindung.aux) (INHALT/HAUPT/Benutzerschnittstelle.aux)
+(INHALT/HAUPT/Probleme.aux) (INHALT/ANHANG/Beispieldialog.aux)
+(INHALT/ANHANG/UsabilityTesting.aux)) ) 
 Here is how much of TeX's memory you used:
- 28598 strings out of 493303
- 535460 string characters out of 3129784
- 850667 words of memory out of 3000000
- 31250 multiletter control sequences out of 15000+200000
- 84416 words of font info for 241 fonts, out of 3000000 for 9000
+ 28631 strings out of 493303
+ 535892 string characters out of 3129784
+ 840759 words of memory out of 3000000
+ 31259 multiletter control sequences out of 15000+200000
+ 86424 words of font info for 257 fonts, out of 3000000 for 9000
  1149 hyphenation exceptions out of 8191
- 64i,12n,70p,8834b,1814s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
-}<C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/type1/urw/courier/ucrb8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Julia/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Julia/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Users/Julia/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Julia/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Users/
-Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Us
-ers/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Augusta_Dokumentation.pdf (40 pages, 365486 bytes).
+ 64i,12n,70p,8834b,1742s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Julia/AppData/Local/Programs/M
+iKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/Julia/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Julia/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Julia
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users
+/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:
+/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.
+pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/
+uhvbo8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/h
+elvetic/uhvr8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/urw/helvetic/uhvro8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/urw/times/utmr8a.pfb><C:/Users/Julia/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Augusta_Dokumentation.pdf (41 pages, 374494 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
+ 183 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  39447 words of extra memory for PDF output out of 42996 (max. 10000000)
 
