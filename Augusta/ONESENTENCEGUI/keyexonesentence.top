@@ -1,0 +1,175 @@
+topic: ~keyexonesentence keep ( ~anwendungszweck ~geschenkidee ) []
+
+##<<
+In KeyExOnesentence kann der Kunde seine Wünsche zum Produkt spezifizieren. Dazu gibt er einen Satz an, in dem die
+Informationen enthalten sind.
+SUMMARY gibt die Zusammenfassung der Produktwünsche aus und leitet den Kunden zur Suche in Dbsearch weiter.
+DOKUMENTATION: KAPITEL 4.4
+##>>
+
+
+t: STARTONESENTENCE ($ENTER999)  Ich möchte dir helfen, die Auswahl weiter einzugrenzen.  ^reuse ( QUALITY )
+
+
+u: QUALITY ($ENTEREND999) Ich möchte dir helfen, die Auswahl weiter einzugrenzen. Du kannst mir hier Eigenschaften wie den Namen oder eine
+    Oberkategorie, zum Beispiel Buch, Kleidung oder Deko vorgeben. Desweiteren kannst du die Farbe und bei Büchern Sprachen.
+    Zuletzt hast du noch die Möglichkeit, festzulegen, was du maximal bezahlen möchtest. Du kannst auch "Ich weiß nicht" sagen,
+    wenn du keine weiteren Kriterien festlegen möchtest.
+    Damit ich dich gut verstehen kann, verwende bitte keine Interpunktion. Die ganzen Punkte, Kommata und Semikola verwirren mich
+    immer so.
+	# WALKVARIABLES: ^walkvariables('^testvariables)
+    $things = ^"'nichts'"        $art = ^"'nichts'"
+    $ausfuehrung = ^"'nichts'"   $preis = -1
+	
+	
+	# Erklärung:
+	# _0 ist das erste keyword, das vorkommt, _1 das zweite, _2 das dritte usw.
+	# _~concept1 bedeutet, dass wir extrahieren, welches keyword erwähnt wird, welches sich in concept1 befindet
+	# !~concept2 bedeutet, dass kein Wort aus concept2 vorkommen darf 
+	# !!~concept2 bedeutet, dass an diesem "index" ein Wort aus concept2 nicht vorkommen darf
+	# {_~concept3} bedeutet, dass Keywords aus concept3 optional sind. 
+	# a: ( * _~thingsandart * _~positiveinteger * {_~ausfuehrung} * ) denotiert die Art der Eingabe;
+	# zunächst wird ein Keyword aus thingsandart gefunden, dann eins aus positiveinteger und dann aus ausfuehrung 
+	# Das Sternchen zwischen den Konzeptnamen bedeutet, dass an dieser Stelle beliebig viele Wörter stehen dürfen
+	
+	
+    # 1. Muster: Name / Art, dann Ausführung und optional Preis
+    a: ( !!~positiveinteger * _~thingsandart {in} _~ausfuehrung * {_~positiveinteger} *  )
+        # Test, ob _0 Name oder Art ist
+        if (pattern _0?~things) {$things = ^"''_0'" $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_0'"  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        $ausfuehrung = ^"''_1'"
+        # Optionaler Preis
+        if ( _2 AND ^isnumber(_2) ) {$preis = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Es soll in $ausfuehrung sein und eine preisliche Obergrenze hast du nicht angegeben.")}
+        ^reuse( SUMMARY )
+
+     # 2. Muster: Name / Art, dann Preis und optional Ausführung
+    a: ( * _~thingsandart * _~positiveinteger * {_~ausfuehrung} * )
+        # Test, ob _0 Name oder Art ist
+        if (pattern _0?~things) {$things = ^"''_0'" $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_0'"  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        $preis = ^"''_1'"
+        # Optionale Ausführung
+        if (_2) {$ausfuehrung = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Maximal soll es $preis Euro kosten.")}
+        ^reuse( SUMMARY )
+
+     # 3. Muster: nur Name / Art
+    a: ( !~ausfuehrung !~positiveinteger * _~thingsandart * )
+        # Test, ob _0 Name oder Art ist
+        if (pattern _0?~things) {$things = ^"''_0'" $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_0'"  $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        $zusammenfassung = ^join($zusammenfassung ^" Zur Ausführung oder zum Preis hast du keine Angaben gemacht.")
+        ^reuse( SUMMARY )
+
+     # 4. Muster: Ausführung, dann Name / Art und optional Preis
+     a: ( * {in} _~ausfuehrung {"etwas wie"} {ein eine} _~thingsandart * {_~positiveinteger} * )
+        $ausfuehrung = ^"''_0'"
+        # Test, ob _1 Name oder Art ist
+        if (pattern _1?~things) {$things = ^"''_1'"
+                $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things und du möchtest es in $ausfuehrung.")
+        } else {$art = ^"''_1'"
+                $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art und du möchtest es in $ausfuehrung.")}
+        # Optionaler Preis
+        if ( _2 AND ^isnumber(_2) ) {$preis = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es soll nicht mehr als $preis Euro kosten.")
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Eine preisliche Obergrenze hast du nicht angegeben.")}
+        ^reuse( SUMMARY )
+
+     # 5. Muster: Ausführung, dann Preis und optional Name / Art
+     a: ( * _~ausfuehrung * _~positiveinteger * {_~thingsandart} )
+        $ausfuehrung = ^"''_0'"
+        $preis = ^"''_1'"
+        # Optionale Angabe zu Name / Art und Test, ob _2 Name oder Art ist
+        if ( _2 ) {
+            if (pattern _2?~things) {$things = ^"''_2'"
+                $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things und du möchtest es in $ausfuehrung. Es soll
+                    dabei nicht mehr als $preis Euro kosten.")
+             } else {$art = ^"''_2'"
+                $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art und du möchtest es in $ausfuehrung.
+                    Dabei soll es maximal $preis Euro kosten.")}
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Das Produkt soll in $ausfuehrung sein und maximal $Preis kosten.")}
+        ^reuse( SUMMARY )
+
+     # 6. Muster: nur Ausführung
+     a: ( !~positiveinteger !~thingsandart * _~ausfuehrung * )
+        $ausfuehrung = ^"''_0'"
+        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art, des Namens oder des Preises deines gewünschten
+            Produktes hast du zwar nicht, aber weißt, dass du etwas in $ausfuehrung möchtest.")
+        ^reuse ( SUMMARY )
+
+     # 7. Muster: Preis, dann Name / Art  und optional Ausführung
+     a: ( * _~positiveinteger {Euro euro EUR €} {ein eine einen} _~thingsandart * {in} { _~ausfuehrung })
+        $preis = ^"''_0'"
+        # Test, ob _1 Name oder Art ist
+        if (pattern _1?~things) {$things = ^"''_1'"
+            $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things.")
+        } else {$art = ^"''_1'"
+            $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art.")}
+        # Optionale Ausführung
+        if (_2) {$ausfuehrung = ^"''_2'" $zusammenfassung = ^join($zusammenfassung ^" Es ist in $ausfuehrung und maximal soll es $preis Euro kosten.")
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Maximal kostet es $preis Euro.")}
+        ^reuse( SUMMARY )
+
+     # 8. Muster: Preis, dann Ausführung und optional Name / Art
+     a: ( * _~positiveinteger {Euro euro EUR €} {in} _~ausfuehrung  * {ein eine einen} { _~thingsandart} )
+        $preis = ^"''_0'"
+        $ausfuehrung = ^"''_1'"
+        # Optionale Angabe zu Name / Art und Test, ob _2 Name oder Art ist
+        if ( _2 ) {
+           if (pattern _2?~things) {$things = ^"''_2'"
+               $zusammenfassung = ^join($zusammenfassung ^" Das Produkt heißt $things und du möchtest es in $ausfuehrung. Es soll
+                   dabei nicht mehr als $preis Euro kosten.")
+           } else {$art = ^"''_2'"
+               $zusammenfassung = ^join($zusammenfassung ^" Dein Produkt fällt unter den Obergriff $art und du möchtest es in $ausfuehrung.
+                   Dabei soll es maximal $preis Euro kosten.")}
+        } else {$zusammenfassung = ^join($zusammenfassung ^" Das Produkt soll in $ausfuehrung sein und maximal $Preis kosten.")}
+        ^reuse( SUMMARY )
+
+     # 9. Muster: nur Preis
+     a: ( !~thingsandart !~ausfuehrung * _~positiveinteger * )
+        $preis = ^"''_0'"
+        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines gewünschten
+           Produktes hast du zwar noch nicht, aber du weißt, dass es maximal $preis Euro kosten soll.")
+        ^reuse( SUMMARY )
+
+     # 10. Muster: Kunde kann keine Angaben machen
+     a: ({ich} ["weiß nicht" "weiß es nicht" "habe keine Ahnung" "keine Ahnung"] )
+        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Eigenschaften oder Informationen zum Preis hast du nicht angegeben.")
+        ^reuse( SUMMARY )
+
+    # 11. MUSTER: keine oder unverständliche Eingabe
+      a: () Das habe ich leider nicht verstehen können. Ich mache mal weiter.
+            $zusammenfassung = ^join($zusammenfassung ^" Konkrete Eigenschaften oder Informationen zum Preis sind nicht vorhanden.")
+           ^reuse( SUMMARY )
+		
+# Da diese Regel eine der problematischen in der GUI ist, bleibt die Information zum DEBUG in der Bot-Ausagbe bestehen
+# Zu den Problemen mit der GUI: DOKUMENTATION, KAPITEL 7.2.2
+u: SUMMARY ($ENTEREND888)
+            # WALKVARIABLES: ^walkvariables('^testvariables)
+            # Ersetzen von ausgeschriebenen Umlaute in ihre korrekte Form (Nur in Name und Ausführung sind Umlaute enthalten)
+             $things =  ^substitute(character $things ae ä)
+             $things =  ^substitute(character $things ue ü)
+             $ausfuehrung = ^substitute(character $ausfuehrung oe ö)
+             $ausfuehrung = ^substitute(character $ausfuehrung ue ü)
+             # Ausgabe der Zusammenfassung
+             [Lass mich mal zusammenfassen] [Ich rekapituliere] [Ich wiederhole]:
+             $zusammenfassung
+             [Habe ich das alles richtig verstanden] [Stimmt das so]?
+
+    #! Ja
+    a: (~positiv) $gosearch = 1c Alles klar! [Ich suche mal im Shop] [Ich sehe mal nach, was ich finde].
+        DEBUG: POSITIVE ANTWORT
+        ^reuse( ~dbsearch.WELCOME )
+
+    #! Nein
+    a: (~negativ) Okay. [Fangen wir von vorne an.] [Gehen wir das nochmal durch:]
+        if (!$geschenkidee AND !$anwendungszweck) {$zusammenfassung = " "
+        } else if (!$geschenkidee) { $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+        } else {$zusammenfassung = ^"Du suchst ein $geschenkidee ."}
+        ^reuse( QUALITY )
+
+    # Unverständliches
+    a: () $gosearch = 1c Alles klar! [Ich suche mal im Shop] [Ich sehe mal nach, was ich finde].
+        DEBUG: UNVERSTÄNDLICHE ANTWORT
+        ^reuse( ~dbsearch.WELCOME )

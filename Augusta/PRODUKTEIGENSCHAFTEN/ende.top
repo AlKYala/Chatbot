@@ -1,0 +1,81 @@
+
+topic: ~ende keep repeat []
+
+##<<
+Dbsearch leitet das Ende der Konversation ein. In ASKIFHAPPY wird entweder in den Endzustand (GOODBYE) übergeganen oder
+eine neue Suche über STILLHELP angefangen.
+SETNULLANDREP löscht für eine neue Suche die vorangegenen Variablen und leitet dann in ~kaufabsicht.FIRSTQ über.
+DOKUMENTATION: KAPITEL 4.6
+##>>
+
+
+# Dieser Fall: Der Nutzer sagt, er wollte keine Beratung
+# Es muss enterEnd2 instanziiert sein, damit der Zustand betreten wird
+u: ASKIFHAPPY ($enterEnd2)
+	[Kann ich noch etwas für dich tun] [Möchtest du noch ein Produkt suchen]?
+
+	a: ( ~negativ )
+	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {
+        Um im Uni-Shop einzukaufen, musst du am TUKAN das passende Ticket erwerben und dann damit zum Verkaufstand oder zur Pressestelle gehen.
+        Auf der Website des Uni-Shops unter https://www.uni-trier.de/index.php?id=50041 findest du weitere Informationen.
+        if ($kunde) { [In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag], $kunde. [Ciao] [Auf Wiedersehen]!
+        } else {[In Ordnung, dann verabschiede ich mich] [Ich wünsche dir noch einen schönen Tag]. [Ciao] [Auf Wiedersehen]!}
+        ^reuse( GOODBYE ) }
+
+	# Der Nutzer hat noch ein Anliegen
+	# Der Nutzer sagt JA und/oder dass er etwas kaufen möchte
+	a:  (~positivkaufen) $introyes = 1a
+	        if ($kunde) {Dann will ich dir doch dabei helfen, $kunde.
+	        } else { Dann will ich dir dabei helfen. }
+	        ^reuse( SETNULLANDREP )
+
+	# Ja.
+	a: (~positiv) $stillhelp = 1i ^reuse(STILLHELP)
+	
+	# Nutzer möchte noch etwas suchen
+u: STILLHELP ([$stillhelp]) $things = null $geschenkidee = null $anwendungszweck = null $ausfuehrung = null $preis = null $art = null $gosearch = null $searchenable = null
+	Was kann ich noch für dich tun? if (^dbexecute(^"update $tablename set queried = 3 where queried = 1" )) {}
+
+	a: (<<[~kaufen] [doch noch was nochwas etwas weiteres eins]>>)
+	Dann will ich dir dabei helfen, $kunde. ^reuse( SETNULLANDREP )
+	
+	a: (~positiv) Dann helfe ich dir dabei. ^reuse( SETNULLANDREP )
+	
+	a: ([~nicht ~no]) In Ordnung, du möchtest nichts mehr.
+	    if (!^dbexecute(^"DROP TABLE $tablename ;" NULL )) {Alles klar, dann verabschiede ich mich. Auf Wiedersehen! ^eval(:quit) }
+	
+	
+# EnterEnd50 ist keine Variable, die jemals instanziiert werden soll.
+# SETNULLANDREP dient zum Zurücksetzen der Variablen
+t: SETNULLANDREP ($enterEnd50)
+	^cleartopics()
+	$_kundetemp = $kunde
+	$_tabletemp = $tablename
+	$_stdtokentmp = $stdtoken
+	$_cs_tokentmp = $cs_token
+	$_botprompttmp = $botprompt
+	$_userprompttmp = $userprompt
+	$_cs_externaltagtmp = $cs_externaltag
+	$_cs_languagetmp = $cs_language
+	$_cs_control_maintmp = $cs_control_main
+	$_cs_bottmp = $cs_bot
+    ^reset( VARIABLES )
+	$kunde = $_kundetemp
+	$tablename = $_tabletemp 
+	$stdtoken = $_stdtokentmp
+	$cs_token = $_cs_tokentmp
+	$botprompt = $_botprompttmp
+	$userprompt = $_userprompttmp
+	$cs_externaltag = $_cs_externaltagtmp
+	$cs_language = $_cs_languagetmp
+	$cs_control_main = $_cs_control_maintmp
+	$cs_bot = $_cs_bottmp 
+	# TEST: Deine Tabelle ist $tablename
+	# WALKVARIABLES: ^walkvariables('^testvariables)
+    ^reuse( ~kaufabsicht.FIRSTQ )
+
+    # Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch Interesse daran besteht, etwas zu
+    # kaufen. Daher auch kaufbereitschaft = null
+
+
+u: GOODBYE () ^eval(:quit)

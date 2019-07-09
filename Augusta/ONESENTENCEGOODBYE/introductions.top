@@ -1,0 +1,62 @@
+
+topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
+
+##<<
+Das Topic ~introductions ist wird standardmäßig zu Beginn einer neuen Konversation aufgerufen. Es begrüßt den Kunden und
+fragt nach seinem Namen. Danach wird der Kunde in ~kaufabsicht.STARTKAUF weitergeleitet.
+Bei der Konversation über die Konsole eröffnet der Chatbot automatisch die Konversation.
+DOKUMENTATION: KAPITEL 4.1
+##>>
+
+
+
+# Augusta beginnt die Konversation
+t: HELLO ( %input<%userfirstline )
+   ^keep()
+   [Hallo] [Hi] [Guten Tag], ich bin Augusta und kann dich beraten, wenn du etwas aus dem Online-Shop suchst. Wenn du an
+   irgendeiner Stelle während unserer Unterhaltung "Tschüss" sagst, beende ich mich.  ^reuse( GREET )
+
+
+t: GREET () Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit deinem Namen ansprechen.] [Das ist etwas persönlicher.]
+
+   	#! Ich bin /Ich heiße / Meine Name ist
+	a: VORSTELLUNG ([heiße bin ist lautet] _*1 >)
+	    if ($cs_token == $stdtoken)                             # Damit der Name ohne Veränderungen übernommen wird,
+           {                                                    # muss hier KURZZEITIG das Muster, nach dem der Satz
+           $cs_token = #DO_INTERJECTION_SPLITTING |             # analysiert wird, geändert werden
+                       #DO_SUBSTITUTE_SYSTEM | #DO_NUMBER_MERGE |
+                       #DO_PARSE
+           retry(SENTENCE)
+           }
+        $kunde =  pos(noun '_0 proper)                          # Großschreibung des Names und Zuweisung an die
+        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)        # Variable $kunde
+        $cs_token = $stdtoken                                   # Das "alte" Muster zur Satzanalyse wird wieder verwendet
+        $userprompt = ^"$kunde: >"                              # Der Name des Kunden wir in der Konsole angezeigt
+        ^reuse(~kaufabsicht.STARTKAUF)
+
+	#! Nein
+	a: ( [~no ~negativ] ) 	^reuse( KEINE_VORSTELLUNG )
+
+	#! nur Name
+	a: ( < _*1 > )
+	   if ($cs_token == $stdtoken)                              # Analog zu VORSTELLUNG (s. oben)
+       {
+       $cs_token = #DO_INTERJECTION_SPLITTING |
+                   #DO_SUBSTITUTE_SYSTEM | #DO_NUMBER_MERGE |
+                   #DO_PARSE
+       retry(SENTENCE)
+       }
+       $kunde = pos(noun '_0 proper)
+       ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
+       $cs_token = $stdtoken
+       $userprompt = ^"$kunde: >"
+       ^reuse(~kaufabsicht.STARTKAUF)
+
+	#! Das will ich nicht sagen.
+	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
+
+	#! Das will ich nicht
+	a: (<< [ich das] nicht>>) ^reuse(KEINE_VORSTELLUNG)
+
+	# Die Eingabe war nicht verständlich.
+	a: () Das habe ich leider nicht verstanden. Fangen wir trotzdem an! ^reuse( ~kaufabsicht.STARTKAUF )

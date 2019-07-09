@@ -1,0 +1,170 @@
+# Outputmacro für Name, Beschreibung und Preis bei der Suche
+outputmacro: ^dbSec($_arg1 $_arg2 $_arg3 $_arg4 $_arg5 $_arg6 $_arg7 $_arg8 $_arg9 $_arg10 $_arg11 $_arg12 $_arg13 $_arg14 $_arg15 $_arg16
+                    $_arg17 $_arg18 $_arg19 $_arg20 $_arg21 $_arg22 $_arg23 $_arg24 $_arg25 $_arg26 $_arg27 $_arg28 $_arg29 $_arg30)
+                   $ergebnis = positiv
+                    if ( ^length ($_arg1) > 0 ) {
+                        if ($namensuche == 1) {                 # Name
+                         [Ich habe dies gefunden: ] [Was hältst du davon? ] [Was ist hiermit? ]
+                         ^"$_arg1 $_arg2 $_arg3 $_arg4."
+                         ^flushoutput()
+                        } else if ($beschreibungssuche == 1) {  # Beschreibung
+                         [Dazu kann ich dir Folgendes sagen: ] [Ich habe noch mehr Informationen: ] [Also: ] [ ]
+                         $_arg1 $_arg2 $_arg3 $_arg4 $_arg5 $_arg6 $_arg7 $_arg8  $_arg9 $_arg10 $_arg11 $_arg12 $_arg13 $_arg14 $_arg15 $_arg16
+                  	     $_arg17 $_arg18 $_arg19 $_arg20 $_arg21 $_arg22 $_arg23 $_arg24 $_arg25 $_arg26 $_arg27 $_arg28 $_arg29 $_arg30
+                  	     ^flushoutput()
+                  	    } else {                                # Preis
+                  	     [Der Preis des Produkts beträgt ] [Dieses Produkt kostet ] [Es kostet ] [Der Preis beträgt ] []
+                         $_arg1 Euro.
+                         ^flushoutput()
+                  	    }
+                    } else {Tut mir Leid. Nichts gefunden. ^flushoutput()}
+
+# Outputmacro für den Warenkorb
+outputmacro: ^dbThird($_arg1 $_arg2 $_arg3 $_arg4 $_arg5)
+                if (!$_arg2) {
+                    $_arg1
+                } else if ( ^isnumber($_arg2) ) {               # Name aus einem Wort
+                    $_arg1. Preis:  $_arg2 Euro.
+                } else if ( ^isnumber($_arg3) )  {              # Name aus zwei Wörtern
+                    $_arg1 $_arg2. Preis: $_arg3 Euro.
+                } else if ( ^isnumber($_arg4) ) {               # Name aus drei Wörtern
+                $_arg1 $_arg2 $_arg3. Preis: $_arg4.
+                } else {                                        # Name aus vier Wörtern
+                $_arg1 $_arg2 $_arg3 $_arg4. Preis: $_arg5.
+                }
+                ^flushoutput()
+
+
+topic: ~dbsearch  [] ($gosearch)
+
+##<<
+In dem Topic Dbsearch wird die Datenbanksuche ausgeführt.
+In SEARCHCREATE wird eine Tabelle ($tablename - mystringXXXX) speziell für den Nutzer erstellt.
+In SEARCHPRODUKT wird die eigentlich Suche nach einem Prdukt ausgeführt, in PRODUCTNAME, PRODUCTDESCR und PRODUCTPRICE
+dann Name, Bechreibung und Preis ausgegeben.
+In RESPONSE hat der Kunde die Möglichkeit, das Produkt zu bestäigten oder weitersuchen zulassen (SEARCHAGAIN)und den
+Warenkorb aufzurufen.
+Wird kein Produkt gefunden, so wird ~keyexonesentence.QUALITY wieder aufgerufen.
+In der GUI tritt bei RESPONSE ein Problem auf, deshalb sind auch die DEBUG-Angaben im Skript enthalten.
+Zu Dbsearch:                DOKUMENTATION, KAPITEL 4.5
+Zur Suche und zu 'queried': DOKUMENTATION, KAPITEL 5.3
+Zum Problem mit der GUI:    DOKUMENTATION, KAPITEL 7.2.2
+##>>
+
+##<<
+Bedeutung QUERIED:
+ 0: Nie gesucht
+ 1: Gefunden (temporär)
+ 2: Abgelehnt
+ 3: Angenommen (temporär)
+ 4: Da nach setzen auf 3 mehrere Einträge des gleichen Artikels auf 3 gestzt werden, wird nochmal 4 gesetzt um
+    ein einmaliges Beispiel für Name und Artikelnummer zu haben
+ 5: Die, die aus 3 nicht 4 geworden sind, werden 5.
+##>>
+
+
+t: WELCOME ($gosearch)
+    # WALKVARIABLES: ^walkvariables('^testvariables)
+    $searchcreate = 1d DEBUG: DATENBANKSUCHE
+^reuse( SEARCHCREATE )
+
+
+# Name für die eigene Tabelle des Kunden: $tablename = ^join("mystring" $cs_randindex)
+t: SEARCHCREATE ($searchcreate)
+    #  WALKVARIABLES: ^walkvariables('^testvariables
+     $searchenable = 1e
+     if (!$tablename) { $tablename = ^join("mystring" $cs_randindex) }
+     if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $tablename AS (SELECT row_number() OVER(ORDER BY artnr), * FROM pseudotabellepro);" )) {^reuse( SEARCHPRODUCT)}
+     else {^dbexecute(^"DROP TABLE $tablename;")}
+
+
+t: SEARCHPRODUCT ($searchenable) $ergebnis = null
+    if (^dbexecute( ^"UPDATE $tablename
+        SET queried = 1
+        WHERE name =
+        (SELECT name
+        FROM $tablename
+        WHERE
+            QUERIED = 0
+        AND
+            name = (CASE WHEN $things LIKE '%nichts%' THEN name ELSE $things END)
+        AND
+            art  = (CASE WHEN $art LIKE '%nichts%' THEN art ELSE $art END)
+        AND
+            preis <= (CASE WHEN $preis < 0 THEN preis ELSE $preis END)
+        AND
+            ausfuehrung = (CASE WHEN $ausfuehrung LIKE '%nichts%' THEN ausfuehrung ELSE $ausfuehrung END)
+        AND
+            geschenkidee = (CASE WHEN $geschenkidee LIKE '%nichts%' THEN geschenkidee ELSE $geschenkidee END)
+        AND
+            anwendungsgebiet = (CASE WHEN $anwendungszweck LIKE '%nichts%' THEN anwendungsgebiet ELSE $anwendungszweck END)
+        LIMIT 1);" )) { $produktname = 1f  Debug: SEARCHPRODUCT erfolgreich ^reuse( PRODUCTNAME )}
+    else {Ups, da habe ich mich ein wenig verrechnet. Tut mir Leid. Können wir nochmal von vorne anfangen? ^reuse(~ende.SETNULLANDREP) }
+
+
+t: PRODUCTNAME ($produktname) $ergebnis = null $namensuche = 1
+   if (^dbexecute( ^"SELECT name FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
+         if ($ergebnis == null)      { Wir haben im Shop leider nichts, was auf deine Eingaben passt.
+                                      Vielleicht probierst du es noch einmal mit anderen Kriterien.
+                                      $gosearch = NULL $searchcreate = NULL $searchenable = NULL $produkname = NULL
+
+                                      # Zurücksetzen der Zusammenfassung
+                                      if (!$geschenkidee AND !$anwendungszweck) {$zusammenfassung = " "
+                                      } else if (!$geschenkidee) { $zusammenfassung = ^"Du hast einen bestimmten Zweck im Sinn, und zwar: $anwendungszweck."
+                                      } else {$zusammenfassung = ^"Du suchst ein $geschenkidee ."}
+
+                                      # Zurück zur Eingabe der Produkteigenschaften
+                                      ^reuse( ~keyexonesentence.QUALITY )
+                                      }
+         else {$produktbeschreibung = 1 ^reuse(PRODUCTDESCR)}
+       } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
+
+
+
+t: PRODUCTDESCR ($produktbeschreibung)
+    $namensuche = null $beschreibungssuche = 1
+   if (^dbexecute( ^"SELECT beschreibung FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
+             ^reuse( PRODUCTPRICE )
+   } else {Oh, da habe ich mich etwas verrechnet. Entschuldigung. Wir fangen am besten noch mal von vorne an. ^reuse(~ende.SETNULLANDREP)}
+
+t: PRODUCTPRICE ($Produktpreis)
+    $beschreibungssuche = null
+	if (^dbexecute( ^"SELECT preis FROM $tablename WHERE queried = 1 LIMIT 1;" '^dbSec)) {
+           ^reuse( RESPONSE )
+    } else {Ups, da ist wohl ein kleiner Fehler aufgetreten. Tut mir Leid. Es ist besser, wenn wir neu anfangen ^reuse(~ende.SETNULLANDREP)}
+
+
+	# EnterEnd955 nur dazu da, um ein zufälliges Eintreten in diesen Zustand zu verhindern.
+u: RESPONSE ($ENTEREND955)
+   # WALKVARIABLES: ^walkvariables('^testvariables)
+    DEBUG: RESPONSE [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
+
+    #! Ja
+      a: ( [~yes ~zustimmung] ) Schön, dass ich dir helfen konnte.
+                  Möchtest du ein weiteres Produkt suchen? Du kannst dir auch ansehen, was du soweit ausgewählt hast.
+                  if (^dbexecute(^"UPDATE $tablename SET queried = 3 WHERE queried = 1;
+                                   UPDATE $tablename SET queried = 4 WHERE row_number = (
+                                     SELECT row_number FROM $tablename WHERE queried  = 3 LIMIT 1);
+                                   UPDATE $tablename SET queried = 5 WHERE queried = 3;" )) {DEBUG: queried auf 3,4,5 gesetzt}
+		
+                  # Weiteres Produkt suchen
+                  b: ([~noch ~kaufen]) Fangen wir von Neuem an. ^reuse (~ende.SETNULLANDREP)
+
+                  #! Nein.
+                  b: ( [~no ~nicht] ) $enterEnd2 = 1b In Ordnung. ^reuse( ~ende.ASKIFHAPPY )
+				  
+				  # Zeigen, wiviel und was bisher ausgesucht wurde
+				  # Für das Iterieren der gefundenen Artikel: ggf. auf queried = 5 setzen um nicht immer dasselbe Produkt zu bekommen
+				  # Danach gehen wir in Ende
+				  b: ( ~warenkorb ) [Du hast bisher]
+				    if (^dbexecute( ^"SELECT COUNT (DISTINCT artnr) FROM $tablename WHERE queried = 4;" '^dbThird)) {Artikel gefunden, und zwar}:
+				    if (^dbexecute( ^"SELECT name, preis FROM $tablename WHERE queried = 4;" '^dbThird)) {^reuse(~ende.ASKIFHAPPY)}
+
+
+    #! Nein
+    a: ( [~no ~nicht] ) Alles klar. Lass mich weitersuchen. $weitersuchen = 1h ^reuse(SEARCHAGAIN)
+
+
+t: SEARCHAGAIN ($weitersuchen)
+   if (^dbexecute( ^"UPDATE $tablename SET queried = 2 WHERE queried = 1;" )) { $weitersuchen = 0 ^reuse (SEARCHPRODUCT) }
+   else  {dbexecute failed list from table- $$db_error }

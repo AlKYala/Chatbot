@@ -101,7 +101,7 @@ Variablen in Augusta kommen größtenteils in der Form \lstinline|$variablenname
 a: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"}
 \end{lstlisting}
 
-Bereits instanziierte Variablen lassen sich mit dem Befehl \lstinline|^walkvariables|(\^outputmacro) einsehen, sofern ein entsprechendes Outputmacro vorhanden ist.\\
+Bereits instanziierte Variablen lassen sich mit dem Befehl \lstinline|^walkvariables(^outputmacro)| einsehen, sofern ein entsprechendes Outputmacro vorhanden ist.\\
 Da das Zurücksetzen von Variablen nicht trivial ist, lassen sich diese mit dem Befehl \lstinline|^reset( VARIABLES )| löschen. Allerdings ist dieser Befehl sehr mächtig, da er fast alle Variablen (außer \$\_-Variablen) zurücksetzt. In der Dokumentation (S. 54 in ChatScript - Sytem-Functions-Manual in \citet{chatscript2019}) wird zwar daraufhingewiesen, dass \$\$-Variablen und Bot-Variablen bestehen bleiben, in unserem Fall hat sich das allerdings nicht bewahrheitet.\\
 Wenn man verhindern möchte, dass eine Variable zurückgesetzt wird, empfiehlt es sich diese als temporäre Variable wie folgt zwischenzuspeichern:
 

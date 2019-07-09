@@ -1,0 +1,200 @@
+# Für die alternative Ausgabe der Kategorien HIER die Kommentarzeichen entfernen
+##<<
+outputmacro: ^dbFirst($_arg1)
+	    $_arg1.
+	    ^flushoutput()
+##>>
+
+outputmacro: ^testvariables($_arg1)                 # Outmputmacro für ^walkvariables (s. Dokumentation, Abschnitt 3.4)
+        if($_arg1 == $introyes) {
+            introyes: $_arg1.
+        } else if($_arg1 == $gosearch) {
+            gosearch
+        } else if($_arg1 == $searchcreate) {
+            searchcreate: $_arg1.
+        } else if($_arg1 == $searchable) {
+            searchable: $_arg1.
+        } else if($_arg1 == $produktname) {
+            produkname: $_arg1.
+        } else if($_arg1 == $produktbeschreibung) {
+            produktbeschreibung: $_arg1.
+        } else if($_arg1 == $enterEnd2) {
+            enterEnd2: $_arg1.
+        } else { Andere Variable: $_arg1. }
+        ^flushoutput()
+		
+
+topic: ~kaufabsicht keep (~kaufen)
+
+##<<
+Das Topic ~kaufabsicht leitet die Kaufberatung ein. Zum einen wird in INTRO sichergestellt, dass der Kunde wirklich beraten
+werden möchte und zum anderen wird in FIRSTQ bereits nach Geschenk oder Anwendung gefragt.
+Damit der Chatbot funktionsfähig ist, muss in INTRO noch das Passwort zur Datenbank ergänzt und ggf. der Username verändert
+werden (insg. 5 Mal).
+https://www.chatbots.org/ai_zone/viewthread/3659/
+https://www.chatbots.org/ai_zone/viewthread/3665/
+DOKUMENTATION: KAPITEL 4.2
+##>>
+
+
+
+# enter999 dient dazu, dass man nie by default in kaufabsicht kommt
+t: STARTKAUF ($enter999) ^reuse( INTRO)
+
+
+u: INTRO ( $enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei
+     helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen?
+     #  WALKVARIABLES: ^walkvariables('^testvariables)
+
+	#! Ja
+	a: ( ~positiv ) $introyes = 1a
+	# DATENBANK
+	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96))
+	        {[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
+	    } else {dbinit failed - $$db_error  ^reuse( FIRSTQ ) }
+
+	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
+
+	#! Nein.
+	a: ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
+	# DATENBANK
+	    b: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
+	                                  {Schön zu hören. ^reuse( FIRSTQ )
+                                      } else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
+	    b: ( ~positiv ) $enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
+
+    # Eingabe wurde nicht verstanden
+	a: () Könntest du das bitte wiederholen?
+
+	     # Ich suche / will kaufen / shop
+           	b: ( ~positiv ) $introyes = 1a
+           	    # DATENBANK
+           	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
+           	        {Ah, jetzt verstehe ich's. [Lass uns anfangen!] [Super, auf geht's!].
+                } else {dbinit failed - $$db_error}
+                ^reuse( FIRSTQ )
+				
+				
+		#! Nein.
+         # Alternative zu der Frage: Willst du nicht doch noch einmal gucken, ob ich etwas für dich heraussuchen kann?
+	        b: ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
+	        # DATENBANK
+	            c: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 )) {Schön zu hören. ^reuse( FIRSTQ )}
+                                      else {dbinit failed - $$db_error ^reuse(INTRO)}
+	            c: ( ~positiv ) $enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
+				
+
+         # Antwort immer noch unverständlich
+            b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
+            # DATENBANK
+                  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
+                    {[Egal, fangen wir mal an.] [Ich fange einfach mak an, ja?] ^reuse( FIRSTQ )}
+                  else {dbinit failed - $$db_error ^reuse(INTRO)}
+
+
+# Die Ausgabe der Kategorien erfolgt hier direkt durch Angaben im Skript. Es ist aber auch die automatische Extraktion aus
+# der Datenbank möglich.
+# Dazu: DOKUMENTATION, ABSCHNITT: 5.3.4
+
+u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel für einen bestimmten Zweck suchen. Was möchtest du?
+      #   WALKVARIABLES: ^walkvariables('^testvariables)
+      $anwendungszweck = ^"'nichts'"
+      $geschenkidee = ^"'nichts'"
+
+
+	# In den nächsten zwei Antworten gibt der Nutzer an, ob er ein Geschenk oder über den Zweck suchen möchte.
+
+	#! Geschenk
+    a: (~willGeschenk) $anwendungszweck = ^"'nichts'" Du möchtest etwas verschenken. Ich kann dir folgende Kategorien anbieten:
+        Erinnerungsstück, Gastgeschenk, Geschenk oder Mitbringsel.
+        # if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+        # else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+
+       #! Mitbringsel
+         b: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
+             if (_0 == Erinnerungsstueck) {$geschenkidee = ^"'Erinnerungsstück'"}
+             $zusammenfassung = ^"Du suchst ein $geschenkidee."
+              ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+       #! Geschenk
+         b: ( Geschenk ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"'Geschenk'"
+           $zusammenfassung = ^"Du suchst ein $geschenkidee."
+           ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+       # Nicht erkannt.
+         b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+	   
+	#! bestimmter Zweck
+	a: (~willZweck) $geschenkidee = ^"'nichts'" Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten:
+	     Accessoire, Alltag, EssenTrinken, Schreibwaren oder Unterhaltung.
+	    # if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
+        # else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+
+       #! EssenTrinken
+       	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
+       	    if ( $anwendungszweck == Essentrinken ) {$anwendungszweck = ^"''EssenTrinken'"}
+       	    $zusammenfassung = ^"Du weißt schon, wofür du dein Produkt möchtest, und zwar: $anwendungszweck."
+       	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+       # Nicht erkannt.
+         b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+
+    # Konkrete Angabe Geschenk - gehe direkt weiter!
+    a: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
+        if (_0 == Erinnerungsstueck) {$geschenkidee = ^"'Erinnerungsstück'"}
+        $zusammenfassung = ^"Du suchst ein $geschenkidee."
+        ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+	# Konkrete Angabe Anwendungszweck
+	a: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
+	    $zusammenfassung = ^"Du weißt schon, wofür du dein Produkt möchtest, und zwar: $anwendungszweck."
+	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+	# Keins von beidem
+	a: ( ~keinsvonbeiden )
+	    In Ordnung. Das verstehe ich, lass uns einfach mal weitermachen.
+	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
+	
+	# Nicht erkannt
+	a: () Ich habe das leider nicht richtig verstanden. Könntest du das bitte wiederholen?
+
+	#! Geschenk
+        b: (~willGeschenk) $anwendungszweck = ^"'nichts'" Du möchtest etwas verschenken. Ich kann dir folgende Kategorien anbieten:
+            Erinnerungsstück, Gastgeschenk, Geschenk oder Mitbringsel.
+            # if (^dbexecute(^"SELECT DISTINCT geschenkidee FROM geschenk;" '^dbFirst )) {}
+            #  else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+
+           #! Mitbringsel
+             c: ( _~geschenkidee ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"''_0'"
+                 if (_0 == Erinnerungsstueck) {$geschenkidee = ^"'Erinnerungsstück'"}
+                 $zusammenfassung = ^"Du suchst ein $geschenkidee."
+                  ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+           #! Geschenk
+             c: ( Geschenk ) $anwendungszweck = ^"'nichts'" $geschenkidee = ^"'Geschenk'"
+               $zusammenfassung = ^"Du suchst ein $geschenkidee."
+               ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+           # Nicht erkannt.
+              c: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+
+    	#! bestimmter Zweck
+    	b: (~willZweck) $geschenkidee = ^"'nichts'" Du suchst für etwas zu einem Zweck. Ich kann dir folgende Kategorien anbieten:
+    	    Accessoire, Alltag, EssenTrinken, Schreibwaren oder Unterhaltung.
+    	    # if (^dbexecute(^"SELECT DISTINCT anwendungsgebiet FROM anwendung;" '^dbFirst )) {}
+            # else {dbexecute failed list from table- $$db_error ^reuse( FIRSTQ ) }
+
+           #! EssenTrinken
+           	c: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
+           	    if ( $anwendungszweck == Essentrinken ) {$anwendungszweck = ^"''EssenTrinken'"}
+           	    $zusammenfassung = ^"Du weißt schon, wofür du dein Produkt möchtest, und zwar: $anwendungszweck."
+           	    ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+           # Nicht erkannt.
+            c: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
+
+        # Wieder nicht erkannt.
+        b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexonesentence.STARTONESENTENCE )
