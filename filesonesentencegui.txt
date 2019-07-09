@@ -1,7 +1,0 @@
-RAWDATA/ONESENTENCEGUI/simplecontrol.top # default bot control
-RAWDATA/ONESENTENCEGUI/introductions.top
-RAWDATA/ONESENTENCEGUI/kaufabsicht.top
-RAWDATA/ONESENTENCEGUI/konzepte.top
-RAWDATA/ONESENTENCEGUI/dbsearch.top
-RAWDATA/ONESENTENCEGUI/keyexonesentence.top
-RAWDATA/ONESENTENCEGUI/ende.top
