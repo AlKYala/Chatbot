@@ -28,7 +28,7 @@ t: GREET () Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit d
         ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)        # Variable $kunde
         $cs_token = $stdtoken                                   # Das "alte" Muster zur Satzanalyse wird wieder verwendet
         $userprompt = ^"$kunde: >"                              # Der Name des Kunden wir in der Konsole angezeigt
-        ^reuse(~kaufabsicht.STARTKAUF)
+
 
 	#! Nein
 	a: ( [~no ~negativ] ) 	^reuse( KEINE_VORSTELLUNG )
@@ -46,7 +46,6 @@ t: GREET () Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit d
        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
        $cs_token = $stdtoken
        $userprompt = ^"$kunde: >"
-       ^reuse(~kaufabsicht.STARTKAUF)
 
 	#! Das will ich nicht sagen.
 	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)

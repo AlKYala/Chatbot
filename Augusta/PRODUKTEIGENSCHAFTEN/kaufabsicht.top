@@ -5,23 +5,6 @@ outputmacro: ^dbFirst($_arg1)
 	    ^flushoutput()
 ##>>
 
-outputmacro: ^testvariables($_arg1)                  # Outmputmacro für ^walkvariables (s. Dokumentation, Abschnitt 3.4)
-        if($_arg1 == $introyes) {
-            introyes: $_arg1.
-        } else if($_arg1 == $gosearch) {
-            gosearch
-        } else if($_arg1 == $searchcreate) {
-            searchcreate: $_arg1.
-        } else if($_arg1 == $searchable) {
-            searchable: $_arg1.
-        } else if($_arg1 == $produktname) {
-            produkname: $_arg1.
-        } else if($_arg1 == $produktbeschreibung) {
-            produktbeschreibung: $_arg1.
-        } else if($_arg1 == $enterEnd2) {
-            enterEnd2: $_arg1.
-        } else { Andere Variable: $_arg1. }
-        ^flushoutput()
 		
 
 topic: ~kaufabsicht keep (~kaufen)
@@ -39,25 +22,23 @@ DOKUMENTATION: KAPITEL 4.2
 # enter999 dient dazu, dass man nie by default in kaufabsicht kommt.
 t: STARTKAUF ($enter999) ^reuse( INTRO)
 
-u: INTRO ( $enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann ich dir helfen] [ich kann dir dabei
-    helfen, etwas zu finden] [ich kann dich beraten]. Also dann, wollen wir loslegen?
-       #  WALKVARIABLES: ^walkvariables('^testvariables)
+u: INTRO ( $enter211) Wenn du etwas aus [dem] [unserem] Uni-Shop [möchtest] [suchst], kann ich
+   [dir dabei helfen] [dich beraten]. Also dann, wollen wir loslegen?
 
 
 	# Ja
 	a: ( ~positiv ) $introyes = 1a
 	# DATENBANK
-	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96))
+	    if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password =  ))
 	        {[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
-	    } else {dbinit failed - $$db_error  ^reuse( FIRSTQ ) }
-	   # ^reuse( FIRSTQ )
+	    } else { $$db_error  ^reuse( FIRSTQ ) }
 
 	# introyes nur um zu bestätigen, dass auch "JA" gesagt wurde!
 
 	#! Nein.
 	a: ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
 	# DATENBANK
-	    b: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 )) {Schön zu hören. ^reuse( FIRSTQ )}
+	    b: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password =  )) {Schön zu hören. ^reuse( FIRSTQ )}
                                       else {dbinit failed - $$db_error ^reuse(FIRSTQ)}
 	    b: ( ~positiv ) $enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 
@@ -66,9 +47,9 @@ u: INTRO ( $enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann
 	     # Ich suche / will kaufen / shop
            	b: ( ~positiv ) $introyes = 1a
            	  # DATENBANK
-           	  if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
+           	  if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password =  ))
            	     {Ah, jetzt verstehe ich's. [Lass uns anfangen!] [Super, auf geht's!].
-              } else {dbinit failed - $$db_error}
+              } else { $$db_error}
               ^reuse( FIRSTQ )
 				
 				
@@ -76,21 +57,20 @@ u: INTRO ( $enter211) [Das ist gut] [Das ist toll] [Das freut mich], [dabei kann
          # Alternative zu der Frage: Willst du nicht doch noch einmal gucken, ob ich etwas für dich heraussuchen kann?
 	        b: ( ~negativ ) Tut mir Leid, ich kann eigentlich nur beraten. Bist du dir sicher, dass du nichts aus dem Shop möchtest?
 	        # DATENBANK
-	            c: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96)) {Schön zu hören. ^reuse( FIRSTQ )}
-                                      else {dbinit failed - $$db_error ^reuse(INTRO)}
+	            c: ( ~negativ )  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password =  )) {Schön zu hören. ^reuse( FIRSTQ )}
+                                      else { $$db_error ^reuse(INTRO)}
 	            c: ( ~positiv ) $enterEnd2 = 1b Das ist schade. ^reuse( ~ende.ASKIFHAPPY )
 				
 
          # Antwort immer noch unverständlich
             b: () Glaubst du es gibt eine schriftliche Variante des Murmelns? Irgendwie verstehe ich dich nicht so recht.
             # DATENBANK
-                  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = Hannover-96 ))
+                  $introyes = 1a if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password =  ))
                     {[Egal, fangen wir mal an.] [Ich fange einfach mak an, ja?] ^reuse( FIRSTQ )}
-                  else {dbinit failed - $$db_error ^reuse(INTRO)}
+                  else { $$db_error ^reuse(INTRO)}
 
 
 u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel für einen bestimmten Zweck suchen. Was möchtest du?
-       #   WALKVARIABLES: ^walkvariables('^testvariables)
       $anwendungszweck = ^"'nichts'"
       $geschenkidee = ^"'nichts'"
 
@@ -128,7 +108,7 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
        	b: ( _~anwendungszweck ) $anwendungszweck = ^"''_0'" $geschenkidee = ^"'nichts'"
        	    if ( $anwendungszweck == Essentrinken ) {$anwendungszweck = ^"''EssenTrinken'"}
        	    $zusammenfassung = ^"Du weißt schon, wofür du dein Produkt möchtest, und zwar: $anwendungszweck."
-       	    ^reuse( ~~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
+       	    ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
 
        # Nicht erkannt.
          b: () Mmh, ich mache einfach mal weiter. ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
@@ -148,7 +128,7 @@ u: FIRSTQ ($introyes) Wir können nach etwas zum Verschenken oder einem Artikel 
 	# Keins von beidem
 	a: ( ~keinsvonbeiden )
 	    In Ordnung. Das verstehe ich, lass uns einfach mal weitermachen.
-	    ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
+	     ^reuse( ~keyexprodukteigenschaften.STARTPRODUKTEIGENSCHAFTEN )
 	
 	# Nicht erkannt
 	a: () Ich habe das leider nicht richtig verstanden. Könntest du das bitte wiederholen?

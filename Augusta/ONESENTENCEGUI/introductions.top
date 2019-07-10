@@ -35,7 +35,6 @@ DOKUMENTATION: KAPITEL 4.1
         # Auch wenn Onesentencegui für die GUI geschrieben ist, haben wir für das Testen auf der Konsole die Funktion gelassen,
         # dass der Name des Kunden eingesetzt wird. Auf die GUI hat das keine Auswirkungen
         $userprompt = ^"$kunde: >"
-        ^reuse(~kaufabsicht.STARTKAUF)
 
 	#! Nein
 	a: ( [~no ~negativ] ) 	^reuse( KEINE_VORSTELLUNG )
@@ -53,7 +52,7 @@ DOKUMENTATION: KAPITEL 4.1
        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
        $cs_token = $stdtoken
        $userprompt = ^"$kunde: >"
-       ^reuse(~kaufabsicht.STARTKAUF)
+
 
 	#! Das will ich nicht sagen.
 	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)
@@ -88,7 +87,7 @@ t: GREET2 ( ~emohello )
         ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
         $cs_token = $stdtoken
         $userprompt = ^"$kunde: >"
-        ^reuse(~kaufabsicht.STARTKAUF)
+
 
 	#! Nein
 	a: ( [~no ~negativ] ) 	^reuse( KEINE_VORSTELLUNG )
@@ -106,7 +105,7 @@ t: GREET2 ( ~emohello )
        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
        $cs_token = $stdtoken
        $userprompt = ^"$kunde: >"
-       ^reuse(~kaufabsicht.STARTKAUF)
+
 
 	#! Das will ich nicht sagen.
 	a: KEINE_VORSTELLUNG (<<[sagen] nicht>>) [Das verstehe ich] [Das kann ich nachvollziehen]. ^reuse(~kaufabsicht.STARTKAUF)

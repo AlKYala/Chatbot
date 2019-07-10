@@ -62,13 +62,11 @@ Bedeutung QUERIED:
 
 
 t: WELCOME ($gosearch)
-    # WALKVARIABLES: ^walkvariables('^testvariables)
     $searchcreate = 1d ^reuse( SEARCHCREATE )
 
 
 # Name für die eigene Tabelle des Kunden: $tablename = ^join("mystring" $cs_randindex)
 t: SEARCHCREATE ($searchcreate)
-    #  WALKVARIABLES: ^walkvariables('^testvariables
      $searchenable = 1e
      if (!$tablename) { $tablename = ^join("mystring" $cs_randindex) }
      if (^dbexecute(^"CREATE TABLE IF NOT EXISTS $tablename AS (SELECT row_number() OVER(ORDER BY artnr), * FROM pseudotabellepro);" )) {^reuse( SEARCHPRODUCT)}
@@ -133,7 +131,6 @@ t: PRODUCTPRICE ($Produktpreis)
 
 	# EnterEnd955 nur dazu da, um ein zufälliges Eintreten in diesen Zustand zu verhindern.
 u: RESPONSE ($ENTEREND955)
-   # WALKVARIABLES: ^walkvariables('^testvariables)
     [Bist du zufrieden? ] [War es das, was du gesucht hast? ] [War es das, was du wolltest? ] [Gefällt es dir?]
 
     #! Ja
@@ -163,5 +160,5 @@ u: RESPONSE ($ENTEREND955)
 
 t: SEARCHAGAIN ($weitersuchen)
    if (^dbexecute( ^"UPDATE $tablename SET queried = 2 WHERE queried = 1;" )) { $weitersuchen = 0 ^reuse (SEARCHPRODUCT) }
-   else  {dbexecute failed list from table- $$db_error }
+   else  { $$db_error }
 

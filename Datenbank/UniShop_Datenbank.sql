@@ -3,6 +3,7 @@
 -- ausführliche Informationen zu der Datenbank und ihrer Einbindung finden sich in Kapitel 5 der Dokumentation
 
 /* Zum Löschen der Relationen */
+
 /*
 drop table geschenk;
 drop table anwendung;
@@ -225,29 +226,3 @@ where geschenkidee is null;
 update pseudotabellepro
 set anwendungsgebiet = 'nichts'
 where anwendungsgebiet is null;
-
-/* WEGEN DER FARBEN */
-
-/* In der neuen Version von Artikel sind die Farben bereits großgeschrieben
-update pseudotabellepro
-set ausfuehrung = 'Blau'
-where ausfuehrung = 'Blau';
-
-update pseudotabellepro
-set ausfuehrung = 'Grün'
-where ausfuehrung = 'grün';
-
-update pseudotabellepro
-set ausfuehrung = 'Grau'
-where ausfuehrung = 'grau';
-
-update pseudotabellepro
-set ausfuehrung = 'Schwarz'
-where ausfuehrung = 'schwarz';
-
-*/
-
-
-/* ERSTELLEN VARIABLEN 
- * DIESE SOLLEN IN DER QUERY DANN AUSGEFÜLLT WERDEN!
- * */

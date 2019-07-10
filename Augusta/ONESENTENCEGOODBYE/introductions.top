@@ -29,7 +29,7 @@ t: GREET () Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit d
            retry(SENTENCE)
            }
         $kunde =  pos(noun '_0 proper)                          # Großschreibung des Names und Zuweisung an die
-        ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)        # Variable $kunde
+        ^"Hallo, $kunde."                                       # Variable $kunde
         $cs_token = $stdtoken                                   # Das "alte" Muster zur Satzanalyse wird wieder verwendet
         $userprompt = ^"$kunde: >"                              # Der Name des Kunden wir in der Konsole angezeigt
         ^reuse(~kaufabsicht.STARTKAUF)
@@ -47,7 +47,7 @@ t: GREET () Möchtest du mir deinen Vornamen verraten? [Dann kann ich dich mit d
        retry(SENTENCE)
        }
        $kunde = pos(noun '_0 proper)
-       ^"Hallo, $kunde." ^reuse(~kaufabsicht.STARTKAUF)
+       ^"Hallo, $kunde."
        $cs_token = $stdtoken
        $userprompt = ^"$kunde: >"
        ^reuse(~kaufabsicht.STARTKAUF)

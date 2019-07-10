@@ -128,13 +128,13 @@ u: QUALITY ($ENTEREND999) Du kannst mir hier Eigenschaften wie den Namen oder ei
      # 9. Muster: nur Preis
      a: ( !~thingsandart !~ausfuehrung * _~positiveinteger * )
         $preis = ^"''_0'"
-        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Vorstellungen bezüglich der Art deines gewünschten
+        $zusammenfassung = ^join($zusammenfassung ^" Konkrete Vorstellungen bezüglich der Art deines gewünschten
            Produktes hast du zwar noch nicht, aber du weißt, dass es maximal $preis Euro kosten soll.")
         ^reuse( SUMMARY )
 
      # 10. Muster: Kunde kann keine Angaben machen
      a: ({ich} ["weiß nicht" "weiß es nicht" "habe keine Ahnung" "keine Ahnung"] )
-        $zusammenfassung = ^join($zusammenfassung ^"Konkrete Eigenschaften oder Informationen zum Preis hast du nicht angegeben.")
+        $zusammenfassung = ^join($zusammenfassung ^" Konkrete Eigenschaften oder Informationen zum Preis hast du nicht angegeben.")
         ^reuse( SUMMARY )
 
     #! Tschüss
@@ -171,4 +171,4 @@ u: SUMMARY ($ENTEREND888)
     a: ( ~ciao ) $endimmediately = 1 ^reuse( ~ende.GOODBYE )
 
     # Unverständliches
-    a: () $gosearch = 1 Alles klar! I[Ich suche mal im Shop] [Ich sehe mal nach, was ich finde].  ^reuse( ~dbsearch.WELCOME )
+    a: () $gosearch = 1 Alles klar! [Ich suche mal im Shop] [Ich sehe mal nach, was ich finde].  ^reuse( ~dbsearch.WELCOME )

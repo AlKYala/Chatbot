@@ -69,9 +69,7 @@ t: SETNULLANDREP ($enterEnd50)
 	$cs_externaltag = $_cs_externaltagtmp
 	$cs_language = $_cs_languagetmp
 	$cs_control_main = $_cs_control_maintmp
-	$cs_bot = $_cs_bottmp 
-	# TEST: Deine Tabelle ist $tablename
-	# WALKVARIABLES: ^walkvariables('^testvariables)
+	$cs_bot = $_cs_bottmp
     ^reuse( ~kaufabsicht.FIRSTQ )
 
     # Wir gehen in Kaufabsicht.FIRSTQ, da bereits gefragt worden ist, ob überhaupt noch Interesse daran besteht, etwas zu

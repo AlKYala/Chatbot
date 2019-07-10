@@ -162,4 +162,4 @@ u: RESPONSE ($ENTEREND955)
 
 t: SEARCHAGAIN ($weitersuchen)
    if (^dbexecute( ^"UPDATE $tablename SET queried = 2 WHERE queried = 1;" )) { $weitersuchen = 0 ^reuse (SEARCHPRODUCT) }
-   else  {dbexecute failed list from table- $$db_error }
+   else  { $$db_error }
