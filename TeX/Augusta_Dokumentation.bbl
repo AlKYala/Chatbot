@@ -1,7 +1,32 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
+
+\bibitem[{cb4(????)}]{cb4}
+ (o.J.) \emph{Deleting all variables at once?}
+\newblock https://www.chatbots.org/ai_zone/viewthread/3679/.
+
+\bibitem[{cb3(????)}]{cb3}
+ (o.J.) \emph{Matching input: finding keyword after match location}.
+\newblock https://www.chatbots.org/ai_zone/viewthread/3676/.
+
+\bibitem[{cb5(????)}]{cb5}
+ (o.J.) \emph{Problems making GUI work}.
+\newblock https://www.chatbots.org/ai_zone/viewthread/3681/.
+
+\bibitem[{red(????)}]{reddit1}
+ (o.J.) \emph{r/Database - Query with unknown Values?}
+\newblock
+  https://www.reddit.com/r/Database/comments/boolaf/query_with_unknown_values/.
+
+\bibitem[{cb1(????)}]{cb1}
+ (o.J.) \emph{Store null-variables' values as null?}
+\newblock https://www.chatbots.org/ai_zone/viewthread/3668/.
+
+\bibitem[{cb2(????)}]{cb2}
+ (o.J.) \emph{Trouble running Localpgserver.bat}.
+\newblock https://www.chatbots.org/ai_zone/viewthread/3673/.
 
 \bibitem[{Wilcox(2019)}]{chatscript2019}
 \textsc{Wilcox, Bruce} (2019) \emph{ChatScript}.
