@@ -16,19 +16,25 @@ Obwohl ChatScript auch auf Mac und Linux laufen kann, existiert ein Problem bei 
 Um den Bot zu testen, wird ChatScript benötigt. Das Framework mit der Dokumentation in der aktuellen Version ist unter \url{https://github.com/ChatScript/ChatScript} zu finden.\\
 Die Adresse der Git-Repository des Projekts lautet \url{https://github.com/AlKYala/Chatbot}. Während des Projekts wurde mit Version 9.31 (30.04.2019) von ChatScript gearbeitet.\\
 Die Ordner \textit{ONESENTENCEGOODBYE}, \textit{ONESENTENCEGUI} und \textit{PRODUKTEIGENSCHAFTEN} sind alle in den Ordner \textit{RAWDATA} im ChatScript-Verzeichnis zu kopieren. Ein Ordner steht dabei für eine Version des Chatbots. Ebenso müssen die Dateien \textit{filesonesentencegoodbye.txt}, \textit{filesonesentencegui.txt} und \textit{filesprodukteigenschaften.txt}, welche zum Kompilieren der jeweiligen Version benötigt werden.\\
-Mithilfe der Datei \textit{UniShop\_Datenbank} muss in PostgreSQL die Datenbank \textit{Uni-Shop} erstellt und das Passwort (hier: \lstinline|1234|) für PostgreSQL an der jeweiligen Stelle in \textit{kaufabsicht.top} eingetragen werden (pro Datei fünf Mal). Die Stellen sind durch den Kommentar \lstinline|# DATENBANK| gekennzeichnet. Hier ein Beispiel:
+Mithilfe der Datei \textit{UniShop\_Datenbank} (UTF-8-codiert) muss in PostgreSQL die Datenbank \textit{Uni-Shop} erstellt und das Passwort (hier: \lstinline|1234|) für PostgreSQL an der jeweiligen Stelle in \textit{kaufabsicht.top} eingetragen werden (pro Datei fünf Mal). Die Stellen sind durch den Kommentar \lstinline|# DATENBANK| gekennzeichnet. Hier ein Beispiel:
 
 \begin{lstlisting}{}
 # DATENBANK
 if (^dbinit(dbname = Uni-Shop port = 5432 user = postgres password = 1234))
 	{[Lass uns anfangen] [Super, auf geht's]!  ^reuse( FIRSTQ )
-} else {dbinit failed - $$db_error ^reuse( FIRSTQ ) }
+} else { $$db_error ^reuse( FIRSTQ ) }
 \end{lstlisting}
 
 Da sich der Inhalt von \textit{kaufabsicht.top} von Version zu Version unterscheidet, ist ein Kopieren der Datei in die anderen Versionen nicht zu empfehlen.\\
 Um ChatScript zu starten, empfiehlt es sich, die Datei \textit{ChatScriptpg.exe} im Ordner \textit{BINARIES} auszuführen. Es ist dabei darauf zu achten, dass die .exe-Datei "`pg"' im Namen hat,  da nur hier PostgreSQL unterstützt wird. Zum Kompilieren muss in der Konsole der Befehl \lstinline|:build CHATBOTNAME| eingegeben werden.\\
 Sollte der Wunsch bestehen, die GUI zu testen, so muss die .bat-Datei \textit{LocalPgServer.bat} aus dem Ordner \textit{SERVER BATCH FILES} ausgeführt werden, um den Server zum Laufen zu bringen, und die Dateien \textit{index.php}, \textit{ui.php} und \textit{UniTrier\_Logo.png} müssen in das jeweilige Verzeichnis für den Server kopiert werden. Zuvor müssen allerdings sowohl die .bat-Datei als auch \textit{ui.php} in Bezug auf das PostgreSQL-Passwort, den Localhost und Anderes angepasst werden.\\
 Für Anmerkungen zu den Schwierigkeiten mit dem PostgreSQL-Support, der Benutzerschnittstelle und anderen Betriebsystemen als Windows siehe Kapitel \ref{sec:Probleme}.\\
+
+
+\subsection{Einfügen neuer Daten}
+\label{sec:neueDaten}
+Die Datenbank \textit{Uni-Shop} als Grundgerüst des Universitätsshops und auch der Kaufberatung kann recht leicht um neue Einträge erweitert werden. Nach dem Einfügen von Werten in eine oder mehrere der Relationen \textit{Artikel}, \textit{Anwendung} und \textit{Geschenk} muss \textit{PseudotabellePro} neu erstellt werden. Weitere Informationen zur Datenbank folgen in Abschnitt \ref{sec:DB}.\\
+Die entsprechenden Konzepte aus dem Topic Konzepte müssen um die jeweiligen Begriffe erweitert werden und für die Behandlung der Umlaute sollte in SUMMARY aus KeyExProdukteigenschaften und KeyExOnesentence gegebenenfalls eine Anweisung zur Umwandlung eingefügt werden. Dafür können die bereits vorgegebenen Befehle kopiert und angepasst werden.\\
 
 
 \section{Versionen}

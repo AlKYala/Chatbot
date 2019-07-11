@@ -3,30 +3,32 @@
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 
-\bibitem[{cb4(????)}]{cb4}
- (o.J.) \emph{Deleting all variables at once?}
-\newblock https://www.chatbots.org/ai_zone/viewthread/3679/.
+\bibitem[{o.~V.(o. J.{\natexlab{a}})}]{cb4}
+\textsc{o.~V.} (o. J.{\natexlab{a}}) \emph{Deleting all variables at once?}
+  \url{https://www.chatbots.org/ai_zone/viewthread/3679/ } (10.07.2019).
 
-\bibitem[{cb3(????)}]{cb3}
- (o.J.) \emph{Matching input: finding keyword after match location}.
-\newblock https://www.chatbots.org/ai_zone/viewthread/3676/.
+\bibitem[{o.~V.(o. J.{\natexlab{b}})}]{cb3}
+\textsc{o.~V.} (o. J.{\natexlab{b}}) \emph{Matching input: finding keyword
+  after match location}.
+  \url{https://www.chatbots.org/ai_zone/viewthread/3676/} (10.07.2019).
 
-\bibitem[{cb5(????)}]{cb5}
- (o.J.) \emph{Problems making GUI work}.
-\newblock https://www.chatbots.org/ai_zone/viewthread/3681/.
+\bibitem[{o.~V.(o. J.{\natexlab{c}})}]{cb5}
+\textsc{o.~V.} (o. J.{\natexlab{c}}) \emph{Problems making GUI work}.
+  \url{https://www.chatbots.org/ai_zone/viewthread/3681/} (10.07.2019).
 
-\bibitem[{red(????)}]{reddit1}
- (o.J.) \emph{r/Database - Query with unknown Values?}
-\newblock
-  https://www.reddit.com/r/Database/comments/boolaf/query_with_unknown_values/.
+\bibitem[{o.~V.(o. J.{\natexlab{d}})}]{reddit1}
+\textsc{o.~V.} (o. J.{\natexlab{d}}) \emph{r/Database - Query with unknown
+  Values?}
+  \url{https://www.reddit.com/r/Database/comments/boolaf/query_with_unknown_values/
+  } (10.07.2019).
 
-\bibitem[{cb1(????)}]{cb1}
- (o.J.) \emph{Store null-variables' values as null?}
-\newblock https://www.chatbots.org/ai_zone/viewthread/3668/.
+\bibitem[{o.~V.(o. J.{\natexlab{e}})}]{cb1}
+\textsc{o.~V.} (o. J.{\natexlab{e}}) \emph{Store null-variables' values as
+  null?} \url{https://www.chatbots.org/ai_zone/viewthread/3668/} (10.07.2019).
 
-\bibitem[{cb2(????)}]{cb2}
- (o.J.) \emph{Trouble running Localpgserver.bat}.
-\newblock https://www.chatbots.org/ai_zone/viewthread/3673/.
+\bibitem[{o.~V.(o. J.{\natexlab{f}})}]{cb2}
+\textsc{o.~V.} (o. J.{\natexlab{f}}) \emph{Trouble running Localpgserver.bat}.
+  \url{https://www.chatbots.org/ai_zone/viewthread/3673/} (10.07.2019).
 
 \bibitem[{Wilcox(2019)}]{chatscript2019}
 \textsc{Wilcox, Bruce} (2019) \emph{ChatScript}.
